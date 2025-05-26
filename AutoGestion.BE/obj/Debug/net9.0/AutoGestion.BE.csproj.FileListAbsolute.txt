@@ -1,0 +1,12 @@
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\bin\Debug\net9.0\AutoGestion.BE.deps.json
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\bin\Debug\net9.0\AutoGestion.BE.dll
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\bin\Debug\net9.0\AutoGestion.BE.pdb
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\AutoGestion.BE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\AutoGestion.BE.AssemblyInfoInputs.cache
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\AutoGestion.BE.AssemblyInfo.cs
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\AutoGestion.BE.csproj.CoreCompileInputs.cache
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\AutoGestion.BE.sourcelink.json
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\AutoGestion.BE.dll
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\refint\AutoGestion.BE.dll
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\AutoGestion.BE.pdb
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.BE\obj\Debug\net9.0\ref\AutoGestion.BE.dll

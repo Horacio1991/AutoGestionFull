@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\registrarcliente.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\registrarcliente.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\registrarcliente.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\registrarcliente.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F202F6-1814-4645-ACCB-DA7E3D07173F}|AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.ctrl_vista\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9F202F6-1814-4645-ACCB-DA7E3D07173F}|AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj|solutionrelative:autogestion.ctrl_vista\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.bll\\clientebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|solutionrelative:autogestion.bll\\clientebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -22,11 +34,53 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "RegistrarCliente.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\RegistrarCliente.xaml.cs",
+              "RelativeDocumentMoniker": "AutoGestion.Vista\\RegistrarCliente.xaml.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\RegistrarCliente.xaml.cs",
+              "RelativeToolTip": "AutoGestion.Vista\\RegistrarCliente.xaml.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:34:02.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegistrarCliente.xaml",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\RegistrarCliente.xaml",
+              "RelativeDocumentMoniker": "AutoGestion.Vista\\RegistrarCliente.xaml",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\RegistrarCliente.xaml",
+              "RelativeToolTip": "AutoGestion.Vista\\RegistrarCliente.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-26T18:33:21.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClienteController.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\ClienteController.cs",
+              "RelativeDocumentMoniker": "AutoGestion.CTRL_Vista\\ClienteController.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\ClienteController.cs",
+              "RelativeToolTip": "AutoGestion.CTRL_Vista\\ClienteController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:32:09.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ClienteBLL.cs",
               "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\ClienteBLL.cs",
               "RelativeDocumentMoniker": "AutoGestion.BLL\\ClienteBLL.cs",
@@ -39,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Cliente.cs",
               "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\Cliente.cs",
               "RelativeDocumentMoniker": "AutoGestion.BE\\Cliente.cs",
@@ -47,16 +101,11 @@
               "RelativeToolTip": "AutoGestion.BE\\Cliente.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T18:25:54.003Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "WhenOpened": "2025-05-26T18:25:54.003Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "XmlRepository.cs",
               "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\XmlRepository.cs",
               "RelativeDocumentMoniker": "AutoGestion.DAO\\XmlRepository.cs",
@@ -64,8 +113,7 @@
               "RelativeToolTip": "AutoGestion.DAO\\XmlRepository.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T18:19:17.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-26T18:19:17.469Z"
             }
           ]
         },

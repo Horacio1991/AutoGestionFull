@@ -1,0 +1,16 @@
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\bin\Debug\net9.0\AutoGestion.Mapeadores.deps.json
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\bin\Debug\net9.0\AutoGestion.Mapeadores.dll
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\bin\Debug\net9.0\AutoGestion.Mapeadores.pdb
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\bin\Debug\net9.0\AutoGestion.BE.dll
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\bin\Debug\net9.0\AutoGestion.BE.pdb
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGestion.Mapeadores.csproj.AssemblyReference.cache
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGestion.Mapeadores.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGestion.Mapeadores.AssemblyInfoInputs.cache
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGestion.Mapeadores.AssemblyInfo.cs
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGestion.Mapeadores.csproj.CoreCompileInputs.cache
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGestion.Mapeadores.sourcelink.json
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGest.3D734628.Up2Date
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGestion.Mapeadores.dll
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\refint\AutoGestion.Mapeadores.dll
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\AutoGestion.Mapeadores.pdb
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Mapeadores\obj\Debug\net9.0\ref\AutoGestion.Mapeadores.dll

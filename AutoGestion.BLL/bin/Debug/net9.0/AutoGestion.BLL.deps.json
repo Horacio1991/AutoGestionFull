@@ -1,0 +1,90 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "AutoGestion.BLL/1.0.0": {
+        "dependencies": {
+          "AutoGestion.BE": "1.0.0",
+          "AutoGestion.DAO": "1.0.0",
+          "AutoGestion.Mapeadores": "1.0.0",
+          "AutoGestion.Servicios": "1.0.0"
+        },
+        "runtime": {
+          "AutoGestion.BLL.dll": {}
+        }
+      },
+      "AutoGestion.BE/1.0.0": {
+        "runtime": {
+          "AutoGestion.BE.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AutoGestion.DAO/1.0.0": {
+        "dependencies": {
+          "AutoGestion.BE": "1.0.0"
+        },
+        "runtime": {
+          "AutoGestion.DAO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AutoGestion.Mapeadores/1.0.0": {
+        "dependencies": {
+          "AutoGestion.BE": "1.0.0"
+        },
+        "runtime": {
+          "AutoGestion.Mapeadores.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AutoGestion.Servicios/1.0.0": {
+        "dependencies": {
+          "AutoGestion.BE": "1.0.0"
+        },
+        "runtime": {
+          "AutoGestion.Servicios.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AutoGestion.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AutoGestion.BE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AutoGestion.DAO/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AutoGestion.Mapeadores/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AutoGestion.Servicios/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
