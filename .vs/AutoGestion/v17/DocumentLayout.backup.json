@@ -1,0 +1,288 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.dao\\xmlrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|solutionrelative:autogestion.dao\\xmlrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.dao\\autogestion.dao.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|solutionrelative:autogestion.dao\\autogestion.dao.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98546D1A-A4BA-47D2-BAB7-4F2D73A735B1}|AutoGestion.Servicios\\AutoGestion.Servicios.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.servicios\\autogestion.servicios.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{98546D1A-A4BA-47D2-BAB7-4F2D73A735B1}|AutoGestion.Servicios\\AutoGestion.Servicios.csproj|solutionrelative:autogestion.servicios\\autogestion.servicios.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7C3256A-85CD-42FA-9442-3075EDE4209E}|AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.mapeadores\\autogestion.mapeadores.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B7C3256A-85CD-42FA-9442-3075EDE4209E}|AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj|solutionrelative:autogestion.mapeadores\\autogestion.mapeadores.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\autogestion.vista.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\autogestion.vista.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F202F6-1814-4645-ACCB-DA7E3D07173F}|AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.ctrl_vista\\autogestion.ctrl_vista.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A9F202F6-1814-4645-ACCB-DA7E3D07173F}|AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj|solutionrelative:autogestion.ctrl_vista\\autogestion.ctrl_vista.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.bll\\autogestion.bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|solutionrelative:autogestion.bll\\autogestion.bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F8D830-7521-4096-9E78-FB6287C52C74}|AutoGestion.BE\\AutoGestion.BE.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.be\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F8D830-7521-4096-9E78-FB6287C52C74}|AutoGestion.BE\\AutoGestion.BE.csproj|solutionrelative:autogestion.be\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98546D1A-A4BA-47D2-BAB7-4F2D73A735B1}|AutoGestion.Servicios\\AutoGestion.Servicios.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.servicios\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98546D1A-A4BA-47D2-BAB7-4F2D73A735B1}|AutoGestion.Servicios\\AutoGestion.Servicios.csproj|solutionrelative:autogestion.servicios\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7C3256A-85CD-42FA-9442-3075EDE4209E}|AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.mapeadores\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7C3256A-85CD-42FA-9442-3075EDE4209E}|AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj|solutionrelative:autogestion.mapeadores\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.dao\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|solutionrelative:autogestion.dao\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9F202F6-1814-4645-ACCB-DA7E3D07173F}|AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.ctrl_vista\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9F202F6-1814-4645-ACCB-DA7E3D07173F}|AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj|solutionrelative:autogestion.ctrl_vista\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.bll\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|solutionrelative:autogestion.bll\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "XmlRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\XmlRepository.cs",
+              "RelativeDocumentMoniker": "AutoGestion.DAO\\XmlRepository.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\XmlRepository.cs",
+              "RelativeToolTip": "AutoGestion.DAO\\XmlRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:18:49.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AutoGestion.Servicios",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj",
+              "RelativeDocumentMoniker": "AutoGestion.Servicios\\AutoGestion.Servicios.csproj",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj",
+              "RelativeToolTip": "AutoGestion.Servicios\\AutoGestion.Servicios.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-26T18:18:22.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AutoGestion.Mapeadores",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj",
+              "RelativeDocumentMoniker": "AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj",
+              "RelativeToolTip": "AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-26T18:18:12.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AutoGestion.DAO",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\AutoGestion.DAO.csproj",
+              "RelativeDocumentMoniker": "AutoGestion.DAO\\AutoGestion.DAO.csproj",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\AutoGestion.DAO.csproj",
+              "RelativeToolTip": "AutoGestion.DAO\\AutoGestion.DAO.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-26T18:17:59.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AutoGestion.Vista",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\AutoGestion.Vista.csproj",
+              "RelativeDocumentMoniker": "AutoGestion.Vista\\AutoGestion.Vista.csproj",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\AutoGestion.Vista.csproj",
+              "RelativeToolTip": "AutoGestion.Vista\\AutoGestion.Vista.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-26T18:17:49.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AutoGestion.CTRL_Vista",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj",
+              "RelativeDocumentMoniker": "AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj",
+              "RelativeToolTip": "AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-26T18:17:31.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AutoGestion.BLL",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\AutoGestion.BLL.csproj",
+              "RelativeDocumentMoniker": "AutoGestion.BLL\\AutoGestion.BLL.csproj",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\AutoGestion.BLL.csproj",
+              "RelativeToolTip": "AutoGestion.BLL\\AutoGestion.BLL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-26T18:17:02.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\Class1.cs",
+              "RelativeDocumentMoniker": "AutoGestion.BE\\Class1.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\Class1.cs",
+              "RelativeToolTip": "AutoGestion.BE\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:16:42.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\Class1.cs",
+              "RelativeDocumentMoniker": "AutoGestion.Servicios\\Class1.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\Class1.cs",
+              "RelativeToolTip": "AutoGestion.Servicios\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:16:15.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\Class1.cs",
+              "RelativeDocumentMoniker": "AutoGestion.Mapeadores\\Class1.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\Class1.cs",
+              "RelativeToolTip": "AutoGestion.Mapeadores\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:15:58.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\Class1.cs",
+              "RelativeDocumentMoniker": "AutoGestion.DAO\\Class1.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\Class1.cs",
+              "RelativeToolTip": "AutoGestion.DAO\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:15:42.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\Class1.cs",
+              "RelativeDocumentMoniker": "AutoGestion.CTRL_Vista\\Class1.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\Class1.cs",
+              "RelativeToolTip": "AutoGestion.CTRL_Vista\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:15:27.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\Class1.cs",
+              "RelativeDocumentMoniker": "AutoGestion.BLL\\Class1.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\Class1.cs",
+              "RelativeToolTip": "AutoGestion.BLL\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:15:05.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "AutoGestion.Vista\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\MainWindow.xaml",
+              "RelativeToolTip": "AutoGestion.Vista\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-26T18:13:48.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "AutoGestion.Vista\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\MainWindow.xaml.cs",
+              "RelativeToolTip": "AutoGestion.Vista\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:13:40.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

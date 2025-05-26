@@ -1,0 +1,433 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj",
+        "projectName": "AutoGestion.BE",
+        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj",
+        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\AutoGestion.BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\AutoGestion.BLL.csproj",
+        "projectName": "AutoGestion.BLL",
+        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\AutoGestion.BLL.csproj",
+        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj"
+              },
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\AutoGestion.DAO.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\AutoGestion.DAO.csproj"
+              },
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj"
+              },
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj",
+        "projectName": "AutoGestion.CTRL_Vista",
+        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj",
+        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj"
+              },
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\AutoGestion.BLL.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\AutoGestion.BLL.csproj"
+              },
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\AutoGestion.DAO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\AutoGestion.DAO.csproj",
+        "projectName": "AutoGestion.DAO",
+        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\AutoGestion.DAO.csproj",
+        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj",
+        "projectName": "AutoGestion.Mapeadores",
+        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\AutoGestion.Mapeadores.csproj",
+        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Mapeadores\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj",
+        "projectName": "AutoGestion.Servicios",
+        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\AutoGestion.Servicios.csproj",
+        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Servicios\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\AutoGestion.BE.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
