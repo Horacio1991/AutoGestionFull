@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36121.58 d17.14
+VisualStudioVersion = 17.14.36121.58
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoGestion.Vista", "AutoGestion.Vista\AutoGestion.Vista.csproj", "{C56907D8-C25E-465A-AA27-5D9914808E0C}"
 EndProject
@@ -16,6 +16,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoGestion.Servicios", "AutoGestion.Servicios\AutoGestion.Servicios.csproj", "{98546D1A-A4BA-47D2-BAB7-4F2D73A735B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoGestion.BE", "AutoGestion.BE\AutoGestion.BE.csproj", "{F7F8D830-7521-4096-9E78-FB6287C52C74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

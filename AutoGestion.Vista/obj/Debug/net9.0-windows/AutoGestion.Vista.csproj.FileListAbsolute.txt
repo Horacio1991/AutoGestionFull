@@ -35,3 +35,5 @@ C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\AutoGestion.Vista.pdb
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\AutoGestion.Vista.genruntimeconfig.cache
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\ref\AutoGestion.Vista.dll
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\SolicitarModelo.baml
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\SolicitarModelo.g.cs
