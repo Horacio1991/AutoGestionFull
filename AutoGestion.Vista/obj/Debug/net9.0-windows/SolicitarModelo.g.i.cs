@@ -68,7 +68,7 @@ namespace AutoGestion.Vista {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AutoGestion.Vista;component/solicitarmodelo.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AutoGestion.Vista;V1.0.0.0;component/solicitarmodelo.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\SolicitarModelo.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

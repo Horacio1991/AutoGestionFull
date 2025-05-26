@@ -1,7 +1,7 @@
-﻿<Window x:Class="AutoGestion.Vista.SolicitarModelo"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Solicitar Modelo" Height="400" Width="600">
+﻿<UserControl x:Class="AutoGestion.Vista.Controles.SolicitarModelo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="Auto" Width="Auto">
     <StackPanel Margin="20">
         <TextBlock Text="Modelo a buscar:"/>
         <TextBox x:Name="txtModelo" Margin="0,5"/>
@@ -11,4 +11,4 @@
         <TextBlock Text="Resultados:" FontWeight="Bold" Margin="0,10"/>
         <ListBox x:Name="lstResultados" DisplayMemberPath="Dominio"/>
     </StackPanel>
-</Window>
+</UserControl>

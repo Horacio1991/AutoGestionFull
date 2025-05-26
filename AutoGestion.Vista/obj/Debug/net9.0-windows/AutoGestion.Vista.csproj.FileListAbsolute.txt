@@ -16,9 +16,7 @@ C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\bin\Debug\net9.0-
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\bin\Debug\net9.0-windows\AutoGestion.Mapeadores.pdb
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\bin\Debug\net9.0-windows\AutoGestion.Servicios.pdb
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\AutoGestion.Vista.csproj.AssemblyReference.cache
-C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\RegistrarCliente.baml
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\MainWindow.g.cs
-C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\RegistrarCliente.g.cs
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\App.g.cs
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\AutoGestion.Vista_MarkupCompile.cache
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\AutoGestion.Vista_MarkupCompile.lref
@@ -35,5 +33,7 @@ C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\AutoGestion.Vista.pdb
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\AutoGestion.Vista.genruntimeconfig.cache
 C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\ref\AutoGestion.Vista.dll
-C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\SolicitarModelo.baml
-C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\SolicitarModelo.g.cs
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\Controles\RegistrarCliente.baml
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\Controles\RegistrarCliente.g.cs
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\Controles\SolicitarModelo.baml
+C:\Users\Educaccion\source\repos\AutoGestion\AutoGestion.Vista\obj\Debug\net9.0-windows\Controles\SolicitarModelo.g.cs

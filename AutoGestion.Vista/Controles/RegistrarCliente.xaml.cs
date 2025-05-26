@@ -1,10 +1,12 @@
 ﻿using AutoGestion.CTRL_Vista;
 using AutoGestion.BE;
+using System;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace AutoGestion.Vista
+namespace AutoGestion.Vista.Controles
 {
-    public partial class RegistrarCliente : Window
+    public partial class RegistrarCliente : UserControl
     {
         private readonly ClienteController _controller = new();
 
@@ -26,7 +28,7 @@ namespace AutoGestion.Vista
 
                 if (existente != null)
                 {
-                    MessageBox.Show("El cliente ya existe:\n" +
+                    MessageBox.Show($"El cliente ya existe:\n" +
                         $"{existente.Nombre} {existente.Apellido}\n" +
                         $"Contacto: {existente.Contacto}", "Cliente Encontrado");
                     return;

@@ -1,13 +1,15 @@
 ﻿using AutoGestion.BLL;
 using AutoGestion.BE;
+using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace AutoGestion.Vista
+namespace AutoGestion.Vista.Controles
 {
-    public partial class SolicitarModelo : Window
+    public partial class SolicitarModelo : UserControl
     {
-        private VehiculoBLL _vehiculoBLL = new();
+        private readonly VehiculoBLL _vehiculoBLL = new();
 
         public SolicitarModelo()
         {
@@ -18,7 +20,7 @@ namespace AutoGestion.Vista
         {
             try
             {
-                string modelo = txtModelo.Text;
+                string modelo = txtModelo.Text.Trim();
                 var encontrados = _vehiculoBLL.BuscarVehiculosPorModelo(modelo);
 
                 if (encontrados.Count > 0)
@@ -37,7 +39,7 @@ namespace AutoGestion.Vista
                         MessageBox.Show("No se encontraron vehículos disponibles.");
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error");
             }

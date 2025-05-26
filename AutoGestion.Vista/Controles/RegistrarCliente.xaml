@@ -1,7 +1,7 @@
-﻿<Window x:Class="AutoGestion.Vista.RegistrarCliente"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Registrar Cliente" Height="300" Width="400">
+﻿<UserControl x:Class="AutoGestion.Vista.Controles.RegistrarCliente"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="Auto" Width="Auto">
     <StackPanel Margin="20" VerticalAlignment="Center">
         <TextBlock Text="DNI"/>
         <TextBox x:Name="txtDni" Margin="0,5"/>
@@ -17,4 +17,4 @@
 
         <Button Content="Registrar" Margin="0,10" Click="Registrar_Click"/>
     </StackPanel>
-</Window>
+</UserControl>

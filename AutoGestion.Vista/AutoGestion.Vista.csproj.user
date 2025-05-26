@@ -2,10 +2,10 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="RegistrarCliente.xaml.cs">
+    <Compile Update="Controles\RegistrarCliente.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SolicitarModelo.xaml.cs">
+    <Compile Update="Controles\SolicitarModelo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

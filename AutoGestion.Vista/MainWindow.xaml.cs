@@ -1,24 +1,24 @@
-﻿using System.Text;
+﻿using AutoGestion.Vista.Controles;
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoGestion.Vista
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void AbrirRegistrarCliente(object sender, RoutedEventArgs e)
+        {
+            framePrincipal.Content = new RegistrarCliente();
+        }
+
+        private void AbrirBuscarVehiculo(object sender, RoutedEventArgs e)
+        {
+            framePrincipal.Content = new SolicitarModelo();
         }
     }
 }
