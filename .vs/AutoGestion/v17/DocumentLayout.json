@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.bll\\clientebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|solutionrelative:autogestion.bll\\clientebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F7F8D830-7521-4096-9E78-FB6287C52C74}|AutoGestion.BE\\AutoGestion.BE.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.be\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7F8D830-7521-4096-9E78-FB6287C52C74}|AutoGestion.BE\\AutoGestion.BE.csproj|solutionrelative:autogestion.be\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.dao\\xmlrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|solutionrelative:autogestion.dao\\xmlrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,6 +27,36 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ClienteBLL.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\ClienteBLL.cs",
+              "RelativeDocumentMoniker": "AutoGestion.BLL\\ClienteBLL.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\ClienteBLL.cs",
+              "RelativeToolTip": "AutoGestion.BLL\\ClienteBLL.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:26:34.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\Cliente.cs",
+              "RelativeDocumentMoniker": "AutoGestion.BE\\Cliente.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\Cliente.cs",
+              "RelativeToolTip": "AutoGestion.BE\\Cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T18:25:54.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "XmlRepository.cs",
               "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\XmlRepository.cs",
               "RelativeDocumentMoniker": "AutoGestion.DAO\\XmlRepository.cs",
