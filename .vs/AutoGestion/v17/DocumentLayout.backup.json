@@ -3,56 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\bll\\bllcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\controles\\solicitarmodelo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\controles\\solicitarmodelo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\mapper\\mppusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\controles\\solicitarmodelo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\controles\\solicitarmodelo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\mapper\\mppturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\controles\\registrarcliente.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\controles\\registrarcliente.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\controles\\registrarcliente.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\controles\\registrarcliente.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.vista\\autogestion.vista.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{C56907D8-C25E-465A-AA27-5D9914808E0C}|AutoGestion.Vista\\AutoGestion.Vista.csproj|solutionrelative:autogestion.vista\\autogestion.vista.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\obj\\Debug\\net9.0-windows\\MainWindow.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:AutoGestion.Vista\\obj\\Debug\\net9.0-windows\\MainWindow.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}|Elementos de la soluci\u00F3n{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}|C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}|Elementos de la soluci\u00F3n{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A9F202F6-1814-4645-ACCB-DA7E3D07173F}|AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.ctrl_vista\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A9F202F6-1814-4645-ACCB-DA7E3D07173F}|AutoGestion.CTRL_Vista\\AutoGestion.CTRL_Vista.csproj|solutionrelative:autogestion.ctrl_vista\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.bll\\clientebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C661C29-F9BD-423A-B47B-F2F32ED6EC56}|AutoGestion.BLL\\AutoGestion.BLL.csproj|solutionrelative:autogestion.bll\\clientebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F7F8D830-7521-4096-9E78-FB6287C52C74}|AutoGestion.BE\\AutoGestion.BE.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.be\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7F8D830-7521-4096-9E78-FB6287C52C74}|AutoGestion.BE\\AutoGestion.BE.csproj|solutionrelative:autogestion.be\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\autogestion.dao\\xmlrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E1AF3EA-1046-49C7-B149-E9EB3557C1B8}|AutoGestion.DAO\\AutoGestion.DAO.csproj|solutionrelative:autogestion.dao\\xmlrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\source\\repos\\autogestion\\bll\\bllturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,173 +30,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SolicitarModelo.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\Controles\\SolicitarModelo.xaml.cs",
-              "RelativeDocumentMoniker": "AutoGestion.Vista\\Controles\\SolicitarModelo.xaml.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\Controles\\SolicitarModelo.xaml.cs",
-              "RelativeToolTip": "AutoGestion.Vista\\Controles\\SolicitarModelo.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T19:16:48.629Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SolicitarModelo.xaml",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\Controles\\SolicitarModelo.xaml",
-              "RelativeDocumentMoniker": "AutoGestion.Vista\\Controles\\SolicitarModelo.xaml",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\Controles\\SolicitarModelo.xaml",
-              "RelativeToolTip": "AutoGestion.Vista\\Controles\\SolicitarModelo.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-26T19:16:28.671Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainWindow.g.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\obj\\Debug\\net9.0-windows\\MainWindow.g.cs",
-              "RelativeDocumentMoniker": "AutoGestion.Vista\\obj\\Debug\\net9.0-windows\\MainWindow.g.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\obj\\Debug\\net9.0-windows\\MainWindow.g.cs",
-              "RelativeToolTip": "AutoGestion.Vista\\obj\\Debug\\net9.0-windows\\MainWindow.g.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAApwAsAAAAXAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "BLLComponente.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLLComponente.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLComponente.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLLComponente.cs",
+              "RelativeToolTip": "BLL\\BLLComponente.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T19:10:16.959Z",
+              "WhenOpened": "2025-07-14T19:15:02.779Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "AutoGestion.Vista\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\MainWindow.xaml.cs",
-              "RelativeToolTip": "AutoGestion.Vista\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Title": "BLLUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLLUsuario.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLUsuario.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLLUsuario.cs",
+              "RelativeToolTip": "BLL\\BLLUsuario.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAArwEoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T19:06:21.703Z",
+              "WhenOpened": "2025-07-14T19:07:56.206Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "AutoGestion.Vista\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\MainWindow.xaml",
-              "RelativeToolTip": "AutoGestion.Vista\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-26T19:06:02.224Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AutoGestion.Vista",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\AutoGestion.Vista.csproj",
-              "RelativeDocumentMoniker": "AutoGestion.Vista\\AutoGestion.Vista.csproj",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\AutoGestion.Vista.csproj",
-              "RelativeToolTip": "AutoGestion.Vista\\AutoGestion.Vista.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-26T18:58:30.211Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-26T18:45:49.061Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RegistrarCliente.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\Controles\\RegistrarCliente.xaml.cs",
-              "RelativeDocumentMoniker": "AutoGestion.Vista\\Controles\\RegistrarCliente.xaml.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\Controles\\RegistrarCliente.xaml.cs",
-              "RelativeToolTip": "AutoGestion.Vista\\Controles\\RegistrarCliente.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAiAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "MPPUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\MPPUsuario.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPUsuario.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\MPPUsuario.cs",
+              "RelativeToolTip": "Mapper\\MPPUsuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T18:34:02.346Z",
+              "WhenOpened": "2025-07-14T19:04:19.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MPPTurno.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\MPPTurno.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPTurno.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\MPPTurno.cs",
+              "RelativeToolTip": "Mapper\\MPPTurno.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T19:01:11.409Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "RegistrarCliente.xaml",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\Controles\\RegistrarCliente.xaml",
-              "RelativeDocumentMoniker": "AutoGestion.Vista\\Controles\\RegistrarCliente.xaml",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.Vista\\Controles\\RegistrarCliente.xaml",
-              "RelativeToolTip": "AutoGestion.Vista\\Controles\\RegistrarCliente.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-26T18:33:21.994Z",
+              "Title": "BLLTurno.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLLTurno.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLTurno.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLLTurno.cs",
+              "RelativeToolTip": "BLL\\BLLTurno.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-14T19:01:01.354Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ClienteController.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\ClienteController.cs",
-              "RelativeDocumentMoniker": "AutoGestion.CTRL_Vista\\ClienteController.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.CTRL_Vista\\ClienteController.cs",
-              "RelativeToolTip": "AutoGestion.CTRL_Vista\\ClienteController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T18:32:09.726Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ClienteBLL.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\ClienteBLL.cs",
-              "RelativeDocumentMoniker": "AutoGestion.BLL\\ClienteBLL.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BLL\\ClienteBLL.cs",
-              "RelativeToolTip": "AutoGestion.BLL\\ClienteBLL.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T18:26:34.009Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Cliente.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\Cliente.cs",
-              "RelativeDocumentMoniker": "AutoGestion.BE\\Cliente.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.BE\\Cliente.cs",
-              "RelativeToolTip": "AutoGestion.BE\\Cliente.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T18:25:54.003Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "XmlRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\XmlRepository.cs",
-              "RelativeDocumentMoniker": "AutoGestion.DAO\\XmlRepository.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\AutoGestion.DAO\\XmlRepository.cs",
-              "RelativeToolTip": "AutoGestion.DAO\\XmlRepository.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T18:19:17.469Z"
             }
           ]
         },
