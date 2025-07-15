@@ -35,23 +35,26 @@ namespace Mapper
 
         public List<OfertaCompra> ListarTodo()
         {
+            if (!File.Exists(rutaXML))
+                return new List<OfertaCompra>();
+
             var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("OfertaCompras");
+            var root = doc.Root.Element("OfertasCompra");
             if (root == null) return new List<OfertaCompra>();
 
-            return root.Elements("OfertaCompra")
-                       .Where(x => (string)x.Attribute("Active") == "true")
-                       .Select(x => new OfertaCompra
-                       {
-                           ID = (int)x.Attribute("Id"),
-                           FechaInspeccion = DateTime.Parse(x.Element("FechaInspeccion")?.Value ?? DateTime.Now.ToString("s")),
-                           Estado = (string)x.Element("Estado"),
-                           Oferente = new Oferente { ID = (int)x.Element("Oferente").Attribute("Id") },
-                           Vehiculo = new Vehiculo { ID = (int)x.Element("Vehiculo").Attribute("Id") }
-                       })
-                       .ToList();
+            return root
+                .Elements("OfertaCompra")
+                .Where(x => (string)x.Attribute("Active") == "true")
+                .Select(x => new OfertaCompra
+                {
+                    ID = (int)x.Attribute("Id"),
+                    FechaInspeccion = DateTime.Parse(x.Element("FechaInspeccion")?.Value ?? DateTime.Now.ToString("s")),
+                    Estado = (string)x.Element("Estado"),
+                    // Cargamos Vehiculo solo con ID; el BLL completará marca/modelo
+                    Vehiculo = new Vehiculo { ID = (int)x.Element("Vehiculo").Attribute("Id") }
+                })
+                .ToList();
         }
-
         public OfertaCompra BuscarPorId(int id)
         {
             return ListarTodo().FirstOrDefault(o => o.ID == id);

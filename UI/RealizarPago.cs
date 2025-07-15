@@ -1,12 +1,12 @@
-﻿using AutoGestion.CTRL_Vista;
-using AutoGestion.CTRL_Vista.Modelos;
-using AutoGestion.Servicios;
+﻿using BLL;
+using DTOs;
+using Servicios;
 
-namespace AutoGestion.Vista
+namespace AutoGestion.UI
 {
     public partial class RealizarPago : UserControl
     {
-        private readonly PagoController _ctrlPago = new PagoController();
+        private readonly BLLPago _bllPago = new BLLPago();
         private ClienteDto _clienteSeleccionado;
         private VehiculoDto _vehiculoSeleccionado;
 
@@ -21,7 +21,7 @@ namespace AutoGestion.Vista
         {
             try
             {
-                var lista = _ctrlPago.ObtenerVehiculosDisponibles();
+                var lista = _bllPago.ObtenerVehiculosDisponibles();
                 dgvVehiculos.DataSource = lista;
                 dgvVehiculos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvVehiculos.ReadOnly = true;
@@ -47,18 +47,19 @@ namespace AutoGestion.Vista
             cmbTipoPago.SelectedIndex = 0;
         }
 
-        private void btnBuscarCliente_Click_1(object sender, EventArgs e)
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
         {
             var dni = txtDni.Text.Trim();
             try
             {
-                _clienteSeleccionado = _ctrlPago.BuscarCliente(dni);
+                _clienteSeleccionado = _bllPago.BuscarCliente(dni);
                 if (_clienteSeleccionado == null)
                 {
                     MessageBox.Show("Cliente no encontrado.", "Info",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
+
                 txtNombre.Text = _clienteSeleccionado.Nombre;
                 txtApellido.Text = _clienteSeleccionado.Apellido;
                 txtContacto.Text = _clienteSeleccionado.Contacto;
@@ -75,7 +76,7 @@ namespace AutoGestion.Vista
             _vehiculoSeleccionado = dgvVehiculos.CurrentRow?.DataBoundItem as VehiculoDto;
         }
 
-        private void btnRegistrarPago_Click_1(object sender, EventArgs e)
+        private void btnRegistrarPago_Click(object sender, EventArgs e)
         {
             if (_clienteSeleccionado == null)
             {
@@ -97,8 +98,8 @@ namespace AutoGestion.Vista
             }
             int.TryParse(txtCuotas.Text.Trim(), out var cuotas);
 
-            // Llamada al Controller
-            bool ok = _ctrlPago.RegistrarPagoYVenta(
+            // Llamada a la BLL
+            bool ok = _bllPago.RegistrarPagoYVenta(
                 clienteDni: _clienteSeleccionado.Dni,
                 vehiculoDominio: _vehiculoSeleccionado.Dominio,
                 tipoPago: cmbTipoPago.SelectedItem.ToString(),
@@ -106,7 +107,7 @@ namespace AutoGestion.Vista
                 cuotas: cuotas,
                 detalles: txtOtrosDatos.Text.Trim(),
                 vendedorId: Sesion.UsuarioActual.ID,
-                vendedorNombre: Sesion.UsuarioActual.Nombre,
+                vendedorNombre: Sesion.UsuarioActual.Username,
                 out string error);
 
             if (!ok)
@@ -119,7 +120,6 @@ namespace AutoGestion.Vista
             MessageBox.Show("✅ Pago y venta registrados correctamente.", "Éxito",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Limpiar y recargar
             LimpiarFormulario();
             CargarVehiculosDisponibles();
         }

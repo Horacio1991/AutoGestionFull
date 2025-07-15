@@ -1,51 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BE;
+﻿using BE;
 using Mapper;
+using System;
 
 namespace BLL
 {
     public class BLLFactura
     {
-        private readonly MPPFactura _mapper = new MPPFactura();
+        private readonly MPPFactura _mppFactura = new MPPFactura();
 
         /// <summary>
-        /// Obtiene todas las facturas registradas.
+        /// Emite una nueva factura para la venta indicada,
+        /// y marca la venta como facturada.
         /// </summary>
-        public List<Factura> ListarTodo() =>
-            _mapper.ListarTodo();
-
-        /// <summary>
-        /// Emite una nueva factura para la venta indicada:
-        /// - Crea el registro de factura.
-        /// - Marca la venta como facturada.
-        /// </summary>
-        public Factura EmitirFactura(int ventaId, Cliente cliente, Vehiculo vehiculo,
-                                     string formaPago, decimal precio)
+        public Factura EmitirFactura(int ventaId)
         {
-            // 1) Crear BE.Factura
+            // 1) Recuperar venta (sus datos de cliente/vehículo/pago)
+            //    Aquí asumo que tienes MPPVenta.ParseVenta cargado en tu BE.Venta
+            var venta = new MPPVenta().BuscarPorId(ventaId)
+                        ?? throw new InvalidOperationException("Venta no encontrada.");
+
+            // 2) Crear y guardar la factura
             var factura = new Factura
             {
-                Cliente = cliente,
-                Vehiculo = vehiculo,
-                FormaPago = formaPago,
-                Precio = precio
+                Cliente = venta.Cliente,
+                Vehiculo = venta.Vehiculo,
+                FormaPago = venta.Pago.TipoPago,
+                Precio = venta.Pago.Monto
             };
+            _mppFactura.AltaFactura(factura);
 
-            // 2) Persistir factura
-            _mapper.AltaFactura(factura);
-
-            // 3) Marcar venta como facturada
-            _mapper.MarcarFacturada(ventaId);
+            // 3) Marcar venta en el XML
+            _mppFactura.MarcarFacturada(ventaId);
 
             return factura;
         }
-
-        /// <summary>
-        /// Obtiene las facturas filtradas por ventaId (si se necesita) o todas.
-        /// </summary>
-        public Factura BuscarPorId(int facturaId) =>
-            _mapper.BuscarPorId(facturaId);
     }
 }

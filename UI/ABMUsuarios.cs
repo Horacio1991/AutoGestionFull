@@ -1,14 +1,16 @@
-﻿using BE;
+﻿using AutoGestion.Servicios.Encriptacion;
+using BE;
 using BLL;
 using Servicios;
-
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace AutoGestion.UI
 {
     public partial class ABMUsuarios : UserControl
     {
         private readonly BLLUsuario _bllUsuario = new BLLUsuario();
-        private string _usuarioOriginal; // para guardar el username antes de editar
 
         public ABMUsuarios()
         {
@@ -22,12 +24,13 @@ namespace AutoGestion.UI
         {
             try
             {
-                var usuarios = _bllUsuario.ListarUsuarios();
+                // Ahora ListarTodo() devuelve List<Usuario>
+                var usuarios = _bllUsuario.ListarTodo();
                 dgvUsuarios.DataSource = usuarios
                     .Select(u => new
                     {
                         u.Id,
-                        Username = u.Username,
+                        u.Username,
                         Clave = Encriptacion.DesencriptarPassword(u.Password)
                     })
                     .ToList();
@@ -64,12 +67,8 @@ namespace AutoGestion.UI
                     return;
                 }
 
-                var nuevo = new Usuario
-                {
-                    Username = username,
-                    Password = clave // BLLUsuario lo encripta internamente
-                };
-                _bllUsuario.RegistrarUsuario(nuevo);
+                // Ahora la BLL se encarga de encriptar internamente
+                _bllUsuario.RegistrarUsuario(username, clave);
 
                 MessageBox.Show("Usuario agregado correctamente.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -95,15 +94,15 @@ namespace AutoGestion.UI
                     return;
                 }
 
-                var usuarios = _bllUsuario.ListarUsuarios();
-                var user = usuarios.FirstOrDefault(u => u.Id == id);
-                if (user == null) return;
+                var usuario = _bllUsuario.ListarTodo().FirstOrDefault(u => u.Id == id);
+                if (usuario == null) return;
 
-                if (MessageBox.Show($"¿Eliminar al usuario '{user.Username}'?", "Confirmar",
+                if (MessageBox.Show($"¿Eliminar al usuario '{usuario.Username}'?", "Confirmar",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     return;
 
-                _bllUsuario.EliminarUsuario(user.Username);
+                // Ahora eliminamos por Id
+                _bllUsuario.EliminarUsuario(id);
 
                 MessageBox.Show("Usuario eliminado.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -130,9 +129,6 @@ namespace AutoGestion.UI
             txtID.Text = dgvUsuarios.CurrentRow.Cells["Id"].Value?.ToString();
             txtNombre.Text = dgvUsuarios.CurrentRow.Cells["Username"].Value?.ToString();
             txtClave.Text = dgvUsuarios.CurrentRow.Cells["Clave"].Value?.ToString();
-
-            // guardo el original para la modificación
-            _usuarioOriginal = txtNombre.Text;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -155,14 +151,8 @@ namespace AutoGestion.UI
                     return;
                 }
 
-                var modificado = new Usuario
-                {
-                    Id = id,
-                    Username = username,
-                    Password = clave // BLL encripta
-                };
-
-                _bllUsuario.ModificarUsuario(_usuarioOriginal, modificado);
+                // Ahora la firma es (int userId, string newUsername, string newPasswordPlain)
+                _bllUsuario.ModificarUsuario(id, username, clave);
 
                 MessageBox.Show("Usuario modificado correctamente.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -183,7 +173,6 @@ namespace AutoGestion.UI
             txtNombre.Clear();
             txtClave.Clear();
             chkVerClave.Checked = false;
-            _usuarioOriginal = null;
         }
     }
 }

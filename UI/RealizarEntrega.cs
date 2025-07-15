@@ -1,27 +1,26 @@
-﻿using AutoGestion.CTRL_Vista.Modelos;
-using AutoGestion.CTRL_Vista;
-using AutoGestion.Servicios.Pdf;
+﻿using AutoGestion.Servicios.Pdf;
+using BE;
+using BLL;
+using DTOs;
 
-namespace AutoGestion.Vista
+namespace AutoGestion.UI
 {
     public partial class RealizarEntrega : UserControl
     {
-        private readonly EntregaController _ctrl = new();
+        private readonly BLLVenta _bll = new BLLVenta();
         private List<VentaDto> _ventas;
 
         public RealizarEntrega()
         {
             InitializeComponent();
-            CargarVentas(); 
+            CargarVentas();
         }
 
-        // Lee las ventas facturadas y muestra los DTOs en el DataGridView.
         private void CargarVentas()
         {
             try
             {
-                _ventas = _ctrl.ObtenerVentasParaEntrega(); //Que son las ventas facturadas
-                dgvVentas.DataSource = null;
+                _ventas = _bll.ObtenerVentasParaEntrega();
                 dgvVentas.DataSource = _ventas;
                 dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvVentas.ReadOnly = true;
@@ -34,8 +33,7 @@ namespace AutoGestion.Vista
             }
         }
 
-        // marca la venta como entregada y genera el PDF de comprobante.
-        private void btnConfirmarEntrega_Click_1(object sender, EventArgs e)
+        private void btnConfirmarEntrega_Click(object sender, EventArgs e)
         {
             if (dgvVentas.CurrentRow?.DataBoundItem is not VentaDto dto)
             {
@@ -46,13 +44,13 @@ namespace AutoGestion.Vista
 
             try
             {
-                // 1) Marcar como entregada en BLL
-                _ctrl.ConfirmarEntrega(dto.ID);
+                // 1) Marcar en BLL
+                _bll.ConfirmarEntrega(dto.ID);
 
-                // 2) Recuperar entidad completa para el PDF
-                var ventaEntity = _ctrl.ObtenerEntidad(dto.ID);
+                // 2) Traer BE.Venta completa para el PDF
+                Venta entidad = _bll.ObtenerEntidad(dto.ID);
 
-                // 3) Pedir ruta y generar PDF
+                // 3) Generar PDF
                 using var dlg = new SaveFileDialog
                 {
                     Filter = "PDF (*.pdf)|*.pdf",
@@ -61,7 +59,7 @@ namespace AutoGestion.Vista
                 if (dlg.ShowDialog() != DialogResult.OK)
                     return;
 
-                GeneradorComprobantePDF.Generar(ventaEntity, dlg.FileName);
+                GeneradorComprobantePDF.Generar(entidad, dlg.FileName);
 
                 MessageBox.Show("Entrega registrada y comprobante guardado.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -73,7 +71,6 @@ namespace AutoGestion.Vista
             }
             finally
             {
-                // 4) Refrescar la lista para eliminar la venta ya entregada
                 CargarVentas();
             }
         }

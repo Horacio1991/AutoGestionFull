@@ -40,6 +40,16 @@
           "bin/placeholder/BE.dll": {}
         }
       },
+      "DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTOs.dll": {}
+        }
+      },
       "Mapper/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -60,6 +70,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "BE": "1.0.0",
+          "DTOs": "1.0.0",
           "iTextSharp": "5.5.13.4"
         },
         "compile": {
@@ -113,6 +124,11 @@
       "path": "../BE/BE.csproj",
       "msbuildProject": "../BE/BE.csproj"
     },
+    "DTOs/1.0.0": {
+      "type": "project",
+      "path": "../DTOs/DTOs.csproj",
+      "msbuildProject": "../DTOs/DTOs.csproj"
+    },
     "Mapper/1.0.0": {
       "type": "project",
       "path": "../Mapper/Mapper.csproj",
@@ -127,6 +143,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "BE >= 1.0.0",
+      "DTOs >= 1.0.0",
       "Mapper >= 1.0.0",
       "Servicios >= 1.0.0",
       "iTextSharp >= 5.5.13.4"
@@ -166,6 +183,9 @@
           "projectReferences": {
             "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj": {
               "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj"
+            },
+            "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\DTOs\\DTOs.csproj": {
+              "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\DTOs\\DTOs.csproj"
             },
             "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\Mapper.csproj": {
               "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\Mapper.csproj"

@@ -1,5 +1,9 @@
-﻿using System.Xml.Linq;
-using BE;
+﻿using BE;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 using Servicios.Utilidades;
 
 namespace Mapper
@@ -10,10 +14,10 @@ namespace Mapper
 
         public MPPVenta()
         {
-            EnsureRoot();
+            EnsureStructure();
         }
 
-        private void EnsureRoot()
+        private void EnsureStructure()
         {
             var dir = Path.GetDirectoryName(rutaXML);
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
@@ -45,31 +49,22 @@ namespace Mapper
 
             return root.Elements("Venta")
                        .Where(x => (string)x.Attribute("Active") == "true")
-                       .Select(x => ParseVenta(x))
+                       .Select(ParseVenta)
                        .ToList();
         }
 
-        public Venta BuscarPorId(int id)
-        {
-            return ListarTodo().FirstOrDefault(v => v.ID == id);
-        }
-
-        public int NextId()
-        {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("Ventas");
-            return root.Elements("Venta")
-                       .Select(x => (int)x.Attribute("Id"))
-                       .DefaultIfEmpty(0)
-                       .Max() + 1;
-        }
+        public Venta BuscarPorId(int id) =>
+            ListarTodo().FirstOrDefault(v => v.ID == id);
 
         public void Alta(Venta venta)
         {
             var doc = XDocument.Load(rutaXML);
             var root = doc.Root.Element("Ventas");
 
-            venta.ID = NextId();
+            venta.ID = root.Elements("Venta")
+                           .Select(x => (int)x.Attribute("Id"))
+                           .DefaultIfEmpty(0)
+                           .Max() + 1;
             venta.Fecha = DateTime.Now;
             venta.Estado = "Pendiente";
 
@@ -82,7 +77,7 @@ namespace Mapper
                 new XElement("PagoId", venta.Pago.ID),
                 new XElement("Estado", venta.Estado),
                 new XElement("Fecha", venta.Fecha.ToString("s")),
-                new XElement("MotivoRechazo", venta.MotivoRechazo ?? String.Empty)
+                new XElement("MotivoRechazo", venta.MotivoRechazo ?? string.Empty)
             );
 
             root.Add(elem);
@@ -92,14 +87,14 @@ namespace Mapper
         public void ActualizarEstado(int id, string nuevoEstado, string motivo = null)
         {
             var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("Ventas");
-            var x = root?.Elements("Venta")
-                            .FirstOrDefault(v => (int)v.Attribute("Id") == id);
-            if (x == null) throw new ApplicationException("Venta no encontrada.");
+            var ventaElem = doc.Root.Element("Ventas")?
+                                  .Elements("Venta")
+                                  .FirstOrDefault(x => (int)x.Attribute("Id") == id);
+            if (ventaElem == null) throw new ApplicationException("Venta no encontrada.");
 
-            x.SetElementValue("Estado", nuevoEstado);
+            ventaElem.SetElementValue("Estado", nuevoEstado);
             if (motivo != null)
-                x.SetElementValue("MotivoRechazo", motivo);
+                ventaElem.SetElementValue("MotivoRechazo", motivo);
 
             doc.Save(rutaXML);
         }

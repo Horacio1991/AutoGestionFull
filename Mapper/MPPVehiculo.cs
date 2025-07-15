@@ -61,6 +61,36 @@ namespace Mapper
                 .ToList();
         }
 
+        public void Actualizar(Vehiculo vehiculo)
+        {
+            // 1) Cargo el XML
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("Vehiculos");
+            if (root == null)
+                throw new ApplicationException("Sección 'Vehiculos' no encontrada en el XML.");
+
+            // 2) Busco el elemento por ID
+            var elem = root
+                .Elements("Vehiculo")
+                .FirstOrDefault(x => (int)x.Attribute("Id") == vehiculo.ID);
+
+            if (elem == null)
+                throw new ApplicationException($"Vehículo con Id={vehiculo.ID} no encontrado.");
+
+            // 3) Actualizo cada campo
+            elem.SetElementValue("Marca", vehiculo.Marca);
+            elem.SetElementValue("Modelo", vehiculo.Modelo);
+            elem.SetElementValue("Año", vehiculo.Año);
+            elem.SetElementValue("Color", vehiculo.Color);
+            elem.SetElementValue("Km", vehiculo.Km);
+            elem.SetElementValue("Dominio", vehiculo.Dominio);
+            elem.SetElementValue("Estado", vehiculo.Estado);
+
+            // 4) Guardo los cambios
+            doc.Save(rutaXML);
+        }
+
+
         private Vehiculo ParseVehiculo(XElement x) => new Vehiculo
         {
             ID = (int)x.Attribute("Id"),

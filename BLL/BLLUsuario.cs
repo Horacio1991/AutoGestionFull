@@ -1,7 +1,9 @@
 ﻿using BE;
 using BE.BEComposite;
+using DTOs;
 using Mapper;
 using Servicios;
+
 
 namespace BLL
 {
@@ -16,7 +18,9 @@ namespace BLL
             _bllComponente = new BLLComponente();
         }
 
-        // Autenticación
+        /// <summary>
+        /// Valida credenciales contra el XML.
+        /// </summary>
         public bool ValidarLogin(string username, string passwordPlain)
         {
             var user = _mapper.BuscarPorUsername(username);
@@ -26,10 +30,36 @@ namespace BLL
             return user.Password == encrypted;
         }
 
-        // Listar todos
-        public List<Usuario> ListarTodo() => _mapper.ListarTodo();
+        /// <summary>
+        /// Lista todos los usuarios como DTOs (sin exponer BE).
+        /// </summary>
+        public List<UsuarioDto> ListarUsuariosDto()
+        {
+            var beUsuarios = _mapper.ListarTodo();
+            var lista = new List<UsuarioDto>();
 
-        // Registro
+            foreach (var u in beUsuarios)
+            {
+                // obtengo todos los componentes (roles y permisos)
+                var comps = _bllComponente.ObtenerPermisosUsuario(u.Id);
+
+                // mapeo recursivo a DTO
+                var permisosDto = comps.Select(MapComponenteADto).ToList();
+
+                lista.Add(new UsuarioDto
+                {
+                    ID = u.Id,
+                    Username = u.Username,
+                    Permisos = permisosDto
+                });
+            }
+
+            return lista;
+        }
+
+        /// <summary>
+        /// Registra un nuevo usuario (username + contraseña en texto plano).
+        /// </summary>
         public void RegistrarUsuario(string username, string passwordPlain)
         {
             if (string.IsNullOrWhiteSpace(username))
@@ -38,37 +68,54 @@ namespace BLL
                 throw new InvalidOperationException("El usuario ya existe.");
 
             var encrypted = Encriptacion.EncriptarPassword(passwordPlain);
-            var user = new Usuario { Username = username, Password = encrypted };
-            _mapper.Agregar(user);
+            var be = new Usuario { Username = username, Password = encrypted };
+            _mapper.Agregar(be);
         }
 
-        // Existencia
-        public bool ExisteUsuario(string username) =>
-            _mapper.BuscarPorUsername(username) != null;
-
-        // Modificación
+        /// <summary>
+        /// Modifica usuario existente (por ID).
+        /// </summary>
         public void ModificarUsuario(int userId, string newUsername, string newPasswordPlain)
         {
-            var existing = _mapper.ListarTodo().Find(u => u.Id == userId);
+            var existing = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId);
             if (existing == null)
                 throw new InvalidOperationException("Usuario no encontrado.");
+
+            // si cambia el username, verificar duplicado
+            if (!existing.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)
+                && _mapper.BuscarPorUsername(newUsername) != null)
+            {
+                throw new InvalidOperationException("Ya existe otro usuario con ese nombre.");
+            }
 
             existing.Username = newUsername;
             existing.Password = Encriptacion.EncriptarPassword(newPasswordPlain);
             _mapper.Actualizar(existing);
         }
 
-        // Eliminación
+        /// <summary>
+        /// Baja lógica de usuario.
+        /// </summary>
         public void EliminarUsuario(int userId)
         {
             _mapper.Eliminar(userId);
         }
 
-        // Roles / Permisos
-        public List<BEComponente> ListarComponente() =>
-            _bllComponente.ListarComponente();
+        /// <summary>
+        /// Mapea recursivamente un BEComponente a PermisoDto.
+        /// </summary>
+        private PermisoDto MapComponenteADto(BEComponente comp)
+        {
+            var pd = new PermisoDto
+            {
+                Id = comp.Id,
+                Nombre = comp.Nombre
+            };
 
-        public List<BEComponente> ObtenerPermisosUsuario(int userId) =>
-            _bllComponente.ObtenerPermisosUsuario(userId);
+            foreach (var hijo in comp.Hijos)
+                pd.Hijos.Add(MapComponenteADto(hijo));
+
+            return pd;
+        }
     }
 }

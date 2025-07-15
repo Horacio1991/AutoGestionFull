@@ -8,5 +8,7 @@
         public string Vehiculo { get; set; }
         public decimal Monto { get; set; }
         public string Estado { get; set; }
+
+        public string MotivoRechazo { get; set; } = string.Empty; // Para comisiones rechazadas
     }
 }

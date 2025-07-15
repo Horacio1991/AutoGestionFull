@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BE;
+using System;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using BE;
 using Servicios.Utilidades;
 
 namespace Mapper
@@ -12,11 +11,14 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
-        private XDocument LoadOrEmpty()
+        private XDocument LoadOrCreate()
         {
-            return File.Exists(rutaXML)
-                ? XDocument.Load(rutaXML)
-                : new XDocument(new XElement("BaseDeDatosLocal"));
+            if (!File.Exists(rutaXML))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(rutaXML));
+                new XDocument(new XElement("BaseDeDatosLocal")).Save(rutaXML);
+            }
+            return XDocument.Load(rutaXML);
         }
 
         private XElement EnsureFacturasRoot(XDocument doc)
@@ -30,9 +32,37 @@ namespace Mapper
             return root;
         }
 
+        public void AltaFactura(Factura factura)
+        {
+            var doc = LoadOrCreate();
+            var root = EnsureFacturasRoot(doc);
+
+            factura.ID = root.Elements("Factura")
+                             .Select(e => (int)e.Attribute("Id"))
+                             .DefaultIfEmpty(0)
+                             .Max() + 1;
+            factura.Fecha = DateTime.Now;
+
+            var elem = new XElement("Factura",
+                new XAttribute("Id", factura.ID),
+                new XAttribute("Active", "true"),
+                new XElement("ClienteId", factura.Cliente.ID),
+                new XElement("VehiculoId", factura.Vehiculo.ID),
+                new XElement("FormaPago", factura.FormaPago),
+                new XElement("Precio", factura.Precio),
+                new XElement("Fecha", factura.Fecha.ToString("s"))
+            );
+
+            root.Add(elem);
+            doc.Save(rutaXML);
+        }
+
+        public Factura BuscarPorId(int id) =>
+            ListarTodo().FirstOrDefault(f => f.ID == id);
+
         public List<Factura> ListarTodo()
         {
-            var doc = LoadOrEmpty();
+            var doc = LoadOrCreate();
             var elems = doc.Root.Element("Facturas")?
                         .Elements("Factura")
                         .Where(x => (string)x.Attribute("Active") == "true")
@@ -49,44 +79,15 @@ namespace Mapper
             }).ToList();
         }
 
-        public Factura BuscarPorId(int id) =>
-            ListarTodo().FirstOrDefault(f => f.ID == id);
-
-        public void AltaFactura(Factura factura)
-        {
-            var doc = LoadOrEmpty();
-            var root = EnsureFacturasRoot(doc);
-
-            int nuevoId = root.Elements("Factura")
-                              .Select(e => (int)e.Attribute("Id"))
-                              .DefaultIfEmpty(0)
-                              .Max() + 1;
-            factura.ID = nuevoId;
-            factura.Fecha = DateTime.Now;
-
-            var elem = new XElement("Factura",
-                new XAttribute("Id", factura.ID),
-                new XAttribute("Active", "true"),
-                new XElement("ClienteId", factura.Cliente.ID),
-                new XElement("VehiculoId", factura.Vehiculo.ID),
-                new XElement("FormaPago", factura.FormaPago),
-                new XElement("Precio", factura.Precio),
-                new XElement("Fecha", factura.Fecha.ToString("s"))
-            );
-            root.Add(elem);
-            doc.Save(rutaXML);
-        }
-
         /// <summary>
-        /// Marca la venta asociada como facturada (cambia su estado en Ventas XML).
+        /// Marca la venta asociada como facturada (cambia su estado dentro del mismo XML).
         /// </summary>
         public void MarcarFacturada(int ventaId)
         {
-            var doc = LoadOrEmpty();
-            var ventasRoot = doc.Root.Element("Ventas");
-            var ventaElem = ventasRoot?
-                .Elements("Venta")
-                .FirstOrDefault(x => (int)x.Attribute("Id") == ventaId);
+            var doc = LoadOrCreate();
+            var ventaElem = doc.Root.Element("Ventas")
+                                  ?.Elements("Venta")
+                                  .FirstOrDefault(x => (int)x.Attribute("Id") == ventaId);
             if (ventaElem == null) throw new ApplicationException("Venta no encontrada.");
 
             ventaElem.SetElementValue("Estado", "Facturada");

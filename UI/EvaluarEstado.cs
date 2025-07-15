@@ -1,26 +1,29 @@
-﻿using AutoGestion.CTRL_Vista;
-using AutoGestion.DTOs;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using BLL;
+using DTOs;
 
-namespace AutoGestion.Vista
+namespace AutoGestion.UI
 {
     public partial class EvaluarEstado : UserControl
     {
-        private readonly EvaluacionController _ctrl = new();
+        private readonly BLLEvaluacionTecnica _bll = new BLLEvaluacionTecnica();
         private List<OfertaListDto> _ofertas;
 
         public EvaluarEstado()
         {
             InitializeComponent();
             dtpFiltroFecha.Value = DateTime.Today;
-            CargarOfertas();        
+            CargarOfertas();
         }
 
-        // Lee las ofertas pendientes de inspección y las muestra en el combo.
         private void CargarOfertas()
         {
             try
             {
-                _ofertas = _ctrl.ObtenerOfertasParaEvaluar();
+                _ofertas = _bll.ObtenerOfertasParaEvaluar();
                 cmbOfertas.DataSource = _ofertas
                     .Select(o => new
                     {
@@ -39,60 +42,11 @@ namespace AutoGestion.Vista
             }
         }
 
-        // valida campos, crea DTO y llama al controller.
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            if (cmbOfertas.SelectedValue is not int ofertaId)
-            {
-                MessageBox.Show("Seleccione una oferta.", "Validación",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Validar que todos los campos técnicos estén completos
-            if (string.IsNullOrWhiteSpace(txtMotor.Text) ||
-                string.IsNullOrWhiteSpace(txtCarroceria.Text) ||
-                string.IsNullOrWhiteSpace(txtInterior.Text) ||
-                string.IsNullOrWhiteSpace(txtDocumentacion.Text))
-            {
-                MessageBox.Show("Complete todos los campos técnicos.", "Validación",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Construir DTO de entrada
-            var dto = new EvaluacionInputDto
-            {
-                OfertaID = ofertaId,
-                EstadoMotor = txtMotor.Text.Trim(),
-                EstadoCarroceria = txtCarroceria.Text.Trim(),
-                EstadoInterior = txtInterior.Text.Trim(),
-                EstadoDocumentacion = txtDocumentacion.Text.Trim(),
-                Observaciones = txtObservaciones.Text.Trim()
-            };
-
-            try
-            {
-                _ctrl.RegistrarEvaluacion(dto);
-                MessageBox.Show("Evaluación registrada correctamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                LimpiarFormulario();
-                CargarOfertas();    // recarga para quitar la oferta ya evaluada
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al guardar evaluación:\n{ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // Botón Filtrar Fecha: recarga el combo según la fecha seleccionada.
         private void btnFiltrarFecha_Click(object sender, EventArgs e)
         {
             try
             {
-                DateTime fecha = dtpFiltroFecha.Value.Date;
+                var fecha = dtpFiltroFecha.Value.Date;
                 var filtradas = _ofertas
                     .Where(o => o.FechaInspeccion.Date == fecha)
                     .ToList();
@@ -116,6 +70,49 @@ namespace AutoGestion.Vista
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al filtrar por fecha:\n{ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (cmbOfertas.SelectedValue is not int ofertaId)
+            {
+                MessageBox.Show("Seleccione una oferta.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtMotor.Text) ||
+                string.IsNullOrWhiteSpace(txtCarroceria.Text) ||
+                string.IsNullOrWhiteSpace(txtInterior.Text) ||
+                string.IsNullOrWhiteSpace(txtDocumentacion.Text))
+            {
+                MessageBox.Show("Complete todos los campos técnicos.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var dto = new EvaluacionInputDto
+            {
+                OfertaID = ofertaId,
+                EstadoMotor = txtMotor.Text.Trim(),
+                EstadoCarroceria = txtCarroceria.Text.Trim(),
+                EstadoInterior = txtInterior.Text.Trim(),
+                EstadoDocumentacion = txtDocumentacion.Text.Trim(),
+                Observaciones = txtObservaciones.Text.Trim()
+            };
+
+            try
+            {
+                _bll.RegistrarEvaluacion(dto);
+                MessageBox.Show("Evaluación registrada correctamente.", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarFormulario();
+                CargarOfertas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar evaluación:\n{ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

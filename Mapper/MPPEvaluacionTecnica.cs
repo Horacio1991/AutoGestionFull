@@ -30,11 +30,29 @@ namespace Mapper
             }
         }
 
+        private XDocument LoadOrCreate()
+        {
+            return File.Exists(rutaXML)
+                ? XDocument.Load(rutaXML)
+                : new XDocument(new XElement("BaseDeDatosLocal",
+                    new XElement("Evaluaciones")));
+        }
+
+        private XElement EnsureRoot(XDocument doc)
+        {
+            var root = doc.Root.Element("Evaluaciones");
+            if (root == null)
+            {
+                root = new XElement("Evaluaciones");
+                doc.Root.Add(root);
+            }
+            return root;
+        }
+
         public List<EvaluacionTecnica> ListarTodo()
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("Evaluaciones");
-            if (root == null) return new List<EvaluacionTecnica>();
+            var doc = LoadOrCreate();
+            var root = EnsureRoot(doc);
 
             return root.Elements("Evaluacion")
                        .Where(x => (string)x.Attribute("Active") == "true")
@@ -55,21 +73,21 @@ namespace Mapper
             return ListarTodo().FirstOrDefault(e => e.ID == id);
         }
 
-        public void Alta(EvaluacionTecnica eval)
+        public void AltaEvaluacion(EvaluacionTecnica eval, int ofertaId)
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("Evaluaciones");
+            var doc = LoadOrCreate();
+            var root = EnsureRoot(doc);
 
-            int nextId = root.Elements("Evaluacion")
-                             .Select(x => (int)x.Attribute("Id"))
-                             .DefaultIfEmpty(0)
-                             .Max() + 1;
-
-            eval.ID = nextId;
+            int nuevoId = root.Elements("Evaluacion")
+                              .Select(e => (int?)e.Attribute("Id"))
+                              .DefaultIfEmpty(0)
+                              .Max().Value + 1;
+            eval.ID = nuevoId;
 
             var elem = new XElement("Evaluacion",
-                new XAttribute("Id", nextId),
+                new XAttribute("Id", eval.ID),
                 new XAttribute("Active", "true"),
+                new XElement("OfertaId", ofertaId),
                 new XElement("EstadoMotor", eval.EstadoMotor),
                 new XElement("EstadoCarroceria", eval.EstadoCarroceria),
                 new XElement("EstadoInterior", eval.EstadoInterior),
@@ -89,11 +107,11 @@ namespace Mapper
                            .FirstOrDefault(x => (int)x.Attribute("Id") == eval.ID);
             if (elem == null) throw new ApplicationException("Evaluación no encontrada.");
 
-            elem.Element("EstadoMotor").SetValue(eval.EstadoMotor);
-            elem.Element("EstadoCarroceria").SetValue(eval.EstadoCarroceria);
-            elem.Element("EstadoInterior").SetValue(eval.EstadoInterior);
-            elem.Element("EstadoDocumentacion").SetValue(eval.EstadoDocumentacion);
-            elem.Element("Observaciones").SetValue(eval.Observaciones ?? string.Empty);
+            elem.SetElementValue("EstadoMotor", eval.EstadoMotor);
+            elem.SetElementValue("EstadoCarroceria", eval.EstadoCarroceria);
+            elem.SetElementValue("EstadoInterior", eval.EstadoInterior);
+            elem.SetElementValue("EstadoDocumentacion", eval.EstadoDocumentacion);
+            elem.SetElementValue("Observaciones", eval.Observaciones ?? string.Empty);
 
             doc.Save(rutaXML);
         }
