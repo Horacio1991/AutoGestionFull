@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BE;
 using Mapper;
 
@@ -8,48 +7,40 @@ namespace BLL
 {
     public class BLLTasacion
     {
-        private readonly MPPTasacion _mpp = new MPPTasacion();
+        private readonly MPPTasacion _mapper;
+        private readonly MPPOfertaCompra _mppOferta;
 
-        /// <summary>
-        /// Lista todas las tasaciones activas.
-        /// </summary>
-        public List<Tasacion> ListarTodo()
+        public BLLTasacion()
         {
-            return _mpp.ListarTodo();
+            _mapper = new MPPTasacion();
+            _mppOferta = new MPPOfertaCompra();
         }
 
         /// <summary>
-        /// Busca una tasación por su ID.
+        /// Obtiene todas las tasaciones registradas.
         /// </summary>
-        public Tasacion BuscarPorId(int id)
+        public List<Tasacion> ObtenerTodas()
         {
-            return ListarTodo().FirstOrDefault(t => t.ID == id);
+            return _mapper.ListarTodo();
         }
 
         /// <summary>
-        /// Registra una nueva tasación.
+        /// Registra una nueva tasación y actualiza el estado de la oferta.
         /// </summary>
         public void RegistrarTasacion(Tasacion tasacion)
         {
-            if (tasacion == null) throw new ArgumentNullException(nameof(tasacion));
-            if (tasacion.Oferta == null) throw new ArgumentException("La tasación debe referenciar una oferta.", nameof(tasacion.Oferta));
-            if (tasacion.ValorFinal <= 0) throw new ArgumentException("El valor final debe ser mayor que cero.", nameof(tasacion.ValorFinal));
+            if (tasacion == null)
+                throw new ArgumentNullException(nameof(tasacion));
+            if (tasacion.Oferta == null || tasacion.Oferta.ID <= 0)
+                throw new ApplicationException("Oferta inválida para tasación.");
+            if (tasacion.ValorFinal <= 0)
+                throw new ApplicationException("Valor final de tasación debe ser mayor a cero.");
 
-            var todas = _mpp.ListarTodo();
-            tasacion.ID = todas.Any() ? todas.Max(x => x.ID) + 1 : 1;
-            tasacion.Fecha = tasacion.Fecha == default ? DateTime.Now : tasacion.Fecha;
+            // 1) Alta de la tasación
+            _mapper.Alta(tasacion);
 
-            _mpp.Alta(tasacion);
-        }
-
-        /// <summary>
-        /// Anula (baja) una tasación existente.
-        /// </summary>
-        public void AnularTasacion(int id)
-        {
-            var t = BuscarPorId(id)
-                    ?? throw new ApplicationException("Tasación no encontrada.");
-            _mpp.Baja(id);
+            // 2) Marcar oferta como tasada (cambia estado en el XML de ofertas)
+            _mppOferta.MarcarTasada(tasacion.Oferta.ID);
         }
     }
 }

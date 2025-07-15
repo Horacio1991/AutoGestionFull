@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BE;
 using Mapper;
 
@@ -8,39 +7,46 @@ namespace BLL
 {
     public class BLLEvaluacionTecnica
     {
-        private readonly MPPEvaluacionTecnica _mpp = new MPPEvaluacionTecnica();
+        private readonly MPPEvaluacionTecnica _mapper;
 
-        /// <summary>
-        /// Recupera todas las evaluaciones técnicas registradas.
-        /// </summary>
-        public List<EvaluacionTecnica> ListarTodo()
+        public BLLEvaluacionTecnica()
         {
-            return _mpp.ListarTodo();
+            _mapper = new MPPEvaluacionTecnica();
         }
 
-        /// <summary>
-        /// Busca una evaluación técnica por su ID.
-        /// </summary>
-        public EvaluacionTecnica BuscarPorId(int id)
+        public List<EvaluacionTecnica> ObtenerTodas()
         {
-            return _mpp.BuscarPorId(id);
+            return _mapper.ListarTodo();
         }
 
-        /// <summary>
-        /// Registra una nueva evaluación técnica.
-        /// </summary>
-        public void AltaEvaluacionTecnica(EvaluacionTecnica eval)
+        public EvaluacionTecnica ObtenerPorId(int id)
         {
-            if (eval == null) throw new ArgumentNullException(nameof(eval));
+            return _mapper.BuscarPorId(id);
+        }
 
-            // Asignar ID secuencial
-            var todas = _mpp.ListarTodo();
-            eval.ID = todas.Any()
-                ? todas.Max(e => e.ID) + 1
-                : 1;
+        public void Registrar(EvaluacionTecnica eval)
+        {
+            if (string.IsNullOrWhiteSpace(eval.EstadoMotor) ||
+                string.IsNullOrWhiteSpace(eval.EstadoCarroceria) ||
+                string.IsNullOrWhiteSpace(eval.EstadoInterior) ||
+                string.IsNullOrWhiteSpace(eval.EstadoDocumentacion))
+            {
+                throw new ApplicationException("Todos los estados son obligatorios.");
+            }
 
-            // La fecha de inscripción puede fijarse aquí si tu BE la tuviera
-            _mpp.AltaEvaluacion(eval);
+            _mapper.Alta(eval);
+        }
+
+        public void Modificar(EvaluacionTecnica eval)
+        {
+            if (eval.ID <= 0)
+                throw new ApplicationException("Evaluación inválida.");
+            _mapper.Modificar(eval);
+        }
+
+        public void Eliminar(int id)
+        {
+            _mapper.Baja(id);
         }
     }
 }

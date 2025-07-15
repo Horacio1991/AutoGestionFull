@@ -8,41 +8,44 @@ namespace BLL
 {
     public class BLLFactura
     {
-        private readonly MPPFactura _mpp = new MPPFactura();
+        private readonly MPPFactura _mapper = new MPPFactura();
 
         /// <summary>
-        /// Recupera todas las facturas existentes.
+        /// Obtiene todas las facturas registradas.
         /// </summary>
-        public List<Factura> ListarTodo()
+        public List<Factura> ListarTodo() =>
+            _mapper.ListarTodo();
+
+        /// <summary>
+        /// Emite una nueva factura para la venta indicada:
+        /// - Crea el registro de factura.
+        /// - Marca la venta como facturada.
+        /// </summary>
+        public Factura EmitirFactura(int ventaId, Cliente cliente, Vehiculo vehiculo,
+                                     string formaPago, decimal precio)
         {
-            return _mpp.ListarTodo();
+            // 1) Crear BE.Factura
+            var factura = new Factura
+            {
+                Cliente = cliente,
+                Vehiculo = vehiculo,
+                FormaPago = formaPago,
+                Precio = precio
+            };
+
+            // 2) Persistir factura
+            _mapper.AltaFactura(factura);
+
+            // 3) Marcar venta como facturada
+            _mapper.MarcarFacturada(ventaId);
+
+            return factura;
         }
 
         /// <summary>
-        /// Busca una factura por su ID.
+        /// Obtiene las facturas filtradas por ventaId (si se necesita) o todas.
         /// </summary>
-        public Factura BuscarPorId(int id)
-        {
-            return _mpp.BuscarPorId(id);
-        }
-
-        /// <summary>
-        /// Emite (genera) una nueva factura.
-        /// </summary>
-        public void AltaFactura(Factura factura)
-        {
-            if (factura == null) throw new ArgumentNullException(nameof(factura));
-
-            // Asignar ID secuencial
-            var todas = _mpp.ListarTodo();
-            factura.ID = todas.Any()
-                ? todas.Max(f => f.ID) + 1
-                : 1;
-
-            factura.Fecha = DateTime.Now;
-            _mpp.AltaFactura(factura);
-        }
-
-        
+        public Factura BuscarPorId(int facturaId) =>
+            _mapper.BuscarPorId(facturaId);
     }
 }

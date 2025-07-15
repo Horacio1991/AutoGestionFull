@@ -1,0 +1,16 @@
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\bin\Debug\net8.0\Servicios.deps.json
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\bin\Debug\net8.0\Servicios.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\bin\Debug\net8.0\Servicios.pdb
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\bin\Debug\net8.0\BE.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\bin\Debug\net8.0\BE.pdb
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.csproj.AssemblyReference.cache
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.AssemblyInfoInputs.cache
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.AssemblyInfo.cs
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.csproj.CoreCompileInputs.cache
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.sourcelink.json
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.csproj.Up2Date
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\refint\Servicios.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.pdb
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\ref\Servicios.dll

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BE;
 using Mapper;
 
@@ -8,68 +7,46 @@ namespace BLL
 {
     public class BLLOfertaCompra
     {
-        private readonly MPPOfertaCompra _mpp = new MPPOfertaCompra();
+        private readonly MPPOfertaCompra _mapper;
 
-        /// <summary>
-        /// Devuelve todas las ofertas activas.
-        /// </summary>
-        public List<OfertaCompra> ListarTodo()
+        public BLLOfertaCompra()
         {
-            return _mpp.ListarTodo();
+            _mapper = new MPPOfertaCompra();
         }
 
-        /// <summary>
-        /// Busca una oferta por su ID.
-        /// </summary>
-        public OfertaCompra BuscarPorId(int id)
+        public List<OfertaCompra> ObtenerTodas()
         {
-            return _mpp.ListarTodo().FirstOrDefault(o => o.ID == id);
+            return _mapper.ListarTodo();
         }
 
-        /// <summary>
-        /// Busca una oferta por dominio de vehículo.
-        /// </summary>
-        public OfertaCompra BuscarPorDominio(string dominio)
+        public OfertaCompra ObtenerPorId(int id)
+        {
+            if (id <= 0) throw new ArgumentException("ID inválido.", nameof(id));
+            return _mapper.BuscarPorId(id);
+        }
+
+        public List<OfertaCompra> ObtenerPorDominio(string dominio)
         {
             if (string.IsNullOrWhiteSpace(dominio))
-                throw new ArgumentException("El dominio no puede estar vacío.", nameof(dominio));
-
-            return _mpp.ListarTodo()
-                       .FirstOrDefault(o =>
-                           o.Vehiculo != null
-                           && string.Equals(o.Vehiculo.Dominio, dominio, StringComparison.OrdinalIgnoreCase)
-                       );
+                throw new ArgumentException("Dominio inválido.", nameof(dominio));
+            return _mapper.BuscarPorDominio(dominio);
         }
 
-        /// <summary>
-        /// Registra una nueva oferta de compra.
-        /// </summary>
         public void RegistrarOferta(OfertaCompra oferta)
         {
-            if (oferta == null) throw new ArgumentNullException(nameof(oferta));
-            if (oferta.Oferente == null) throw new ArgumentException("Debe informar el oferente.", nameof(oferta.Oferente));
-            if (oferta.Vehiculo == null) throw new ArgumentException("Debe informar el vehículo.", nameof(oferta.Vehiculo));
+            if (oferta == null)
+                throw new ArgumentNullException(nameof(oferta));
+            if (oferta.Oferente == null || oferta.Oferente.ID <= 0)
+                throw new ApplicationException("Oferente inválido.");
+            if (oferta.Vehiculo == null || oferta.Vehiculo.ID <= 0)
+                throw new ApplicationException("Vehículo inválido.");
+            if (oferta.FechaInspeccion == default)
+                throw new ApplicationException("Fecha de inspección inválida.");
 
-            // Nuevo ID autogenerado
-            var todas = _mpp.ListarTodo();
-            oferta.ID = todas.Any() ? todas.Max(o => o.ID) + 1 : 1;
-            oferta.Estado = oferta.Estado ?? "En evaluación";
-            oferta.FechaInspeccion = oferta.FechaInspeccion == default
-                ? DateTime.Now
-                : oferta.FechaInspeccion;
+            // Inicializa estado por defecto
+            oferta.Estado = "En evaluación";
 
-            _mpp.Alta(oferta);
-        }
-
-        /// <summary>
-        /// Cambia el estado de una oferta (p. ej. a "Aprobada" o "Rechazada").
-        /// </summary>
-        public void ModificarEstado(int ofertaId, string nuevoEstado)
-        {
-            var oferta = BuscarPorId(ofertaId)
-                        ?? throw new ApplicationException("Oferta no encontrada.");
-            oferta.Estado = nuevoEstado ?? throw new ArgumentNullException(nameof(nuevoEstado));
-            _mpp.Modificar(oferta);
+            _mapper.Alta(oferta);
         }
     }
 }

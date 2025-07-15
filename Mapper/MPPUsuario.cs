@@ -13,18 +13,17 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
-        // Lista todos los usuarios activos
         public List<Usuario> ListarTodo()
         {
             if (!File.Exists(rutaXML))
                 return new List<Usuario>();
 
             var doc = XDocument.Load(rutaXML);
-            var usuariosNode = doc.Root.Element("Usuarios");
-            if (usuariosNode == null)
+            var nodoUsuarios = doc.Root.Element("Usuarios");
+            if (nodoUsuarios == null)
                 return new List<Usuario>();
 
-            return usuariosNode
+            return nodoUsuarios
                 .Elements("Usuario")
                 .Where(x => (string)x.Attribute("Active") == "true")
                 .Select(x => new Usuario
@@ -32,19 +31,11 @@ namespace Mapper
                     Id = (int)x.Attribute("Id"),
                     Username = (string)x.Element("Username"),
                     Password = (string)x.Element("Password"),
-                    Rol = new List<BEComponente>() // se completará luego
+                    Rol = new List<BEComponente>() // se llenará desde BLLComponente si es necesario
                 })
                 .ToList();
         }
 
-        // Verifica que exista un usuario con ese username y password
-        public bool VerificarUsuario(string username, string passwordEncriptado)
-        {
-            var u = BuscarPorUsername(username);
-            return u != null && u.Password == passwordEncriptado;
-        }
-
-        // Busca uno por username
         public Usuario BuscarPorUsername(string username)
         {
             if (!File.Exists(rutaXML))
@@ -52,11 +43,13 @@ namespace Mapper
 
             var doc = XDocument.Load(rutaXML);
             var element = doc.Root
-                .Element("Usuarios")?
-                .Elements("Usuario")
-                .FirstOrDefault(x =>
-                    (string)x.Attribute("Active") == "true" &&
-                    string.Equals((string)x.Element("Username"), username, StringComparison.OrdinalIgnoreCase));
+                             .Element("Usuarios")?
+                             .Elements("Usuario")
+                             .FirstOrDefault(x =>
+                                  (string)x.Attribute("Active") == "true" &&
+                                  string.Equals((string)x.Element("Username"),
+                                                username,
+                                                StringComparison.OrdinalIgnoreCase));
 
             if (element == null)
                 return null;
@@ -70,38 +63,7 @@ namespace Mapper
             };
         }
 
-        // Registro de nuevo usuario
-        public void RegistrarUsuario(Usuario user)
-        {
-            Agregar(user);
-        }
-
-        // Comprueba existencia de username
-        public bool ExisteUsuario(string username)
-            => BuscarPorUsername(username) != null;
-
-        // Modifica usuario existente
-        public void ModificarUsuario(string usernameOriginal, Usuario modificado)
-        {
-            var existing = BuscarPorUsername(usernameOriginal);
-            if (existing == null)
-                throw new InvalidOperationException("Usuario original no encontrado.");
-
-            modificado.Id = existing.Id;
-            Actualizar(modificado);
-        }
-
-        // Elimina (marca inactive) por username
-        public void EliminarUsuario(string username)
-        {
-            var existing = BuscarPorUsername(username);
-            if (existing != null)
-                Eliminar(existing.Id);
-        }
-
-        // --- Métodos privados de CRUD en XML ---
-
-        private void Agregar(Usuario user)
+        public void Agregar(Usuario user)
         {
             XDocument doc;
             if (File.Exists(rutaXML))
@@ -137,7 +99,7 @@ namespace Mapper
             doc.Save(rutaXML);
         }
 
-        private void Actualizar(Usuario user)
+        public void Actualizar(Usuario user)
         {
             if (!File.Exists(rutaXML))
                 throw new FileNotFoundException("Archivo de usuarios no encontrado.");
@@ -156,7 +118,7 @@ namespace Mapper
             doc.Save(rutaXML);
         }
 
-        private void Eliminar(int userId)
+        public void Eliminar(int userId)
         {
             if (!File.Exists(rutaXML))
                 return;

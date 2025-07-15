@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\UI\\UI.csproj": {}
+    "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\UI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj": {
+    "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj",
+        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj",
         "projectName": "BE",
-        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj",
+        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj",
         "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\obj\\",
+        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -75,14 +75,14 @@
         }
       }
     },
-    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLL.csproj": {
+    "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\obj\\",
+        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -103,14 +103,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj"
               },
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\Mapper.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\Mapper.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\Mapper.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\Mapper.csproj"
               },
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj"
               }
             }
           }
@@ -156,14 +156,14 @@
         }
       }
     },
-    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\Mapper.csproj": {
+    "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\Mapper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\Mapper.csproj",
+        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\Mapper.csproj",
         "projectName": "Mapper",
-        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\Mapper.csproj",
+        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\Mapper.csproj",
         "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Mapper\\obj\\",
+        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -184,11 +184,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj"
               },
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj"
               }
             }
           }
@@ -234,14 +234,14 @@
         }
       }
     },
-    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj": {
+    "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj",
+        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj",
         "projectName": "Servicios",
-        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj",
+        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj",
         "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\obj\\",
+        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -262,8 +262,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj"
               }
             }
           }
@@ -309,14 +309,14 @@
         }
       }
     },
-    "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\UI\\UI.csproj": {
+    "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\UI\\UI.csproj",
+        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\UI.csproj",
         "projectName": "UI",
-        "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\UI\\UI.csproj",
+        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\UI.csproj",
         "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\UI\\obj\\",
+        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -337,14 +337,14 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj"
               },
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BLL\\BLL.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\Servicios\\Servicios.csproj"
+              "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj": {
+                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Servicios.csproj"
               }
             }
           }

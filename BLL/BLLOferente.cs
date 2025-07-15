@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BE;
 using Mapper;
 
@@ -8,59 +7,66 @@ namespace BLL
 {
     public class BLLOferente
     {
-        private readonly MPPOferente _mpp = new MPPOferente();
+        private readonly MPPOferente _mapper;
 
-        /// <summary>
-        /// Devuelve todos los oferentes activos.
-        /// </summary>
-        public List<Oferente> ListarTodo()
+        public BLLOferente()
         {
-            return _mpp.ListarTodo();
+            _mapper = new MPPOferente();
         }
 
-        /// <summary>
-        /// Busca un oferente por su DNI.
-        /// </summary>
-        public Oferente BuscarPorDni(string dni)
+        public List<Oferente> ObtenerTodos()
+        {
+            return _mapper.ListarTodo();
+        }
+
+        public Oferente ObtenerPorId(int id)
+        {
+            return _mapper.BuscarPorId(id);
+        }
+
+        public Oferente ObtenerPorDni(string dni)
         {
             if (string.IsNullOrWhiteSpace(dni))
-                throw new ArgumentException("El DNI no puede estar vacío.", nameof(dni));
+                throw new ArgumentException("DNI inválido.", nameof(dni));
 
-            return _mpp.BuscarPorDni(dni);
+            return _mapper.BuscarPorDni(dni);
         }
 
-        /// <summary>
-        /// Busca un oferente por su ID.
-        /// </summary>
-        public Oferente BuscarPorId(int id)
-        {
-            return _mpp.ListarTodo().FirstOrDefault(o => o.ID == id);
-        }
-
-        /// <summary>
-        /// Verifica si ya existe un oferente con ese DNI.
-        /// </summary>
         public bool ExisteOferente(string dni)
         {
-            return BuscarPorDni(dni) != null;
+            return _mapper.Existe(dni);
         }
 
-        /// <summary>
-        /// Da de alta un nuevo oferente.
-        /// </summary>
-        public void AltaOferente(Oferente oferente)
+        public void RegistrarOferente(Oferente oferente)
         {
-            if (oferente == null) throw new ArgumentNullException(nameof(oferente));
+            if (oferente == null)
+                throw new ArgumentNullException(nameof(oferente));
             if (string.IsNullOrWhiteSpace(oferente.Dni))
-                throw new ArgumentException("El DNI es obligatorio.", nameof(oferente.Dni));
+                throw new ApplicationException("DNI es obligatorio.");
+            if (string.IsNullOrWhiteSpace(oferente.Nombre) ||
+                string.IsNullOrWhiteSpace(oferente.Apellido) ||
+                string.IsNullOrWhiteSpace(oferente.Contacto))
+            {
+                throw new ApplicationException("Nombre, apellido y contacto son obligatorios.");
+            }
             if (ExisteOferente(oferente.Dni))
                 throw new ApplicationException("Ya existe un oferente con ese DNI.");
 
-            // Asignar nuevo ID automáticamente
-            var todos = _mpp.ListarTodo();
-            oferente.ID = todos.Any() ? todos.Max(o => o.ID) + 1 : 1;
+            _mapper.Alta(oferente);
+        }
 
-            _mpp.AltaOferente(oferente);
+        public void ModificarOferente(Oferente oferente)
+        {
+            if (oferente == null || oferente.ID <= 0)
+                throw new ApplicationException("Oferente inválido.");
+            _mapper.Modificar(oferente);
+        }
+
+        public void EliminarOferente(int id)
+        {
+            if (id <= 0)
+                throw new ApplicationException("ID de oferente inválido.");
+            _mapper.Baja(id);
         }
     }
 }

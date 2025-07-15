@@ -1,11 +1,10 @@
-﻿// Mapper/MPPComprobanteEntrega.cs
-using BE;
-using Servicios.Utilidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using BE;
+using Servicios.Utilidades;
 
 namespace Mapper
 {
@@ -13,80 +12,87 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
-        public List<ComprobanteEntrega> ListarTodo()
+        public MPPComprobanteEntrega()
         {
-            if (!File.Exists(rutaXML))
-                return new List<ComprobanteEntrega>();
-
-            var doc = XDocument.Load(rutaXML);
-            var elems = doc.Root.Element("ComprobantesEntrega")?
-                        .Elements("ComprobanteEntrega")
-                        .Where(x => x.Attribute("Active")?.Value == "true")
-                      ?? Enumerable.Empty<XElement>();
-
-            var lista = new List<ComprobanteEntrega>();
-            foreach (var x in elems)
-            {
-                var c = new ComprobanteEntrega
-                {
-                    ID = (int)x.Attribute("Id"),
-                    FechaEntrega = DateTime.Parse(x.Element("FechaEntrega")?.Value ?? DateTime.Now.ToString())
-                };
-
-                var ventaIdAttr = x.Element("Venta")?.Attribute("Id");
-                if (ventaIdAttr != null && int.TryParse(ventaIdAttr.Value, out var vid))
-                    c.Venta = new MPPVenta().BuscarPorId(vid);
-
-                lista.Add(c);
-            }
-
-            return lista;
+            EnsureRoot();
         }
 
-        public ComprobanteEntrega BuscarPorId(int id) =>
-            ListarTodo().FirstOrDefault(c => c.ID == id);
-
-        public void AltaComprobante(ComprobanteEntrega comp)
+        private void EnsureRoot()
         {
-            XDocument doc;
-            if (File.Exists(rutaXML))
-                doc = XDocument.Load(rutaXML);
-            else
-                doc = new XDocument(new XElement("BaseDeDatosLocal", new XElement("ComprobantesEntrega")));
+            var dir = Path.GetDirectoryName(rutaXML);
+            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
-            var root = doc.Root.Element("ComprobantesEntrega") ?? new XElement("ComprobantesEntrega");
-            if (doc.Root.Element("ComprobantesEntrega") == null)
-                doc.Root.Add(root);
+            if (!File.Exists(rutaXML))
+            {
+                new XDocument(
+                    new XElement("BaseDeDatosLocal",
+                        new XElement("ComprobantesEntrega")
+                    )
+                ).Save(rutaXML);
+            }
+            else
+            {
+                var doc = XDocument.Load(rutaXML);
+                if (doc.Root.Element("ComprobantesEntrega") == null)
+                {
+                    doc.Root.Add(new XElement("ComprobantesEntrega"));
+                    doc.Save(rutaXML);
+                }
+            }
+        }
+
+        public List<ComprobanteEntrega> ListarTodo()
+        {
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("ComprobantesEntrega");
+            if (root == null) return new();
+
+            return root.Elements("ComprobanteEntrega")
+                       .Where(x => (string)x.Attribute("Active") == "true")
+                       .Select(Parse)
+                       .ToList();
+        }
+
+        public ComprobanteEntrega BuscarPorId(int id)
+            => ListarTodo().FirstOrDefault(c => c.ID == id);
+
+        public List<ComprobanteEntrega> ListarPorVenta(int ventaId)
+            => ListarTodo().Where(c => c.Venta.ID == ventaId).ToList();
+
+        public int NextId()
+        {
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("ComprobantesEntrega");
+            return root.Elements("ComprobanteEntrega")
+                       .Select(x => (int)x.Attribute("Id"))
+                       .DefaultIfEmpty(0)
+                       .Max() + 1;
+        }
+
+        public void Alta(ComprobanteEntrega comprobante)
+        {
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("ComprobantesEntrega");
+
+            comprobante.ID = NextId();
+            comprobante.FechaEntrega = DateTime.Now;
 
             var elem = new XElement("ComprobanteEntrega",
-                new XAttribute("Id", comp.ID),
+                new XAttribute("Id", comprobante.ID),
                 new XAttribute("Active", "true"),
-                new XElement("FechaEntrega", comp.FechaEntrega),
-                new XElement("Venta", new XAttribute("Id", comp.Venta.ID))
+                new XElement("VentaId", comprobante.Venta.ID),
+                new XElement("FechaEntrega", comprobante.FechaEntrega.ToString("s"))
             );
 
             root.Add(elem);
             doc.Save(rutaXML);
         }
 
-        public void GuardarLista(List<ComprobanteEntrega> lista)
+        private ComprobanteEntrega Parse(XElement x) => new ComprobanteEntrega
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("ComprobantesEntrega");
-            root.RemoveAll();
-
-            foreach (var comp in lista)
-            {
-                var elem = new XElement("ComprobanteEntrega",
-                    new XAttribute("Id", comp.ID),
-                    new XAttribute("Active", "true"),
-                    new XElement("FechaEntrega", comp.FechaEntrega),
-                    new XElement("Venta", new XAttribute("Id", comp.Venta.ID))
-                );
-                root.Add(elem);
-            }
-
-            doc.Save(rutaXML);
-        }
+            ID = (int)x.Attribute("Id"),
+            Venta = new Venta { ID = (int)x.Element("VentaId") },
+            FechaEntrega = DateTime.Parse(x.Element("FechaEntrega")?.Value ?? DateTime.Now.ToString("s"))
+        };
     }
 }

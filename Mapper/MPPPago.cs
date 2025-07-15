@@ -12,84 +12,76 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
+        public MPPPago()
+        {
+            AsegurarArchivo();
+        }
+
+        private void AsegurarArchivo()
+        {
+            var dir = Path.GetDirectoryName(rutaXML);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            if (!File.Exists(rutaXML))
+            {
+                new XDocument(
+                    new XElement("BaseDeDatosLocal",
+                        new XElement("Pagos")
+                    )
+                ).Save(rutaXML);
+            }
+        }
+
         public List<Pago> ListarTodo()
         {
-            if (!File.Exists(rutaXML))
-                return new List<Pago>();
-
             var doc = XDocument.Load(rutaXML);
-            var pagosRoot = doc.Root.Element("Pagos");
-            if (pagosRoot == null)
-                return new List<Pago>();
+            var root = doc.Root.Element("Pagos");
+            if (root == null) return new List<Pago>();
 
-            return pagosRoot
-                .Elements("Pago")
-                .Where(x => (string)x.Attribute("Active") == "true")
-                .Select(p => new Pago
-                {
-                    ID = (int)p.Attribute("Id"),
-                    TipoPago = p.Element("TipoPago").Value.Trim(),
-                    Monto = decimal.Parse(p.Element("Monto").Value.Trim()),
-                    Cuotas = int.Parse(p.Element("Cuotas").Value.Trim()),
-                    Detalles = p.Element("Detalles").Value.Trim(),
-                    FechaPago = DateTime.Parse(p.Element("FechaPago").Value.Trim())
-                })
-                .ToList();
+            return root.Elements("Pago")
+                       .Where(x => (string)x.Attribute("Active") == "true")
+                       .Select(x => new Pago
+                       {
+                           ID = (int)x.Attribute("Id"),
+                           TipoPago = (string)x.Element("TipoPago"),
+                           Monto = decimal.Parse(x.Element("Monto")?.Value ?? "0"),
+                           Cuotas = int.Parse(x.Element("Cuotas")?.Value ?? "0"),
+                           Detalles = (string)x.Element("Detalles") ?? "",
+                           FechaPago = DateTime.Parse(x.Element("FechaPago")?.Value ?? DateTime.Now.ToString("s"))
+                       })
+                       .ToList();
         }
 
         public Pago BuscarPorId(int id)
         {
-            if (!File.Exists(rutaXML))
-                return null;
-
-            var doc = XDocument.Load(rutaXML);
-            var elem = doc.Root
-                .Element("Pagos")?
-                .Elements("Pago")
-                .FirstOrDefault(x => (int)x.Attribute("Id") == id && (string)x.Attribute("Active") == "true");
-            if (elem == null) return null;
-
-            return new Pago
-            {
-                ID = id,
-                TipoPago = elem.Element("TipoPago").Value.Trim(),
-                Monto = decimal.Parse(elem.Element("Monto").Value.Trim()),
-                Cuotas = int.Parse(elem.Element("Cuotas").Value.Trim()),
-                Detalles = elem.Element("Detalles").Value.Trim(),
-                FechaPago = DateTime.Parse(elem.Element("FechaPago").Value.Trim())
-            };
+            return ListarTodo().FirstOrDefault(p => p.ID == id);
         }
 
-        public void AltaPago(Pago pago)
+        public void Alta(Pago pago)
         {
-            XDocument doc;
-            if (File.Exists(rutaXML))
-                doc = XDocument.Load(rutaXML);
-            else
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(rutaXML));
-                doc = new XDocument(new XElement("BaseDeDatosLocal", new XElement("Pagos")));
-            }
-
+            var doc = XDocument.Load(rutaXML);
             var root = doc.Root.Element("Pagos");
-            int nuevoId = 1;
-            if (root.Elements("Pago").Any())
-                nuevoId = root.Elements("Pago").Max(x => (int)x.Attribute("Id")) + 1;
 
-            pago.ID = nuevoId;
+            int nextId = root.Elements("Pago")
+                             .Select(x => (int)x.Attribute("Id"))
+                             .DefaultIfEmpty(0)
+                             .Max() + 1;
+
+            pago.ID = nextId;
             pago.FechaPago = DateTime.Now;
 
-            var nuevo = new XElement("Pago",
-                new XAttribute("Id", pago.ID),
+            var elem = new XElement("Pago",
+                new XAttribute("Id", nextId),
                 new XAttribute("Active", "true"),
                 new XElement("TipoPago", pago.TipoPago),
                 new XElement("Monto", pago.Monto),
                 new XElement("Cuotas", pago.Cuotas),
-                new XElement("Detalles", pago.Detalles),
-                new XElement("FechaPago", pago.FechaPago.ToString("o"))
+                new XElement("Detalles", pago.Detalles ?? ""),
+                new XElement("FechaPago", pago.FechaPago.ToString("s"))
             );
 
-            root.Add(nuevo);
+            root.Add(elem);
             doc.Save(rutaXML);
         }
     }

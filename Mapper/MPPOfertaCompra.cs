@@ -1,121 +1,107 @@
-﻿using BE;
-using Servicios;
-using Servicios.Utilidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using BE;
+using Servicios.Utilidades;
 
 namespace Mapper
 {
     public class MPPOfertaCompra
     {
-        private readonly string _rutaXml = XmlPaths.BaseDatosLocal;
-        private const string NodoRoot = "Ofertas";
-        private const string NodoElemento = "Oferta";
+        private readonly string rutaXML = XmlPaths.BaseDatosLocal;
+
+        public MPPOfertaCompra()
+        {
+            AsegurarArchivo();
+        }
+
+        private void AsegurarArchivo()
+        {
+            var dir = Path.GetDirectoryName(rutaXML);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            if (!File.Exists(rutaXML))
+            {
+                new XDocument(
+                    new XElement("BaseDeDatosLocal",
+                        new XElement("OfertaCompras")
+                    )
+                ).Save(rutaXML);
+            }
+        }
 
         public List<OfertaCompra> ListarTodo()
         {
-            if (!File.Exists(_rutaXml))
-                return new List<OfertaCompra>();
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("OfertaCompras");
+            if (root == null) return new List<OfertaCompra>();
 
-            var doc = XDocument.Load(_rutaXml);
-            var ofertasXml = doc.Root.Element(NodoRoot)?.Elements(NodoElemento) ?? Enumerable.Empty<XElement>();
-
-            return ofertasXml
-                .Where(x => (string)x.Attribute("Active") == "true")
-                .Select(ParseOferta)
-                .ToList();
+            return root.Elements("OfertaCompra")
+                       .Where(x => (string)x.Attribute("Active") == "true")
+                       .Select(x => new OfertaCompra
+                       {
+                           ID = (int)x.Attribute("Id"),
+                           FechaInspeccion = DateTime.Parse(x.Element("FechaInspeccion")?.Value ?? DateTime.Now.ToString("s")),
+                           Estado = (string)x.Element("Estado"),
+                           Oferente = new Oferente { ID = (int)x.Element("Oferente").Attribute("Id") },
+                           Vehiculo = new Vehiculo { ID = (int)x.Element("Vehiculo").Attribute("Id") }
+                       })
+                       .ToList();
         }
 
         public OfertaCompra BuscarPorId(int id)
         {
-            if (!File.Exists(_rutaXml)) return null;
-            var doc = XDocument.Load(_rutaXml);
-            var elem = doc.Root.Element(NodoRoot)?
-                .Elements(NodoElemento)
-                .FirstOrDefault(x => (int)x.Attribute("Id") == id && (string)x.Attribute("Active") == "true");
-            return elem == null ? null : ParseOferta(elem);
+            return ListarTodo().FirstOrDefault(o => o.ID == id);
+        }
+
+        public List<OfertaCompra> BuscarPorDominio(string dominio)
+        {
+            return ListarTodo()
+                   .Where(o => o.Vehiculo != null &&
+                               !string.IsNullOrEmpty(o.Vehiculo.Dominio) &&
+                               o.Vehiculo.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase))
+                   .ToList();
         }
 
         public void Alta(OfertaCompra oferta)
         {
-            XDocument doc;
-            if (File.Exists(_rutaXml))
-                doc = XDocument.Load(_rutaXml);
-            else
-                doc = new XDocument(new XElement("BaseDeDatosLocal", new XElement(NodoRoot)));
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("OfertaCompras");
 
-            var root = doc.Root.Element(NodoRoot);
-            if (root == null)
-            {
-                root = new XElement(NodoRoot);
-                doc.Root.Add(root);
-            }
+            int nextId = root.Elements("OfertaCompra")
+                             .Select(x => (int)x.Attribute("Id"))
+                             .DefaultIfEmpty(0)
+                             .Max() + 1;
 
-            int nuevoId = 1;
-            if (root.Elements(NodoElemento).Any())
-                nuevoId = root.Elements(NodoElemento).Max(x => (int)x.Attribute("Id")) + 1;
+            oferta.ID = nextId;
 
-            oferta.ID = nuevoId;
-            var elem = new XElement(NodoElemento,
-                new XAttribute("Id", oferta.ID),
+            var elem = new XElement("OfertaCompra",
+                new XAttribute("Id", nextId),
                 new XAttribute("Active", "true"),
-                new XElement("OferenteId", oferta.Oferente.ID),
-                new XElement("VehiculoId", oferta.Vehiculo.ID),
-                new XElement("FechaInspeccion", oferta.FechaInspeccion),
-                new XElement("Estado", oferta.Estado)
+                new XElement("FechaInspeccion", oferta.FechaInspeccion.ToString("s")),
+                new XElement("Estado", oferta.Estado),
+                new XElement("Oferente", new XAttribute("Id", oferta.Oferente.ID)),
+                new XElement("Vehiculo", new XAttribute("Id", oferta.Vehiculo.ID))
             );
 
             root.Add(elem);
-            doc.Save(_rutaXml);
+            doc.Save(rutaXML);
         }
 
-        public void Modificar(OfertaCompra oferta)
+        public void MarcarTasada(int ofertaId)
         {
-            if (!File.Exists(_rutaXml)) throw new FileNotFoundException(_rutaXml);
-            var doc = XDocument.Load(_rutaXml);
-            var root = doc.Root.Element(NodoRoot);
-            var elem = root?
-                .Elements(NodoElemento)
-                .FirstOrDefault(x => (int)x.Attribute("Id") == oferta.ID);
-
-            if (elem == null) throw new ApplicationException("Oferta no encontrada");
-
-            elem.SetElementValue("OferenteId", oferta.Oferente.ID);
-            elem.SetElementValue("VehiculoId", oferta.Vehiculo.ID);
-            elem.SetElementValue("FechaInspeccion", oferta.FechaInspeccion);
-            elem.SetElementValue("Estado", oferta.Estado);
-
-            doc.Save(_rutaXml);
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("OfertaCompras");
+            var elem = root?.Elements("OfertaCompra")
+                            .FirstOrDefault(x => (int)x.Attribute("Id") == ofertaId);
+            if (elem == null)
+                throw new ApplicationException("Oferta no encontrada.");
+            elem.SetAttributeValue("Estado", "Tasada");
+            doc.Save(rutaXML);
         }
 
-        public void Baja(int id)
-        {
-            if (!File.Exists(_rutaXml)) return;
-            var doc = XDocument.Load(_rutaXml);
-            var elem = doc.Root.Element(NodoRoot)?
-                .Elements(NodoElemento)
-                .FirstOrDefault(x => (int)x.Attribute("Id") == id);
-
-            if (elem != null)
-            {
-                elem.SetAttributeValue("Active", "false");
-                doc.Save(_rutaXml);
-            }
-        }
-
-        private OfertaCompra ParseOferta(XElement x)
-        {
-            return new OfertaCompra
-            {
-                ID = (int)x.Attribute("Id"),
-                Oferente = new Oferente { ID = (int)x.Element("OferenteId") },
-                Vehiculo = new Vehiculo { ID = (int)x.Element("VehiculoId") },
-                FechaInspeccion = DateTime.Parse(x.Element("FechaInspeccion").Value),
-                Estado = x.Element("Estado").Value
-            };
-        }
     }
 }

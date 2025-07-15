@@ -2,92 +2,73 @@
 using BE.BEComposite;
 using Mapper;
 using Servicios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BLL
 {
     public class BLLUsuario
     {
-        private readonly MPPUsuario _mppUsuario;
+        private readonly MPPUsuario _mapper;
         private readonly BLLComponente _bllComponente;
 
         public BLLUsuario()
         {
-            _mppUsuario = new MPPUsuario();
+            _mapper = new MPPUsuario();
             _bllComponente = new BLLComponente();
         }
 
-        // Encripta con nuestro servicio de Encriptacion
-        public string EncriptarPassword(string password)
-            => Encriptacion.EncriptarPassword(password);
-
-        public string DesencriptarPassword(string pwdEncriptado)
-            => Encriptacion.DesencriptarPassword(pwdEncriptado);
-
-        // Valida credenciales: encripta la que trae el usuario antes de verificar
-        public bool ValidarLogin(Usuario usuario)
+        // Autenticación
+        public bool ValidarLogin(string username, string passwordPlain)
         {
-            if (usuario == null) throw new ArgumentNullException(nameof(usuario));
-            usuario.Password = EncriptarPassword(usuario.Password);
-            return _mppUsuario.VerificarUsuario(usuario.Username, usuario.Password);
+            var user = _mapper.BuscarPorUsername(username);
+            if (user == null) return false;
+
+            var encrypted = Encriptacion.EncriptarPassword(passwordPlain);
+            return user.Password == encrypted;
         }
 
-        // Listado completo de usuarios (sin contraseña)
-        public List<Usuario> ListarUsuarios()
+        // Listar todos
+        public List<Usuario> ListarTodo() => _mapper.ListarTodo();
+
+        // Registro
+        public void RegistrarUsuario(string username, string passwordPlain)
         {
-            return _mppUsuario.ListarTodo();
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException("Username es obligatorio.");
+            if (_mapper.BuscarPorUsername(username) != null)
+                throw new InvalidOperationException("El usuario ya existe.");
+
+            var encrypted = Encriptacion.EncriptarPassword(passwordPlain);
+            var user = new Usuario { Username = username, Password = encrypted };
+            _mapper.Agregar(user);
         }
 
-        // Registro: encripta antes de mandar al MPP
-        public void RegistrarUsuario(Usuario u)
+        // Existencia
+        public bool ExisteUsuario(string username) =>
+            _mapper.BuscarPorUsername(username) != null;
+
+        // Modificación
+        public void ModificarUsuario(int userId, string newUsername, string newPasswordPlain)
         {
-            if (u == null) throw new ArgumentNullException(nameof(u));
-            u.Password = EncriptarPassword(u.Password);
-            _mppUsuario.RegistrarUsuario(u);
+            var existing = _mapper.ListarTodo().Find(u => u.Id == userId);
+            if (existing == null)
+                throw new InvalidOperationException("Usuario no encontrado.");
+
+            existing.Username = newUsername;
+            existing.Password = Encriptacion.EncriptarPassword(newPasswordPlain);
+            _mapper.Actualizar(existing);
         }
 
-        public bool ExisteUsuario(string username)
-            => _mppUsuario.ExisteUsuario(username);
-
-        public void ModificarUsuario(string usernameOriginal, Usuario modificado)
+        // Eliminación
+        public void EliminarUsuario(int userId)
         {
-            if (modificado == null) throw new ArgumentNullException(nameof(modificado));
-            // si cambió contraseña, encriptar la nueva
-            modificado.Password = EncriptarPassword(modificado.Password);
-            _mppUsuario.ModificarUsuario(usernameOriginal, modificado);
+            _mapper.Eliminar(userId);
         }
 
-        public void EliminarUsuario(string username)
-            => _mppUsuario.EliminarUsuario(username);
+        // Roles / Permisos
+        public List<BEComponente> ListarComponente() =>
+            _bllComponente.ListarComponente();
 
-        /// <summary>
-        /// Devuelve solo los permisos (no roles) que tiene asignado directa o indirectamente
-        /// </summary>
-        public List<BEPermiso> ListarPermisosUsuario(int idUsuario)
-        {
-            var componentes = _bllComponente.ListarPermisosUsuario(idUsuario);
-            var permisos = new List<BEPermiso>();
-
-            foreach (var comp in componentes)
-                RecolectarPermisos(comp, permisos);
-
-            return permisos;
-        }
-
-        private void RecolectarPermisos(BEComponente comp, List<BEPermiso> salida)
-        {
-            if (comp is BEPermiso p)
-            {
-                if (!salida.Any(x => x.Id == p.Id))
-                    salida.Add(p);
-            }
-            else if (comp is BERol r)
-            {
-                foreach (var hijo in r.Hijos)
-                    RecolectarPermisos(hijo, salida);
-            }
-        }
+        public List<BEComponente> ObtenerPermisosUsuario(int userId) =>
+            _bllComponente.ObtenerPermisosUsuario(userId);
     }
 }

@@ -1,7 +1,6 @@
-﻿using BE.BEComposite;
+﻿using System.Collections.Generic;
+using BE.BEComposite;
 using Mapper;
-using MAPPER;
-using System.Collections.Generic;
 
 namespace BLL
 {
@@ -20,9 +19,6 @@ namespace BLL
         public List<BEComponente> ObtenerPermisosUsuario(int idUsuario)
             => _mapper.ListarPermisosUsuario(idUsuario);
 
-        public List<BEComponente> ListarPermisosUsuario(int idUsuario)
-            => _mapper.ListarPermisosUsuario(idUsuario);
-
         public bool CrearPermiso(string nombrePermiso)
             => _mapper.AltaPermiso(nombrePermiso);
 
@@ -38,15 +34,6 @@ namespace BLL
         public bool BajaRol(int idRol)
             => _mapper.BajaRol(idRol);
 
-        public bool AsignarRolAUsuario(int idUsuario, int idRol)
-            => _mapper.AsignarRolAUsuario(idUsuario, idRol);
-
-        public bool AsignarPermisoARol(int idRol, int idPermiso)
-            => _mapper.AsignarPermisoARol(idRol, idPermiso);
-
-        public bool QuitarPermisoDeRol(int idRol, int idPermiso)
-            => _mapper.QuitarPermisoDeRol(idRol, idPermiso);
-
         public bool AsignarComponenteAUsuario(int idUsuario, BEComponente comp)
             => _mapper.AsignarComponenteAUsuario(idUsuario, comp.Id);
 
@@ -55,17 +42,16 @@ namespace BLL
 
         public bool UsuarioTienePermisoDirectoOIndirecto(int idUsuario, int permisoId)
         {
-            var permisosUsuario = ObtenerPermisosUsuario(idUsuario);
-            return TienePermiso(permisosUsuario, permisoId);
+            var permis = ObtenerPermisosUsuario(idUsuario);
+            return TienePermiso(permis, permisoId);
         }
 
-        private bool TienePermiso(List<BEComponente> componentes, int permisoId)
+        private bool TienePermiso(IEnumerable<BEComponente> comps, int permisoId)
         {
-            foreach (var componente in componentes)
+            foreach (var c in comps)
             {
-                if (componente.Id == permisoId)
-                    return true;
-                if (componente.Hijos.Count > 0 && TienePermiso(componente.Hijos, permisoId))
+                if (c.Id == permisoId) return true;
+                if (c is BERol rol && TienePermiso(rol.Hijos, permisoId))
                     return true;
             }
             return false;

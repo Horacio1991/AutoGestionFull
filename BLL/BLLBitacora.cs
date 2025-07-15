@@ -1,27 +1,32 @@
-﻿using BE;
+﻿using System.Collections.Generic;
+using BE;
 using Mapper;
-using MAPPER;
-using System;
-using System.Collections.Generic;
 
 namespace BLL
 {
     public class BLLBitacora
     {
-        private readonly MPPBitacora _mpp = new MPPBitacora();
+        private readonly MPPBitacora _mapper;
 
-        public List<Bitacora> ListarTodo()
+        public BLLBitacora()
         {
-            return _mpp.ListarTodo();
+            _mapper = new MPPBitacora();
         }
 
-        public void Registrar(Bitacora bit)
+        /// <summary>
+        /// Devuelve todos los registros de la bitácora.
+        /// </summary>
+        public List<Bitacora> ObtenerRegistros()
         {
-            if (bit == null) throw new ArgumentNullException(nameof(bit));
+            return _mapper.ListarTodo();
+        }
 
-            bool ok = _mpp.GuardarRegistro(bit);
-            if (!ok)
-                throw new ApplicationException("No se pudo guardar el registro en la bitácora.");
+        /// <summary>
+        /// Agrega un nuevo registro a la bitácora.
+        /// </summary>
+        public void RegistrarEvento(Bitacora registro)
+        {
+            _mapper.Alta(registro);
         }
     }
 }

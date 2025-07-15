@@ -1,106 +1,94 @@
-﻿using BE;
-using Servicios.Utilidades;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Xml.Linq;
+using BE;
+using Servicios.Utilidades;
 
 namespace Mapper
 {
     public class MPPTasacion
     {
-        private readonly string _rutaXml = XmlPaths.BaseDatosLocal;
-        private const string NodoRoot = "Tasaciones";
-        private const string NodoElemento = "Tasacion";
+        private readonly string rutaXML = XmlPaths.BaseDatosLocal;
+
+        public MPPTasacion()
+        {
+            AsegurarNodo();
+        }
+
+        private void AsegurarNodo()
+        {
+            var dir = Path.GetDirectoryName(rutaXML);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            if (!File.Exists(rutaXML))
+            {
+                new XDocument(
+                    new XElement("BaseDeDatosLocal",
+                        new XElement("Tasaciones")
+                    )
+                ).Save(rutaXML);
+            }
+            else
+            {
+                var doc = XDocument.Load(rutaXML);
+                if (doc.Root.Element("Tasaciones") == null)
+                {
+                    doc.Root.Add(new XElement("Tasaciones"));
+                    doc.Save(rutaXML);
+                }
+            }
+        }
 
         public List<Tasacion> ListarTodo()
         {
-            if (!File.Exists(_rutaXml))
-                return new List<Tasacion>();
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("Tasaciones");
+            if (root == null) return new List<Tasacion>();
 
-            var doc = XDocument.Load(_rutaXml);
-            var elems = doc.Root.Element(NodoRoot)?.Elements(NodoElemento) ?? Enumerable.Empty<XElement>();
-
-            return elems
-                .Where(x => (string)x.Attribute("Active") == "true")
-                .Select(Parse)
-                .ToList();
+            return root.Elements("Tasacion")
+                       .Where(x => (string)x.Attribute("Active") == "true")
+                       .Select(x => new Tasacion
+                       {
+                           ID = (int)x.Attribute("Id"),
+                           ValorFinal = decimal.Parse(x.Element("ValorFinal")?.Value ?? "0"),
+                           Fecha = DateTime.Parse(x.Element("Fecha")?.Value ?? DateTime.Now.ToString("s")),
+                           Oferta = new OfertaCompra
+                           { ID = (int)x.Element("OfertaId") }
+                       })
+                       .ToList();
         }
 
         public Tasacion BuscarPorId(int id)
         {
-            if (!File.Exists(_rutaXml)) return null;
-            var doc = XDocument.Load(_rutaXml);
-            var x = doc.Root.Element(NodoRoot)?
-                .Elements(NodoElemento)
-                .FirstOrDefault(e => (int)e.Attribute("Id") == id && (string)e.Attribute("Active") == "true");
-            return x == null ? null : Parse(x);
+            return ListarTodo().FirstOrDefault(t => t.ID == id);
         }
 
-        public void Alta(Tasacion t)
+        public void Alta(Tasacion tasacion)
         {
-            XDocument doc;
-            if (File.Exists(_rutaXml))
-                doc = XDocument.Load(_rutaXml);
-            else
-                doc = new XDocument(new XElement("BaseDeDatosLocal", new XElement(NodoRoot)));
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("Tasaciones");
 
-            var root = doc.Root.Element(NodoRoot) ?? new XElement(NodoRoot);
-            if (doc.Root.Element(NodoRoot) == null)
-                doc.Root.Add(root);
+            int nextId = root.Elements("Tasacion")
+                             .Select(x => (int)x.Attribute("Id"))
+                             .DefaultIfEmpty(0)
+                             .Max() + 1;
 
-            int nuevoId = root.Elements(NodoElemento).Any()
-                ? root.Elements(NodoElemento).Max(e => (int)e.Attribute("Id")) + 1
-                : 1;
+            tasacion.ID = nextId;
+            tasacion.Fecha = DateTime.Now;
 
-            t.ID = nuevoId;
-            var elem = new XElement(NodoElemento,
-                new XAttribute("Id", t.ID),
+            var elem = new XElement("Tasacion",
+                new XAttribute("Id", nextId),
                 new XAttribute("Active", "true"),
-                new XElement("OfertaId", t.Oferta.ID),
-                new XElement("ValorFinal", t.ValorFinal),
-                new XElement("Fecha", t.Fecha)
+                new XElement("OfertaId", tasacion.Oferta.ID),
+                new XElement("ValorFinal", tasacion.ValorFinal),
+                new XElement("Fecha", tasacion.Fecha.ToString("s"))
             );
 
             root.Add(elem);
-            doc.Save(_rutaXml);
+            doc.Save(rutaXML);
         }
-
-        public void Modificar(Tasacion t)
-        {
-            if (!File.Exists(_rutaXml)) throw new FileNotFoundException(_rutaXml);
-            var doc = XDocument.Load(_rutaXml);
-            var elem = doc.Root.Element(NodoRoot)?
-                .Elements(NodoElemento)
-                .FirstOrDefault(e => (int)e.Attribute("Id") == t.ID);
-
-            if (elem == null) throw new ApplicationException("Tasación no encontrada");
-
-            elem.SetElementValue("OfertaId", t.Oferta.ID);
-            elem.SetElementValue("ValorFinal", t.ValorFinal);
-            elem.SetElementValue("Fecha", t.Fecha);
-
-            doc.Save(_rutaXml);
-        }
-
-        public void Baja(int id)
-        {
-            if (!File.Exists(_rutaXml)) return;
-            var doc = XDocument.Load(_rutaXml);
-            var elem = doc.Root.Element(NodoRoot)?
-                .Elements(NodoElemento)
-                .FirstOrDefault(e => (int)e.Attribute("Id") == id);
-
-            if (elem != null)
-            {
-                elem.SetAttributeValue("Active", "false");
-                doc.Save(_rutaXml);
-            }
-        }
-
-        private Tasacion Parse(XElement x) => new Tasacion
-        {
-            ID = (int)x.Attribute("Id"),
-            Oferta = new OfertaCompra { ID = (int)x.Element("OfertaId") },
-            ValorFinal = decimal.Parse(x.Element("ValorFinal").Value),
-            Fecha = DateTime.Parse(x.Element("Fecha").Value)
-        };
     }
 }

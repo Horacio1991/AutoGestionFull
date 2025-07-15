@@ -79,11 +79,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj",
+      "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj",
       "projectName": "BE",
-      "projectPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\BE.csproj",
+      "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\BE.csproj",
       "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Educaccion\\source\\repos\\AutoGestion\\BE\\obj\\",
+      "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

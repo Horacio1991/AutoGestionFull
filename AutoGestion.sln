@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36121.58 d17.14
+VisualStudioVersion = 17.14.36121.58
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{829B8303-B397-42CB-955A-D9F9CD80E512}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BE", "BE\BE.csproj", "{3EF11D69-1AD7-422B-AE0A-3C3681239214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{E171049A-B288-4000-8DC3-F53D4D63EE45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3EF11D69-1AD7-422B-AE0A-3C3681239214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EF11D69-1AD7-422B-AE0A-3C3681239214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EF11D69-1AD7-422B-AE0A-3C3681239214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E171049A-B288-4000-8DC3-F53D4D63EE45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E171049A-B288-4000-8DC3-F53D4D63EE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E171049A-B288-4000-8DC3-F53D4D63EE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E171049A-B288-4000-8DC3-F53D4D63EE45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

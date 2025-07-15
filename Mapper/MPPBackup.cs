@@ -1,4 +1,5 @@
-﻿using BE;
+﻿// Mapper/MPPBackup.cs
+using BE;
 using Servicios.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -10,151 +11,129 @@ namespace Mapper
 {
     public class MPPBackup
     {
-        private readonly string _xmlBaseData = XmlPaths.BaseDatosLocal;
-        private readonly string _xmlFolderBackups = XmlPaths.BackupFolder;
-        private readonly string _xmlHistorialBackups = XmlPaths.BackupHistoryFile;
+        private readonly string xmlFolderBackups = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Backup");
+        private readonly string xmlHistorialBackups = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Backup", "HistorialBackup.xml");
+        private readonly string rutaSistema = XmlPaths.BaseDatosLocal;
 
         public MPPBackup()
         {
             AsegurarHistorialBackup();
         }
 
+        /// <summary>
+        /// Lista los archivos .xml en la carpeta de backups (solo metadatos).
+        /// </summary>
         public List<Backup> ListarTodo()
         {
             var lista = new List<Backup>();
-            try
-            {
-                if (!Directory.Exists(_xmlFolderBackups))
-                    Directory.CreateDirectory(_xmlFolderBackups);
+            if (!Directory.Exists(xmlFolderBackups))
+                Directory.CreateDirectory(xmlFolderBackups);
 
-                foreach (var archivo in Directory.GetFiles(_xmlFolderBackups, "*.xml"))
-                {
-                    lista.Add(new Backup
-                    {
-                        Nombre = Path.GetFileNameWithoutExtension(archivo),
-                        Fecha = File.GetCreationTime(archivo)
-                    });
-                }
-            }
-            catch (Exception ex)
+            foreach (var archivo in Directory.GetFiles(xmlFolderBackups, "*.xml"))
             {
-                Console.WriteLine($"Error MPPBackup.ListarTodo: {ex.Message}");
+                lista.Add(new Backup
+                {
+                    Nombre = Path.GetFileNameWithoutExtension(archivo),
+                    Fecha = File.GetCreationTime(archivo)
+                });
             }
             return lista;
         }
 
+        /// <summary>
+        /// Crea un backup físico del XML principal en la carpeta de backups.
+        /// También fija Nombre y Fecha en el objeto Backup.
+        /// </summary>
         public bool CrearBackup(Backup backup)
         {
             try
             {
-                if (!Directory.Exists(_xmlFolderBackups))
-                    Directory.CreateDirectory(_xmlFolderBackups);
+                if (!Directory.Exists(xmlFolderBackups))
+                    Directory.CreateDirectory(xmlFolderBackups);
 
-                var ts = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                backup.Nombre = $"Backup-{ts}";
+                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                backup.Nombre = $"Backup-{timestamp}";
                 backup.Fecha = DateTime.Now;
 
-                var destino = Path.Combine(_xmlFolderBackups, $"{backup.Nombre}.xml");
-                File.Copy(_xmlBaseData, destino, overwrite: true);
+                string destino = Path.Combine(xmlFolderBackups, $"{backup.Nombre}.xml");
+                File.Copy(rutaSistema, destino, overwrite: true);
+
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine($"Error MPPBackup.CrearBackup: {ex.Message}");
                 return false;
             }
         }
 
+        /// <summary>
+        /// Registra en el HistorialBackup.xml la metadata del backup realizado.
+        /// </summary>
         public void GuardarBackupEnHistorial(Backup backup)
         {
-            try
-            {
-                var doc = XDocument.Load(_xmlHistorialBackups);
-                var root = doc.Root;
-                var next = root.Elements("Backup").Max(e => (int?)e.Attribute("Id") ?? 0) + 1;
+            var doc = XDocument.Load(xmlHistorialBackups);
+            int nuevoId = doc.Root.Elements("Bitacora")
+                          .Select(e => (int)e.Attribute("Id"))
+                          .DefaultIfEmpty(0)
+                          .Max() + 1;
 
-                var elem = new XElement("Backup",
-                    new XAttribute("Id", next),
-                    new XAttribute("Nombre", backup.Nombre),
-                    new XAttribute("Fecha", backup.Fecha.ToString("yyyy-MM-dd HH:mm:ss")),
-                    new XAttribute("IdUsuario", backup.IdUsuario),
-                    new XAttribute("UsernameUsuario", backup.UsernameUsuario ?? "(desconocido)")
-                );
-
-                root.Add(elem);
-                doc.Save(_xmlHistorialBackups);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error MPPBackup.GuardarBackupEnHistorial: {ex.Message}");
-            }
+            var elem = new XElement("Bitacora",
+                new XAttribute("Id", nuevoId),
+                new XAttribute("Fecha", backup.Fecha.ToString("s")),
+                new XAttribute("Usuario", backup.UsernameUsuario ?? "(desconocido)"),
+                new XElement("Mensaje", $"Backup generado: {backup.Nombre}")
+            );
+            doc.Root.Add(elem);
+            doc.Save(xmlHistorialBackups);
         }
 
-        private void AsegurarHistorialBackup()
+        /// <summary>
+        /// Asegura que exista el archivo HistorialBackup.xml con raíz <Bitacoras>.
+        /// </summary>
+        public void AsegurarHistorialBackup()
         {
-            try
+            if (!File.Exists(xmlHistorialBackups))
             {
-                var dir = Path.GetDirectoryName(_xmlHistorialBackups);
-                if (!Directory.Exists(dir))
-                    Directory.CreateDirectory(dir);
-
-                if (!File.Exists(_xmlHistorialBackups))
-                {
-                    new XDocument(new XElement("Backups"))
-                        .Save(_xmlHistorialBackups);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error MPPBackup.AsegurarHistorialBackup: {ex.Message}");
+                Directory.CreateDirectory(Path.GetDirectoryName(xmlHistorialBackups));
+                new XDocument(new XElement("Bitacoras"))
+                    .Save(xmlHistorialBackups);
             }
         }
 
+        /// <summary>
+        /// Lee todos los nodos <Bitacora> del historial.
+        /// </summary>
         public List<Backup> ListarHistorial()
         {
             var lista = new List<Backup>();
-            try
+            var doc = XDocument.Load(xmlHistorialBackups);
+            foreach (var e in doc.Root.Elements("Bitacora"))
             {
-                if (!File.Exists(_xmlHistorialBackups))
-                    return lista;
-
-                var doc = XDocument.Load(_xmlHistorialBackups);
-                foreach (var e in doc.Root.Elements("Backup"))
+                lista.Add(new Backup
                 {
-                    lista.Add(new Backup
-                    {
-                        Id = (int)e.Attribute("Id"),
-                        Nombre = (string)e.Attribute("Nombre"),
-                        Fecha = DateTime.Parse((string)e.Attribute("Fecha")),
-                        IdUsuario = (int)e.Attribute("IdUsuario"),
-                        UsernameUsuario = (string)e.Attribute("UsernameUsuario")
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error MPPBackup.ListarHistorial: {ex.Message}");
+                    Id = (int)e.Attribute("Id"),
+                    Fecha = DateTime.Parse((string)e.Attribute("Fecha")),
+                    UsernameUsuario = (string)e.Attribute("Usuario"),
+                    Nombre = ((string)e.Element("Mensaje"))?.Replace("Backup generado: ", "")
+                });
             }
             return lista;
         }
 
+        /// <summary>
+        /// Restaura el backup indicado copiándolo sobre el XML principal.
+        /// </summary>
         public bool RestaurarBackup(Backup backup)
         {
             try
             {
-                var fuente = Path.Combine(_xmlFolderBackups, $"{backup.Nombre}.xml");
-                if (!File.Exists(fuente))
-                {
-                    Console.WriteLine("Backup no encontrado.");
-                    return false;
-                }
-
-                File.Copy(fuente, _xmlBaseData, overwrite: true);
+                var origen = Path.Combine(xmlFolderBackups, $"{backup.Nombre}.xml");
+                if (!File.Exists(origen)) return false;
+                File.Copy(origen, rutaSistema, overwrite: true);
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine($"Error MPPBackup.RestaurarBackup: {ex.Message}");
                 return false;
             }
         }

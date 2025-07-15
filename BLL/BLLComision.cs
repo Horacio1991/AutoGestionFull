@@ -8,69 +8,32 @@ namespace BLL
 {
     public class BLLComision
     {
-        private readonly MPPComision _mpp = new MPPComision();
+        private readonly MPPComision _mapper = new MPPComision();
 
         /// <summary>
-        /// Recupera todas las comisiones activas.
+        /// Obtiene comisiones de un vendedor, filtradas por estado y rango de fechas.
         /// </summary>
-        public List<Comision> ListarTodo()
+        public List<Comision> ObtenerComisiones(int vendedorId, string estado, DateTime desde, DateTime hasta)
         {
-            return _mpp.ListarTodo();
+            // Listar todas y luego filtrar
+            var todas = _mapper.ListarTodo();
+
+            return todas
+                .Where(c =>
+                    c.Venta?.Vendedor?.ID == vendedorId
+                    && string.Equals(c.Estado, estado, StringComparison.OrdinalIgnoreCase)
+                    && c.Fecha.Date >= desde.Date
+                    && c.Fecha.Date <= hasta.Date
+                )
+                .ToList();
         }
 
         /// <summary>
-        /// Recupera una comisión por su ID.
+        /// Registra una nueva comisión (aprobar/rechazar).
         /// </summary>
-        public Comision BuscarPorId(int id)
+        public void RegistrarComision(Comision comision)
         {
-            return _mpp.BuscarPorId(id);
-        }
-
-        /// <summary>
-        /// Registra una nueva comisión.
-        /// </summary>
-        public void AltaComision(Comision comision)
-        {
-            if (comision == null) throw new ArgumentNullException(nameof(comision));
-
-            // Asignar ID secuencial
-            var todas = _mpp.ListarTodo();
-            comision.ID = todas.Any()
-                ? todas.Max(c => c.ID) + 1
-                : 1;
-
-            _mpp.AltaComision(comision);
-        }
-
-        /// <summary>
-        /// Modifica una comisión existente.
-        /// </summary>
-        public void ModificarComision(Comision comision)
-        {
-            if (comision == null) throw new ArgumentNullException(nameof(comision));
-
-            var lista = _mpp.ListarTodo();
-            var idx = lista.FindIndex(c => c.ID == comision.ID);
-            if (idx < 0)
-                throw new InvalidOperationException($"No se encontró la comisión con ID {comision.ID}");
-
-            lista[idx] = comision;
-            _mpp.GuardarLista(lista);
-        }
-
-        /// <summary>
-        /// Elimina (desactiva) una comisión.
-        /// </summary>
-        public void BajaComision(int id)
-        {
-            var lista = _mpp.ListarTodo();
-            var com = lista.FirstOrDefault(c => c.ID == id);
-            if (com == null)
-                throw new InvalidOperationException($"No se encontró la comisión con ID {id}");
-
-            // Marcamos como inactiva en el XML (o simplemente la removemos de la lista activa)
-            lista.Remove(com);
-            _mpp.GuardarLista(lista);
+            _mapper.AltaComision(comision);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BE;
 using Mapper;
 
@@ -8,39 +7,35 @@ namespace BLL
 {
     public class BLLComprobanteEntrega
     {
-        private readonly MPPComprobanteEntrega _mpp = new MPPComprobanteEntrega();
+        private readonly MPPComprobanteEntrega _mpp;
 
-        /// <summary>
-        /// Recupera todos los comprobantes de entrega activos.
-        /// </summary>
-        public List<ComprobanteEntrega> ListarTodo()
+        public BLLComprobanteEntrega()
         {
-            return _mpp.ListarTodo();
+            _mpp = new MPPComprobanteEntrega();
         }
 
-        /// <summary>
-        /// Busca un comprobante de entrega por su ID.
-        /// </summary>
-        public ComprobanteEntrega BuscarPorId(int id)
+        /// <summary>Registra un comprobante de entrega para la venta indicada.</summary>
+        public ComprobanteEntrega RegistrarComprobante(int ventaId)
         {
-            return _mpp.BuscarPorId(id);
+            var comprobante = new ComprobanteEntrega
+            {
+                Venta = new Venta { ID = ventaId }
+            };
+
+            _mpp.Alta(comprobante);
+            return comprobante;
         }
 
-        /// <summary>
-        /// Registra un nuevo comprobante de entrega.
-        /// </summary>
-        public void AltaComprobanteEntrega(ComprobanteEntrega comprobante)
-        {
-            if (comprobante == null) throw new ArgumentNullException(nameof(comprobante));
+        /// <summary>Obtiene todos los comprobantes de entrega.</summary>
+        public List<ComprobanteEntrega> ListarTodos()
+            => _mpp.ListarTodo();
 
-            // Asignar ID secuencial
-            var todos = _mpp.ListarTodo();
-            comprobante.ID = todos.Any()
-                ? todos.Max(c => c.ID) + 1
-                : 1;
+        /// <summary>Obtiene los comprobantes de entrega asociados a una venta.</summary>
+        public List<ComprobanteEntrega> ObtenerPorVenta(int ventaId)
+            => _mpp.ListarPorVenta(ventaId);
 
-            comprobante.FechaEntrega = DateTime.Now;
-            _mpp.AltaComprobante(comprobante);
-        }
+        /// <summary>Busca un comprobante de entrega por su Id.</summary>
+        public ComprobanteEntrega ObtenerPorId(int id)
+            => _mpp.BuscarPorId(id);
     }
 }

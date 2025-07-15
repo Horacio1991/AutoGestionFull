@@ -1,11 +1,6 @@
-﻿// Mapper/MPPVenta.cs
+﻿using System.Xml.Linq;
 using BE;
 using Servicios.Utilidades;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
 
 namespace Mapper
 {
@@ -13,110 +8,115 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
+        public MPPVenta()
+        {
+            EnsureRoot();
+        }
+
+        private void EnsureRoot()
+        {
+            var dir = Path.GetDirectoryName(rutaXML);
+            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+            if (!File.Exists(rutaXML))
+            {
+                new XDocument(
+                    new XElement("BaseDeDatosLocal",
+                        new XElement("Ventas")
+                    )
+                ).Save(rutaXML);
+            }
+            else
+            {
+                var doc = XDocument.Load(rutaXML);
+                if (doc.Root.Element("Ventas") == null)
+                {
+                    doc.Root.Add(new XElement("Ventas"));
+                    doc.Save(rutaXML);
+                }
+            }
+        }
+
         public List<Venta> ListarTodo()
         {
-            if (!File.Exists(rutaXML))
-                return new List<Venta>();
-
             var doc = XDocument.Load(rutaXML);
-            var ventasXml = doc.Root.Element("Ventas")?.Elements("Venta") ?? Enumerable.Empty<XElement>();
+            var root = doc.Root.Element("Ventas");
+            if (root == null) return new();
 
-            var ventas = new List<Venta>();
-            foreach (var x in ventasXml)
-            {
-                if (x.Attribute("Active")?.Value != "true") continue;
-
-                var v = new Venta
-                {
-                    ID = (int)x.Attribute("Id"),
-                    Estado = x.Element("Estado")?.Value,
-                    Fecha = DateTime.Parse(x.Element("Fecha")?.Value ?? DateTime.Now.ToString()),
-                    MotivoRechazo = x.Element("MotivoRechazo")?.Value
-                };
-
-                // Cargar Vendedor
-                var vendId = (int?)x.Element("Vendedor")?.Attribute("Id");
-                if (vendId.HasValue)
-                    v.Vendedor = new MPPVendedor().BuscarPorId(vendId.Value);
-
-                // Cargar Cliente
-                var cliId = (int?)x.Element("Cliente")?.Attribute("Id");
-                if (cliId.HasValue)
-                    v.Cliente = new MPPCliente().BuscarPorId(cliId.Value);
-
-                // Cargar Vehiculo
-                var vehId = (int?)x.Element("Vehiculo")?.Attribute("Id");
-                if (vehId.HasValue)
-                    v.Vehiculo = new MPPVehiculo().BuscarPorId(vehId.Value);
-
-                // Cargar Pago
-                var pagoId = (int?)x.Element("Pago")?.Attribute("Id");
-                if (pagoId.HasValue)
-                    v.Pago = new MPPPago().BuscarPorId(pagoId.Value);
-
-                ventas.Add(v);
-            }
-
-            return ventas;
+            return root.Elements("Venta")
+                       .Where(x => (string)x.Attribute("Active") == "true")
+                       .Select(x => ParseVenta(x))
+                       .ToList();
         }
 
-        public Venta BuscarPorId(int id) =>
-            ListarTodo().FirstOrDefault(v => v.ID == id);
-
-        public void AltaVenta(Venta venta)
+        public Venta BuscarPorId(int id)
         {
-            XDocument doc;
-            if (File.Exists(rutaXML))
-                doc = XDocument.Load(rutaXML);
-            else
-                doc = new XDocument(new XElement("BaseDeDatosLocal", new XElement("Ventas")));
+            return ListarTodo().FirstOrDefault(v => v.ID == id);
+        }
 
+        public int NextId()
+        {
+            var doc = XDocument.Load(rutaXML);
             var root = doc.Root.Element("Ventas");
-            if (root == null)
-            {
-                root = new XElement("Ventas");
-                doc.Root.Add(root);
-            }
+            return root.Elements("Venta")
+                       .Select(x => (int)x.Attribute("Id"))
+                       .DefaultIfEmpty(0)
+                       .Max() + 1;
+        }
 
-            var nuevo = new XElement("Venta",
+        public void Alta(Venta venta)
+        {
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("Ventas");
+
+            venta.ID = NextId();
+            venta.Fecha = DateTime.Now;
+            venta.Estado = "Pendiente";
+
+            var elem = new XElement("Venta",
                 new XAttribute("Id", venta.ID),
                 new XAttribute("Active", "true"),
+                new XElement("VendedorId", venta.Vendedor.ID),
+                new XElement("ClienteId", venta.Cliente.ID),
+                new XElement("VehiculoId", venta.Vehiculo.ID),
+                new XElement("PagoId", venta.Pago.ID),
                 new XElement("Estado", venta.Estado),
-                new XElement("Fecha", venta.Fecha),
-                new XElement("MotivoRechazo", venta.MotivoRechazo ?? string.Empty),
-                new XElement("Vendedor", new XAttribute("Id", venta.Vendedor.ID)),
-                new XElement("Cliente", new XAttribute("Id", venta.Cliente.ID)),
-                new XElement("Vehiculo", new XAttribute("Id", venta.Vehiculo.ID)),
-                new XElement("Pago", new XAttribute("Id", venta.Pago.ID))
+                new XElement("Fecha", venta.Fecha.ToString("s")),
+                new XElement("MotivoRechazo", venta.MotivoRechazo ?? String.Empty)
             );
 
-            root.Add(nuevo);
+            root.Add(elem);
             doc.Save(rutaXML);
         }
 
-        public void GuardarLista(List<Venta> lista)
+        public void ActualizarEstado(int id, string nuevoEstado, string motivo = null)
         {
             var doc = XDocument.Load(rutaXML);
             var root = doc.Root.Element("Ventas");
-            root.RemoveAll();
+            var x = root?.Elements("Venta")
+                            .FirstOrDefault(v => (int)v.Attribute("Id") == id);
+            if (x == null) throw new ApplicationException("Venta no encontrada.");
 
-            foreach (var venta in lista)
-            {
-                var elem = new XElement("Venta",
-                    new XAttribute("Id", venta.ID),
-                    new XAttribute("Active", "true"),
-                    new XElement("Estado", venta.Estado),
-                    new XElement("Fecha", venta.Fecha),
-                    new XElement("MotivoRechazo", venta.MotivoRechazo ?? string.Empty),
-                    new XElement("Vendedor", new XAttribute("Id", venta.Vendedor.ID)),
-                    new XElement("Cliente", new XAttribute("Id", venta.Cliente.ID)),
-                    new XElement("Vehiculo", new XAttribute("Id", venta.Vehiculo.ID)),
-                    new XElement("Pago", new XAttribute("Id", venta.Pago.ID))
-                );
-                root.Add(elem);
-            }
+            x.SetElementValue("Estado", nuevoEstado);
+            if (motivo != null)
+                x.SetElementValue("MotivoRechazo", motivo);
 
             doc.Save(rutaXML);
+        }
+
+        private Venta ParseVenta(XElement x)
+        {
+            return new Venta
+            {
+                ID = (int)x.Attribute("Id"),
+                Vendedor = new Vendedor { ID = (int)x.Element("VendedorId") },
+                Cliente = new Cliente { ID = (int)x.Element("ClienteId") },
+                Vehiculo = new Vehiculo { ID = (int)x.Element("VehiculoId") },
+                Pago = new Pago { ID = (int)x.Element("PagoId") },
+                Estado = (string)x.Element("Estado"),
+                Fecha = DateTime.Parse(x.Element("Fecha")?.Value ?? DateTime.Now.ToString("s")),
+                MotivoRechazo = (string)x.Element("MotivoRechazo")
+            };
         }
     }
 }

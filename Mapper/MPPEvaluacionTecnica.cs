@@ -1,11 +1,10 @@
-﻿// Mapper/MPPEvaluacionTecnica.cs
-using BE;
-using Servicios.Utilidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using BE;
+using Servicios.Utilidades;
 
 namespace Mapper
 {
@@ -13,62 +12,102 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
-        public List<EvaluacionTecnica> ListarTodo()
+        public MPPEvaluacionTecnica()
         {
-            if (!File.Exists(rutaXML))
-                return new List<EvaluacionTecnica>();
-
-            var doc = XDocument.Load(rutaXML);
-            var elems = doc.Root.Element("EvaluacionesTecnicas")?
-                        .Elements("EvaluacionTecnica")
-                        .Where(x => x.Attribute("Active")?.Value == "true")
-                      ?? Enumerable.Empty<XElement>();
-
-            return elems.Select(x => new EvaluacionTecnica
-            {
-                ID = (int)x.Attribute("Id"),
-                EstadoMotor = x.Element("EstadoMotor")?.Value,
-                EstadoCarroceria = x.Element("EstadoCarroceria")?.Value,
-                EstadoInterior = x.Element("EstadoInterior")?.Value,
-                EstadoDocumentacion = x.Element("EstadoDocumentacion")?.Value,
-                Observaciones = x.Element("Observaciones")?.Value
-            }).ToList();
+            AsegurarArchivo();
         }
 
-        public EvaluacionTecnica BuscarPorId(int id) =>
-            ListarTodo().FirstOrDefault(e => e.ID == id);
-
-        public void GuardarLista(List<EvaluacionTecnica> lista)
+        private void AsegurarArchivo()
         {
-            var doc = File.Exists(rutaXML) ? XDocument.Load(rutaXML)
-                                           : new XDocument(new XElement("BaseDeDatosLocal", new XElement("EvaluacionesTecnicas")));
-            var root = doc.Root.Element("EvaluacionesTecnicas") ?? new XElement("EvaluacionesTecnicas");
-            if (doc.Root.Element("EvaluacionesTecnicas") == null)
-                doc.Root.Add(root);
+            var dir = Path.GetDirectoryName(rutaXML);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
 
-            root.RemoveAll();
-            foreach (var e in lista)
+            if (!File.Exists(rutaXML))
             {
-                var elem = new XElement("EvaluacionTecnica",
-                    new XAttribute("Id", e.ID),
-                    new XAttribute("Active", "true"),
-                    new XElement("EstadoMotor", e.EstadoMotor),
-                    new XElement("EstadoCarroceria", e.EstadoCarroceria),
-                    new XElement("EstadoInterior", e.EstadoInterior),
-                    new XElement("EstadoDocumentacion", e.EstadoDocumentacion),
-                    new XElement("Observaciones", e.Observaciones)
-                );
-                root.Add(elem);
+                new XDocument(new XElement("BaseDeDatosLocal",
+                    new XElement("Evaluaciones"))).Save(rutaXML);
             }
+        }
+
+        public List<EvaluacionTecnica> ListarTodo()
+        {
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("Evaluaciones");
+            if (root == null) return new List<EvaluacionTecnica>();
+
+            return root.Elements("Evaluacion")
+                       .Where(x => (string)x.Attribute("Active") == "true")
+                       .Select(x => new EvaluacionTecnica
+                       {
+                           ID = (int)x.Attribute("Id"),
+                           EstadoMotor = (string)x.Element("EstadoMotor"),
+                           EstadoCarroceria = (string)x.Element("EstadoCarroceria"),
+                           EstadoInterior = (string)x.Element("EstadoInterior"),
+                           EstadoDocumentacion = (string)x.Element("EstadoDocumentacion"),
+                           Observaciones = (string)x.Element("Observaciones")
+                       })
+                       .ToList();
+        }
+
+        public EvaluacionTecnica BuscarPorId(int id)
+        {
+            return ListarTodo().FirstOrDefault(e => e.ID == id);
+        }
+
+        public void Alta(EvaluacionTecnica eval)
+        {
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("Evaluaciones");
+
+            int nextId = root.Elements("Evaluacion")
+                             .Select(x => (int)x.Attribute("Id"))
+                             .DefaultIfEmpty(0)
+                             .Max() + 1;
+
+            eval.ID = nextId;
+
+            var elem = new XElement("Evaluacion",
+                new XAttribute("Id", nextId),
+                new XAttribute("Active", "true"),
+                new XElement("EstadoMotor", eval.EstadoMotor),
+                new XElement("EstadoCarroceria", eval.EstadoCarroceria),
+                new XElement("EstadoInterior", eval.EstadoInterior),
+                new XElement("EstadoDocumentacion", eval.EstadoDocumentacion),
+                new XElement("Observaciones", eval.Observaciones ?? string.Empty)
+            );
+
+            root.Add(elem);
             doc.Save(rutaXML);
         }
 
-        public void AltaEvaluacion(EvaluacionTecnica eval)
+        public void Modificar(EvaluacionTecnica eval)
         {
-            var lista = ListarTodo();
-            lista.RemoveAll(e => e.ID == eval.ID);
-            lista.Add(eval);
-            GuardarLista(lista);
+            var doc = XDocument.Load(rutaXML);
+            var elem = doc.Root.Element("Evaluaciones")
+                           .Elements("Evaluacion")
+                           .FirstOrDefault(x => (int)x.Attribute("Id") == eval.ID);
+            if (elem == null) throw new ApplicationException("Evaluación no encontrada.");
+
+            elem.Element("EstadoMotor").SetValue(eval.EstadoMotor);
+            elem.Element("EstadoCarroceria").SetValue(eval.EstadoCarroceria);
+            elem.Element("EstadoInterior").SetValue(eval.EstadoInterior);
+            elem.Element("EstadoDocumentacion").SetValue(eval.EstadoDocumentacion);
+            elem.Element("Observaciones").SetValue(eval.Observaciones ?? string.Empty);
+
+            doc.Save(rutaXML);
+        }
+
+        public void Baja(int id)
+        {
+            var doc = XDocument.Load(rutaXML);
+            var elem = doc.Root.Element("Evaluaciones")
+                           .Elements("Evaluacion")
+                           .FirstOrDefault(x => (int)x.Attribute("Id") == id);
+            if (elem == null) throw new ApplicationException("Evaluación no encontrada.");
+
+            elem.SetAttributeValue("Active", "false");
+            doc.Save(rutaXML);
         }
     }
 }

@@ -12,72 +12,73 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
+        public MPPOferente()
+        {
+            AsegurarArchivo();
+        }
+
+        private void AsegurarArchivo()
+        {
+            var dir = Path.GetDirectoryName(rutaXML);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            if (!File.Exists(rutaXML))
+            {
+                new XDocument(new XElement("BaseDeDatosLocal",
+                    new XElement("Oferentes"))).Save(rutaXML);
+            }
+        }
+
         public List<Oferente> ListarTodo()
         {
-            if (!File.Exists(rutaXML))
-                return new List<Oferente>();
-
             var doc = XDocument.Load(rutaXML);
             var root = doc.Root.Element("Oferentes");
-            if (root == null)
-                return new List<Oferente>();
+            if (root == null) return new List<Oferente>();
 
-            return root
-                .Elements("Oferente")
-                .Where(x => (string)x.Attribute("Active") == "true")
-                .Select(x => new Oferente
-                {
-                    ID = (int)x.Attribute("Id"),
-                    Dni = x.Element("Dni").Value.Trim(),
-                    Nombre = x.Element("Nombre").Value.Trim(),
-                    Apellido = x.Element("Apellido").Value.Trim(),
-                    Contacto = x.Element("Contacto").Value.Trim()
-                })
-                .ToList();
+            return root.Elements("Oferente")
+                       .Where(x => (string)x.Attribute("Active") == "true")
+                       .Select(x => new Oferente
+                       {
+                           ID = (int)x.Attribute("Id"),
+                           Dni = (string)x.Element("Dni"),
+                           Nombre = (string)x.Element("Nombre"),
+                           Apellido = (string)x.Element("Apellido"),
+                           Contacto = (string)x.Element("Contacto")
+                       })
+                       .ToList();
+        }
+
+        public Oferente BuscarPorId(int id)
+        {
+            return ListarTodo().FirstOrDefault(o => o.ID == id);
         }
 
         public Oferente BuscarPorDni(string dni)
         {
-            if (!File.Exists(rutaXML))
-                return null;
-
-            var doc = XDocument.Load(rutaXML);
-            var elem = doc.Root
-                .Element("Oferentes")?
-                .Elements("Oferente")
-                .FirstOrDefault(x => x.Element("Dni").Value.Trim() == dni && (string)x.Attribute("Active") == "true");
-            if (elem == null) return null;
-
-            return new Oferente
-            {
-                ID = (int)elem.Attribute("Id"),
-                Dni = elem.Element("Dni").Value.Trim(),
-                Nombre = elem.Element("Nombre").Value.Trim(),
-                Apellido = elem.Element("Apellido").Value.Trim(),
-                Contacto = elem.Element("Contacto").Value.Trim()
-            };
+            return ListarTodo()
+                   .FirstOrDefault(o => string.Equals(o.Dni, dni, StringComparison.OrdinalIgnoreCase));
         }
 
-        public void AltaOferente(Oferente oferente)
+        public bool Existe(string dni)
         {
-            XDocument doc;
-            if (File.Exists(rutaXML))
-                doc = XDocument.Load(rutaXML);
-            else
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(rutaXML));
-                doc = new XDocument(new XElement("BaseDeDatosLocal", new XElement("Oferentes")));
-            }
+            return BuscarPorDni(dni) != null;
+        }
 
+        public void Alta(Oferente oferente)
+        {
+            var doc = XDocument.Load(rutaXML);
             var root = doc.Root.Element("Oferentes");
-            int nuevoId = 1;
-            if (root.Elements("Oferente").Any())
-                nuevoId = root.Elements("Oferente").Max(x => (int)x.Attribute("Id")) + 1;
 
-            oferente.ID = nuevoId;
+            int nextId = root.Elements("Oferente")
+                             .Select(x => (int)x.Attribute("Id"))
+                             .DefaultIfEmpty(0)
+                             .Max() + 1;
 
-            var nuevo = new XElement("Oferente",
-                new XAttribute("Id", oferente.ID),
+            oferente.ID = nextId;
+
+            var elem = new XElement("Oferente",
+                new XAttribute("Id", nextId),
                 new XAttribute("Active", "true"),
                 new XElement("Dni", oferente.Dni),
                 new XElement("Nombre", oferente.Nombre),
@@ -85,7 +86,35 @@ namespace Mapper
                 new XElement("Contacto", oferente.Contacto)
             );
 
-            root.Add(nuevo);
+            root.Add(elem);
+            doc.Save(rutaXML);
+        }
+
+        public void Modificar(Oferente oferente)
+        {
+            var doc = XDocument.Load(rutaXML);
+            var elem = doc.Root.Element("Oferentes")
+                          .Elements("Oferente")
+                          .FirstOrDefault(x => (int)x.Attribute("Id") == oferente.ID);
+            if (elem == null) throw new ApplicationException("Oferente no encontrado.");
+
+            elem.Element("Dni").SetValue(oferente.Dni);
+            elem.Element("Nombre").SetValue(oferente.Nombre);
+            elem.Element("Apellido").SetValue(oferente.Apellido);
+            elem.Element("Contacto").SetValue(oferente.Contacto);
+
+            doc.Save(rutaXML);
+        }
+
+        public void Baja(int id)
+        {
+            var doc = XDocument.Load(rutaXML);
+            var elem = doc.Root.Element("Oferentes")
+                          .Elements("Oferente")
+                          .FirstOrDefault(x => (int)x.Attribute("Id") == id);
+            if (elem == null) throw new ApplicationException("Oferente no encontrado.");
+
+            elem.SetAttributeValue("Active", "false");
             doc.Save(rutaXML);
         }
     }

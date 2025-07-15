@@ -1,10 +1,11 @@
-﻿using System;
+﻿// Mapper/MPPTurno.cs
+using BE;
+using Servicios.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using BE;
-using Servicios.Utilidades;
 
 namespace Mapper
 {
@@ -13,9 +14,9 @@ namespace Mapper
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
         /// <summary>
-        /// Lista todos los turnos activos.
+        /// Devuelve todos los turnos con Asistencia = "Pendiente" y Active = true.
         /// </summary>
-        public List<Turno> ListarTodo()
+        public List<Turno> ListarPendientesAsistencia()
         {
             if (!File.Exists(rutaXML))
                 return new List<Turno>();
@@ -27,7 +28,8 @@ namespace Mapper
 
             return root
                 .Elements("Turno")
-                .Where(x => (string)x.Attribute("Active") == "true")
+                .Where(x => (string)x.Attribute("Active") == "true"
+                         && (string)x.Element("Asistencia") == "Pendiente")
                 .Select(x => new Turno
                 {
                     ID = (int)x.Attribute("Id"),
@@ -42,15 +44,33 @@ namespace Mapper
         }
 
         /// <summary>
-        /// Agrega un nuevo turno (equivalente a AltaTurno).
+        /// Registra la asistencia (o no) de un turno.
         /// </summary>
-        public void AltaTurno(Turno turno)
+        public void RegistrarAsistencia(int turnoId, string estado, string observaciones)
+        {
+            if (!File.Exists(rutaXML))
+                throw new FileNotFoundException("Base de datos no encontrada.");
+
+            var doc = XDocument.Load(rutaXML);
+            var elem = doc.Root.Element("Turnos")
+                          ?.Elements("Turno")
+                          .FirstOrDefault(x => (int)x.Attribute("Id") == turnoId);
+            if (elem == null)
+                throw new ApplicationException("Turno no encontrado.");
+
+            elem.SetElementValue("Asistencia", estado);
+            elem.SetElementValue("Observaciones", observaciones ?? "");
+            doc.Save(rutaXML);
+        }
+
+        /// <summary>
+        /// Agrega un nuevo turno al XML.
+        /// </summary>
+        public void AgregarTurno(Turno turno)
         {
             XDocument doc;
             if (File.Exists(rutaXML))
-            {
                 doc = XDocument.Load(rutaXML);
-            }
             else
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(rutaXML));
@@ -58,10 +78,17 @@ namespace Mapper
             }
 
             var root = doc.Root.Element("Turnos");
-            int nuevoId = root.Elements("Turno").Any()
-                ? root.Elements("Turno").Max(x => (int)x.Attribute("Id")) + 1
-                : 1;
+            if (root == null)
+            {
+                root = new XElement("Turnos");
+                doc.Root.Add(root);
+            }
 
+            // calcular nuevo ID
+            int nuevoId = root.Elements("Turno")
+                              .Select(x => (int)x.Attribute("Id"))
+                              .DefaultIfEmpty(0)
+                              .Max() + 1;
             turno.ID = nuevoId;
 
             var nuevo = new XElement("Turno",
@@ -76,74 +103,6 @@ namespace Mapper
             );
 
             root.Add(nuevo);
-            doc.Save(rutaXML);
-        }
-
-        /// <summary>
-        /// Modifica un turno existente.
-        /// </summary>
-        public void ModificarTurno(Turno turno)
-        {
-            if (!File.Exists(rutaXML))
-                throw new FileNotFoundException("Base de datos no encontrada.");
-
-            var doc = XDocument.Load(rutaXML);
-            var elem = doc.Root.Element("Turnos")
-                          ?.Elements("Turno")
-                          .FirstOrDefault(x => (int)x.Attribute("Id") == turno.ID);
-
-            if (elem == null)
-                throw new ApplicationException("Turno no encontrado.");
-
-            // Actualiza los campos que pueden cambiar
-            elem.Element("ClienteId").Value = turno.Cliente.ID.ToString();
-            elem.Element("VehiculoId").Value = turno.Vehiculo.ID.ToString();
-            elem.Element("Fecha").Value = turno.Fecha.ToString("s");
-            elem.Element("Hora").Value = turno.Hora.ToString();
-            elem.SetElementValue("Asistencia", turno.Asistencia);
-            elem.SetElementValue("Observaciones", turno.Observaciones);
-
-            doc.Save(rutaXML);
-        }
-
-        /// <summary>
-        /// Da de baja (pone Active="false") un turno.
-        /// </summary>
-        public void BajaTurno(int turnoId)
-        {
-            if (!File.Exists(rutaXML))
-                throw new FileNotFoundException("Base de datos no encontrada.");
-
-            var doc = XDocument.Load(rutaXML);
-            var elem = doc.Root.Element("Turnos")
-                          ?.Elements("Turno")
-                          .FirstOrDefault(x => (int)x.Attribute("Id") == turnoId);
-
-            if (elem == null)
-                throw new ApplicationException("Turno no encontrado.");
-
-            elem.SetAttributeValue("Active", "false");
-            doc.Save(rutaXML);
-        }
-
-        /// <summary>
-        /// Registra únicamente la asistencia de un turno.
-        /// </summary>
-        public void RegistrarAsistencia(int turnoId, string estado, string observaciones)
-        {
-            if (!File.Exists(rutaXML))
-                throw new FileNotFoundException("Base de datos no encontrada.");
-
-            var doc = XDocument.Load(rutaXML);
-            var elem = doc.Root.Element("Turnos")
-                          ?.Elements("Turno")
-                          .FirstOrDefault(x => (int)x.Attribute("Id") == turnoId);
-
-            if (elem == null)
-                throw new ApplicationException("Turno no encontrado.");
-
-            elem.SetElementValue("Asistencia", estado);
-            elem.SetElementValue("Observaciones", observaciones ?? "");
             doc.Save(rutaXML);
         }
     }
