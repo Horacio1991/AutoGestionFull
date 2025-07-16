@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BaseDeDatosLocal>
+  <Componentes />
+  <Usuario_Permisos />
+  <Usuarios>
+    <Usuario Id="1" Active="true">
+      <Username>admin</Username>
+      <Password>MQAyADMA</Password>
+    </Usuario>
+  </Usuarios>
+  <Ventas />
+  <Tasaciones />
+</BaseDeDatosLocal>

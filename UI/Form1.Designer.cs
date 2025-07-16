@@ -44,7 +44,7 @@
             mnuTasarVehiculo = new ToolStripMenuItem();
             mnuRegistrarCompra = new ToolStripMenuItem();
             gestiónComisionesToolStripMenuItem = new ToolStripMenuItem();
-            mnuRegistrarComision = new ToolStripMenuItem();
+            registrarComisiónToolStripMenuItem = new ToolStripMenuItem();
             mnuConsultarComisiones = new ToolStripMenuItem();
             gestiónTurnosToolStripMenuItem = new ToolStripMenuItem();
             mnuRegistrarTurno = new ToolStripMenuItem();
@@ -81,7 +81,7 @@
             aBMUsToolStripMenuItem.Name = "aBMUsToolStripMenuItem";
             aBMUsToolStripMenuItem.Size = new Size(148, 22);
             aBMUsToolStripMenuItem.Text = "ABM Usuarios";
-            aBMUsToolStripMenuItem.Click += aBMUsToolStripMenuItem_Click_1;
+            aBMUsToolStripMenuItem.Click += aBMUsToolStripMenuItem_Click;
             // 
             // gestionVentasToolStripMenuItem
             // 
@@ -169,17 +169,17 @@
             // 
             // gestiónComisionesToolStripMenuItem
             // 
-            gestiónComisionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuRegistrarComision, mnuConsultarComisiones });
+            gestiónComisionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { registrarComisiónToolStripMenuItem, mnuConsultarComisiones });
             gestiónComisionesToolStripMenuItem.Name = "gestiónComisionesToolStripMenuItem";
             gestiónComisionesToolStripMenuItem.Size = new Size(124, 20);
             gestiónComisionesToolStripMenuItem.Text = "Gestión Comisiones";
             // 
-            // mnuRegistrarComision
+            // registrarComisiónToolStripMenuItem
             // 
-            mnuRegistrarComision.Name = "mnuRegistrarComision";
-            mnuRegistrarComision.Size = new Size(190, 22);
-            mnuRegistrarComision.Text = "Registrar Comisión";
-            mnuRegistrarComision.Click += mnuRegistrarComision_Click;
+            registrarComisiónToolStripMenuItem.Name = "registrarComisiónToolStripMenuItem";
+            registrarComisiónToolStripMenuItem.Size = new Size(190, 22);
+            registrarComisiónToolStripMenuItem.Text = "Registrar Comisión";
+            registrarComisiónToolStripMenuItem.Click += registrarComisiónToolStripMenuItem_Click;
             // 
             // mnuConsultarComisiones
             // 
@@ -303,7 +303,6 @@
         private ToolStripMenuItem mnuEvaluarVehiculo;
         private ToolStripMenuItem mnuTasarVehiculo;
         private ToolStripMenuItem mnuRegistrarCompra;
-        private ToolStripMenuItem mnuRegistrarComision;
         private ToolStripMenuItem mnuConsultarComisiones;
         private ToolStripMenuItem mnuRegistrarTurno;
         private ToolStripMenuItem mnuRegistrarAsistencia;
@@ -314,5 +313,6 @@
         private ToolStripMenuItem backupToolStripMenuItem;
         private ToolStripMenuItem restoreToolStripMenuItem;
         private ToolStripMenuItem bitacoraToolStripMenuItem;
+        private ToolStripMenuItem registrarComisiónToolStripMenuItem;
     }
 }

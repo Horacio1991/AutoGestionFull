@@ -60,7 +60,6 @@
             btnConfirmarEntrega.TabIndex = 2;
             btnConfirmarEntrega.Text = "Confirmar Entrega";
             btnConfirmarEntrega.UseVisualStyleBackColor = true;
-            btnConfirmarEntrega.Click += btnConfirmarEntrega_Click_1;
             // 
             // RealizarEntrega
             // 

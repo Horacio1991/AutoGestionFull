@@ -15,9 +15,10 @@ namespace BLL
             var oferDto = _bllOferente.ObtenerOferenteDtoPorDni(input.Oferente.Dni)
                           ?? _bllOferente.RegistrarOferenteDto(input.Oferente);
 
-            // 2) Asegurar Vehículo
-            var vehDto = _bllVehiculo.ObtenerPorDominio(input.Vehiculo.Dominio)
-                         ?? _bllVehiculo.RegistrarVehiculo(input.Vehiculo);
+            // 1) Intento recuperar el vehículo existente (como DTO)
+            var vehDto = _bllVehiculo.ObtenerPorDominioDto(input.Vehiculo.Dominio)
+                         // 2) Si no existe, lo doy de alta y obtengo el DTO
+                         ?? _bllVehiculo.RegistrarVehiculoDto(input.Vehiculo);
 
             // 3) Crear BE.OfertaCompra
             var be = new OfertaCompra

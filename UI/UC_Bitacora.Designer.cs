@@ -65,7 +65,6 @@
             rbTodos.TabStop = true;
             rbTodos.Text = "Listar Todo";
             rbTodos.UseVisualStyleBackColor = true;
-            rbTodos.CheckedChanged += rbTodos_CheckedChanged_1;
             // 
             // rbSoloBackups
             // 
@@ -77,7 +76,6 @@
             rbSoloBackups.TabStop = true;
             rbSoloBackups.Text = "Listar Backup";
             rbSoloBackups.UseVisualStyleBackColor = true;
-            rbSoloBackups.CheckedChanged += rbSoloBackups_CheckedChanged_1;
             // 
             // rbSoloRestores
             // 
@@ -89,7 +87,6 @@
             rbSoloRestores.TabStop = true;
             rbSoloRestores.Text = "Listar Restores";
             rbSoloRestores.UseVisualStyleBackColor = true;
-            rbSoloRestores.CheckedChanged += rbSoloRestores_CheckedChanged_1;
             // 
             // btnRecargarBitacora
             // 
@@ -99,7 +96,6 @@
             btnRecargarBitacora.TabIndex = 5;
             btnRecargarBitacora.Text = "Recargar Bitácora";
             btnRecargarBitacora.UseVisualStyleBackColor = true;
-            btnRecargarBitacora.Click += btnRecargarBitacora_Click;
             // 
             // UC_Bitacora
             // 

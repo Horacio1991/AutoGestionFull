@@ -18,3 +18,5 @@ C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\BLL\obj\Debug\net8.0\BL
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\BLL\obj\Debug\net8.0\refint\BLL.dll
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\BLL\obj\Debug\net8.0\BLL.pdb
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\BLL\obj\Debug\net8.0\ref\BLL.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\BLL\bin\Debug\net8.0\DTOs.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\BLL\bin\Debug\net8.0\DTOs.pdb

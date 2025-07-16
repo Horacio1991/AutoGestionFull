@@ -9,6 +9,7 @@
       "BLL/1.0.0": {
         "dependencies": {
           "BE": "1.0.0",
+          "DTOs": "1.0.0",
           "Mapper": "1.0.0",
           "Servicios": "1.0.0",
           "iTextSharp": "5.5.13.4"
@@ -47,6 +48,14 @@
           }
         }
       },
+      "DTOs/1.0.0": {
+        "runtime": {
+          "DTOs.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Mapper/1.0.0": {
         "dependencies": {
           "BE": "1.0.0",
@@ -63,6 +72,7 @@
       "Servicios/1.0.0": {
         "dependencies": {
           "BE": "1.0.0",
+          "DTOs": "1.0.0",
           "iTextSharp": "5.5.13.4"
         },
         "runtime": {
@@ -95,6 +105,11 @@
       "hashPath": "itextsharp.5.5.13.4.nupkg.sha512"
     },
     "BE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DTOs/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

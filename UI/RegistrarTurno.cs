@@ -24,7 +24,7 @@ namespace AutoGestion.UI
         {
             try
             {
-                var lista = _bllVehiculo.ObtenerDisponibles()
+                var lista = _bllVehiculo.ObtenerVehiculosDisponiblesDto()
                     .Select(v => new { v.ID, v.Dominio, v.Marca, v.Modelo })
                     .ToList();
 

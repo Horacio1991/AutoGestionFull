@@ -4,9 +4,6 @@
     <Compile Update="ABMUsuarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="AsignarRoles.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="AutorizarVenta.cs">
       <SubType>UserControl</SubType>
     </Compile>

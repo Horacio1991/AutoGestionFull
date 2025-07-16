@@ -99,7 +99,6 @@
             btnRegistrarPago.TabIndex = 5;
             btnRegistrarPago.Text = "Registrar Pago";
             btnRegistrarPago.UseVisualStyleBackColor = true;
-            btnRegistrarPago.Click += btnRegistrarPago_Click_1;
             // 
             // label1
             // 
@@ -213,7 +212,6 @@
             btnBuscarCliente.TabIndex = 18;
             btnBuscarCliente.Text = "Buscar";
             btnBuscarCliente.UseVisualStyleBackColor = true;
-            btnBuscarCliente.Click += btnBuscarCliente_Click_1;
             // 
             // dgvVehiculos
             // 

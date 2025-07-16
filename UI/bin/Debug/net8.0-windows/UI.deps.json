@@ -11,6 +11,7 @@
           "BE": "1.0.0",
           "BLL": "1.0.0",
           "Servicios": "1.0.0",
+          "WinForms.DataVisualization": "1.10.0",
           "iTextSharp": "5.5.13.4"
         },
         "runtime": {
@@ -36,6 +37,18 @@
           }
         }
       },
+      "WinForms.DataVisualization/1.10.0": {
+        "runtime": {
+          "lib/net6.0-windows7.0/WinForms.DataVisualization.Utilities.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.10.0.0"
+          },
+          "lib/net6.0-windows7.0/WinForms.DataVisualization.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.10.0.0"
+          }
+        }
+      },
       "BE/1.0.0": {
         "dependencies": {
           "iTextSharp": "5.5.13.4"
@@ -50,12 +63,21 @@
       "BLL/1.0.0": {
         "dependencies": {
           "BE": "1.0.0",
+          "DTOs": "1.0.0",
           "Mapper": "1.0.0",
           "Servicios": "1.0.0",
           "iTextSharp": "5.5.13.4"
         },
         "runtime": {
           "BLL.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "DTOs/1.0.0": {
+        "runtime": {
+          "DTOs.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -77,6 +99,7 @@
       "Servicios/1.0.0": {
         "dependencies": {
           "BE": "1.0.0",
+          "DTOs": "1.0.0",
           "iTextSharp": "5.5.13.4"
         },
         "runtime": {
@@ -108,12 +131,24 @@
       "path": "itextsharp/5.5.13.4",
       "hashPath": "itextsharp.5.5.13.4.nupkg.sha512"
     },
+    "WinForms.DataVisualization/1.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QKFQUf6xnsseiRsWfIeKvbWRJWvOKOvkoec/pWxEjwYrr4Vix4xmAWmvTpJGxoeWRXOzV7Pprm5SCFqzXzBA4g==",
+      "path": "winforms.datavisualization/1.10.0",
+      "hashPath": "winforms.datavisualization.1.10.0.nupkg.sha512"
+    },
     "BE/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DTOs/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

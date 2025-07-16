@@ -107,28 +107,28 @@ namespace AutoGestion
         }
 
         // --- Manejadores de menú ---
-        private void mnuRegistrarCliente_Click(object sender, EventArgs e) => CargarControl(new RegistrarCliente());
-        private void mnuSolicitarModelo_Click(object sender, EventArgs e) => CargarControl(new SolicitarModelo());
-        private void mnuRealizarPago_Click(object sender, EventArgs e) => CargarControl(new RealizarPago());
-        private void mnuAutorizarVenta_Click(object sender, EventArgs e) => CargarControl(new AutorizarVenta());
-        private void mnuEmitirFactura_Click(object sender, EventArgs e) => CargarControl(new EmitirFactura());
-        private void mnuRealizarEntrega_Click(object sender, EventArgs e) => CargarControl(new RealizarEntrega());
-        private void mnuRegistrarOferta_Click(object sender, EventArgs e) => CargarControl(new RegistrarOferta());
-        private void mnuEvaluarVehiculo_Click(object sender, EventArgs e) => CargarControl(new EvaluarEstado());
-        private void mnuTasarVehiculo_Click(object sender, EventArgs e) => CargarControl(new TasarVehiculo());
-        private void mnuRegistrarCompra_Click(object sender, EventArgs e) => CargarControl(new RegistrarDatos());
-        private void mnuRegistrarComision_Click(object sender, EventArgs e) => CargarControl(new RegistrarComision());
-        private void mnuConsultarComisiones_Click(object sender, EventArgs e) => CargarControl(new ConsultarComisiones());
-        private void mnuRegistrarTurno_Click(object sender, EventArgs e) => CargarControl(new RegistrarTurno());
-        private void mnuRegistrarAsistencia_Click(object sender, EventArgs e) => CargarControl(new RegistrarAsistencia());
+        private void mnuRegistrarCliente_Click_1(object sender, EventArgs e) => CargarControl(new RegistrarCliente());
+        private void mnuSolicitarModelo_Click_1(object sender, EventArgs e) => CargarControl(new SolicitarModelo());
+        private void mnuRealizarPago_Click_1(object sender, EventArgs e) => CargarControl(new RealizarPago());
+        private void mnuAutorizarVenta_Click_1(object sender, EventArgs e) => CargarControl(new AutorizarVenta());
+        private void mnuEmitirFactura_Click_1(object sender, EventArgs e) => CargarControl(new EmitirFactura());
+        private void mnuRealizarEntrega_Click_1(object sender, EventArgs e) => CargarControl(new RealizarEntrega());
+        private void mnuRegistrarOferta_Click_1(object sender, EventArgs e) => CargarControl(new RegistrarOferta());
+        private void mnuEvaluarVehiculo_Click_1(object sender, EventArgs e) => CargarControl(new EvaluarEstado());
+        private void mnuTasarVehiculo_Click_1(object sender, EventArgs e) => CargarControl(new TasarVehiculo());
+        private void mnuRegistrarCompra_Click_1(object sender, EventArgs e) => CargarControl(new RegistrarDatos());
+        private void registrarComisiónToolStripMenuItem_Click(object sender, EventArgs e) => CargarControl(new RegistrarComision());
+        private void mnuConsultarComisiones_Click_1(object sender, EventArgs e) => CargarControl(new ConsultarComisiones());
+        private void mnuRegistrarTurno_Click_1(object sender, EventArgs e) => CargarControl(new RegistrarTurno());
+        private void mnuRegistrarAsistencia_Click_1(object sender, EventArgs e) => CargarControl(new RegistrarAsistencia());
         private void mnuAsignarRoles_Click(object sender, EventArgs e) => CargarControl(new UC_AsignarRoles());
-        private void mnuABMUsuarios_Click(object sender, EventArgs e) => CargarControl(new ABMUsuarios());
-        private void mnuDashboard_Click(object sender, EventArgs e) => CargarControl(new Dashboard());
-        private void mnuBackup_Click(object sender, EventArgs e) => CargarControl(new UC_Backup());
-        private void mnuRestore_Click(object sender, EventArgs e) => CargarControl(new UC_Restore());
-        private void mnuBitacora_Click(object sender, EventArgs e) => CargarControl(new UC_Bitacora());
+        private void aBMUsToolStripMenuItem_Click(object sender, EventArgs e) => CargarControl(new ABMUsuarios());
+        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e) => CargarControl(new Dashboard());
+        private void backupToolStripMenuItem_Click(object sender, EventArgs e) => CargarControl(new UC_Backup());
+        private void restoreToolStripMenuItem_Click(object sender, EventArgs e) => CargarControl(new UC_Restore());
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e) => CargarControl(new UC_Bitacora());
 
-        private void mnuCerrarSesion_Click(object sender, EventArgs e)
+        private void mnuCerrarSesion_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show(
                 "¿Desea cerrar sesión?",
@@ -141,5 +141,7 @@ namespace AutoGestion
             new FormLogin().Show();
             Close();
         }
+
+
     }
 }
