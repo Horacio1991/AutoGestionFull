@@ -1,39 +1,39 @@
 ﻿using BE;
 using Mapper;
+using AutoGestion.Servicios.Pdf; // GeneradorComprobantePDF
 
 namespace BLL
 {
     public class BLLComprobanteEntrega
     {
-        private readonly MPPComprobanteEntrega _mpp;
+        private readonly MPPComprobanteEntrega _mppComp = new MPPComprobanteEntrega();
+        private readonly MPPVenta _mppVenta = new MPPVenta();
+        private readonly MPPCliente _mppCliente = new MPPCliente();
+        private readonly MPPVehiculo _mppVehiculo = new MPPVehiculo();
+        private readonly MPPPago _mppPago = new MPPPago();
 
-        public BLLComprobanteEntrega()
+        /// <summary>
+        /// Registra el comprobante, marca la venta como entregada,
+        /// recupera la entidad completa y genera el PDF.
+        /// </summary>
+        public void EmitirComprobantePdf(int ventaId, string rutaPdf)
         {
-            _mpp = new MPPComprobanteEntrega();
+            // 1) Registro de comprobante
+            _mppComp.Alta(new ComprobanteEntrega { Venta = new Venta { ID = ventaId } });
+
+            // 2) Marcar la venta como entregada
+            _mppVenta.ActualizarEstado(ventaId, "Entregada");
+
+            // 3) Recuperar la venta completa (IDs → entidades llenas)
+            var venta = _mppVenta.BuscarPorId(ventaId)
+                        ?? throw new ApplicationException("Venta no encontrada.");
+
+            venta.Cliente = _mppCliente.BuscarPorId(venta.Cliente.ID);
+            venta.Vehiculo = _mppVehiculo.BuscarPorId(venta.Vehiculo.ID);
+            venta.Pago = _mppPago.BuscarPorId(venta.Pago.ID);
+
+            // 4) Generar el PDF con todos los datos ya poblados
+            GeneradorComprobantePDF.Generar(venta, rutaPdf);
         }
-
-        /// <summary>Registra un comprobante de entrega para la venta indicada.</summary>
-        public ComprobanteEntrega RegistrarComprobante(int ventaId)
-        {
-            var comprobante = new ComprobanteEntrega
-            {
-                Venta = new Venta { ID = ventaId }
-            };
-
-            _mpp.Alta(comprobante);
-            return comprobante;
-        }
-
-        /// <summary>Obtiene todos los comprobantes de entrega.</summary>
-        public List<ComprobanteEntrega> ListarTodos()
-            => _mpp.ListarTodo();
-
-        /// <summary>Obtiene los comprobantes de entrega asociados a una venta.</summary>
-        public List<ComprobanteEntrega> ObtenerPorVenta(int ventaId)
-            => _mpp.ListarPorVenta(ventaId);
-
-        /// <summary>Busca un comprobante de entrega por su Id.</summary>
-        public ComprobanteEntrega ObtenerPorId(int id)
-            => _mpp.BuscarPorId(id);
     }
 }

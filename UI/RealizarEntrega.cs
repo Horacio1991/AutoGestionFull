@@ -1,6 +1,4 @@
-﻿using AutoGestion.Servicios.Pdf;
-using BE;
-using BLL;
+﻿using BLL;
 using DTOs;
 
 namespace AutoGestion.UI
@@ -8,6 +6,7 @@ namespace AutoGestion.UI
     public partial class RealizarEntrega : UserControl
     {
         private readonly BLLVenta _bll = new BLLVenta();
+        private readonly BLLComprobanteEntrega _bllComp = new BLLComprobanteEntrega();
         private List<VentaDto> _ventas;
 
         public RealizarEntrega()
@@ -33,7 +32,7 @@ namespace AutoGestion.UI
             }
         }
 
-        private void btnConfirmarEntrega_Click(object sender, EventArgs e)
+        private void btnConfirmarEntrega_Click_1(object sender, EventArgs e)
         {
             if (dgvVentas.CurrentRow?.DataBoundItem is not VentaDto dto)
             {
@@ -42,31 +41,24 @@ namespace AutoGestion.UI
                 return;
             }
 
+            using var dlg = new SaveFileDialog
+            {
+                Filter = "PDF|*.pdf",
+                FileName = $"Comprobante_{dto.ID}.pdf"
+            };
+            if (dlg.ShowDialog() != DialogResult.OK) return;
+
             try
             {
-                // 1) Marcar en BLL
-                _bll.ConfirmarEntrega(dto.ID);
-
-                // 2) Traer BE.Venta completa para el PDF
-                Venta entidad = _bll.ObtenerEntidad(dto.ID);
-
-                // 3) Generar PDF
-                using var dlg = new SaveFileDialog
-                {
-                    Filter = "PDF (*.pdf)|*.pdf",
-                    FileName = $"Comprobante_Entrega_{dto.ID}.pdf"
-                };
-                if (dlg.ShowDialog() != DialogResult.OK)
-                    return;
-
-                GeneradorComprobantePDF.Generar(entidad, dlg.FileName);
-
-                MessageBox.Show("Entrega registrada y comprobante guardado.",
+                _bllComp.EmitirComprobantePdf(dto.ID, dlg.FileName);
+                MessageBox.Show("✅ Entrega registrada y comprobante generado correctamente.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // recargar la grilla para quitar las entregadas
+                CargarVentas();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al confirmar entrega:\n{ex.Message}",
+                MessageBox.Show($"Error al generar comprobante:\n{ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
@@ -74,5 +66,7 @@ namespace AutoGestion.UI
                 CargarVentas();
             }
         }
+
+
     }
 }

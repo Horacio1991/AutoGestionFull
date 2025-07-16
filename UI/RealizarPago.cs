@@ -1,6 +1,5 @@
 ﻿using BLL;
 using DTOs;
-using BE;
 
 namespace AutoGestion.UI
 {
@@ -47,7 +46,7 @@ namespace AutoGestion.UI
             cmbTipoPago.SelectedIndex = 0;
         }
 
-        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        private void btnBuscarCliente_Click_1(object sender, EventArgs e)
         {
             var dni = txtDni.Text.Trim();
             try
@@ -76,7 +75,7 @@ namespace AutoGestion.UI
             _vehiculoSeleccionado = dgvVehiculos.CurrentRow?.DataBoundItem as VehiculoDto;
         }
 
-        private void btnRegistrarPago_Click(object sender, EventArgs e)
+        private void btnRegistrarPago_Click_1(object sender, EventArgs e)
         {
             if (_clienteSeleccionado == null)
             {
@@ -99,8 +98,8 @@ namespace AutoGestion.UI
             int.TryParse(txtCuotas.Text.Trim(), out var cuotas);
 
             // Obtenemos datos del vendedor desde la sesión
-            var vendedorActual = UsuarioSesion.UsuarioActual;
-            int vendedorId = vendedorActual.Id;
+            var vendedorActual = SessionManager.CurrentUser;
+            int vendedorId = vendedorActual.ID;
             string vendedorNombre = vendedorActual.Username;
 
             // Llamada a la BLL
@@ -142,5 +141,6 @@ namespace AutoGestion.UI
             _clienteSeleccionado = null;
             _vehiculoSeleccionado = null;
         }
+
     }
 }

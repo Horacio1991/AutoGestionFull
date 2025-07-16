@@ -60,7 +60,16 @@ namespace Mapper
         public void Alta(Cliente cliente)
         {
             var doc = XDocument.Load(rutaXML);
+
+            // === NUEVO ===
+            // Asegurarnos de que exista siempre la sección Clientes
             var root = doc.Root.Element("Clientes");
+            if (root == null)
+            {
+                root = new XElement("Clientes");
+                doc.Root.Add(root);
+            }
+            // ============
 
             int nextId = root.Elements("Cliente")
                              .Select(x => (int)x.Attribute("Id"))
@@ -83,6 +92,7 @@ namespace Mapper
             root.Add(elem);
             doc.Save(rutaXML);
         }
+
 
         public void Modificar(Cliente cliente)
         {

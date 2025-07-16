@@ -50,6 +50,7 @@
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.Size = new Size(673, 390);
             dgvUsuarios.TabIndex = 0;
+            dgvUsuarios.SelectionChanged += dgvUsuarios_SelectionChanged_1;
             // 
             // label1
             // 
@@ -120,6 +121,7 @@
             chkVerClave.TabIndex = 8;
             chkVerClave.Text = "Ver";
             chkVerClave.UseVisualStyleBackColor = true;
+            chkVerClave.CheckedChanged += chkVerClave_CheckedChanged_1;
             // 
             // btnAgregar
             // 
@@ -129,6 +131,7 @@
             btnAgregar.TabIndex = 9;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click_1;
             // 
             // btnModificar
             // 
@@ -148,6 +151,7 @@
             btnEliminar.TabIndex = 11;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click_1;
             // 
             // ABMUsuarios
             // 

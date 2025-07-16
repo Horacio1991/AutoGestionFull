@@ -44,7 +44,7 @@ namespace AutoGestion.UI
             }
         }
 
-        private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
+        private void dgvUsuarios_SelectionChanged_1(object sender, EventArgs e)
         {
             if (dgvUsuarios.CurrentRow == null) return;
 
@@ -52,12 +52,12 @@ namespace AutoGestion.UI
             txtNombre.Text = dgvUsuarios.CurrentRow.Cells["Username"].Value?.ToString();
             txtClave.Text = dgvUsuarios.CurrentRow.Cells["Clave"].Value?.ToString();
 
-            btnAgregar.Enabled = false;
+            btnAgregar.Enabled = true;
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnAgregar_Click_1(object sender, EventArgs e)
         {
             var username = txtNombre.Text.Trim();
             var clave = txtClave.Text.Trim();
@@ -116,7 +116,7 @@ namespace AutoGestion.UI
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnEliminar_Click_1(object sender, EventArgs e)
         {
             if (!int.TryParse(txtID.Text, out var id))
             {
@@ -148,7 +148,7 @@ namespace AutoGestion.UI
             }
         }
 
-        private void chkVerClave_CheckedChanged(object sender, EventArgs e)
+        private void chkVerClave_CheckedChanged_1(object sender, EventArgs e)
         {
             txtClave.UseSystemPasswordChar = !chkVerClave.Checked;
         }
@@ -162,6 +162,8 @@ namespace AutoGestion.UI
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
+
         }
+
     }
 }

@@ -1,54 +1,60 @@
 ﻿using BE;
 using DTOs;
 using Mapper;
+using AutoGestion.Servicios.Pdf;
 
 namespace BLL
 {
     public class BLLFactura
     {
         private readonly MPPFactura _mppFactura = new MPPFactura();
+        private readonly MPPVenta _mppVenta = new MPPVenta();
+        private readonly MPPCliente _mppCliente = new MPPCliente();
+        private readonly MPPVehiculo _mppVehiculo = new MPPVehiculo();
+        private readonly MPPPago _mppPago = new MPPPago();
 
         /// <summary>
-        /// Emite una nueva factura para la venta indicada,
-        /// y marca la venta como facturada.
+        /// Emite la factura para la venta indicada, marca la venta como facturada,
+        /// genera el PDF en la ruta destino y devuelve un DTO con los datos listos.
         /// </summary>
-        public Factura EmitirFactura(int ventaId)
+        public FacturaDto EmitirFactura(int ventaId, string rutaPdfDestino)
         {
-            // 1) Recuperar venta (sus datos de cliente/vehículo/pago)
-            //    Aquí asumo que tienes MPPVenta.ParseVenta cargado en tu BE.Venta
-            var venta = new MPPVenta().BuscarPorId(ventaId)
+            // --- 1) Recuperar datos completos de la venta ---
+            var venta = _mppVenta.BuscarPorId(ventaId)
                         ?? throw new InvalidOperationException("Venta no encontrada.");
 
-            // 2) Crear y guardar la factura
-            var factura = new Factura
-            {
-                Cliente = venta.Cliente,
-                Vehiculo = venta.Vehiculo,
-                FormaPago = venta.Pago.TipoPago,
-                Precio = venta.Pago.Monto
-            };
-            _mppFactura.AltaFactura(factura);
+            var cliente = _mppCliente.BuscarPorId(venta.Cliente.ID)
+                          ?? throw new InvalidOperationException("Cliente no encontrado.");
+            var vehiculo = _mppVehiculo.BuscarPorId(venta.Vehiculo.ID)
+                           ?? throw new InvalidOperationException("Vehículo no encontrado.");
+            var pago = _mppPago.BuscarPorId(venta.Pago.ID)
+                       ?? throw new InvalidOperationException("Pago no encontrado.");
 
-            // 3) Marcar venta en el XML
+            // --- 2) Crear y persistir Factura en XML ---
+            var facturaBE = new Factura
+            {
+                Cliente = cliente,
+                Vehiculo = vehiculo,
+                FormaPago = pago.TipoPago,
+                Precio = pago.Monto
+            };
+            _mppFactura.AltaFactura(facturaBE);
+
+            // --- 3) Marcar venta como facturada ---
             _mppFactura.MarcarFacturada(ventaId);
 
-            return factura;
-        }
+            // --- 4) Generar el PDF ---
+            GeneradorFacturaPDF.Generar(facturaBE, rutaPdfDestino);
 
-        /// <summary>
-        /// Emite la factura para la venta indicada y devuelve un DTO.
-        /// </summary>
-        public FacturaDto EmitirFacturaDto(int ventaId)
-        {
-            var factura = EmitirFactura(ventaId);  // usa el método existente
+            // --- 5) Mapear a DTO y devolver ---
             return new FacturaDto
             {
-                ID = factura.ID,
-                Cliente = $"{factura.Cliente.Nombre} {factura.Cliente.Apellido}",
-                Vehiculo = $"{factura.Vehiculo.Marca} {factura.Vehiculo.Modelo} ({factura.Vehiculo.Dominio})",
-                FormaPago = factura.FormaPago,
-                Precio = factura.Precio,
-                Fecha = factura.Fecha
+                ID = facturaBE.ID,
+                Cliente = $"{cliente.Nombre} {cliente.Apellido}",
+                Vehiculo = $"{vehiculo.Marca} {vehiculo.Modelo} ({vehiculo.Dominio})",
+                FormaPago = facturaBE.FormaPago,
+                Precio = facturaBE.Precio,
+                Fecha = facturaBE.Fecha
             };
         }
     }

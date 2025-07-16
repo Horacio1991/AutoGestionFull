@@ -59,6 +59,13 @@ namespace Mapper
             var doc = XDocument.Load(rutaXML);
             var root = doc.Root.Element("Pagos");
 
+            // Si no existe la sección <Pagos>, la creamos
+            if (root == null)
+            {
+                root = new XElement("Pagos");
+                doc.Root.Add(root);
+            }
+
             int nextId = root.Elements("Pago")
                              .Select(x => (int)x.Attribute("Id"))
                              .DefaultIfEmpty(0)
@@ -80,5 +87,7 @@ namespace Mapper
             root.Add(elem);
             doc.Save(rutaXML);
         }
+
+
     }
 }

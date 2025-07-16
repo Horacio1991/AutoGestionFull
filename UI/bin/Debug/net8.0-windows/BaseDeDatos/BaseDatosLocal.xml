@@ -1,5 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BaseDeDatosLocal>
+  <Vehiculos>
+    <Vehiculo Id="1" Active="true">
+      <Marca>Ford</Marca>
+      <Modelo>Fiesta</Modelo>
+      <Año>2015</Año>
+      <Color>Rojo</Color>
+      <Km>45000</Km>
+      <Dominio>ABC123</Dominio>
+      <Estado>Vendido</Estado>
+    </Vehiculo>
+    <Vehiculo Id="2" Active="true">
+      <Marca>Chevrolet</Marca>
+      <Modelo>Cruze</Modelo>
+      <Año>2017</Año>
+      <Color>Azul</Color>
+      <Km>38000</Km>
+      <Dominio>DEF456</Dominio>
+      <Estado>Vendido</Estado>
+    </Vehiculo>
+    <Vehiculo Id="3" Active="true">
+      <Marca>Volkswagen</Marca>
+      <Modelo>Golf</Modelo>
+      <Año>2016</Año>
+      <Color>Blanco</Color>
+      <Km>52000</Km>
+      <Dominio>GHI789</Dominio>
+      <Estado>Vendido</Estado>
+    </Vehiculo>
+    <Vehiculo Id="4" Active="true">
+      <Marca>Renault</Marca>
+      <Modelo>Sandero</Modelo>
+      <Año>2018</Año>
+      <Color>Negro</Color>
+      <Km>30000</Km>
+      <Dominio>JKL012</Dominio>
+      <Estado>Disponible</Estado>
+    </Vehiculo>
+    <Vehiculo Id="5" Active="true">
+      <Marca>Peugeot</Marca>
+      <Modelo>208</Modelo>
+      <Año>2019</Año>
+      <Color>Gris</Color>
+      <Km>25000</Km>
+      <Dominio>MNO345</Dominio>
+      <Estado>Disponible</Estado>
+    </Vehiculo>
+    <Vehiculo Id="6" Active="true">
+      <Marca>Honda</Marca>
+      <Modelo>Civic</Modelo>
+      <Año>2014</Año>
+      <Color>Plata</Color>
+      <Km>61000</Km>
+      <Dominio>PQR678</Dominio>
+      <Estado>Disponible</Estado>
+    </Vehiculo>
+    <Vehiculo Id="7" Active="true">
+      <Marca>Toyota</Marca>
+      <Modelo>Corolla</Modelo>
+      <Año>2013</Año>
+      <Color>Rojo</Color>
+      <Km>73000</Km>
+      <Dominio>STU901</Dominio>
+      <Estado>Disponible</Estado>
+    </Vehiculo>
+    <Vehiculo Id="8" Active="true">
+      <Marca>Nissan</Marca>
+      <Modelo>Sentra</Modelo>
+      <Año>2016</Año>
+      <Color>Azul</Color>
+      <Km>48000</Km>
+      <Dominio>VWX234</Dominio>
+      <Estado>Disponible</Estado>
+    </Vehiculo>
+    <Vehiculo Id="9" Active="true">
+      <Marca>Fiat</Marca>
+      <Modelo>500</Modelo>
+      <Año>2018</Año>
+      <Color>Blanco</Color>
+      <Km>22000</Km>
+      <Dominio>YZA567</Dominio>
+      <Estado>Disponible</Estado>
+    </Vehiculo>
+    <Vehiculo Id="10" Active="true">
+      <Marca>Hyundai</Marca>
+      <Modelo>i20</Modelo>
+      <Año>2017</Año>
+      <Color>Negro</Color>
+      <Km>34000</Km>
+      <Dominio>BCD890</Dominio>
+      <Estado>Disponible</Estado>
+    </Vehiculo>
+  </Vehiculos>
   <Componentes />
   <Usuario_Permisos />
   <Usuarios>
@@ -7,7 +99,110 @@
       <Username>admin</Username>
       <Password>MQAyADMA</Password>
     </Usuario>
+    <Usuario Id="2" Active="true">
+      <Username>Horacio</Username>
+      <Password>MQAyADMA</Password>
+    </Usuario>
   </Usuarios>
-  <Ventas />
-  <Tasaciones />
+  <Clientes>
+    <Cliente Id="1" Active="true">
+      <Dni>10000000</Dni>
+      <Nombre>Oscar</Nombre>
+      <Apellido>Kucewics</Apellido>
+      <Contacto>oscar@gmail.com</Contacto>
+      <FechaRegistro>2025-07-16T14:48:52</FechaRegistro>
+    </Cliente>
+    <Cliente Id="2" Active="true">
+      <Dni>20000000</Dni>
+      <Nombre>Lucho</Nombre>
+      <Apellido>Barberis</Apellido>
+      <Contacto>lucho@gmail.com</Contacto>
+      <FechaRegistro>2025-07-16T14:49:24</FechaRegistro>
+    </Cliente>
+    <Cliente Id="3" Active="true">
+      <Dni>30000000</Dni>
+      <Nombre>Brenda</Nombre>
+      <Apellido>Corbalan</Apellido>
+      <Contacto>brenda@gmail.com</Contacto>
+      <FechaRegistro>2025-07-16T15:33:36</FechaRegistro>
+    </Cliente>
+  </Clientes>
+  <Ventas>
+    <Venta Id="1" Active="true">
+      <VendedorId>1</VendedorId>
+      <ClienteId>1</ClienteId>
+      <VehiculoId>1</VehiculoId>
+      <PagoId>1</PagoId>
+      <Estado>Entregada</Estado>
+      <Fecha>2025-07-16T15:05:42</Fecha>
+      <MotivoRechazo></MotivoRechazo>
+    </Venta>
+    <Venta Id="2" Active="true">
+      <VendedorId>1</VendedorId>
+      <ClienteId>2</ClienteId>
+      <VehiculoId>2</VehiculoId>
+      <PagoId>2</PagoId>
+      <Estado>Rechazada</Estado>
+      <Fecha>2025-07-16T15:06:47</Fecha>
+      <MotivoRechazo>Se cargo mal el precio</MotivoRechazo>
+    </Venta>
+    <Venta Id="3" Active="true">
+      <VendedorId>1</VendedorId>
+      <ClienteId>3</ClienteId>
+      <VehiculoId>3</VehiculoId>
+      <PagoId>3</PagoId>
+      <Estado>Entregada</Estado>
+      <Fecha>2025-07-16T15:33:56</Fecha>
+      <MotivoRechazo></MotivoRechazo>
+    </Venta>
+  </Ventas>
+  <Pagos>
+    <Pago Id="1" Active="true">
+      <TipoPago>Financiación</TipoPago>
+      <Monto>10000000</Monto>
+      <Cuotas>24</Cuotas>
+      <Detalles>Financiado a dos años</Detalles>
+      <FechaPago>2025-07-16T15:05:41</FechaPago>
+    </Pago>
+    <Pago Id="2" Active="true">
+      <TipoPago>Efectivo</TipoPago>
+      <Monto>15000000</Monto>
+      <Cuotas>1</Cuotas>
+      <Detalles>El cliente hace el pago a contado</Detalles>
+      <FechaPago>2025-07-16T15:06:47</FechaPago>
+    </Pago>
+    <Pago Id="3" Active="true">
+      <TipoPago>Efectivo</TipoPago>
+      <Monto>20000000</Monto>
+      <Cuotas>1</Cuotas>
+      <Detalles>Compra al contado!!!</Detalles>
+      <FechaPago>2025-07-16T15:33:56</FechaPago>
+    </Pago>
+  </Pagos>
+  <Facturas>
+    <Factura Id="1" Active="true">
+      <ClienteId>1</ClienteId>
+      <VehiculoId>1</VehiculoId>
+      <FormaPago>Financiación</FormaPago>
+      <Precio>10000000</Precio>
+      <Fecha>2025-07-16T15:28:31</Fecha>
+    </Factura>
+    <Factura Id="2" Active="true">
+      <ClienteId>3</ClienteId>
+      <VehiculoId>3</VehiculoId>
+      <FormaPago>Efectivo</FormaPago>
+      <Precio>20000000</Precio>
+      <Fecha>2025-07-16T15:34:10</Fecha>
+    </Factura>
+  </Facturas>
+  <ComprobantesEntrega>
+    <ComprobanteEntrega Id="1" Active="true">
+      <VentaId>1</VentaId>
+      <FechaEntrega>2025-07-16T15:46:39</FechaEntrega>
+    </ComprobanteEntrega>
+    <ComprobanteEntrega Id="2" Active="true">
+      <VentaId>3</VentaId>
+      <FechaEntrega>2025-07-16T15:46:59</FechaEntrega>
+    </ComprobanteEntrega>
+  </ComprobantesEntrega>
 </BaseDeDatosLocal>

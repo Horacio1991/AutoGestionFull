@@ -13,11 +13,11 @@ namespace AutoGestion.UI
         {
             InitializeComponent();
             CargarVentasParaFacturar();
-            btnEmitir.Click += (_, __) => EmitirFacturaSeleccionada();
         }
 
         private void CargarVentasParaFacturar()
         {
+            dgvVentas.DataSource = _ventas;
             try
             {
                 _ventas = _bllVenta.ObtenerVentasParaFacturar();
@@ -75,41 +75,35 @@ namespace AutoGestion.UI
             }
         }
 
-        private void EmitirFacturaSeleccionada()
+        // En AutoGestion.Vista.EmitirFactura.cs, al confirmar:
+
+        private void btnEmitir_Click_1(object sender, EventArgs e)
         {
-            if (dgvVentas.CurrentRow?.DataBoundItem is not VentaDto dto)
-            {
-                MessageBox.Show("Seleccione una venta.", "Validación",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (!(dgvVentas.CurrentRow?.DataBoundItem is VentaDto dto)) return;
 
-            try
+            using (var dlg = new SaveFileDialog { Filter = "PDF|*.pdf", FileName = $"Factura_{dto.ID}.pdf" })
             {
-                // Emite y obtiene el DTO de factura
-                var facturaDto = _bllFactura.EmitirFacturaDto(dto.ID);
+                if (dlg.ShowDialog() != DialogResult.OK) return;
 
-                MessageBox.Show(
-                    $"✅ Factura #{facturaDto.ID} emitida con éxito.\n" +
-                    $"Cliente: {facturaDto.Cliente}\n" +
-                    $"Vehículo: {facturaDto.Vehiculo}\n" +
-                    $"Total: {facturaDto.Precio:C2}\n" +
-                    $"Fecha: {facturaDto.Fecha:g}",
-                    "Factura emitida",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                try
+                {
+                    var facturaDto = _bllFactura.EmitirFactura(dto.ID, dlg.FileName);
+                    MessageBox.Show(
+                        $"✅ Factura emitida\n" +
+                        $"Cliente:  {facturaDto.Cliente}\n" +
+                        $"Vehículo: {facturaDto.Vehiculo}\n" +
+                        $"Total:    {facturaDto.Precio:C2}\n" +
+                        $"Fecha:    {facturaDto.Fecha:dd/MM/yyyy}",
+                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al emitir factura:\n{ex.Message}",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al emitir factura:\n{ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                // Refrescar la grilla: esa venta ya no está en "Aprobada"
-                CargarVentasParaFacturar();
-            }
+            CargarVentasParaFacturar();
         }
+
     }
 }
