@@ -14,3 +14,5 @@ C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\refint\Servicios.dll
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\Servicios.pdb
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\obj\Debug\net8.0\ref\Servicios.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\bin\Debug\net8.0\DTOs.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Servicios\bin\Debug\net8.0\DTOs.pdb

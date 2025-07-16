@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,24 +18,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\Dashboard.cs",
-              "RelativeDocumentMoniker": "UI\\Dashboard.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\Dashboard.cs",
-              "RelativeToolTip": "UI\\Dashboard.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T14:02:26.461Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\Form1.cs",
+              "RelativeDocumentMoniker": "UI\\Form1.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\Form1.cs",
+              "RelativeToolTip": "UI\\Form1.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAUwB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T14:37:31.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UC_AsignarRoles.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
+              "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
+              "RelativeToolTip": "UI\\UC_AsignarRoles.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAAAGQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-16T14:37:18.42Z",
+              "EditorCaption": ""
             }
           ]
         },

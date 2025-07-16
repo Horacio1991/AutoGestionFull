@@ -49,3 +49,15 @@ C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-win
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\Vista.UserControls.Backup.UC_Backup.resources
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\Vista.UserControls.Backup.UC_Bitacora.resources
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\Vista.UserControls.Backup.UC_Restore.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.ConsultarComisiones.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.EmitirFactura.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.EvaluarEstado.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.RealizarEntrega.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.RealizarPago.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.RegistrarAsistencia.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.RegistrarComision.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.RegistrarDatos.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.RegistrarOferta.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.RegistrarTurno.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.SolicitarModelo.resources
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.TasarVehiculo.resources

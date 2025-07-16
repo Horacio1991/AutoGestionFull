@@ -24,6 +24,12 @@ namespace AutoGestion
             Load += Form1_Load;
         }
 
+        public ToolStripItemCollection MenuItems
+        {
+            get { return menuPrincipal.Items; }
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             try
@@ -115,7 +121,7 @@ namespace AutoGestion
         private void mnuConsultarComisiones_Click(object sender, EventArgs e) => CargarControl(new ConsultarComisiones());
         private void mnuRegistrarTurno_Click(object sender, EventArgs e) => CargarControl(new RegistrarTurno());
         private void mnuRegistrarAsistencia_Click(object sender, EventArgs e) => CargarControl(new RegistrarAsistencia());
-        private void mnuAsignarRoles_Click(object sender, EventArgs e) => CargarControl(new AsignarRoles());
+        private void mnuAsignarRoles_Click(object sender, EventArgs e) => CargarControl(new UC_AsignarRoles());
         private void mnuABMUsuarios_Click(object sender, EventArgs e) => CargarControl(new ABMUsuarios());
         private void mnuDashboard_Click(object sender, EventArgs e) => CargarControl(new Dashboard());
         private void mnuBackup_Click(object sender, EventArgs e) => CargarControl(new UC_Backup());

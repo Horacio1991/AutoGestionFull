@@ -16,3 +16,5 @@ C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Mapper\obj\Debug\net8.0
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Mapper\obj\Debug\net8.0\refint\Mapper.dll
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.pdb
 C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Mapper\obj\Debug\net8.0\ref\Mapper.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Mapper\bin\Debug\net8.0\DTOs.dll
+C:\Users\Educaccion\Desktop\TPFINAL BIEN\AutoGestionFull\Mapper\bin\Debug\net8.0\DTOs.pdb
