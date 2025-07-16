@@ -12,7 +12,7 @@ namespace AutoGestion.UI
             InitializeComponent();
         }
 
-        private void btnBuscarOferente_Click(object sender, EventArgs e)
+        private void btnBuscarOferente_Click_1(object sender, EventArgs e)
         {
             string dni = txtDni.Text.Trim();
             if (string.IsNullOrEmpty(dni))
@@ -101,5 +101,6 @@ namespace AutoGestion.UI
             numAnio.Value = numAnio.Minimum;
             numKm.Value = 0;
         }
+
     }
 }

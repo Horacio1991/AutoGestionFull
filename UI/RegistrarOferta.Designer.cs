@@ -155,6 +155,7 @@
             btnBuscarOferente.TabIndex = 10;
             btnBuscarOferente.Text = "Buscar";
             btnBuscarOferente.UseVisualStyleBackColor = true;
+            btnBuscarOferente.Click += btnBuscarOferente_Click_1;
             // 
             // label7
             // 

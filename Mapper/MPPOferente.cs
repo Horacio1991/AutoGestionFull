@@ -64,7 +64,14 @@ namespace Mapper
         public void Alta(Oferente oferente)
         {
             var doc = XDocument.Load(rutaXML);
+
+            // Asegurar nodo 'Oferentes'
             var root = doc.Root.Element("Oferentes");
+            if (root == null)
+            {
+                root = new XElement("Oferentes");
+                doc.Root.Add(root);
+            }
 
             int nextId = root.Elements("Oferente")
                              .Select(x => (int)x.Attribute("Id"))
@@ -85,6 +92,7 @@ namespace Mapper
             root.Add(elem);
             doc.Save(rutaXML);
         }
+
 
         public void Modificar(Oferente oferente)
         {
