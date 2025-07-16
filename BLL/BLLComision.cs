@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BE;
+﻿using BE;
 using DTOs;
 using Mapper;
 
@@ -10,6 +7,7 @@ namespace BLL
     public class BLLComision
     {
         private readonly MPPComision _mapper = new MPPComision();
+        private readonly MPPVenta _mppVenta = new MPPVenta();
 
         /// <summary>
         /// Obtiene comisiones de un vendedor, filtradas por estado y rango de fechas,
@@ -41,11 +39,44 @@ namespace BLL
         }
 
         /// <summary>
-        /// Registra una nueva comisión (aprobar/rechazar) usando la entidad BE.
+        /// Lista las ventas con estado "Entregada" que aún no tienen comisión.
         /// </summary>
-        public void RegistrarComision(Comision comision)
+        public List<VentaComisionDto> ObtenerVentasSinComision()
         {
-            _mapper.AltaComision(comision);
+            var entregadas = _mppVenta.ListarTodo()
+                .Where(v => v.Estado.Equals("Entregada", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            var existentes = _mapper.ListarTodo()
+                .Select(c => c.Venta.ID)
+                .ToHashSet();
+
+            return entregadas
+                .Where(v => !existentes.Contains(v.ID))
+                .Select(v => new VentaComisionDto
+                {
+                    VentaID = v.ID,
+                    Cliente = $"{v.Cliente.Nombre} {v.Cliente.Apellido}",
+                    Vehiculo = $"{v.Vehiculo.Marca} {v.Vehiculo.Modelo} ({v.Vehiculo.Dominio})"
+                })
+                .ToList();
+        }
+
+
+        /// <summary>
+        /// Registra una comisión (aprobar o rechazar) a partir de un DTO de entrada.
+        /// </summary>
+        public bool RegistrarComision(ComisionInputDto dto)
+        {
+            var com = new Comision
+            {
+                Venta = new Venta { ID = dto.VentaID },
+                Monto = dto.Monto,
+                Estado = dto.Estado,
+                MotivoRechazo = dto.MotivoRechazo
+            };
+            _mapper.AltaComision(com);
+            return true;
         }
     }
 }

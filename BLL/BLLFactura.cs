@@ -1,6 +1,6 @@
 ﻿using BE;
+using DTOs;
 using Mapper;
-using System;
 
 namespace BLL
 {
@@ -33,6 +33,23 @@ namespace BLL
             _mppFactura.MarcarFacturada(ventaId);
 
             return factura;
+        }
+
+        /// <summary>
+        /// Emite la factura para la venta indicada y devuelve un DTO.
+        /// </summary>
+        public FacturaDto EmitirFacturaDto(int ventaId)
+        {
+            var factura = EmitirFactura(ventaId);  // usa el método existente
+            return new FacturaDto
+            {
+                ID = factura.ID,
+                Cliente = $"{factura.Cliente.Nombre} {factura.Cliente.Apellido}",
+                Vehiculo = $"{factura.Vehiculo.Marca} {factura.Vehiculo.Modelo} ({factura.Vehiculo.Dominio})",
+                FormaPago = factura.FormaPago,
+                Precio = factura.Precio,
+                Fecha = factura.Fecha
+            };
         }
     }
 }

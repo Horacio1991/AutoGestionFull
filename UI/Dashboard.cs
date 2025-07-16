@@ -1,11 +1,14 @@
-﻿using AutoGestion.CTRL_Vista;
-using AutoGestion.DTOs;
+﻿using BLL;
+using DTOs;
 using System.Windows.Forms.DataVisualization.Charting;
+
+
+
 namespace Vista.UserControls.Dashboard
 {
     public partial class Dashboard : UserControl
     {
-        private readonly DashboardController _ctrl = new();
+        private readonly BLLDashboard _bll = new BLLDashboard();
         private List<DashboardVentaDto> _ventas;
         private List<DashboardRankingDto> _ranking;
 
@@ -13,7 +16,6 @@ namespace Vista.UserControls.Dashboard
         {
             InitializeComponent();
 
-            // 1) Inicializo el combo de periodos
             cmbFiltroPeriodo.Items.AddRange(new object[]
             {
                 "Hoy", "Últimos 7 días", "Últimos 30 días"
@@ -21,16 +23,8 @@ namespace Vista.UserControls.Dashboard
             cmbFiltroPeriodo.SelectedIndexChanged += (_, __) => AplicarFiltro();
             cmbFiltroPeriodo.SelectedIndex = 0;
 
-            // 2) Cargo la primera vez
             AplicarFiltro();
         }
-
-        private void cmbFiltroPeriodo_SelectedIndexChanged(object sender, EventArgs e)
-            => AplicarFiltro();
-
-
-        // Determina el rango de fechas según el filtro seleccionado
-        // y actualiza ambos gráficos (ventas y ranking).
 
         private void AplicarFiltro()
         {
@@ -39,7 +33,7 @@ namespace Vista.UserControls.Dashboard
                 DateTime hoy = DateTime.Today;
                 DateTime desde, hasta;
 
-                switch (cmbFiltroPeriodo.SelectedItem as string)
+                switch ((string)cmbFiltroPeriodo.SelectedItem)
                 {
                     case "Hoy":
                         desde = hasta = hoy; break;
@@ -52,30 +46,28 @@ namespace Vista.UserControls.Dashboard
                 }
 
                 // Total facturado
-                var total = _ctrl.ObtenerTotalFacturado(desde, hasta);
+                decimal total = _bll.ObtenerTotalFacturado(desde, hasta);
                 lblTotalFacturado.Text = $"{ObtenerTextoPeriodo()}: {total:C2}";
 
-                // Ventas para la grilla
-                _ventas = _ctrl.ObtenerVentasFiltradas(desde, hasta);
+                // Ventas
+                _ventas = _bll.ObtenerVentasFiltradas(desde, hasta);
                 dgvVentas.DataSource = _ventas;
                 dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                // Gráfico de ventas por día
                 CargarGraficoVentas(_ventas);
 
-                // Ranking para grilla y gráfico
-                _ranking = _ctrl.ObtenerRanking(desde, hasta);
+                // Ranking
+                _ranking = _bll.ObtenerRanking(desde, hasta);
                 dgvRanking.DataSource = _ranking;
                 dgvRanking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
                 CargarGraficoRanking(_ranking);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
                     $"Error al cargar dashboard:\n{ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
                 );
             }
         }
@@ -91,15 +83,16 @@ namespace Vista.UserControls.Dashboard
             var porDia = ventas
                 .GroupBy(v => v.Fecha)
                 .Select(g => new { Fecha = g.Key, Total = g.Sum(x => x.Total) })
+                .OrderBy(x => x.Fecha)
                 .ToList();
 
             for (int i = 0; i < porDia.Count; i++)
             {
                 var item = porDia[i];
                 serie.Points.AddXY(i + 1, item.Total);
-                serie.Points[i].ToolTip = $"{item.Fecha}: {item.Total:C2}";
+                serie.Points[i].ToolTip = $"{item.Fecha:dd/MM/yyyy}: {item.Total:C2}";
                 chartVentas.ChartAreas[0].AxisX.CustomLabels.Add(
-                    new CustomLabel(i + 0.5, i + 1.5, item.Fecha, 0, LabelMarkStyle.None)
+                    new CustomLabel(i + 0.5, i + 1.5, item.Fecha.ToString("dd/MM"), 0, LabelMarkStyle.None)
                 );
             }
 
@@ -132,8 +125,6 @@ namespace Vista.UserControls.Dashboard
             chartRanking.Legends[0].Enabled = false;
         }
 
-
-        // Traduce el filtro seleccionado en el combo a un texto para el label.
         private string ObtenerTextoPeriodo() => cmbFiltroPeriodo.SelectedItem as string switch
         {
             "Hoy" => "Total del día",
@@ -141,6 +132,5 @@ namespace Vista.UserControls.Dashboard
             "Últimos 30 días" => "Total últimos 30 días",
             _ => "Total"
         };
-
     }
 }

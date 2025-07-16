@@ -1,10 +1,5 @@
-﻿// Mapper/MPPTurno.cs
-using BE;
+﻿using BE;
 using Servicios.Utilidades;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Xml.Linq;
 
 namespace Mapper

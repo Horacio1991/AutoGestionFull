@@ -1,6 +1,6 @@
 ﻿using BLL;
 using DTOs;
-using Servicios;
+using BE;
 
 namespace AutoGestion.UI
 {
@@ -98,6 +98,11 @@ namespace AutoGestion.UI
             }
             int.TryParse(txtCuotas.Text.Trim(), out var cuotas);
 
+            // Obtenemos datos del vendedor desde la sesión
+            var vendedorActual = UsuarioSesion.UsuarioActual;
+            int vendedorId = vendedorActual.Id;
+            string vendedorNombre = vendedorActual.Username;
+
             // Llamada a la BLL
             bool ok = _bllPago.RegistrarPagoYVenta(
                 clienteDni: _clienteSeleccionado.Dni,
@@ -106,9 +111,10 @@ namespace AutoGestion.UI
                 monto: monto,
                 cuotas: cuotas,
                 detalles: txtOtrosDatos.Text.Trim(),
-                vendedorId: Sesion.UsuarioActual.ID,
-                vendedorNombre: Sesion.UsuarioActual.Username,
-                out string error);
+                vendedorId: vendedorId,
+                vendedorNombre: vendedorNombre,
+                out string error
+            );
 
             if (!ok)
             {

@@ -1,11 +1,11 @@
-﻿using AutoGestion.CTRL_Vista;
-using AutoGestion.Servicios;
+﻿using BE;
+using BLL;
 
 namespace Vista.UserControls.Backup
 {
     public partial class UC_Backup : UserControl
     {
-        private readonly BackupController _ctrl = new();
+        private readonly BLLBackup _bllBackup = new BLLBackup();
         private int _usuarioId;
         private string _usuarioNombre;
 
@@ -13,12 +13,12 @@ namespace Vista.UserControls.Backup
         {
             InitializeComponent();
 
-            // Usuario de la sesion actual
-            var usr = Sesion.UsuarioActual;
+            // Tomamos al usuario de la sesión
+            var usr = UsuarioSesion.UsuarioActual;
             if (usr != null)
             {
-                _usuarioId = usr.ID;
-                _usuarioNombre = usr.Nombre;
+                _usuarioId = usr.Id;
+                _usuarioNombre = usr.Username;
             }
 
             btnBackup.Click += BtnBackup_Click;
@@ -29,15 +29,19 @@ namespace Vista.UserControls.Backup
         {
             try
             {
-                var carpeta = _ctrl.RealizarBackup(_usuarioId, _usuarioNombre);
-                MessageBox.Show($"Backup \"{carpeta}\" realizado con éxito.",
-                                "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var dto = _bllBackup.RealizarBackup(_usuarioId, _usuarioNombre);
+                MessageBox.Show(
+                    $"Backup \"{dto.Nombre}\" realizado con éxito.",
+                    "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information
+                );
                 CargarHistorial();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al hacer backup:\n{ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"Error al hacer backup:\n{ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
+                );
             }
         }
 
@@ -45,32 +49,43 @@ namespace Vista.UserControls.Backup
         {
             try
             {
-                var lista = _ctrl.ObtenerHistorial();
+                var lista = _bllBackup.ObtenerHistorialDto();
 
-                // 1) Limpiar todo
-                dgvBackup.Rows.Clear();
+                dgvBackup.DataSource = null;
+                dgvBackup.AutoGenerateColumns = false;
                 dgvBackup.Columns.Clear();
 
-                // 2) Definir columnas
-                dgvBackup.Columns.Add("Carpeta", "Carpeta de Backup");
-                dgvBackup.Columns.Add("Usuario", "Usuario");
-
-                // 3) Agregar filas
-                foreach (var carpeta in lista)
+                dgvBackup.Columns.Add(new DataGridViewTextBoxColumn
                 {
-                    dgvBackup.Rows.Add(carpeta, _usuarioNombre);
-                }
+                    DataPropertyName = "Nombre",
+                    HeaderText = "Backup",
+                    Name = "colNombre"
+                });
+                dgvBackup.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "UsernameUsuario",
+                    HeaderText = "Usuario",
+                    Name = "colUsuario"
+                });
+                dgvBackup.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "Fecha",
+                    HeaderText = "Fecha",
+                    Name = "colFecha",
+                    DefaultCellStyle = { Format = "g" }
+                });
 
+                dgvBackup.DataSource = lista;
                 dgvBackup.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvBackup.ReadOnly = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar historial:\n{ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"Error al cargar historial:\n{ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
+                );
             }
         }
-
-
     }
 }

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BE;
+﻿using BE;
+using DTOs;
 using Mapper;
 
 namespace BLL
@@ -28,5 +28,22 @@ namespace BLL
         {
             _mapper.Alta(registro);
         }
+
+        /// <summary>
+        /// Devuelve los registros de la bitácora mapeados a DTOs.
+        /// </summary>
+        public List<BitacoraDto> ObtenerRegistrosDto()
+        {
+            return _mapper.ListarTodo()
+                          .Select(b => new BitacoraDto
+                          {
+                              ID = b.ID,
+                              FechaRegistro = b.FechaRegistro,
+                              Detalle = b.Detalle,
+                              UsuarioNombre = b.UsuarioNombre
+                          })
+                          .ToList();
+        }
+
     }
 }

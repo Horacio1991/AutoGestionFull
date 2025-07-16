@@ -1,7 +1,4 @@
 ﻿using BE;
-using System;
-using System.IO;
-using System.Linq;
 using System.Xml.Linq;
 using Servicios.Utilidades;
 

@@ -60,7 +60,6 @@
             btnEmitir.TabIndex = 2;
             btnEmitir.Text = "Emitir Factura";
             btnEmitir.UseVisualStyleBackColor = true;
-            btnEmitir.Click += btnEmitir_Click_1;
             // 
             // EmitirFactura
             // 

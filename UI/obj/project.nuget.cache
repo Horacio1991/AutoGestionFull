@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "OL8V5nuyt+k=",
+  "dgSpecHash": "t6cutdn+GG0=",
   "success": true,
   "projectFilePath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Educaccion\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
-    "C:\\Users\\Educaccion\\.nuget\\packages\\itextsharp\\5.5.13.4\\itextsharp.5.5.13.4.nupkg.sha512"
+    "C:\\Users\\Educaccion\\.nuget\\packages\\itextsharp\\5.5.13.4\\itextsharp.5.5.13.4.nupkg.sha512",
+    "C:\\Users\\Educaccion\\.nuget\\packages\\winforms.datavisualization\\1.10.0\\winforms.datavisualization.1.10.0.nupkg.sha512"
   ],
   "logs": [
     {

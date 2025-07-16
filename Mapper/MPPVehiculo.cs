@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using BE;
 using Servicios.Utilidades;
 
@@ -90,7 +86,6 @@ namespace Mapper
             doc.Save(rutaXML);
         }
 
-
         private Vehiculo ParseVehiculo(XElement x) => new Vehiculo
         {
             ID = (int)x.Attribute("Id"),
@@ -102,5 +97,43 @@ namespace Mapper
             Dominio = x.Element("Dominio")?.Value,
             Estado = x.Element("Estado")?.Value
         };
+
+        public Vehiculo BuscarPorDominio(string dominio)
+        {
+            return ListarTodo()
+                .FirstOrDefault(v =>
+                    v.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public void Alta(Vehiculo vehiculo)
+        {
+            var doc = LoadOrEmpty();
+            var root = doc.Root.Element("Vehiculos");
+            if (root == null)
+            {
+                root = new XElement("Vehiculos");
+                doc.Root.Add(root);
+            }
+            int nextId = root.Elements("Vehiculo")
+                             .Select(x => (int)x.Attribute("Id"))
+                             .DefaultIfEmpty(0)
+                             .Max() + 1;
+            vehiculo.ID = nextId;
+
+            var elem = new XElement("Vehiculo",
+                new XAttribute("Id", vehiculo.ID),
+                new XAttribute("Active", "true"),
+                new XElement("Marca", vehiculo.Marca),
+                new XElement("Modelo", vehiculo.Modelo),
+                new XElement("Año", vehiculo.Año),
+                new XElement("Color", vehiculo.Color),
+                new XElement("Km", vehiculo.Km),
+                new XElement("Dominio", vehiculo.Dominio),
+                new XElement("Estado", vehiculo.Estado)
+            );
+            root.Add(elem);
+            doc.Save(rutaXML);
+        }
+
     }
 }

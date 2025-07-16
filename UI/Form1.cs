@@ -1,24 +1,26 @@
 ﻿using AutoGestion.UI;
-using BE;
-using BE.BEComposite;
+using AutoGestion.Vista;
 using BLL;
+using DTOs;
+using Vista.UserControls.Backup;
+using Vista.UserControls.Dashboard;
 
 namespace AutoGestion
 {
     public partial class Form1 : Form
     {
-        private readonly Usuario _usuario;
+        private readonly UsuarioDto _usuario;
         private readonly BLLComponente _bllComponente = new BLLComponente();
 
-        public Form1()
+        // Constructor sin parámetros (para el diseñador, si lo necesitas)
+        public Form1() : this(SessionManager.CurrentUser) { }
+
+        // Nuevo constructor que recibe el DTO
+        public Form1(UsuarioDto usuario)
         {
             InitializeComponent();
-
-            // Recuperar usuario de la sesión
-            _usuario = UsuarioSesion.UsuarioActual;
-            if (_usuario == null)
-                throw new ApplicationException("Sesión inválida. Debes loguearte primero.");
-
+            _usuario = usuario
+                ?? throw new ApplicationException("Sesión inválida. Debes loguearte primero.");
             Load += Form1_Load;
         }
 
@@ -26,25 +28,24 @@ namespace AutoGestion
         {
             try
             {
-                // Cargo todos los componentes (roles y permisos) asignados al usuario
-                var permisos = _bllComponente.ObtenerPermisosUsuario(_usuario.Id);
-                _usuario.Rol = permisos;
+                // Usamos _usuario (UsuarioDto) en vez de BE.UsuarioSesion
+                var permisosDto = _bllComponente
+                    .ObtenerPermisosUsuario(_usuario.ID)
+                    .Select(c => MapComponenteADto(c))
+                    .ToList();
 
-                // Si es "admin", dejo todo visible
                 if (_usuario.Username.Equals("admin", StringComparison.OrdinalIgnoreCase))
                     return;
 
-                // Oculto todos los menús
                 foreach (ToolStripMenuItem menu in menuPrincipal.Items)
                     menu.Visible = false;
 
-                // Aplico permisos
-                AplicarPermisos(_usuario.Rol);
+                AplicarPermisos(permisosDto);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    $"Error al iniciar la aplicación: {ex.Message}",
+                    $"Error al iniciar la aplicación:\n{ex.Message}",
                     "Error crítico",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -52,8 +53,20 @@ namespace AutoGestion
             }
         }
 
-        private void AplicarPermisos(System.Collections.Generic.IEnumerable<BEComponente> comps)
+        private void AplicarPermisos(System.Collections.Generic.List<PermisoDto> comps)
         {
+            bool TienePermiso(System.Collections.Generic.IEnumerable<PermisoDto> list, string text)
+            {
+                foreach (var p in list)
+                {
+                    if (p.Nombre.Equals(text, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                    if (TienePermiso(p.Hijos, text))
+                        return true;
+                }
+                return false;
+            }
+
             foreach (ToolStripMenuItem menu in menuPrincipal.Items)
             {
                 menu.Visible = TienePermiso(comps, menu.Text);
@@ -63,7 +76,7 @@ namespace AutoGestion
                 }
             }
 
-            // Aseguro que "Cerrar sesión" siempre esté visible
+            // Aseguro que "Cerrar sesión" esté siempre visible
             var cerrar = menuPrincipal.Items
                 .OfType<ToolStripMenuItem>()
                 .SelectMany(m => m.DropDownItems.OfType<ToolStripMenuItem>())
@@ -71,16 +84,13 @@ namespace AutoGestion
             if (cerrar != null) cerrar.Visible = true;
         }
 
-        private bool TienePermiso(System.Collections.Generic.IEnumerable<BEComponente> comps, string texto)
+        // Mapea recursivamente BEComponente → PermisoDto (método igual al de BLLUsuario)
+        private PermisoDto MapComponenteADto(BE.BEComposite.BEComponente comp)
         {
-            foreach (var c in comps)
-            {
-                if (c.Nombre.Equals(texto, StringComparison.OrdinalIgnoreCase))
-                    return true;
-                if (c is BERol rol && TienePermiso(rol.Hijos, texto))
-                    return true;
-            }
-            return false;
+            var dto = new PermisoDto { Id = comp.Id, Nombre = comp.Nombre };
+            foreach (var hijo in comp.Hijos)
+                dto.Hijos.Add(MapComponenteADto(hijo));
+            return dto;
         }
 
         private void CargarControl(UserControl uc)
@@ -114,16 +124,16 @@ namespace AutoGestion
 
         private void mnuCerrarSesion_Click(object sender, EventArgs e)
         {
-            var resp = MessageBox.Show(
+            if (MessageBox.Show(
                 "¿Desea cerrar sesión?",
                 "Cerrar sesión",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-            if (resp != DialogResult.Yes) return;
+                MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
 
-            UsuarioSesion.UsuarioActual = null;
+            SessionManager.CurrentUser = null;
             new FormLogin().Show();
-            this.Close();
+            Close();
         }
     }
 }

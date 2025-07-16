@@ -117,5 +117,34 @@ namespace BLL
 
             return pd;
         }
+
+        /// <summary>
+        /// Devuelve la contraseña en texto plano para un usuario existente.
+        /// </summary>
+        public string ObtenerPasswordPlain(int userId)
+        {
+            var be = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId);
+            if (be == null) throw new ApplicationException("Usuario no encontrado.");
+            return Encriptacion.DesencriptarPassword(be.Password);
+        }
+
+        /// <summary>
+        /// Devuelve un UsuarioDto con todos los datos del usuario (ID, Username, Permisos).
+        /// </summary>
+        public UsuarioDto ObtenerUsuarioDto(string username)
+        {
+            var be = _mapper.BuscarPorUsername(username)
+                     ?? throw new InvalidOperationException("Usuario no encontrado.");
+            // Mapeo recursivo igual al que ya usas en ListarUsuariosDto:
+            var permisosDto = _bllComponente.ObtenerPermisosUsuario(be.Id)
+                                           .Select(MapComponenteADto)
+                                           .ToList();
+            return new UsuarioDto
+            {
+                ID = be.Id,
+                Username = be.Username,
+                Permisos = permisosDto
+            };
+        }
     }
 }

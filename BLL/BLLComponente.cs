@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BE.BEComposite;
+﻿using BE.BEComposite;
 using Mapper;
 
 namespace BLL

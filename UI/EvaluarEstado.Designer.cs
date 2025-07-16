@@ -162,7 +162,6 @@
             btnGuardar.TabIndex = 13;
             btnGuardar.Text = "Guardar Evaluación";
             btnGuardar.UseVisualStyleBackColor = true;
-            btnGuardar.Click += btnGuardar_Click;
             // 
             // dtpFiltroFecha
             // 
@@ -179,7 +178,6 @@
             btnFiltrarFecha.TabIndex = 15;
             btnFiltrarFecha.Text = "Filtrar";
             btnFiltrarFecha.UseVisualStyleBackColor = true;
-            btnFiltrarFecha.Click += btnFiltrarFecha_Click;
             // 
             // EvaluarEstado
             // 

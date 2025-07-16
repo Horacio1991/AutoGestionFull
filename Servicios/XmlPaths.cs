@@ -12,7 +12,6 @@ namespace Servicios.Utilidades
         public static string Bitacoras =>
             Path.Combine(BaseDir, "BaseDeDatos", "Bitacoras.xml");
 
-        // Nuevas rutas para backups
         public static string BackupFolder =>
             Path.Combine(BaseDir, "Backup");
 

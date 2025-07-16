@@ -1,35 +1,32 @@
-﻿using AutoGestion.CTRL_Vista;
-using AutoGestion.DTOs;
+﻿using BLL;
+using DTOs;
 
-namespace AutoGestion.Vista
+namespace AutoGestion.UI
 {
     public partial class TasarVehiculo : UserControl
     {
-        private readonly TasacionController _ctrl = new();
-        private List<TasacionListDto> _ofertas;
+        private readonly BLLTasacion _bllTasacion = new BLLTasacion();
+        private List<OfertaParaTasacionDto> _ofertas;
 
         public TasarVehiculo()
         {
             InitializeComponent();
-
             cmbEstadoStock.Items.AddRange(new[] { "Disponible", "Requiere reacondicionamiento" });
             CargarOfertas();
-            cmbOfertas.SelectedIndexChanged += CmbOfertas_SelectedIndexChanged_1;
+            cmbOfertas.SelectedIndexChanged += CmbOfertas_SelectedIndexChanged;
         }
 
-        // Trae las ofertas con evaluación y las carga en el combo.
         private void CargarOfertas()
         {
             try
             {
-                _ofertas = _ctrl.ObtenerOfertasParaTasar();
+                _ofertas = _bllTasacion.ObtenerOfertasParaTasacion();
                 cmbOfertas.DataSource = null;
                 cmbOfertas.DataSource = _ofertas;
-                cmbOfertas.DisplayMember = nameof(TasacionListDto.VehiculoResumen);
-                cmbOfertas.ValueMember = nameof(TasacionListDto.OfertaID);
+                cmbOfertas.DisplayMember = nameof(OfertaParaTasacionDto.VehiculoResumen);
+                cmbOfertas.ValueMember = nameof(OfertaParaTasacionDto.OfertaID);
                 cmbOfertas.SelectedIndex = -1;
 
-                // Limpiar campos
                 txtEvaluacion.Clear();
                 txtRango.Clear();
                 txtValorFinal.Clear();
@@ -37,122 +34,76 @@ namespace AutoGestion.Vista
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al cargar ofertas para tasar:\n{ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show($"Error al cargar ofertas:\n{ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // Al cambiar la oferta seleccionada, muestra evaluación y rango si existen.
-        private void CmbOfertas_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void CmbOfertas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbOfertas.SelectedItem is not TasacionListDto dto)
+            if (cmbOfertas.SelectedItem is not OfertaParaTasacionDto dto)
             {
                 txtEvaluacion.Clear();
                 txtRango.Clear();
                 return;
             }
 
-            // 1) Mostrar evaluación técnica
             txtEvaluacion.Text =
                 $"Motor: {dto.EstadoMotor}\r\n" +
                 $"Carrocería: {dto.EstadoCarroceria}\r\n" +
                 $"Interior: {dto.EstadoInterior}\r\n" +
                 $"Doc.: {dto.EstadoDocumentacion}";
 
-            // 2) Mostrar rango sugerido
             if (dto.RangoMin.HasValue && dto.RangoMax.HasValue)
                 txtRango.Text = $"Entre {dto.RangoMin:C} y {dto.RangoMax:C}";
             else
                 txtRango.Text = "Sin rango de referencia";
         }
 
-        /// <summary>
-        /// Al pulsar “Confirmar”, valida y llama al controller para registrar la tasación.
-        /// </summary>
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            // 1) Validar selección de oferta
-            if (cmbOfertas.SelectedItem is not TasacionListDto dto)
+            if (cmbOfertas.SelectedItem is not OfertaParaTasacionDto dto)
             {
-                MessageBox.Show(
-                    "Selecciona primero una oferta.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                MessageBox.Show("Selecciona primero una oferta.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // 2) Validar valor final
             if (!decimal.TryParse(txtValorFinal.Text.Trim(), out var valorFinal))
             {
-                MessageBox.Show(
-                    "Ingresa un valor final válido.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                MessageBox.Show("Ingresa un valor final válido.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cmbEstadoStock.SelectedItem is not string estadoStock)
+            {
+                MessageBox.Show("Selecciona el estado de stock.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 3) Validar estado de stock
-            if (cmbEstadoStock.SelectedItem is not string estadoStock)
+            var input = new TasacionInputDto
             {
-                MessageBox.Show(
-                    "Selecciona el estado de stock.",
-                    "Validación",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-                return;
-            }
+                OfertaID = dto.OfertaID,
+                ValorFinal = valorFinal,
+                EstadoStock = estadoStock
+            };
 
             try
             {
-                // 4) Preparar DTO de entrada
-                var input = new TasacionInputDto
-                {
-                    OfertaID = dto.OfertaID,
-                    ValorFinal = valorFinal,
-                    EstadoStock = estadoStock
-                };
-
-                // 5) Registrar tasación y actualizar stock
-                _ctrl.RegistrarTasacion(input);
-
-                MessageBox.Show(
-                    "✅ Tasación registrada correctamente.",
-                    "Éxito",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-                // 6) Refrescar lista de ofertas
+                _bllTasacion.RegistrarTasacion(input);
+                MessageBox.Show("✅ Tasación registrada correctamente.", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarOfertas();
             }
             catch (ApplicationException aex)
             {
-                // Errores de negocio
-                MessageBox.Show(
-                    aex.Message,
-                    "No se pudo tasar",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
+                MessageBox.Show(aex.Message, "No se pudo tasar",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                // Errores inesperados
-                MessageBox.Show(
-                    $"Error inesperado:\n{ex.Message}",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show($"Error inesperado:\n{ex.Message}", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

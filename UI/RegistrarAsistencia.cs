@@ -1,28 +1,39 @@
-﻿using AutoGestion.CTRL_Vista;
-using AutoGestion.DTOs;
+﻿using BLL;
+using DTOs;
 
-namespace AutoGestion.Vista
+namespace AutoGestion.UI
 {
     public partial class RegistrarAsistencia : UserControl
     {
-        private readonly RegistrarAsistenciaController _ctrl = new();
-        private List<TurnoAsistenciaListDto> _turnos;
+        private readonly BLLTurno _bllTurno = new BLLTurno();
+        private List<TurnoDto> _turnos;
 
         public RegistrarAsistencia()
         {
             InitializeComponent();
-
             cmbEstado.Items.AddRange(new[] { "Asistió", "No asistió", "Pendiente" });
-
             CargarTurnos();
         }
 
-        // Carga los turnos cumplidos pendientes de registrar asistencia.
         private void CargarTurnos()
         {
             try
             {
-                _turnos = _ctrl.ObtenerTurnosParaAsistencia();
+                // Obtener turnos pendientes de la BLL
+                var listaBE = _bllTurno.ObtenerTurnosParaAsistencia();
+
+                // Mapear BE.Turno a DTO
+                _turnos = listaBE.Select(t => new TurnoDto
+                {
+                    ID = t.ID,
+                    Cliente = $"{t.Cliente.Nombre} {t.Cliente.Apellido}",
+                    Vehiculo = $"{t.Vehiculo.Marca} {t.Vehiculo.Modelo} ({t.Vehiculo.Dominio})",
+                    Fecha = t.Fecha,
+                    Hora = t.Hora,
+                    Asistencia = t.Asistencia,
+                    Observaciones = t.Observaciones
+                }).ToList();
+
                 dgvTurnos.DataSource = _turnos;
                 dgvTurnos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvTurnos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -35,10 +46,11 @@ namespace AutoGestion.Vista
             }
         }
 
-        //registra la asistencia seleccionada.
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (dgvTurnos.CurrentRow?.DataBoundItem is not TurnoAsistenciaListDto fila)
+            // Validaciones básicas
+            var turnoDto = dgvTurnos.CurrentRow?.DataBoundItem as TurnoDto;
+            if (turnoDto == null)
             {
                 MessageBox.Show("Seleccione un turno.", "Validación",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -51,20 +63,22 @@ namespace AutoGestion.Vista
                 return;
             }
 
-            var dto = new RegistrarAsistenciaInputDto
-            {
-                TurnoID = fila.ID,
-                Estado = cmbEstado.SelectedItem.ToString(),
-                Observaciones = txtObservaciones.Text.Trim()
-            };
+            var nuevoEstado = cmbEstado.SelectedItem.ToString();
+            var nuevasObs = txtObservaciones.Text.Trim();
 
             try
             {
-                _ctrl.RegistrarAsistencia(dto);
+                // Llamada a la BLL
+                _bllTurno.RegistrarAsistencia(
+                    turnoId: turnoDto.ID,
+                    estado: nuevoEstado,
+                    observaciones: nuevasObs
+                );
+
                 MessageBox.Show("Asistencia registrada correctamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpiar selección y recargar
+                // Limpiar y recargar
                 cmbEstado.SelectedIndex = -1;
                 txtObservaciones.Clear();
                 CargarTurnos();

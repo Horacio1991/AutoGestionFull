@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using BE;
+﻿using BE;
+using DTOs;
 using Mapper;
 
 namespace BLL
@@ -37,6 +36,40 @@ namespace BLL
                 throw new ApplicationException("Ya existe un cliente con ese DNI.");
 
             _mapper.Alta(cliente);
+        }
+
+        public ClienteDto RegistrarCliente(ClienteInputDto input)
+        {
+            // 1) Validaciones
+            if (string.IsNullOrWhiteSpace(input.Dni))
+                throw new ApplicationException("DNI es obligatorio.");
+            if (_mapper.BuscarPorDni(input.Dni) != null)
+                throw new ApplicationException("Ya existe un cliente con ese DNI.");
+
+            // 2) Mapeo DTO → BE
+            var entidad = new Cliente
+            {
+                Dni = input.Dni,
+                Nombre = input.Nombre,
+                Apellido = input.Apellido,
+                Contacto = input.Contacto
+            };
+
+            // 3) Registrar en XML
+            _mapper.Alta(entidad);
+
+            // 4) Recuperar la entidad con ID asignado
+            var guardado = _mapper.BuscarPorDni(entidad.Dni);
+
+            // 5) Mapear BE → DTO de salida
+            return new ClienteDto
+            {
+                ID = guardado.ID,
+                Dni = guardado.Dni,
+                Nombre = guardado.Nombre,
+                Apellido = guardado.Apellido,
+                Contacto = guardado.Contacto
+            };
         }
 
         public void Modificar(Cliente cliente)

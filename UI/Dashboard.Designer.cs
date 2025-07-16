@@ -87,7 +87,6 @@
             cmbFiltroPeriodo.Name = "cmbFiltroPeriodo";
             cmbFiltroPeriodo.Size = new Size(121, 23);
             cmbFiltroPeriodo.TabIndex = 5;
-            cmbFiltroPeriodo.SelectedIndexChanged += cmbFiltroPeriodo_SelectedIndexChanged;
             // 
             // label1
             // 

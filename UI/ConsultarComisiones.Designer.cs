@@ -136,7 +136,6 @@
             btnDetalle.TabIndex = 10;
             btnDetalle.Text = "Ver detalle";
             btnDetalle.UseVisualStyleBackColor = true;
-            btnDetalle.Click += btnDetalle_Click;
             // 
             // btnFiltrar
             // 
@@ -146,7 +145,6 @@
             btnFiltrar.TabIndex = 11;
             btnFiltrar.Text = "Aplicar Filtros";
             btnFiltrar.UseVisualStyleBackColor = true;
-            btnFiltrar.Click += btnFiltrar_Click_1;
             // 
             // ConsultarComisiones
             // 

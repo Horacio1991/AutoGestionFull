@@ -1,5 +1,4 @@
-﻿using AutoGestion.Servicios.Pdf;
-using BLL;
+﻿using BLL;
 using DTOs;
 
 namespace AutoGestion.UI
@@ -8,69 +7,109 @@ namespace AutoGestion.UI
     {
         private readonly BLLVenta _bllVenta = new BLLVenta();
         private readonly BLLFactura _bllFactura = new BLLFactura();
-        private List<VentaDto> _ventasParaFacturar;
+        private List<VentaDto> _ventas;
 
         public EmitirFactura()
         {
             InitializeComponent();
-            CargarVentas();
+            CargarVentasParaFacturar();
+            btnEmitir.Click += (_, __) => EmitirFacturaSeleccionada();
         }
 
-        private void CargarVentas()
+        private void CargarVentasParaFacturar()
         {
-            _ventasParaFacturar = _bllVenta.ObtenerVentasParaFacturar();
-            dgvVentas.DataSource = _ventasParaFacturar;
-            dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvVentas.ReadOnly = true;
-        }
-
-        private void btnEmitir_Click(object sender, EventArgs e)
-        {
-            if (dgvVentas.CurrentRow?.DataBoundItem is not VentaDto dto)
-            {
-                MessageBox.Show("Seleccione una venta para emitir la factura.",
-                                "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var resumen =
-                $"Cliente: {dto.Cliente}\n" +
-                $"Vehículo: {dto.Vehiculo}\n" +
-                $"Forma de Pago: {dto.TipoPago}\n" +
-                $"Precio: {dto.Monto:C2}\n" +
-                $"Fecha: {dto.Fecha:dd/MM/yyyy}";
-            if (MessageBox.Show(resumen + "\n\n¿Confirmar emisión de factura?",
-                                "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                != DialogResult.Yes) return;
-
             try
             {
-                var factura = _bllFactura.EmitirFactura(dto.ID);
+                _ventas = _bllVenta.ObtenerVentasParaFacturar();
 
-                using var dlg = new SaveFileDialog
+                dgvVentas.DataSource = null;
+                dgvVentas.AutoGenerateColumns = false;
+                dgvVentas.Columns.Clear();
+
+                dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
                 {
-                    Filter = "PDF (*.pdf)|*.pdf",
-                    FileName = $"Factura_{factura.ID}.pdf"
-                };
-                if (dlg.ShowDialog() == DialogResult.OK)
-                    GeneradorFacturaPDF.Generar(factura, dlg.FileName);
+                    DataPropertyName = nameof(VentaDto.ID),
+                    HeaderText = "ID",
+                    Width = 50
+                });
+                dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = nameof(VentaDto.Cliente),
+                    HeaderText = "Cliente",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                });
+                dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = nameof(VentaDto.Vehiculo),
+                    HeaderText = "Vehículo",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                });
+                dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = nameof(VentaDto.TipoPago),
+                    HeaderText = "Forma Pago"
+                });
+                dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = nameof(VentaDto.Monto),
+                    HeaderText = "Monto",
+                    DefaultCellStyle = { Format = "C2" }
+                });
+                dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = nameof(VentaDto.Fecha),
+                    HeaderText = "Fecha",
+                    DefaultCellStyle = { Format = "g" }
+                });
 
-                MessageBox.Show("Factura emitida y guardada correctamente.",
-                                "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvVentas.DataSource = _ventas;
+                dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvVentas.ReadOnly = true;
+                dgvVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvVentas.ClearSelection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al emitir la factura:\n{ex.Message}",
+                MessageBox.Show($"Error al cargar ventas para facturar:\n{ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void EmitirFacturaSeleccionada()
+        {
+            if (dgvVentas.CurrentRow?.DataBoundItem is not VentaDto dto)
+            {
+                MessageBox.Show("Seleccione una venta.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Emite y obtiene el DTO de factura
+                var facturaDto = _bllFactura.EmitirFacturaDto(dto.ID);
+
+                MessageBox.Show(
+                    $"✅ Factura #{facturaDto.ID} emitida con éxito.\n" +
+                    $"Cliente: {facturaDto.Cliente}\n" +
+                    $"Vehículo: {facturaDto.Vehiculo}\n" +
+                    $"Total: {facturaDto.Precio:C2}\n" +
+                    $"Fecha: {facturaDto.Fecha:g}",
+                    "Factura emitida",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al emitir factura:\n{ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                CargarVentas();
+                // Refrescar la grilla: esa venta ya no está en "Aprobada"
+                CargarVentasParaFacturar();
             }
         }
     }
 }
-
-
-

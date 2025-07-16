@@ -1,9 +1,6 @@
 ﻿using BE;
 using DTOs;
 using Mapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BLL
 {
@@ -88,5 +85,15 @@ namespace BLL
                 MotivoRechazo = v.MotivoRechazo
             };
         }
+
+        public List<VentaDto> ObtenerVentasPendientesDto()
+        {
+            // Reutiliza el método ya existente y el helper MapToDto
+            return ObtenerVentasPendientes()
+                .Select(v => MapToDto(v))
+                .ToList();
+        }
+
+
     }
 }

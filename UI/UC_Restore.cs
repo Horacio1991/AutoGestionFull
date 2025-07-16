@@ -1,64 +1,75 @@
-﻿using AutoGestion.CTRL_Vista;
-using AutoGestion.Servicios;
-
+﻿using BE;
+using BLL;
+using DTOs;
+using System;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Vista.UserControls.Backup
 {
     public partial class UC_Restore : UserControl
     {
-        private readonly RestoreController _ctrl = new();
+        private readonly BLLBackup _bllBackup = new BLLBackup();
         private readonly int _usuarioId;
         private readonly string _usuarioNombre;
 
         public UC_Restore()
         {
             InitializeComponent();
+            _usuarioId = UsuarioSesion.UsuarioActual?.Id ?? 0;
+            _usuarioNombre = UsuarioSesion.UsuarioActual?.Username ?? "Desconocido";
 
-            // Obtenemos datos de sesión
-            _usuarioId = Sesion.UsuarioActual?.ID ?? 0;
-            _usuarioNombre = Sesion.UsuarioActual?.Nombre ?? "Desconocido";
-
-            CargarBackups();
+            cargarBackups();
+            btnRestaurarSeleccionado.Click += BtnRestaurarSeleccionado_Click;
+            btnRestaurarSeleccionado.Click += (s, e) => cargarBackups();
         }
 
-        private void CargarBackups()
+        private void cargarBackups()
         {
             try
             {
-                lstBackups.Items.Clear();
-                var backups = _ctrl.ObtenerBackups();
-                lstBackups.Items.AddRange(backups.ToArray());
+                var lista = _bllBackup.ObtenerBackupsDto();
+                lstBackups.DataSource = lista;
+                lstBackups.DisplayMember = nameof(BackupDto.Nombre);
+                lstBackups.ValueMember = nameof(BackupDto.Nombre);
+                lstBackups.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar backups:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"Error al cargar backups:\n{ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
+                );
             }
         }
 
-        private void btnRestaurarSeleccionado_Click(object sender, EventArgs e)
+        private void BtnRestaurarSeleccionado_Click(object sender, EventArgs e)
         {
-            if (lstBackups.SelectedItem == null)
+            if (lstBackups.SelectedItem is not BackupDto dto)
             {
-                MessageBox.Show("Seleccioná un backup para restaurar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Seleccioná un backup para restaurar.",
+                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning
+                );
                 return;
             }
 
-            var seleccionado = lstBackups.SelectedItem.ToString();
             try
             {
-                _ctrl.Restaurar(seleccionado, _usuarioId, _usuarioNombre);
-                MessageBox.Show("Restore realizado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _bllBackup.RestaurarBackup(dto.Nombre, _usuarioId, _usuarioNombre);
+                MessageBox.Show(
+                    "Restore realizado con éxito.",
+                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information
+                );
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al restaurar:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    $"Error al restaurar:\n{ex.Message}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
+                );
             }
         }
 
-        // Si quieres añadir un botón de recarga:
-        private void btnRecargarBackups_Click(object sender, EventArgs e)
-        {
-            CargarBackups();
-        }
     }
 }

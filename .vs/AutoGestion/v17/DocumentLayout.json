@@ -3,36 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\ui\\realizarpago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\realizarpago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\ui\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\ui\\realizarpago.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\realizarpago.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{27F11E8D-92D3-4422-B5A1-3DC68AD5DB03}|Servicios\\Servicios.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\servicios\\sesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27F11E8D-92D3-4422-B5A1-3DC68AD5DB03}|Servicios\\Servicios.csproj|solutionrelative:servicios\\sesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\dtos\\permisodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\permisodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\dtos\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\bll\\bllpago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllpago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\mapper\\mppvehiculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppvehiculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfinal bien\\autogestionfull\\ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,110 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RealizarPago.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\RealizarPago.Designer.cs",
-              "RelativeDocumentMoniker": "UI\\RealizarPago.Designer.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\RealizarPago.Designer.cs",
-              "RelativeToolTip": "UI\\RealizarPago.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T19:05:55.425Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Sesion.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Sesion.cs",
-              "RelativeDocumentMoniker": "Servicios\\Sesion.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Servicios\\Sesion.cs",
-              "RelativeToolTip": "Servicios\\Sesion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T19:04:39.587Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PermisoDto.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\DTOs\\PermisoDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\PermisoDto.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\DTOs\\PermisoDto.cs",
-              "RelativeToolTip": "DTOs\\PermisoDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T18:55:08.42Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BLLUsuario.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLLUsuario.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLUsuario.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLLUsuario.cs",
-              "RelativeToolTip": "BLL\\BLLUsuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T18:49:02.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UsuarioDto.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\DTOs\\UsuarioDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\UsuarioDto.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\DTOs\\UsuarioDto.cs",
-              "RelativeToolTip": "DTOs\\UsuarioDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T18:48:43.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RealizarPago.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\RealizarPago.cs",
-              "RelativeDocumentMoniker": "UI\\RealizarPago.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\RealizarPago.cs",
-              "RelativeToolTip": "UI\\RealizarPago.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAASwG8AAAAAAAAAAAAAAA==",
+              "Title": "Dashboard.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\Dashboard.Designer.cs",
+              "RelativeDocumentMoniker": "UI\\Dashboard.Designer.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\Dashboard.Designer.cs",
+              "RelativeToolTip": "UI\\Dashboard.Designer.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAASwFkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T18:31:02.911Z",
+              "WhenOpened": "2025-07-16T14:02:46.655Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MPPVehiculo.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\MPPVehiculo.cs",
-              "RelativeDocumentMoniker": "Mapper\\MPPVehiculo.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\Mapper\\MPPVehiculo.cs",
-              "RelativeToolTip": "Mapper\\MPPVehiculo.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAAADwAAAAaAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\Dashboard.cs",
+              "RelativeDocumentMoniker": "UI\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\Dashboard.cs",
+              "RelativeToolTip": "UI\\Dashboard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T18:40:09.903Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BLLPago.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLLPago.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLPago.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\BLL\\BLLPago.cs",
-              "RelativeToolTip": "BLL\\BLLPago.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAAAF8AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T18:38:35.153Z",
+              "WhenOpened": "2025-07-16T14:02:26.461Z",
               "EditorCaption": ""
             },
             {

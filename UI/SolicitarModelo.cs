@@ -1,11 +1,11 @@
-﻿using AutoGestion.CTRL_Vista.Modelos;
-using AutoGestion.CTRL_Vista;
+﻿using BLL;
+using DTOs;
 
-namespace AutoGestion.Vista
+namespace AutoGestion.UI
 {
     public partial class SolicitarModelo : UserControl
     {
-        private readonly VehiculoController _ctrl = new();
+        private readonly BLLVehiculo _bllVehiculo = new BLLVehiculo();
         private List<VehiculoDto> _vehiculosDisponibles;
 
         public SolicitarModelo()
@@ -14,12 +14,11 @@ namespace AutoGestion.Vista
             CargarTodosLosVehiculos();
         }
 
-        // Trae todos los vehículos con estado "Disponible"
         private void CargarTodosLosVehiculos()
         {
             try
             {
-                _vehiculosDisponibles = _ctrl.ObtenerDisponibles();
+                _vehiculosDisponibles = _bllVehiculo.ObtenerVehiculosDisponiblesDto();
                 dgvResultados.DataSource = _vehiculosDisponibles;
                 FormatearGrid();
             }
@@ -34,7 +33,6 @@ namespace AutoGestion.Vista
             }
         }
 
-        // filtrar por modelo o marca.
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string texto = txtModelo.Text.Trim();
@@ -51,18 +49,20 @@ namespace AutoGestion.Vista
 
             try
             {
-                var exactos = _ctrl.BuscarPorModelo(texto);
+                // 1) Intentar por modelo
+                var exactos = _bllVehiculo.BuscarPorModeloDto(texto);
                 if (exactos.Any())
                 {
                     dgvResultados.DataSource = exactos;
                 }
                 else
                 {
-                    var porMarca = _ctrl.BuscarPorMarca(texto);
+                    // 2) Si no hay, intentar por marca
+                    var porMarca = _bllVehiculo.BuscarPorMarcaDto(texto);
                     if (porMarca.Any())
                     {
                         MessageBox.Show(
-                            "Se muestran vehiculo de la Marca solicitada",
+                            "Se muestran vehículos de la marca solicitada",
                             "Información",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information
@@ -93,17 +93,15 @@ namespace AutoGestion.Vista
             }
         }
 
-        // Botón para volver a mostrar todos los vehículos disponibles.
         private void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             txtModelo.Clear();
             CargarTodosLosVehiculos();
         }
 
-        // Ajustes visuales del DataGridView.
         private void FormatearGrid()
         {
-            dgvResultados.AutoGenerateColumns = true; 
+            dgvResultados.AutoGenerateColumns = true;
             dgvResultados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvResultados.ReadOnly = true;
             dgvResultados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

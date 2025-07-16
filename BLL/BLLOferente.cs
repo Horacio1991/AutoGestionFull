@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using BE;
+﻿using BE;
+using DTOs;
 using Mapper;
 
 namespace BLL
@@ -37,22 +36,46 @@ namespace BLL
             return _mapper.Existe(dni);
         }
 
-        public void RegistrarOferente(Oferente oferente)
+        // Devuelve un DTO si existe
+        public OferenteDto ObtenerOferenteDtoPorDni(string dni)
         {
-            if (oferente == null)
-                throw new ArgumentNullException(nameof(oferente));
-            if (string.IsNullOrWhiteSpace(oferente.Dni))
-                throw new ApplicationException("DNI es obligatorio.");
-            if (string.IsNullOrWhiteSpace(oferente.Nombre) ||
-                string.IsNullOrWhiteSpace(oferente.Apellido) ||
-                string.IsNullOrWhiteSpace(oferente.Contacto))
+            var be = _mapper.BuscarPorDni(dni);
+            if (be == null) return null;
+            return new OferenteDto
             {
-                throw new ApplicationException("Nombre, apellido y contacto son obligatorios.");
-            }
-            if (ExisteOferente(oferente.Dni))
+                ID = be.ID,
+                Dni = be.Dni,
+                Nombre = be.Nombre,
+                Apellido = be.Apellido,
+                Contacto = be.Contacto
+            };
+        }
+
+        // Registra y retorna un DTO
+        public OferenteDto RegistrarOferenteDto(OferenteDto dto)
+        {
+            if (_mapper.Existe(dto.Dni))
                 throw new ApplicationException("Ya existe un oferente con ese DNI.");
 
-            _mapper.Alta(oferente);
+            var be = new Oferente
+            {
+                Dni = dto.Dni,
+                Nombre = dto.Nombre,
+                Apellido = dto.Apellido,
+                Contacto = dto.Contacto
+            };
+            _mapper.Alta(be);
+
+            // Recuperar para obtener ID
+            var guardado = _mapper.BuscarPorDni(dto.Dni);
+            return new OferenteDto
+            {
+                ID = guardado.ID,
+                Dni = guardado.Dni,
+                Nombre = guardado.Nombre,
+                Apellido = guardado.Apellido,
+                Contacto = guardado.Contacto
+            };
         }
 
         public void ModificarOferente(Oferente oferente)

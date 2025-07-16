@@ -1,4 +1,4 @@
-﻿namespace AutoGestion.Vista
+﻿namespace AutoGestion.UI
 {
     partial class RegistrarTurno
     {
@@ -117,7 +117,6 @@
             dtpHora.Name = "dtpHora";
             dtpHora.Size = new Size(185, 23);
             dtpHora.TabIndex = 8;
-            dtpHora.ValueChanged += dtpHora_ValueChanged_1;
             // 
             // btnRegistrar
             // 
@@ -136,7 +135,6 @@
             dgvVehiculos.Name = "dgvVehiculos";
             dgvVehiculos.Size = new Size(332, 162);
             dgvVehiculos.TabIndex = 10;
-            dgvVehiculos.CellClick += dgvVehiculos_CellClick_1;
             // 
             // RegistrarTurno
             // 
@@ -155,7 +153,6 @@
             Controls.Add(label1);
             Name = "RegistrarTurno";
             Size = new Size(800, 426);
-            Load += RegistrarTurno_Load_1;
             ((System.ComponentModel.ISupportInitialize)dgvVehiculos).EndInit();
             ResumeLayout(false);
             PerformLayout();

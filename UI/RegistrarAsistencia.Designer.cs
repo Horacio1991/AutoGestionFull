@@ -1,4 +1,4 @@
-﻿namespace AutoGestion.Vista
+﻿namespace AutoGestion.UI
 {
     partial class RegistrarAsistencia
     {

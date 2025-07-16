@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using BE;
 using Servicios.Utilidades;
 
@@ -59,6 +55,7 @@ namespace Mapper
                        .Select(x => new EvaluacionTecnica
                        {
                            ID = (int)x.Attribute("Id"),
+                           OfertaID = (int)x.Element("OfertaId"),
                            EstadoMotor = (string)x.Element("EstadoMotor"),
                            EstadoCarroceria = (string)x.Element("EstadoCarroceria"),
                            EstadoInterior = (string)x.Element("EstadoInterior"),

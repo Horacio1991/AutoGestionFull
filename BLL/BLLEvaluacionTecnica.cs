@@ -1,9 +1,6 @@
 ﻿using BE;
 using DTOs;
 using Mapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BLL
 {

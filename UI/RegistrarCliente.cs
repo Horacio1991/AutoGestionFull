@@ -1,10 +1,11 @@
-﻿using AutoGestion.CTRL_Vista;
+﻿using BLL;
+using DTOs;
 
 namespace AutoGestion.Vista
 {
     public partial class RegistrarCliente : UserControl
     {
-        private readonly ClienteController _ctrl = new();
+        private readonly BLLCliente _bllCliente = new BLLCliente();
 
         public RegistrarCliente()
         {
@@ -13,24 +14,18 @@ namespace AutoGestion.Vista
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            string dni = txtDni.Text.Trim();
-            string nombre = txtNombre.Text.Trim();
-            string apellido = txtApellido.Text.Trim();
-            string contacto = txtContacto.Text.Trim();
-
-            if (string.IsNullOrEmpty(dni) ||
-                string.IsNullOrEmpty(nombre) ||
-                string.IsNullOrEmpty(apellido) ||
-                string.IsNullOrEmpty(contacto))
+            var input = new ClienteInputDto
             {
-                MessageBox.Show("Complete todos los campos.", "Validación",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                Dni = txtDni.Text.Trim(),
+                Nombre = txtNombre.Text.Trim(),
+                Apellido = txtApellido.Text.Trim(),
+                Contacto = txtContacto.Text.Trim()
+            };         
 
             try
             {
-                var dto = _ctrl.RegistrarCliente(dni, nombre, apellido, contacto);
+                // Ahora UI NO ve BE, solo DTOs y BLL
+                var dto = _bllCliente.RegistrarCliente(input);
                 MessageBox.Show($"Cliente '{dto.Nombre} {dto.Apellido}' registrado con éxito.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarFormulario();
@@ -42,7 +37,6 @@ namespace AutoGestion.Vista
             }
         }
 
-        //busca el cliente y muestra datos si existe.
         private void btnBuscarDNI_Click(object sender, EventArgs e)
         {
             string dni = txtDni.Text.Trim();
@@ -55,14 +49,24 @@ namespace AutoGestion.Vista
 
             try
             {
-                var existente = _ctrl.BuscarCliente(dni);
-                if (existente != null)
+                var clienteBE = _bllCliente.ObtenerPorDni(dni);
+                if (clienteBE != null)
                 {
+                    // Mapear a DTO para mostrar
+                    var dto = new ClienteDto
+                    {
+                        ID = clienteBE.ID,
+                        Dni = clienteBE.Dni,
+                        Nombre = clienteBE.Nombre,
+                        Apellido = clienteBE.Apellido,
+                        Contacto = clienteBE.Contacto
+                    };
+
                     MessageBox.Show("Cliente encontrado.", "Info",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtNombre.Text = existente.Nombre;
-                    txtApellido.Text = existente.Apellido;
-                    txtContacto.Text = existente.Contacto;
+                    txtNombre.Text = dto.Nombre;
+                    txtApellido.Text = dto.Apellido;
+                    txtContacto.Text = dto.Contacto;
                     btnRegistrar.Enabled = false;
                 }
                 else
@@ -82,7 +86,8 @@ namespace AutoGestion.Vista
 
         private void LimpiarFormulario(bool keepDni = false)
         {
-            if (!keepDni) txtDni.Clear();
+            if (!keepDni)
+                txtDni.Clear();
             txtNombre.Clear();
             txtApellido.Clear();
             txtContacto.Clear();

@@ -60,7 +60,6 @@
             btnRestaurarSeleccionado.TabIndex = 2;
             btnRestaurarSeleccionado.Text = "Restaurar";
             btnRestaurarSeleccionado.UseVisualStyleBackColor = true;
-            btnRestaurarSeleccionado.Click += btnRestaurarSeleccionado_Click;
             // 
             // UC_Restore
             // 
