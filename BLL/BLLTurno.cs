@@ -24,28 +24,31 @@ namespace BLL
             if (string.IsNullOrWhiteSpace(input.DominioVehiculo))
                 throw new ApplicationException("Dominio de vehículo inválido.");
 
-            // 1) Obtener BE.Cliente
+            // 1) Cliente
             var cliente = new BLLCliente()
                 .ObtenerPorDni(input.DniCliente)
                 ?? throw new ApplicationException("Cliente no encontrado.");
 
-            // 2) Obtener BE.Vehiculo
-            var vehiculo = ObtenerPorDominio(input.DominioVehiculo)
+            // 2) Vehículo (BE) mapeado desde DTO
+            var vehDto = new BLLVehiculo()
+                .ObtenerPorDominioDto(input.DominioVehiculo)
                 ?? throw new ApplicationException("Vehículo no encontrado.");
 
-            // 3) Crear BE.Turno y persistir
+            var veh = new Vehiculo { ID = vehDto.ID };
+
+            // 3) Persistir turno
             var turno = new Turno
             {
                 Cliente = cliente,
-                Vehiculo = vehiculo,
+                Vehiculo = veh,
                 Fecha = input.Fecha,
                 Hora = input.Hora,
                 Asistencia = "Pendiente",
                 Observaciones = string.Empty
             };
+
             _mpp.AgregarTurno(turno);
         }
-
         // Lo usamos internamente para no volver a instanciar MPPVehiculo
         private Vehiculo ObtenerPorDominio(string dominio)
             => null;

@@ -3,28 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\consultarcomisiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\consultarcomisiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\registrarasistencia.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\registrarasistencia.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\dtos\\comisionlistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\comisionlistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\registrarasistencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\registrarasistencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\consultarcomisiones.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\consultarcomisiones.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\bll\\bllcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\sessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\mapper\\mppturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\bll\\bllcomision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllcomision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\consultarcomisiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\consultarcomisiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\registrarasistencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\registrarasistencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,91 +30,78 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegistrarAsistencia.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.Designer.cs",
+              "RelativeDocumentMoniker": "UI\\RegistrarAsistencia.Designer.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.Designer.cs",
+              "RelativeToolTip": "UI\\RegistrarAsistencia.Designer.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAASwG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T11:57:59.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BLLCliente.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLCliente.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLCliente.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLCliente.cs",
+              "RelativeToolTip": "BLL\\BLLCliente.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T11:57:41.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MPPTurno.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\MPPTurno.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPTurno.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\MPPTurno.cs",
+              "RelativeToolTip": "Mapper\\MPPTurno.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAkwGgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T11:53:42.992Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ConsultarComisiones.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\ConsultarComisiones.Designer.cs",
-              "RelativeDocumentMoniker": "UI\\ConsultarComisiones.Designer.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\ConsultarComisiones.Designer.cs",
-              "RelativeToolTip": "UI\\ConsultarComisiones.Designer.cs",
-              "ViewState": "AgIAAIcAAAAAAAAAAAASwJMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:28:40.549Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SessionManager.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\SessionManager.cs",
-              "RelativeDocumentMoniker": "UI\\SessionManager.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\SessionManager.cs",
-              "RelativeToolTip": "UI\\SessionManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:25:35.534Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ComisionListDto.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\ComisionListDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\ComisionListDto.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\ComisionListDto.cs",
-              "RelativeToolTip": "DTOs\\ComisionListDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Title": "RegistrarAsistencia.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.cs",
+              "RelativeDocumentMoniker": "UI\\RegistrarAsistencia.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.cs",
+              "RelativeToolTip": "UI\\RegistrarAsistencia.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAACEAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:15:16.415Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ConsultarComisiones.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\ConsultarComisiones.cs",
-              "RelativeDocumentMoniker": "UI\\ConsultarComisiones.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\ConsultarComisiones.cs",
-              "RelativeToolTip": "UI\\ConsultarComisiones.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:03:03.899Z",
+              "WhenOpened": "2025-07-17T11:51:12.68Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "BLLComision.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLComision.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLComision.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLComision.cs",
-              "RelativeToolTip": "BLL\\BLLComision.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAkwGEAAAAAAAAAAAAAAA==",
+              "Title": "RegistrarAsistencia.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.cs",
+              "RelativeDocumentMoniker": "UI\\RegistrarAsistencia.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\RegistrarAsistencia.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:06:10.378Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ConsultarComisiones.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\ConsultarComisiones.cs",
-              "RelativeDocumentMoniker": "UI\\ConsultarComisiones.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\ConsultarComisiones.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UI\\ConsultarComisiones.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:03:00.693Z",
+              "WhenOpened": "2025-07-17T11:50:29.292Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]

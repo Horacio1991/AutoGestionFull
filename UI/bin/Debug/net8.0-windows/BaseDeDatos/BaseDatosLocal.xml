@@ -339,4 +339,30 @@
       <Venta Id="3" />
     </Comision>
   </Comisiones>
+  <Turnos>
+    <Turno Id="1" Active="true">
+      <ClienteId>1</ClienteId>
+      <VehiculoId>11</VehiculoId>
+      <Fecha>2025-07-17T00:00:00</Fecha>
+      <Hora>08:42:46.3323596</Hora>
+      <Asistencia>Asistió</Asistencia>
+      <Observaciones>Se mostró interesado en comprar este vehiculo</Observaciones>
+    </Turno>
+    <Turno Id="2" Active="true">
+      <ClienteId>2</ClienteId>
+      <VehiculoId>3</VehiculoId>
+      <Fecha>2025-07-17T00:00:00</Fecha>
+      <Hora>08:42:46.3323596</Hora>
+      <Asistencia>No asistió</Asistencia>
+      <Observaciones>No concurrio al Turno, se lo volvera a llamar</Observaciones>
+    </Turno>
+    <Turno Id="3" Active="true">
+      <ClienteId>3</ClienteId>
+      <VehiculoId>5</VehiculoId>
+      <Fecha>2025-07-17T00:00:00</Fecha>
+      <Hora>09:30:00</Hora>
+      <Asistencia>Pendiente</Asistencia>
+      <Observaciones></Observaciones>
+    </Turno>
+  </Turnos>
 </BaseDeDatosLocal>

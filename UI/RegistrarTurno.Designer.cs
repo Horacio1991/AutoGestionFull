@@ -117,6 +117,7 @@
             dtpHora.Name = "dtpHora";
             dtpHora.Size = new Size(185, 23);
             dtpHora.TabIndex = 8;
+            dtpHora.ValueChanged += dtpHora_ValueChanged_1;
             // 
             // btnRegistrar
             // 
@@ -133,8 +134,9 @@
             dgvVehiculos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVehiculos.Location = new Point(403, 71);
             dgvVehiculos.Name = "dgvVehiculos";
-            dgvVehiculos.Size = new Size(332, 162);
+            dgvVehiculos.Size = new Size(581, 278);
             dgvVehiculos.TabIndex = 10;
+            dgvVehiculos.CellClick += dgvVehiculos_CellClick_1;
             // 
             // RegistrarTurno
             // 
@@ -152,7 +154,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "RegistrarTurno";
-            Size = new Size(800, 426);
+            Size = new Size(1280, 720);
+            Load += RegistrarTurno_Load_1;
             ((System.ComponentModel.ISupportInitialize)dgvVehiculos).EndInit();
             ResumeLayout(false);
             PerformLayout();

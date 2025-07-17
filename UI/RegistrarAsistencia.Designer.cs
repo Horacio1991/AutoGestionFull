@@ -63,13 +63,13 @@
             dgvTurnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvTurnos.Location = new Point(17, 90);
             dgvTurnos.Name = "dgvTurnos";
-            dgvTurnos.Size = new Size(411, 190);
+            dgvTurnos.Size = new Size(646, 304);
             dgvTurnos.TabIndex = 2;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(451, 90);
+            label3.Location = new Point(702, 97);
             label3.Name = "label3";
             label3.Size = new Size(45, 15);
             label3.TabIndex = 3;
@@ -78,7 +78,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(451, 120);
+            label4.Location = new Point(702, 127);
             label4.Name = "label4";
             label4.Size = new Size(87, 15);
             label4.TabIndex = 4;
@@ -87,14 +87,14 @@
             // cmbEstado
             // 
             cmbEstado.FormattingEnabled = true;
-            cmbEstado.Location = new Point(521, 82);
+            cmbEstado.Location = new Point(772, 89);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(175, 23);
             cmbEstado.TabIndex = 5;
             // 
             // txtObservaciones
             // 
-            txtObservaciones.Location = new Point(451, 138);
+            txtObservaciones.Location = new Point(702, 145);
             txtObservaciones.Multiline = true;
             txtObservaciones.Name = "txtObservaciones";
             txtObservaciones.Size = new Size(306, 72);
@@ -102,13 +102,12 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(510, 240);
+            btnGuardar.Location = new Point(761, 247);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(175, 40);
             btnGuardar.TabIndex = 7;
             btnGuardar.Text = "Guardar Estado";
             btnGuardar.UseVisualStyleBackColor = true;
-            btnGuardar.Click += btnGuardar_Click;
             // 
             // RegistrarAsistencia
             // 
@@ -123,7 +122,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "RegistrarAsistencia";
-            Size = new Size(800, 426);
+            Size = new Size(1280, 720);
             ((System.ComponentModel.ISupportInitialize)dgvTurnos).EndInit();
             ResumeLayout(false);
             PerformLayout();

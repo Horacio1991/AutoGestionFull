@@ -1,4 +1,7 @@
-﻿using BLL;
+﻿using System;
+using System.Linq;
+using System.Windows.Forms;
+using BLL;
 using DTOs;
 
 namespace AutoGestion.UI
@@ -11,13 +14,14 @@ namespace AutoGestion.UI
         public RegistrarTurno()
         {
             InitializeComponent();
+
             dtpFecha.Format = DateTimePickerFormat.Short;
             dtpHora.Format = DateTimePickerFormat.Time;
             dtpHora.ShowUpDown = true;
-            Load += RegistrarTurno_Load;
+
         }
 
-        private void RegistrarTurno_Load(object sender, EventArgs e)
+        private void RegistrarTurno_Load_1(object sender, EventArgs e)
             => CargarVehiculos();
 
         private void CargarVehiculos()
@@ -41,15 +45,17 @@ namespace AutoGestion.UI
             }
         }
 
-        private void dgvVehiculos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvVehiculos_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            txtDominio.Text = dgvVehiculos.Rows[e.RowIndex]
-                                   .Cells["Dominio"]
-                                   .Value?.ToString();
+            txtDominio.Text = dgvVehiculos
+                .Rows[e.RowIndex]
+                .Cells["Dominio"]
+                .Value
+                ?.ToString();
         }
 
-        private void dtpHora_ValueChanged(object sender, EventArgs e)
+        private void dtpHora_ValueChanged_1(object sender, EventArgs e)
         {
             var hora = dtpHora.Value;
             int minutos = hora.Minute >= 30 ? 30 : 0;
@@ -99,5 +105,7 @@ namespace AutoGestion.UI
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }
