@@ -66,30 +66,60 @@ namespace Mapper
 
         public List<PermisoDto> ListarPermisosUsuarioDto(int usuarioId)
         {
-            var todos = ListarPermisosDto();
             var doc = XDocument.Load(_rutaXml);
             var ups = doc.Root.Element("Usuario_Permisos");
-            if (ups == null) return new List<PermisoDto>();
+            var componentesRoot = doc.Root.Element("Componentes");
+            if (ups == null || componentesRoot == null)
+                return new List<PermisoDto>();
 
             var resultado = new List<PermisoDto>();
+
+            // Para poder buscar tanto Permisos sueltos como Permisos dentro de Roles
             foreach (var up in ups.Elements("Usuario_Permiso"))
             {
                 if ((int)up.Element("IdUsuario") != usuarioId) continue;
+
                 int compId = (int)up.Element("IdComponente");
-                // si el componente es un permiso directo
-                var p = todos.FirstOrDefault(x => x.Id == compId);
-                if (p != null) resultado.Add(p);
-                else
+
+                // 1) Buscamos primero en Permisos sueltos
+                var permisoXml = componentesRoot
+                    .Elements("Permiso")
+                    .FirstOrDefault(x => (int)x.Attribute("Id") == compId && (string)x.Attribute("Active") != "false");
+                if (permisoXml != null)
                 {
-                    // si es un rol, añadimos todos sus permisos
-                    var rol = ListarRolesDto().FirstOrDefault(r => r.Id == compId);
-                    if (rol != null)
-                        resultado.AddRange(rol.Permisos);
+                    resultado.Add(new PermisoDto
+                    {
+                        Id = compId,
+                        Nombre = (string)permisoXml.Element("Nombre")
+                    });
+                    continue;
+                }
+
+                // 2) Si no es permiso, puede ser un Rol: extraigo sus hijos Permiso
+                var rolXml = componentesRoot
+                    .Elements("Rol")
+                    .FirstOrDefault(r => (int)r.Attribute("Id") == compId && (string)r.Attribute("Active") != "false");
+                if (rolXml != null)
+                {
+                    foreach (var px in rolXml.Elements("Permiso")
+                                             .Where(p => (string)p.Attribute("Active") != "false"))
+                    {
+                        resultado.Add(new PermisoDto
+                        {
+                            Id = (int)px.Attribute("Id"),
+                            Nombre = (string)px.Element("Nombre")
+                        });
+                    }
+                    continue;
                 }
             }
-            return resultado;
-        }
 
+            // Finalmente, eliminamos duplicados por si un permiso viene directo y por rol
+            return resultado
+                .GroupBy(p => p.Id)
+                .Select(g => g.First())
+                .ToList();
+        }
         // -- ABM Permiso --
 
         public bool AltaPermiso(string nombrePermiso)

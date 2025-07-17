@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\uc_asignarroles.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\mapper\\mppcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +18,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\Form1.cs",
+              "RelativeDocumentMoniker": "UI\\Form1.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\Form1.cs",
+              "RelativeToolTip": "UI\\Form1.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAA2wIoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T19:13:53.336Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -39,52 +44,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UC_AsignarRoles.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
-              "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UI\\UC_AsignarRoles.cs [Dise\u00F1o]",
+              "Title": "MPPComponente.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\Mapper\\MPPComponente.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPComponente.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\Mapper\\MPPComponente.cs",
+              "RelativeToolTip": "Mapper\\MPPComponente.cs",
+              "ViewState": "AgIAAGUBAAAAAAAAAAAywHsBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T18:09:08.145Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UC_AsignarRoles.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.Designer.cs",
-              "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.Designer.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.Designer.cs",
-              "RelativeToolTip": "UI\\UC_AsignarRoles.Designer.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAASwJQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T18:08:54.9Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UC_AsignarRoles.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
-              "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
-              "RelativeToolTip": "UI\\UC_AsignarRoles.cs",
-              "ViewState": "AgIAAKcBAAAAAAAAAAAiwLcBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T17:51:14.617Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BLLUsuario.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\BLL\\BLLUsuario.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLUsuario.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\BLL\\BLLUsuario.cs",
-              "RelativeToolTip": "BLL\\BLLUsuario.cs",
-              "ViewState": "AgIAAIIAAAAAAAAAAADwv5MAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T17:50:52.205Z",
+              "WhenOpened": "2025-07-17T19:12:33.238Z",
               "EditorCaption": ""
             }
           ]

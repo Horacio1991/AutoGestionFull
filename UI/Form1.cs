@@ -2,6 +2,10 @@
 using AutoGestion.Vista;
 using BLL;
 using DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 using Vista.UserControls.Backup;
 using Vista.UserControls.Dashboard;
 
@@ -12,8 +16,6 @@ namespace AutoGestion
         private readonly UsuarioDto _usuario;
         private readonly BLLComponente _bllComponente = new BLLComponente();
 
-        public Form1() : this(SessionManager.CurrentUser) { }
-
         public Form1(UsuarioDto usuario)
         {
             InitializeComponent();
@@ -22,59 +24,75 @@ namespace AutoGestion
             Load += Form1_Load;
         }
 
+        /// <summary>
+        /// Permite acceder directamente a los ítems del menú desde fuera.
+        /// </summary>
         public ToolStripItemCollection MenuItems => menuPrincipal.Items;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
-                // Ya recibimos PermisoDto directamente de la BLL
+                // 1) Obtengo lista de permisos completos del usuario (DTOs con Nombre = "Categoría - Acción")
                 var permisosDto = _bllComponente.ObtenerPermisosUsuario(_usuario.ID);
 
-                // Si es admin, dejamos todo visible
+                // 2) Si es "admin", dejo todo visible y salgo
                 if (_usuario.Username.Equals("admin", StringComparison.OrdinalIgnoreCase))
                     return;
 
-                // Oculto todo por defecto
+                // 3) Oculto todo por defecto
                 foreach (ToolStripMenuItem menu in menuPrincipal.Items)
+                {
                     menu.Visible = false;
+                    foreach (ToolStripMenuItem sub in menu.DropDownItems.OfType<ToolStripMenuItem>())
+                        sub.Visible = false;
+                }
 
-                // Aplico visibilidad según permisos
+                // 4) Reaplico visibilidad según permisos
                 AplicarPermisos(permisosDto);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
                     $"Error al iniciar la aplicación:\n{ex.Message}",
-                    "Error crítico",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    "Error crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
         }
 
-        private void AplicarPermisos(List<PermisoDto> comps)
+        private void AplicarPermisos(IList<PermisoDto> permisos)
         {
-            bool TienePermiso(IEnumerable<PermisoDto> lista, string text)
+            // Helper: ¿existe un permiso cuya categoría coincide con menuText?
+            bool TieneCategoria(string menuText)
             {
-                foreach (var p in lista)
+                return permisos.Any(p => p.Nombre.StartsWith(menuText + " -", StringComparison.OrdinalIgnoreCase));
+            }
+            // Helper: ¿existe un permiso cuya acción coincide con subText?
+            bool TieneAccion(string subText)
+            {
+                return permisos.Any(p =>
                 {
-                    if (p.Nombre.Equals(text, StringComparison.OrdinalIgnoreCase))
-                        return true;
-                    if (TienePermiso(p.Hijos, text))
-                        return true;
-                }
-                return false;
+                    var partes = p.Nombre.Split(new[] { " - " }, StringSplitOptions.None);
+                    return partes.Length == 2 && partes[1].Equals(subText, StringComparison.OrdinalIgnoreCase);
+                });
             }
 
+            // Recorro cada menú y submenú
             foreach (ToolStripMenuItem menu in menuPrincipal.Items)
             {
-                menu.Visible = TienePermiso(comps, menu.Text);
+                // muestro el menú si alguna de sus acciones está permitida
+                menu.Visible = TieneCategoria(menu.Text);
+
                 foreach (ToolStripMenuItem sub in menu.DropDownItems.OfType<ToolStripMenuItem>())
-                    sub.Visible = TienePermiso(comps, sub.Text);
+                {
+                    sub.Visible = TieneAccion(sub.Text);
+                    // Si alguno de sus subitems está visible, que también se vea el padre
+                    if (sub.Visible)
+                        menu.Visible = true;
+                }
             }
 
-            // "Cerrar sesión" siempre visible
+            // Siempre dejo visible "Cerrar sesión"
             var cerrar = menuPrincipal.Items
                 .OfType<ToolStripMenuItem>()
                 .SelectMany(m => m.DropDownItems.OfType<ToolStripMenuItem>())
@@ -82,6 +100,9 @@ namespace AutoGestion
             if (cerrar != null) cerrar.Visible = true;
         }
 
+        /// <summary>
+        /// Carga un UserControl dentro del panel principal.
+        /// </summary>
         private void CargarControl(UserControl uc)
         {
             panelContenido.Controls.Clear();
