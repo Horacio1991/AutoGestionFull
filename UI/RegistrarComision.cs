@@ -31,7 +31,7 @@ namespace AutoGestion.UI
             }
         }
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
+        private void btnConfirmar_Click_1(object sender, EventArgs e)
         {
             if (dgvVentas.CurrentRow?.DataBoundItem is not VentaComisionDto venta)
             {
@@ -109,5 +109,7 @@ namespace AutoGestion.UI
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

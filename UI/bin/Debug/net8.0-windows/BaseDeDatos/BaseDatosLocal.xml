@@ -323,4 +323,20 @@
       <Fecha>2025-07-16T23:27:11</Fecha>
     </Tasacion>
   </Tasaciones>
+  <Comisiones>
+    <Comision Id="1" Active="true">
+      <Fecha>2025-07-17T08:01:33</Fecha>
+      <Monto>10000</Monto>
+      <Estado>Aprobada</Estado>
+      <MotivoRechazo></MotivoRechazo>
+      <Venta Id="1" />
+    </Comision>
+    <Comision Id="2" Active="true">
+      <Fecha>2025-07-17T08:01:57</Fecha>
+      <Monto>0</Monto>
+      <Estado>Rechazada</Estado>
+      <MotivoRechazo>Este vehiculo no genera comisión</MotivoRechazo>
+      <Venta Id="3" />
+    </Comision>
+  </Comisiones>
 </BaseDeDatosLocal>

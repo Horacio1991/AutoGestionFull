@@ -1,5 +1,4 @@
-﻿using BE;
-using BLL;
+﻿using BLL;
 using DTOs;
 
 namespace AutoGestion.UI
@@ -7,21 +6,20 @@ namespace AutoGestion.UI
     public partial class ConsultarComisiones : UserControl
     {
         private readonly BLLComision _bll = new BLLComision();
-        private List<ComisionListDto> _comisiones;
+        private List<ComisionListDto> _coms;
 
         public ConsultarComisiones()
         {
             InitializeComponent();
             InicializarFiltros();
             CargarComisiones();
-            btnFiltrar.Click += (_, __) => CargarComisiones();
-            btnDetalle.Click += (_, __) => MostrarDetalle();
         }
 
         private void InicializarFiltros()
         {
-            // UsuarioSesion se mantiene igual, o encapsúlalo en un helper si lo deseas
-            txtVendedor.Text = UsuarioSesion.UsuarioActual?.Username ?? "";
+            // Ahora usando el DTO de SessionManager
+            txtVendedor.Text = SessionManager.CurrentUser?.Username ?? "";
+            txtVendedor.ReadOnly = true;
 
             cmbEstado.Items.Clear();
             cmbEstado.Items.AddRange(new[] { "Aprobada", "Rechazada" });
@@ -29,68 +27,40 @@ namespace AutoGestion.UI
 
             dtpDesde.Value = DateTime.Today.AddMonths(-1);
             dtpHasta.Value = DateTime.Today;
+
+            btnFiltrar.Click += (_, __) => CargarComisiones();
         }
 
         private void CargarComisiones()
         {
             try
             {
-                int vendedorId = UsuarioSesion.UsuarioActual?.Id ?? 0;
-                string estado = cmbEstado.SelectedItem?.ToString() ?? "Aprobada";
+                // Tomamos el ID del DTO de sesión
+                int vendedorId = SessionManager.CurrentUser?.ID ?? 0;
+                string estado = cmbEstado.SelectedItem.ToString()!;
                 DateTime desde = dtpDesde.Value.Date;
                 DateTime hasta = dtpHasta.Value.Date;
 
-                // Devuelve DTOs directamente
-                _comisiones = _bll.ObtenerComisiones(vendedorId, estado, desde, hasta);
+                // Obtenemos los DTOs directamente
+                _coms = _bll.ObtenerComisiones(vendedorId, estado, desde, hasta);
 
-                dgvComisiones.DataSource = null;
-                dgvComisiones.AutoGenerateColumns = false;
-                dgvComisiones.Columns.Clear();
+                dgvComisiones.AutoGenerateColumns = true;
+                dgvComisiones.DataSource = _coms;
 
-                dgvComisiones.Columns.Add(new DataGridViewTextBoxColumn
+                // Sólo dejamos visibles estas columnas
+                var visibles = new[]
                 {
-                    DataPropertyName = nameof(ComisionListDto.ID),
-                    HeaderText = "ID",
-                    Width = 50
-                });
-                dgvComisiones.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = nameof(ComisionListDto.Fecha),
-                    HeaderText = "Fecha",
-                    DefaultCellStyle = { Format = "g" }
-                });
-                dgvComisiones.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = nameof(ComisionListDto.Cliente),
-                    HeaderText = "Cliente",
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-                });
-                dgvComisiones.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = nameof(ComisionListDto.Vehiculo),
-                    HeaderText = "Vehículo",
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-                });
-                dgvComisiones.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = nameof(ComisionListDto.Monto),
-                    HeaderText = "Monto",
-                    DefaultCellStyle = { Format = "C2" }
-                });
-                dgvComisiones.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = nameof(ComisionListDto.Estado),
-                    HeaderText = "Estado"
-                });
-                // Ocultamos motivo por defecto, solo lo mostramos en detalle
-                dgvComisiones.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = nameof(ComisionListDto.MotivoRechazo),
-                    HeaderText = "MotivoRechazo",
-                    Visible = false
-                });
+                    nameof(ComisionListDto.ID),
+                    nameof(ComisionListDto.Fecha),
+                    nameof(ComisionListDto.Cliente),
+                    nameof(ComisionListDto.Vehiculo),
+                    nameof(ComisionListDto.Monto),
+                    nameof(ComisionListDto.Estado)
+                };
 
-                dgvComisiones.DataSource = _comisiones;
+                foreach (DataGridViewColumn col in dgvComisiones.Columns)
+                    col.Visible = visibles.Contains(col.DataPropertyName);
+
                 dgvComisiones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvComisiones.ReadOnly = true;
                 dgvComisiones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -105,31 +75,6 @@ namespace AutoGestion.UI
             }
         }
 
-        private void MostrarDetalle()
-        {
-            if (dgvComisiones.CurrentRow?.DataBoundItem is not ComisionListDto com)
-            {
-                MessageBox.Show(
-                    "Seleccione una comisión del listado.",
-                    "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                );
-                return;
-            }
 
-            if (com.Estado.Equals("Aprobada", StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show(
-                    "✅ Comisión aprobada.",
-                    "Detalle", MessageBoxButtons.OK, MessageBoxIcon.Information
-                );
-            }
-            else
-            {
-                MessageBox.Show(
-                    $"❌ Comisión rechazada.\nMotivo: {com.MotivoRechazo}",
-                    "Detalle", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                );
-            }
-        }
     }
 }

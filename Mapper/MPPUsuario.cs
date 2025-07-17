@@ -32,6 +32,25 @@ namespace Mapper
                 .ToList();
         }
 
+        public Usuario BuscarPorId(int id)
+        {
+            if (!File.Exists(rutaXML))
+                return null;
+            var doc = XDocument.Load(rutaXML);
+            var element = doc.Root.Element("Usuarios")?
+                             .Elements("Usuario")
+                             .FirstOrDefault(x => (int)x.Attribute("Id") == id && (string)x.Attribute("Active") == "true");
+            if (element == null)
+                return null;
+            return new Usuario
+            {
+                Id = (int)element.Attribute("Id"),
+                Username = (string)element.Element("Username"),
+                Password = (string)element.Element("Password"),
+                Rol = new List<BEComponente>()
+            };
+        }
+
         public Usuario BuscarPorUsername(string username)
         {
             if (!File.Exists(rutaXML))

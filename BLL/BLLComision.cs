@@ -6,76 +6,91 @@ namespace BLL
 {
     public class BLLComision
     {
-        private readonly MPPComision _mapper = new MPPComision();
-        private readonly MPPVenta _mppVenta = new MPPVenta();
+        private readonly MPPComision _comMapper = new MPPComision();
+        private readonly MPPVenta _vtaMapper = new MPPVenta();
+        private readonly MPPCliente _cliMapper = new MPPCliente();
+        private readonly MPPVehiculo _vehMapper = new MPPVehiculo();
 
         /// <summary>
-        /// Obtiene comisiones de un vendedor, filtradas por estado y rango de fechas,
-        /// y las mapea a DTOs para la capa de presentación.
+        /// Obtiene todas las comisiones (filtradas) y las mapea a DTOs ligeros.
         /// </summary>
-        public List<ComisionListDto> ObtenerComisiones(int vendedorId, string estado, DateTime desde, DateTime hasta)
+        public List<ComisionListDto> ObtenerComisiones(int vendedorId,
+                                                       string estado,
+                                                       DateTime desde,
+                                                       DateTime hasta)
         {
-            var todas = _mapper.ListarTodo();
+            // 1) filtramos en BE
+            var lista = _comMapper.ListarTodo()
+                     .Where(c =>
+                     {
+                         var v = _vtaMapper.BuscarPorId(c.Venta.ID);
+                         return v != null
+                             && v.Vendedor.ID == vendedorId
+                             && c.Fecha.Date >= desde.Date
+                             && c.Fecha.Date <= hasta.Date
+                             && string.Equals(c.Estado, estado, StringComparison.OrdinalIgnoreCase);
+                     });
 
-            var filtradas = todas
-                .Where(c =>
-                    c.Venta?.Vendedor?.ID == vendedorId
-                    && string.Equals(c.Estado, estado, StringComparison.OrdinalIgnoreCase)
-                    && c.Fecha.Date >= desde.Date
-                    && c.Fecha.Date <= hasta.Date
-                );
-
-            // Mapeo a DTO
-            return filtradas.Select(c => new ComisionListDto
+            // 2) mapeamos a DTO
+            return lista.Select(c =>
             {
-                ID = c.ID,
-                Fecha = c.Fecha,
-                Cliente = $"{c.Venta.Cliente.Nombre} {c.Venta.Cliente.Apellido}",
-                Vehiculo = $"{c.Venta.Vehiculo.Marca} {c.Venta.Vehiculo.Modelo} ({c.Venta.Vehiculo.Dominio})",
-                Monto = c.Monto,
-                Estado = c.Estado,
-                MotivoRechazo = c.MotivoRechazo
-            }).ToList();
+                var venta = _vtaMapper.BuscarPorId(c.Venta.ID)!;
+                var cli = _cliMapper.BuscarPorId(venta.Cliente.ID)!;
+                var veh = _vehMapper.BuscarPorId(venta.Vehiculo.ID)!;
+
+                return new ComisionListDto
+                {
+                    ID = c.ID,
+                    Fecha = c.Fecha,
+                    Cliente = $"{cli.Nombre} {cli.Apellido}",
+                    Vehiculo = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})",
+                    Monto = c.Monto,
+                    Estado = c.Estado
+                };
+            })
+            .ToList();
         }
 
         /// <summary>
-        /// Lista las ventas con estado "Entregada" que aún no tienen comisión.
+        /// Obtiene todas las ventas entregadas que no tienen comisión aún,
+        /// y las mapea a DTO para registrar comisión.
         /// </summary>
         public List<VentaComisionDto> ObtenerVentasSinComision()
         {
-            var entregadas = _mppVenta.ListarTodo()
-                .Where(v => v.Estado.Equals("Entregada", StringComparison.OrdinalIgnoreCase))
-                .ToList();
+            var entregadas = _vtaMapper.ListarTodo()
+                 .Where(v => v.Estado.Equals("Entregada", StringComparison.OrdinalIgnoreCase))
+                 .ToList();
 
-            var existentes = _mapper.ListarTodo()
-                .Select(c => c.Venta.ID)
-                .ToHashSet();
+            var conCom = _comMapper.ListarTodo()
+                         .Select(c => c.Venta.ID)
+                         .ToHashSet();
 
             return entregadas
-                .Where(v => !existentes.Contains(v.ID))
-                .Select(v => new VentaComisionDto
-                {
-                    VentaID = v.ID,
-                    Cliente = $"{v.Cliente.Nombre} {v.Cliente.Apellido}",
-                    Vehiculo = $"{v.Vehiculo.Marca} {v.Vehiculo.Modelo} ({v.Vehiculo.Dominio})"
-                })
-                .ToList();
+               .Where(v => !conCom.Contains(v.ID))
+               .Select(v =>
+               {
+                   var cli = _cliMapper.BuscarPorId(v.Cliente.ID)!;
+                   var veh = _vehMapper.BuscarPorId(v.Vehiculo.ID)!;
+                   return new VentaComisionDto
+                   {
+                       VentaID = v.ID,
+                       Cliente = $"{cli.Nombre} {cli.Apellido}",
+                       Vehiculo = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})"
+                   };
+               })
+               .ToList();
         }
 
-
-        /// <summary>
-        /// Registra una comisión (aprobar o rechazar) a partir de un DTO de entrada.
-        /// </summary>
         public bool RegistrarComision(ComisionInputDto dto)
         {
-            var com = new Comision
+            var c = new Comision
             {
                 Venta = new Venta { ID = dto.VentaID },
                 Monto = dto.Monto,
                 Estado = dto.Estado,
                 MotivoRechazo = dto.MotivoRechazo
             };
-            _mapper.AltaComision(com);
+            _comMapper.AltaComision(c);
             return true;
         }
     }

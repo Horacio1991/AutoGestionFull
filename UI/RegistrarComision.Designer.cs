@@ -81,6 +81,7 @@
             btnConfirmar.TabIndex = 6;
             btnConfirmar.Text = "Aprobar Comisión";
             btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click_1;
             // 
             // btnRechazar
             // 
