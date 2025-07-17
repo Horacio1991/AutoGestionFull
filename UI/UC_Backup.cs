@@ -1,5 +1,10 @@
-﻿using BE;
+﻿using AutoGestion.UI;              // para SessionManager
 using BLL;
+using DTOs;
+using System;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Vista.UserControls.Backup
 {
@@ -13,12 +18,17 @@ namespace Vista.UserControls.Backup
         {
             InitializeComponent();
 
-            // Tomamos al usuario de la sesión
-            var usr = UsuarioSesion.UsuarioActual;
+            // Tomamos al usuario de la sesión (SessionManager, no la BE)
+            var usr = SessionManager.CurrentUser;
             if (usr != null)
             {
-                _usuarioId = usr.Id;
+                _usuarioId = usr.ID;
                 _usuarioNombre = usr.Username;
+            }
+            else
+            {
+                _usuarioId = 0;
+                _usuarioNombre = "(desconocido)";
             }
 
             btnBackup.Click += BtnBackup_Click;
@@ -31,7 +41,7 @@ namespace Vista.UserControls.Backup
             {
                 var dto = _bllBackup.RealizarBackup(_usuarioId, _usuarioNombre);
                 MessageBox.Show(
-                    $"Backup \"{dto.Nombre}\" realizado con éxito.",
+                    $"Backup \"{dto.Nombre}\" realizado con éxito por {_usuarioNombre}.",
                     "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information
                 );
                 CargarHistorial();
@@ -57,19 +67,19 @@ namespace Vista.UserControls.Backup
 
                 dgvBackup.Columns.Add(new DataGridViewTextBoxColumn
                 {
-                    DataPropertyName = "Nombre",
+                    DataPropertyName = nameof(BackupDto.Nombre),
                     HeaderText = "Backup",
                     Name = "colNombre"
                 });
                 dgvBackup.Columns.Add(new DataGridViewTextBoxColumn
                 {
-                    DataPropertyName = "UsernameUsuario",
+                    DataPropertyName = nameof(BackupDto.UsernameUsuario),
                     HeaderText = "Usuario",
                     Name = "colUsuario"
                 });
                 dgvBackup.Columns.Add(new DataGridViewTextBoxColumn
                 {
-                    DataPropertyName = "Fecha",
+                    DataPropertyName = nameof(BackupDto.Fecha),
                     HeaderText = "Fecha",
                     Name = "colFecha",
                     DefaultCellStyle = { Format = "g" }
@@ -78,6 +88,7 @@ namespace Vista.UserControls.Backup
                 dgvBackup.DataSource = lista;
                 dgvBackup.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvBackup.ReadOnly = true;
+                dgvBackup.ClearSelection();
             }
             catch (Exception ex)
             {

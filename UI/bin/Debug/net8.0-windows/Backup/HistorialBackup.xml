@@ -1,2 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Bitacoras />
+<Bitacoras>
+  <Bitacora Id="1" Fecha="2025-07-17T10:59:50" Usuario="admin">
+    <Mensaje>Backup generado: Backup-20250717_105950</Mensaje>
+  </Bitacora>
+  <Bitacora Id="2" Fecha="2025-07-17T11:05:08" Usuario="admin">
+    <Mensaje>Backup generado: Backup-20250717_110508</Mensaje>
+  </Bitacora>
+  <Bitacora Id="3" Fecha="2025-07-17T11:11:21" Usuario="admin">
+    <Mensaje>Backup generado: Backup-20250717_111121</Mensaje>
+  </Bitacora>
+</Bitacoras>

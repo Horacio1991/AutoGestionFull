@@ -33,6 +33,10 @@ namespace BLL
         /// <summary>
         /// Ejecuta el backup y registra el historial, devolviendo un DTO con el nuevo backup.
         /// </summary>
+        /// 
+        /// <summary>
+        /// Ejecuta el backup y registra el historial, devolviendo un DTO con el nuevo backup.
+        /// </summary>
         public BackupDto RealizarBackup(int usuarioId, string username)
         {
             var backup = new Backup
@@ -41,12 +45,23 @@ namespace BLL
                 UsernameUsuario = username
             };
 
+            // 1) Creación física
             bool ok = _mpp.CrearBackup(backup);
             if (!ok)
                 throw new ApplicationException("Error al crear el backup.");
 
+            // 2) Registrar en el XML de historial de backups
             _mpp.GuardarBackupEnHistorial(backup);
 
+            // 3) Registrar también en la bitácora general
+            new BLLBitacora().RegistrarEvento(new BE.Bitacora
+            {
+                UsuarioID = usuarioId,
+                UsuarioNombre = username,
+                Detalle = "backup"
+            });
+
+            // 4) Devolver el DTO
             return new BackupDto
             {
                 Id = backup.Id,
@@ -56,6 +71,7 @@ namespace BLL
                 UsernameUsuario = backup.UsernameUsuario
             };
         }
+
 
         /// <summary>
         /// Devuelve el historial de backups como lista de DTOs.

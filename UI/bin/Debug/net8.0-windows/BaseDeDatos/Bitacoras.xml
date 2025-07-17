@@ -1,2 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Bitacoras />
+<Bitacoras>
+  <Bitacora Id="1" Fecha="2025-07-17T11:00:00" UsuarioId="0" Usuario="Desconocido">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
+  <Bitacora Id="2" Fecha="2025-07-17T11:00:47" UsuarioId="0" Usuario="Desconocido">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
+  <Bitacora Id="3" Fecha="2025-07-17T11:11:21" UsuarioId="1" Usuario="admin">
+    <Mensaje>backup</Mensaje>
+  </Bitacora>
+</Bitacoras>

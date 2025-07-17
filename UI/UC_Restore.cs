@@ -1,4 +1,4 @@
-﻿using BE;
+﻿using AutoGestion.UI;    // para SessionManager
 using BLL;
 using DTOs;
 using System;
@@ -16,20 +16,27 @@ namespace Vista.UserControls.Backup
         public UC_Restore()
         {
             InitializeComponent();
-            _usuarioId = UsuarioSesion.UsuarioActual?.Id ?? 0;
-            _usuarioNombre = UsuarioSesion.UsuarioActual?.Username ?? "Desconocido";
 
-            cargarBackups();
+            // Obtenemos sesión
+            var usr = SessionManager.CurrentUser;
+            _usuarioId = usr?.ID ?? 0;
+            _usuarioNombre = usr?.Username ?? "Desconocido";
+
+            CargarBackups();
             btnRestaurarSeleccionado.Click += BtnRestaurarSeleccionado_Click;
-            btnRestaurarSeleccionado.Click += (s, e) => cargarBackups();
         }
 
-        private void cargarBackups()
+        private void CargarBackups()
         {
             try
             {
-                var lista = _bllBackup.ObtenerBackupsDto();
-                lstBackups.DataSource = lista;
+                // Traemos todos y filtramos el historial
+                var todos = _bllBackup.ObtenerBackupsDto();
+                var filtrados = todos
+                    .Where(b => !string.Equals(b.Nombre, "HistorialBackup", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                lstBackups.DataSource = filtrados;
                 lstBackups.DisplayMember = nameof(BackupDto.Nombre);
                 lstBackups.ValueMember = nameof(BackupDto.Nombre);
                 lstBackups.SelectedIndex = -1;
@@ -58,9 +65,11 @@ namespace Vista.UserControls.Backup
             {
                 _bllBackup.RestaurarBackup(dto.Nombre, _usuarioId, _usuarioNombre);
                 MessageBox.Show(
-                    "Restore realizado con éxito.",
+                    $"Backup \"{dto.Nombre}\" restaurado con éxito.",
                     "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information
                 );
+                // refrescamos en caso de que listemos de nuevo o algo cambie
+                CargarBackups();
             }
             catch (Exception ex)
             {
@@ -70,6 +79,5 @@ namespace Vista.UserControls.Backup
                 );
             }
         }
-
     }
 }
