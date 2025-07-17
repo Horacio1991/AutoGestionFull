@@ -1,4 +1,8 @@
-﻿using BE;
+﻿// BLL/BLLEvaluacionTecnica.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using BE;
 using DTOs;
 using Mapper;
 
@@ -25,6 +29,7 @@ namespace BLL
             {
                 throw new ApplicationException("Todos los estados son obligatorios.");
             }
+
             _mppEval.AltaEvaluacion(eval, ofertaId);
         }
 
@@ -40,19 +45,19 @@ namespace BLL
 
         public List<OfertaListDto> ObtenerOfertasParaEvaluar()
         {
-            return _mppOferta.ListarTodo()
+            var todas = _mppOferta.ListarTodo();
+
+            return todas
                 .Where(o => o.Estado.Equals("En evaluación", StringComparison.OrdinalIgnoreCase))
                 .Select(o =>
                 {
-                    var veh = _mppVehiculo.BuscarPorId(o.Vehiculo.ID);
-                    string resumen = veh != null
-                        ? $"{veh.Marca} {veh.Modelo} ({veh.Dominio})"
-                        : $"Vehículo #{o.Vehiculo.ID}";
+                    var veh = _mppVehiculo.BuscarPorId(o.Vehiculo.ID)
+                              ?? throw new ApplicationException($"Vehículo #{o.Vehiculo.ID} no encontrado");
                     return new OfertaListDto
                     {
                         ID = o.ID,
-                        VehiculoResumen = resumen,
-                        FechaInspeccion = o.FechaInspeccion
+                        FechaInspeccion = o.FechaInspeccion,
+                        VehiculoResumen = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})"
                     };
                 })
                 .ToList();
@@ -60,7 +65,8 @@ namespace BLL
 
         public void RegistrarEvaluacion(EvaluacionInputDto dto)
         {
-            if (dto == null) throw new ArgumentNullException(nameof(dto));
+            if (dto == null)
+                throw new ArgumentNullException(nameof(dto));
 
             var eval = new EvaluacionTecnica
             {
@@ -70,6 +76,7 @@ namespace BLL
                 EstadoDocumentacion = dto.EstadoDocumentacion,
                 Observaciones = dto.Observaciones
             };
+
             Registrar(eval, dto.OfertaID);
         }
     }

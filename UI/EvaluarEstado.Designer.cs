@@ -162,6 +162,7 @@
             btnGuardar.TabIndex = 13;
             btnGuardar.Text = "Guardar Evaluación";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click_1;
             // 
             // dtpFiltroFecha
             // 
@@ -169,6 +170,7 @@
             dtpFiltroFecha.Name = "dtpFiltroFecha";
             dtpFiltroFecha.Size = new Size(200, 23);
             dtpFiltroFecha.TabIndex = 14;
+            dtpFiltroFecha.ValueChanged += dtpFiltroFecha_ValueChanged;
             // 
             // btnFiltrarFecha
             // 
@@ -178,6 +180,7 @@
             btnFiltrarFecha.TabIndex = 15;
             btnFiltrarFecha.Text = "Filtrar";
             btnFiltrarFecha.UseVisualStyleBackColor = true;
+            btnFiltrarFecha.Click += btnFiltrarFecha_Click;
             // 
             // EvaluarEstado
             // 

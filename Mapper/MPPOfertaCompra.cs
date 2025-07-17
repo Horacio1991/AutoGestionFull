@@ -1,4 +1,8 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 using BE;
 using Servicios.Utilidades;
 
@@ -29,13 +33,21 @@ namespace Mapper
             }
         }
 
+        private XElement Root(XDocument doc)
+        {
+            var root = doc.Root.Element("OfertaCompras");
+            if (root == null)
+            {
+                root = new XElement("OfertaCompras");
+                doc.Root.Add(root);
+            }
+            return root;
+        }
+
         public List<OfertaCompra> ListarTodo()
         {
-            if (!File.Exists(rutaXML))
-                return new List<OfertaCompra>();
-
             var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("OfertasCompra");
+            var root = doc.Root.Element("OfertaCompras");
             if (root == null) return new List<OfertaCompra>();
 
             return root
@@ -46,11 +58,12 @@ namespace Mapper
                     ID = (int)x.Attribute("Id"),
                     FechaInspeccion = DateTime.Parse(x.Element("FechaInspeccion")?.Value ?? DateTime.Now.ToString("s")),
                     Estado = (string)x.Element("Estado"),
-                    // Cargamos Vehiculo solo con ID; el BLL completará marca/modelo
-                    Vehiculo = new Vehiculo { ID = (int)x.Element("Vehiculo").Attribute("Id") }
+                    // sólo asignamos el ID de la oferta; el Vehiculo completo se llena en BLL
+                    Vehiculo = new Vehiculo { ID = (int)x.Element("VehiculoId") }
                 })
                 .ToList();
         }
+
         public OfertaCompra BuscarPorId(int id)
         {
             return ListarTodo().FirstOrDefault(o => o.ID == id);
@@ -58,33 +71,26 @@ namespace Mapper
 
         public List<OfertaCompra> BuscarPorDominio(string dominio)
         {
+            // Busca ofertas cuyo vehículo tenga ese dominio
             return ListarTodo()
-                   .Where(o => o.Vehiculo != null &&
-                               !string.IsNullOrEmpty(o.Vehiculo.Dominio) &&
-                               o.Vehiculo.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase))
-                   .ToList();
+                .Where(o => o.Vehiculo != null && string.Equals(
+                    // vamos a cargar el vehículo para comparar
+                    new MPPVehiculo().BuscarPorId(o.Vehiculo.ID)?.Dominio,
+                    dominio, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
 
         public void Alta(OfertaCompra oferta)
         {
             var doc = XDocument.Load(rutaXML);
+            var root = Root(doc);
 
-            // Asegurarnos de que exista el contenedor <OfertaCompras>
-            var root = doc.Root.Element("OfertaCompras");
-            if (root == null)
-            {
-                root = new XElement("OfertaCompras");
-                doc.Root.Add(root);
-            }
-
-            // Calcular el próximo Id
             int nextId = root.Elements("OfertaCompra")
                              .Select(x => (int)x.Attribute("Id"))
                              .DefaultIfEmpty(0)
                              .Max() + 1;
             oferta.ID = nextId;
 
-            // Construir el elemento XML
             var elem = new XElement("OfertaCompra",
                 new XAttribute("Id", oferta.ID),
                 new XAttribute("Active", "true"),
@@ -94,7 +100,6 @@ namespace Mapper
                 new XElement("Estado", oferta.Estado)
             );
 
-            // Agregar y guardar
             root.Add(elem);
             doc.Save(rutaXML);
         }
@@ -103,13 +108,13 @@ namespace Mapper
         {
             var doc = XDocument.Load(rutaXML);
             var root = doc.Root.Element("OfertaCompras");
-            var elem = root?.Elements("OfertaCompra")
-                            .FirstOrDefault(x => (int)x.Attribute("Id") == ofertaId);
+            var elem = root?
+                .Elements("OfertaCompra")
+                .FirstOrDefault(x => (int)x.Attribute("Id") == ofertaId);
             if (elem == null)
                 throw new ApplicationException("Oferta no encontrada.");
-            elem.SetAttributeValue("Estado", "Tasada");
+            elem.SetElementValue("Estado", "Tasada");
             doc.Save(rutaXML);
         }
-
     }
 }

@@ -26,7 +26,7 @@
       <Color>Blanco</Color>
       <Km>52000</Km>
       <Dominio>GHI789</Dominio>
-      <Estado>Vendido</Estado>
+      <Estado>Disponible</Estado>
     </Vehiculo>
     <Vehiculo Id="4" Active="true">
       <Marca>Renault</Marca>
@@ -98,7 +98,7 @@
       <Color>Verde</Color>
       <Km>110000</Km>
       <Dominio>IWY960</Dominio>
-      <Estado>En Proceso</Estado>
+      <Estado>Disponible</Estado>
     </Vehiculo>
     <Vehiculo Id="12" Active="true">
       <Marca>Ford</Marca>
@@ -107,6 +107,15 @@
       <Color>Blanco</Color>
       <Km>90000</Km>
       <Dominio>MXI123</Dominio>
+      <Estado>Disponible</Estado>
+    </Vehiculo>
+    <Vehiculo Id="13" Active="true">
+      <Marca>Mercedes</Marca>
+      <Modelo>Bens</Modelo>
+      <Año>2015</Año>
+      <Color>Gris</Color>
+      <Km>50000</Km>
+      <Dominio>ZZZ999</Dominio>
       <Estado>En Proceso</Estado>
     </Vehiculo>
   </Vehiculos>
@@ -236,6 +245,12 @@
       <Apellido>Uronich</Apellido>
       <Contacto>belen@gmail.com</Contacto>
     </Oferente>
+    <Oferente Id="3" Active="true">
+      <Dni>80000000</Dni>
+      <Nombre>Charo</Nombre>
+      <Apellido>Ortiz</Apellido>
+      <Contacto>charo@gmail.com</Contacto>
+    </Oferente>
   </Oferentes>
   <OfertaCompras>
     <OfertaCompra Id="1" Active="true">
@@ -250,5 +265,62 @@
       <FechaInspeccion>2025-07-16T00:00:00</FechaInspeccion>
       <Estado>En evaluación</Estado>
     </OfertaCompra>
+    <OfertaCompra Id="3" Active="true">
+      <OferenteId>3</OferenteId>
+      <VehiculoId>13</VehiculoId>
+      <FechaInspeccion>2025-07-17T00:00:00</FechaInspeccion>
+      <Estado>Tasada</Estado>
+    </OfertaCompra>
   </OfertaCompras>
+  <Evaluaciones>
+    <Evaluacion Id="1" Active="true">
+      <OfertaId>2</OfertaId>
+      <EstadoMotor>Excelente</EstadoMotor>
+      <EstadoCarroceria>Excelente</EstadoCarroceria>
+      <EstadoInterior>Excelente</EstadoInterior>
+      <EstadoDocumentacion>Excelente</EstadoDocumentacion>
+      <Observaciones>El auto esta perfecto</Observaciones>
+    </Evaluacion>
+    <Evaluacion Id="2" Active="true">
+      <OfertaId>1</OfertaId>
+      <EstadoMotor>Bien</EstadoMotor>
+      <EstadoCarroceria>Bien</EstadoCarroceria>
+      <EstadoInterior>Bien</EstadoInterior>
+      <EstadoDocumentacion>Bien</EstadoDocumentacion>
+      <Observaciones>El auto se encuentra correcto</Observaciones>
+    </Evaluacion>
+    <Evaluacion Id="3" Active="true">
+      <OfertaId>3</OfertaId>
+      <EstadoMotor>Excelente</EstadoMotor>
+      <EstadoCarroceria>Excelente</EstadoCarroceria>
+      <EstadoInterior>Excelente</EstadoInterior>
+      <EstadoDocumentacion>Excelente</EstadoDocumentacion>
+      <Observaciones>Excelente vehiculo</Observaciones>
+    </Evaluacion>
+  </Evaluaciones>
+  <Tasaciones>
+    <Tasacion Id="1" Active="true">
+      <OfertaId>3</OfertaId>
+      <ValorFinal>10000000</ValorFinal>
+      <Fecha>2025-07-16T22:58:04</Fecha>
+    </Tasacion>
+    <Tasacion Id="2" Active="true">
+      <OfertaId>1</OfertaId>
+      <ValorFinal>12000000</ValorFinal>
+      <EstadoStock>Disponible</EstadoStock>
+      <Fecha>2025-07-16T23:24:04</Fecha>
+    </Tasacion>
+    <Tasacion Id="3" Active="true">
+      <OfertaId>2</OfertaId>
+      <ValorFinal>15000000</ValorFinal>
+      <EstadoStock>Disponible</EstadoStock>
+      <Fecha>2025-07-16T23:26:41</Fecha>
+    </Tasacion>
+    <Tasacion Id="4" Active="true">
+      <OfertaId>1</OfertaId>
+      <ValorFinal>12000000</ValorFinal>
+      <EstadoStock>Disponible</EstadoStock>
+      <Fecha>2025-07-16T23:27:11</Fecha>
+    </Tasacion>
+  </Tasaciones>
 </BaseDeDatosLocal>

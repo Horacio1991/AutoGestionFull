@@ -1,80 +1,90 @@
-﻿using BE;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BE;
 using DTOs;
 using Mapper;
-
 
 namespace BLL
 {
     public class BLLTasacion
     {
-        private readonly MPPTasacion _mppTas = new MPPTasacion();
         private readonly MPPOfertaCompra _mppOferta = new MPPOfertaCompra();
-        private readonly MPPVehiculo _mppVeh = new MPPVehiculo();
+        private readonly MPPEvaluacionTecnica _mppEval = new MPPEvaluacionTecnica();
+        private readonly MPPTasacion _mppTasacion = new MPPTasacion();
+        private readonly MPPVehiculo _vehiculoMapper = new MPPVehiculo();
 
-        /// <summary>
-        /// Lista las ofertas en estado "En evaluación" junto con su evaluación y rango (si existe).
-        /// </summary>
         public List<OfertaParaTasacionDto> ObtenerOfertasParaTasacion()
         {
-            // 1) Obtengo todas las ofertas pendientes de tasar
+            // 1) Traer ofertas en evaluación
             var ofertas = _mppOferta.ListarTodo()
                 .Where(o => o.Estado.Equals("En evaluación", StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
-            // 2) Cargo todas las evaluaciones técnicas
-            var evaluaciones = new MPPEvaluacionTecnica().ListarTodo();
+            var resultado = new List<OfertaParaTasacionDto>();
 
-            // 3) Mapear a DTO
-            var lista = new List<OfertaParaTasacionDto>();
-            foreach (var o in ofertas)
+            foreach (var oferta in ofertas)
             {
-                var veh = _mppVeh.BuscarPorId(o.Vehiculo.ID);
-                var resumen = veh != null
-                    ? $"{veh.Marca} {veh.Modelo} ({veh.Dominio})"
-                    : $"Vehículo #{o.Vehiculo.ID}";
+                // 2) Vehículo completo
+                var veh = _vehiculoMapper.BuscarPorId(oferta.Vehiculo.ID)
+                          ?? throw new ApplicationException($"Vehículo con Id={oferta.Vehiculo.ID} no encontrado.");
 
-                var eval = evaluaciones.FirstOrDefault(e => e.OfertaID == o.ID);
-                lista.Add(new OfertaParaTasacionDto
+                // 3) Histórico de tasaciones previas de ese modelo
+                var historico = _mppTasacion.ListarTodo()
+                    .Where(t => t.Oferta != null
+                             && t.Oferta.Vehiculo != null
+                             && t.Oferta.Vehiculo.Marca == veh.Marca
+                             && t.Oferta.Vehiculo.Modelo == veh.Modelo)
+                    .Select(t => t.ValorFinal)
+                    .ToList();
+
+                decimal? rangoMin = historico.Any() ? historico.Min() : (decimal?)null;
+                decimal? rangoMax = historico.Any() ? historico.Max() : (decimal?)null;
+
+                // 4) Cargar evaluación técnica asociada
+                var eval = _mppEval.BuscarPorOferta(oferta.ID)
+                           ?? throw new ApplicationException($"No hay evaluación técnica para la oferta {oferta.ID}.");
+
+                resultado.Add(new OfertaParaTasacionDto
                 {
-                    OfertaID = o.ID,
-                    VehiculoResumen = resumen,
-                    EstadoMotor = eval?.EstadoMotor ?? string.Empty,
-                    EstadoCarroceria = eval?.EstadoCarroceria ?? string.Empty,
-                    EstadoInterior = eval?.EstadoInterior ?? string.Empty,
-                    EstadoDocumentacion = eval?.EstadoDocumentacion ?? string.Empty,
-                    RangoMin = null,  // Si tienes lógica de rango, ponla aquí
-                    RangoMax = null
+                    OfertaID = oferta.ID,
+                    VehiculoResumen = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})",
+                    FechaInspeccion = oferta.FechaInspeccion,
+                    EstadoMotor = eval.EstadoMotor,
+                    EstadoCarroceria = eval.EstadoCarroceria,
+                    EstadoInterior = eval.EstadoInterior,
+                    EstadoDocumentacion = eval.EstadoDocumentacion,
+                    RangoMin = rangoMin,
+                    RangoMax = rangoMax
                 });
             }
-            return lista;
+
+            return resultado;
         }
 
-        /// <summary>
-        /// Registra la tasación (valor final + cambio de estado) y actualiza stock del vehículo.
-        /// </summary>
-        public void RegistrarTasacion(TasacionInputDto input)
+        public void RegistrarTasacion(TasacionInputDto dto)
         {
-            if (input == null) throw new ArgumentNullException(nameof(input));
-            if (input.OfertaID <= 0) throw new ApplicationException("Oferta inválida.");
-            if (input.ValorFinal <= 0) throw new ApplicationException("Valor final inválido.");
-            if (string.IsNullOrWhiteSpace(input.EstadoStock))
-                throw new ApplicationException("Estado de stock obligatorio.");
+            if (dto == null) throw new ArgumentNullException(nameof(dto));
 
-            // 1) Registro de la Tasación
-            var tas = new Tasacion
+            // 0) Recuperar oferta para tener su VehiculoId
+            var oferta = _mppOferta.BuscarPorId(dto.OfertaID)
+                        ?? throw new ApplicationException($"Oferta #{dto.OfertaID} no encontrada.");
+
+            // 1) Grabar la nueva tasación
+            var t = new Tasacion
             {
-                Oferta = new OfertaCompra { ID = input.OfertaID },
-                ValorFinal = input.ValorFinal
+                Oferta = new OfertaCompra { ID = dto.OfertaID },
+                ValorFinal = dto.ValorFinal,
+                EstadoStock = dto.EstadoStock
             };
-            _mppTas.Alta(tas);
+            _mppTasacion.AltaTasacion(t);
 
-            // 2) Marco la oferta como "Tasada"
-            _mppOferta.MarcarTasada(input.OfertaID);
-
-            // 3) Actualizo el estado del vehículo
-            var oferta = new BLLOfertaCompra().ObtenerPorId(input.OfertaID)
-                        ?? throw new ApplicationException("Oferta no encontrada.");
-            new BLLVehiculo().ActualizarEstadoStock(oferta.Vehiculo.ID, input.EstadoStock);
+            // 2) Y ahora actualizar el stock del vehículo
+            var veh = _vehiculoMapper.BuscarPorId(oferta.Vehiculo.ID)
+                      ?? throw new ApplicationException($"Vehículo #{oferta.Vehiculo.ID} no encontrado al actualizar stock.");
+            veh.Estado = dto.EstadoStock;
+            _vehiculoMapper.Actualizar(veh);
         }
+
     }
 }

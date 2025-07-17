@@ -117,6 +117,31 @@ namespace Mapper
             doc.Save(rutaXML);
         }
 
+        /// <summary>
+        /// Cambia el estado de stock de un vehículo y lo persiste en el XML.
+        /// </summary>
+        public void ActualizarEstadoStock(int vehiculoId, string nuevoEstado)
+        {
+            // 1) Cargo el documento
+            var doc = XDocument.Load(rutaXML);
+            var root = doc.Root.Element("Vehiculos");
+            if (root == null)
+                throw new ApplicationException("Sección 'Vehiculos' no encontrada en el XML.");
+
+            // 2) Busco el elemento
+            var elem = root
+                .Elements("Vehiculo")
+                .FirstOrDefault(x => (int)x.Attribute("Id") == vehiculoId);
+            if (elem == null)
+                throw new ApplicationException($"Vehículo con Id={vehiculoId} no encontrado.");
+
+            // 3) Actualizo el estado
+            elem.SetElementValue("Estado", nuevoEstado);
+
+            // 4) Guardo
+            doc.Save(rutaXML);
+        }
+
         private Vehiculo ParseVehiculo(XElement x) => new Vehiculo
         {
             ID = (int)x.Attribute("Id"),

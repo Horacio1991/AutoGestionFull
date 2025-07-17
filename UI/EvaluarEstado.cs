@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BLL;
+using DTOs;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using BLL;
-using DTOs;
 
 namespace AutoGestion.UI
 {
@@ -15,9 +16,6 @@ namespace AutoGestion.UI
         public EvaluarEstado()
         {
             InitializeComponent();
-            dtpFiltroFecha.ValueChanged += (_, __) => AplicarFiltroFecha();
-            btnFiltrarFecha.Click += (_, __) => AplicarFiltroFecha();
-            btnGuardar.Click += (_, __) => GuardarEvaluacion();
             CargarOfertas();
         }
 
@@ -26,7 +24,6 @@ namespace AutoGestion.UI
             try
             {
                 _ofertas = _bll.ObtenerOfertasParaEvaluar();
-
                 cmbOfertas.DataSource = _ofertas;
                 cmbOfertas.DisplayMember = nameof(OfertaListDto.DisplayTexto);
                 cmbOfertas.ValueMember = nameof(OfertaListDto.ID);
@@ -34,15 +31,16 @@ namespace AutoGestion.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al cargar ofertas:\n{ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
-                );
+                MessageBox.Show($"Error al cargar ofertas:\n{ex.Message}", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void AplicarFiltroFecha()
+
+
+        private void dtpFiltroFecha_ValueChanged(object sender, EventArgs e)
         {
+            // Cada vez que cambie la fecha, reaplico el filtro
             var fecha = dtpFiltroFecha.Value.Date;
             var filtradas = _ofertas
                 .Where(o => o.FechaInspeccion.Date == fecha)
@@ -50,10 +48,8 @@ namespace AutoGestion.UI
 
             if (!filtradas.Any())
             {
-                MessageBox.Show(
-                    "No hay ofertas en esa fecha.",
-                    "Información", MessageBoxButtons.OK, MessageBoxIcon.Information
-                );
+                MessageBox.Show("No hay ofertas en esa fecha.", "Información",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -61,14 +57,18 @@ namespace AutoGestion.UI
             cmbOfertas.SelectedIndex = -1;
         }
 
-        private void GuardarEvaluacion()
+        private void btnFiltrarFecha_Click(object sender, EventArgs e)
+        {
+            // Si prefieres un botón en lugar de filtrar al cambiar la fecha:
+            dtpFiltroFecha_ValueChanged(sender, e);
+        }
+
+        private void btnGuardar_Click_1(object sender, EventArgs e)
         {
             if (!(cmbOfertas.SelectedValue is int ofertaId))
             {
-                MessageBox.Show(
-                    "Seleccione una oferta.",
-                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                );
+                MessageBox.Show("Seleccione una oferta.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (string.IsNullOrWhiteSpace(txtMotor.Text) ||
@@ -76,10 +76,8 @@ namespace AutoGestion.UI
                 string.IsNullOrWhiteSpace(txtInterior.Text) ||
                 string.IsNullOrWhiteSpace(txtDocumentacion.Text))
             {
-                MessageBox.Show(
-                    "Complete todos los campos técnicos.",
-                    "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning
-                );
+                MessageBox.Show("Complete todos los campos técnicos.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -96,19 +94,15 @@ namespace AutoGestion.UI
             try
             {
                 _bll.RegistrarEvaluacion(dto);
-                MessageBox.Show(
-                    "Evaluación registrada correctamente.",
-                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information
-                );
+                MessageBox.Show("Evaluación registrada correctamente.", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarFormulario();
                 CargarOfertas();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error al guardar evaluación:\n{ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
-                );
+                MessageBox.Show($"Error al guardar evaluación:\n{ex.Message}", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -122,5 +116,8 @@ namespace AutoGestion.UI
             cmbOfertas.SelectedIndex = -1;
             dtpFiltroFecha.Value = DateTime.Today;
         }
+
+      
     }
+
 }

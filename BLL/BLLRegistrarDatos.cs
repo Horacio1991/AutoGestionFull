@@ -22,7 +22,7 @@ namespace BLL
 
             // 2) Evaluación técnica de esa oferta
             var eval = _bllEval.ObtenerTodas()
-                               .FirstOrDefault(e => e.OfertaID == oferta.ID);
+                               .FirstOrDefault(e => e.ID == oferta.ID);
             if (eval == null) return null;
 
             // 3) Construir el texto

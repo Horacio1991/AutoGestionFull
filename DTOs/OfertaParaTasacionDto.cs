@@ -3,7 +3,8 @@
     public class OfertaParaTasacionDto
     {
         public int OfertaID { get; set; }
-        public string VehiculoResumen { get; set; }     // p.ej. “Ford Fiesta (ABC123)”
+        public string VehiculoResumen { get; set; }
+        public DateTime FechaInspeccion { get; set; }// p.ej. “Ford Fiesta (ABC123)”
         public string EstadoMotor { get; set; }
         public string EstadoCarroceria { get; set; }
         public string EstadoInterior { get; set; }

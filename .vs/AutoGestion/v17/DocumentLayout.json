@@ -3,44 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\blltasacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\blltasacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\mapper\\mpptasacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mpptasacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\bllregistrardatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllregistrardatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EF11D69-1AD7-422B-AE0A-3C3681239214}|BE\\BE.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\be\\evaluaciontecnica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EF11D69-1AD7-422B-AE0A-3C3681239214}|BE\\BE.csproj|solutionrelative:be\\evaluaciontecnica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\bllevaluaciontecnica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllevaluaciontecnica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\dtos\\ofertaparatasaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\ofertaparatasaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\mapper\\mppevaluaciontecnica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppevaluaciontecnica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\ui\\tasarvehiculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\tasarvehiculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\mapper\\mppofertacompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppofertacompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\bllturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\bllvehiculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllvehiculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\bllregistrarturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllregistrarturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\dtos\\turnoinputdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\turnoinputdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\mapper\\mppvehiculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppvehiculo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\ui\\registraroferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\registraroferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\bllregistraroferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllregistraroferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\blloferente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\blloferente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\ui\\registraroferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\registraroferta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,135 +46,124 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MPPOfertaCompra.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPOfertaCompra.cs",
-              "RelativeDocumentMoniker": "Mapper\\MPPOfertaCompra.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPOfertaCompra.cs",
-              "RelativeToolTip": "Mapper\\MPPOfertaCompra.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAqwGQAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "BLLRegistrarDatos.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLRegistrarDatos.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLRegistrarDatos.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLRegistrarDatos.cs",
+              "RelativeToolTip": "BLL\\BLLRegistrarDatos.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwBgAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T01:15:09.159Z",
+              "WhenOpened": "2025-07-17T02:18:36.911Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "BLLRegistrarTurno.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLRegistrarTurno.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLRegistrarTurno.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLRegistrarTurno.cs",
-              "RelativeToolTip": "BLL\\BLLRegistrarTurno.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAmwBAAAAA2AAAAAAAAAA==",
+              "Title": "EvaluacionTecnica.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\EvaluacionTecnica.cs",
+              "RelativeDocumentMoniker": "BE\\EvaluacionTecnica.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\EvaluacionTecnica.cs",
+              "RelativeToolTip": "BE\\EvaluacionTecnica.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T01:08:26.465Z",
+              "WhenOpened": "2025-07-17T02:16:23.054Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "TurnoInputDto.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\TurnoInputDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\TurnoInputDto.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\TurnoInputDto.cs",
-              "RelativeToolTip": "DTOs\\TurnoInputDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAxAAAAAAAAAA==",
+              "Title": "BLLEvaluacionTecnica.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLEvaluacionTecnica.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLEvaluacionTecnica.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLEvaluacionTecnica.cs",
+              "RelativeToolTip": "BLL\\BLLEvaluacionTecnica.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAmwA0AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T01:07:42.848Z",
+              "WhenOpened": "2025-07-17T02:16:18.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BLLTasacion.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLTasacion.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLTasacion.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLTasacion.cs",
+              "RelativeToolTip": "BLL\\BLLTasacion.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAxwFcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T01:51:20.702Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BLLTurno.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLTurno.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLTurno.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLTurno.cs",
-              "RelativeToolTip": "BLL\\BLLTurno.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAwDUAAAAAAAAAAAAAAA==",
+              "Title": "MPPTasacion.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPTasacion.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPTasacion.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPTasacion.cs",
+              "RelativeToolTip": "Mapper\\MPPTasacion.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAQwGsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T01:04:17.806Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BLLVehiculo.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLVehiculo.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLVehiculo.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLVehiculo.cs",
-              "RelativeToolTip": "BLL\\BLLVehiculo.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowAoAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T00:56:02.039Z",
+              "WhenOpened": "2025-07-17T01:55:25.014Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "MPPVehiculo.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPVehiculo.cs",
-              "RelativeDocumentMoniker": "Mapper\\MPPVehiculo.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPVehiculo.cs",
-              "RelativeToolTip": "Mapper\\MPPVehiculo.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAAAIQAAAAAAAAAAAAAAA==",
+              "Title": "OfertaParaTasacionDto.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\OfertaParaTasacionDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\OfertaParaTasacionDto.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\OfertaParaTasacionDto.cs",
+              "RelativeToolTip": "DTOs\\OfertaParaTasacionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T00:57:23.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BLLOferente.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLOferente.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLOferente.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLOferente.cs",
-              "RelativeToolTip": "BLL\\BLLOferente.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAqwF8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T00:54:35.893Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BLLRegistrarOferta.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLRegistrarOferta.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLRegistrarOferta.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLRegistrarOferta.cs",
-              "RelativeToolTip": "BLL\\BLLRegistrarOferta.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAQwC8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T19:01:50.922Z",
+              "WhenOpened": "2025-07-17T02:10:43.894Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "RegistrarOferta.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\RegistrarOferta.cs",
-              "RelativeDocumentMoniker": "UI\\RegistrarOferta.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\RegistrarOferta.cs",
-              "RelativeToolTip": "UI\\RegistrarOferta.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAxwEAAAAARAAAAAAAAAA==",
+              "Title": "MPPEvaluacionTecnica.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPEvaluacionTecnica.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPEvaluacionTecnica.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPEvaluacionTecnica.cs",
+              "RelativeToolTip": "Mapper\\MPPEvaluacionTecnica.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAqwD8AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T18:50:03.53Z",
+              "WhenOpened": "2025-07-17T02:08:53.297Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "RegistrarOferta.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\RegistrarOferta.cs",
-              "RelativeDocumentMoniker": "UI\\RegistrarOferta.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\RegistrarOferta.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\Educaccion\\Desktop\\TPFINAL BIEN\\AutoGestionFull\\UI\\RegistrarOferta.cs [Dise\u00F1o]",
+              "DocumentIndex": 8,
+              "Title": "MPPOfertaCompra.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPOfertaCompra.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPOfertaCompra.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPOfertaCompra.cs",
+              "RelativeToolTip": "Mapper\\MPPOfertaCompra.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAQwHgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T18:49:59.785Z"
+              "WhenOpened": "2025-07-17T02:01:02.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TasarVehiculo.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\TasarVehiculo.cs",
+              "RelativeDocumentMoniker": "UI\\TasarVehiculo.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\TasarVehiculo.cs",
+              "RelativeToolTip": "UI\\TasarVehiculo.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAAwFwAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T01:48:39.03Z",
+              "EditorCaption": ""
             }
           ]
         }
