@@ -40,11 +40,8 @@ namespace BLL
 
             foreach (var u in beUsuarios)
             {
-                // obtengo todos los componentes (roles y permisos)
-                var comps = _bllComponente.ObtenerPermisosUsuario(u.Id);
-
-                // mapeo recursivo a DTO
-                var permisosDto = comps.Select(MapComponenteADto).ToList();
+                // obtengo directamente los permisos como DTOs
+                var permisosDto = _bllComponente.ObtenerPermisosUsuario(u.Id);
 
                 lista.Add(new UsuarioDto
                 {
@@ -131,14 +128,14 @@ namespace BLL
         /// <summary>
         /// Devuelve un UsuarioDto con todos los datos del usuario (ID, Username, Permisos).
         /// </summary>
+
         public UsuarioDto ObtenerUsuarioDto(string username)
         {
             var be = _mapper.BuscarPorUsername(username)
                      ?? throw new InvalidOperationException("Usuario no encontrado.");
-            // Mapeo recursivo igual al que ya usas en ListarUsuariosDto:
-            var permisosDto = _bllComponente.ObtenerPermisosUsuario(be.Id)
-                                           .Select(MapComponenteADto)
-                                           .ToList();
+
+            var permisosDto = _bllComponente.ObtenerPermisosUsuario(be.Id);
+
             return new UsuarioDto
             {
                 ID = be.Id,

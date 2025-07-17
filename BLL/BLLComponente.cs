@@ -1,4 +1,5 @@
-﻿using BE.BEComposite;
+﻿using System.Collections.Generic;
+using DTOs;
 using Mapper;
 
 namespace BLL
@@ -12,48 +13,48 @@ namespace BLL
             _mapper = new MPPComponente();
         }
 
-        public List<BEComponente> ListarComponente()
-            => _mapper.ListarTodo();
+        public List<RolDto> ObtenerRoles()
+            => _mapper.ListarRolesDto();
 
-        public List<BEComponente> ObtenerPermisosUsuario(int idUsuario)
-            => _mapper.ListarPermisosUsuario(idUsuario);
+        public List<PermisoDto> ObtenerPermisos()
+            => _mapper.ListarPermisosDto();
+
+        public List<PermisoDto> ObtenerPermisosUsuario(int usuarioId)
+            => _mapper.ListarPermisosUsuarioDto(usuarioId);
 
         public bool CrearPermiso(string nombrePermiso)
             => _mapper.AltaPermiso(nombrePermiso);
 
-        public bool BajaPermiso(int idPermiso)
-            => _mapper.BajaPermiso(idPermiso);
+        public bool EliminarPermiso(int permisoId)
+            => _mapper.BajaPermiso(permisoId);
 
-        public bool CrearRol(string nombreRol, List<BEPermiso> permisos)
-            => _mapper.AltaRol(nombreRol, permisos);
+        public bool CrearRol(string nombreRol, List<int> permisoIds)
+            => _mapper.AltaRol(nombreRol, permisoIds);
 
-        public bool ModificarRol(BERol rol, List<BEPermiso> nuevosPermisos)
-            => _mapper.ModificarRol(rol, nuevosPermisos);
+        public bool ModificarRol(int rolId, string nuevoNombre, List<int> permisoIds)
+            => _mapper.ModificarRol(rolId, nuevoNombre, permisoIds);
 
-        public bool BajaRol(int idRol)
-            => _mapper.BajaRol(idRol);
+        public bool EliminarRol(int rolId)
+            => _mapper.BajaRol(rolId);
 
-        public bool AsignarComponenteAUsuario(int idUsuario, BEComponente comp)
-            => _mapper.AsignarComponenteAUsuario(idUsuario, comp.Id);
+        // ————————————————
+        // los métodos *que te faltaban* en la UI:
+        public bool AsignarPermisoARol(int rolId, int permisoId)
+            => _mapper.AsignarPermisoARol(rolId, permisoId);
 
-        public bool EliminarComponenteDeUsuario(int idUsuario, BEComponente comp)
-            => _mapper.EliminarComponenteDeUsuario(idUsuario, comp.Id);
+        public bool EliminarPermisoDeRol(int rolId, int permisoId)
+            => _mapper.QuitarPermisoDeRol(rolId, permisoId);
 
-        public bool UsuarioTienePermisoDirectoOIndirecto(int idUsuario, int permisoId)
-        {
-            var permis = ObtenerPermisosUsuario(idUsuario);
-            return TienePermiso(permis, permisoId);
-        }
+        public bool AsignarRolAUsuario(int usuarioId, int rolId)
+            => _mapper.AsignarAUsuario(usuarioId, rolId);
 
-        private bool TienePermiso(IEnumerable<BEComponente> comps, int permisoId)
-        {
-            foreach (var c in comps)
-            {
-                if (c.Id == permisoId) return true;
-                if (c is BERol rol && TienePermiso(rol.Hijos, permisoId))
-                    return true;
-            }
-            return false;
-        }
+        public bool EliminarRolDeUsuario(int usuarioId, int rolId)
+            => _mapper.QuitarDeUsuario(usuarioId, rolId);
+
+        public bool AsignarPermisoAUsuario(int usuarioId, int permisoId)
+            => _mapper.AsignarAUsuario(usuarioId, permisoId);
+
+        public bool EliminarPermisoDeUsuario(int usuarioId, int permisoId)
+            => _mapper.QuitarDeUsuario(usuarioId, permisoId);
     }
 }

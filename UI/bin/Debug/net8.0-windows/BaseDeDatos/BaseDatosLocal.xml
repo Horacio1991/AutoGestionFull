@@ -119,8 +119,117 @@
       <Estado>En Proceso</Estado>
     </Vehiculo>
   </Vehiculos>
-  <Componentes />
-  <Usuario_Permisos />
+  <Componentes>
+    <Permiso Id="1000" Active="true">
+      <Nombre>Usuarios - ABM Usuarios</Nombre>
+    </Permiso>
+    <Permiso Id="1001" Active="true">
+      <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
+    </Permiso>
+    <Permiso Id="1002" Active="true">
+      <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
+    </Permiso>
+    <Permiso Id="1003" Active="true">
+      <Nombre>Gestión Ventas - Realizar Pago</Nombre>
+    </Permiso>
+    <Permiso Id="1004" Active="true">
+      <Nombre>Gestión Ventas - Autorizar Venta</Nombre>
+    </Permiso>
+    <Permiso Id="1005" Active="true">
+      <Nombre>Gestión Ventas - Emitir Factura</Nombre>
+    </Permiso>
+    <Permiso Id="1006" Active="true">
+      <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
+    </Permiso>
+    <Permiso Id="1007" Active="true">
+      <Nombre>Gestión Compras - Registrar Oferta</Nombre>
+    </Permiso>
+    <Permiso Id="1008" Active="true">
+      <Nombre>Gestión Compras - Evaluar Vehículo</Nombre>
+    </Permiso>
+    <Permiso Id="1009" Active="true">
+      <Nombre>Gestión Compras - Tasar Vehículo</Nombre>
+    </Permiso>
+    <Permiso Id="1010" Active="true">
+      <Nombre>Gestión Compras - Registrar Compra</Nombre>
+    </Permiso>
+    <Permiso Id="1011" Active="true">
+      <Nombre>Gestión Comisiones - Registrar Comisión</Nombre>
+    </Permiso>
+    <Permiso Id="1012" Active="true">
+      <Nombre>Gestión Comisiones - Consultar Comisiones</Nombre>
+    </Permiso>
+    <Permiso Id="1013" Active="true">
+      <Nombre>Gestión Turnos - Registrar Turno</Nombre>
+    </Permiso>
+    <Permiso Id="1014" Active="true">
+      <Nombre>Gestión Turnos - Registrar Asistencia</Nombre>
+    </Permiso>
+    <Permiso Id="1015" Active="true">
+      <Nombre>Seguridad - Asignar Roles</Nombre>
+    </Permiso>
+    <Permiso Id="1016" Active="true">
+      <Nombre>Seguridad - Dashboard</Nombre>
+    </Permiso>
+    <Permiso Id="1017" Active="true">
+      <Nombre>Seguridad - Backup</Nombre>
+    </Permiso>
+    <Permiso Id="1018" Active="true">
+      <Nombre>Seguridad - Restore</Nombre>
+    </Permiso>
+    <Permiso Id="1019" Active="true">
+      <Nombre>Seguridad - Bitacora</Nombre>
+    </Permiso>
+    <Permiso Id="1020" Active="true">
+      <Nombre>Seguridad - Cerrar Sesión</Nombre>
+    </Permiso>
+    <Rol Id="14" Active="true">
+      <Nombre>Vendedor</Nombre>
+      <Permiso Id="1000" Active="true">
+        <Nombre>Usuarios - ABM Usuarios</Nombre>
+      </Permiso>
+      <Permiso Id="1001" Active="true">
+        <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
+      </Permiso>
+      <Permiso Id="1002" Active="true">
+        <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
+      </Permiso>
+      <Permiso Id="1003" Active="true">
+        <Nombre>Gestión Ventas - Realizar Pago</Nombre>
+      </Permiso>
+      <Permiso Id="1006" Active="true">
+        <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
+      </Permiso>
+      <Permiso Id="1012" Active="true">
+        <Nombre>Gestión Comisiones - Consultar Comisiones</Nombre>
+      </Permiso>
+      <Permiso Id="1013" Active="true">
+        <Nombre>Gestión Turnos - Registrar Turno</Nombre>
+      </Permiso>
+      <Permiso Id="1014" Active="true">
+        <Nombre>Gestión Turnos - Registrar Asistencia</Nombre>
+      </Permiso>
+      <Permiso Id="1020" Active="true">
+        <Nombre>Seguridad - Cerrar Sesión</Nombre>
+      </Permiso>
+    </Rol>
+    <Rol Id="15" Active="true">
+      <Nombre>Compras</Nombre>
+    </Rol>
+    <Rol Id="16" Active="true">
+      <Nombre>Administrativo</Nombre>
+    </Rol>
+  </Componentes>
+  <Usuario_Permisos>
+    <Usuario_Permiso>
+      <IdUsuario>14</IdUsuario>
+      <IdComponente>1001</IdComponente>
+    </Usuario_Permiso>
+    <Usuario_Permiso>
+      <IdUsuario>2</IdUsuario>
+      <IdComponente>14</IdComponente>
+    </Usuario_Permiso>
+  </Usuario_Permisos>
   <Usuarios>
     <Usuario Id="1" Active="true">
       <Username>admin</Username>

@@ -157,3 +157,4 @@ C:\Users\Educaccion\Desktop\TPFIN\AutoGestionFull\UI\obj\Debug\net8.0-windows\re
 C:\Users\Educaccion\Desktop\TPFIN\AutoGestionFull\UI\obj\Debug\net8.0-windows\UI.pdb
 C:\Users\Educaccion\Desktop\TPFIN\AutoGestionFull\UI\obj\Debug\net8.0-windows\UI.genruntimeconfig.cache
 C:\Users\Educaccion\Desktop\TPFIN\AutoGestionFull\UI\obj\Debug\net8.0-windows\ref\UI.dll
+C:\Users\hory_\OneDrive\Escritorio\TP\AutoGestionFull\UI\obj\Debug\net8.0-windows\AutoGestion.UI.UC_AsignarRoles.resources

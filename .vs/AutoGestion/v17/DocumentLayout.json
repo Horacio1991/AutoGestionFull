@@ -1,18 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\",
+  "WorkspaceRootPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\bll\\bllbackup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllbackup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\uc_bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\uc_bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_bitacora.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\dtos\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\bll\\bllcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\mapper\\mppcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\dtos\\permisodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\permisodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\dtos\\roldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\roldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tp\\autogestionfull\\mapper\\mppusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,59 +50,136 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BLLBackup.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLBackup.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLBackup.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLBackup.cs",
-              "RelativeToolTip": "BLL\\BLLBackup.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAkwEkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\Form1.cs",
+              "RelativeDocumentMoniker": "UI\\Form1.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\Form1.cs",
+              "RelativeToolTip": "UI\\Form1.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAowIAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T14:10:10.535Z",
+              "WhenOpened": "2025-07-17T16:43:48.504Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UC_Bitacora.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\UC_Bitacora.cs",
-              "RelativeDocumentMoniker": "UI\\UC_Bitacora.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\UC_Bitacora.cs",
-              "RelativeToolTip": "UI\\UC_Bitacora.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "UsuarioDto.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\UsuarioDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\UsuarioDto.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\UsuarioDto.cs",
+              "RelativeToolTip": "DTOs\\UsuarioDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T14:05:45.556Z",
+              "WhenOpened": "2025-07-17T16:27:24.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BLLComponente.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLComponente.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLComponente.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLComponente.cs",
+              "RelativeToolTip": "BLL\\BLLComponente.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAYwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:00:40.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UC_AsignarRoles.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
+              "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
+              "RelativeToolTip": "UI\\UC_AsignarRoles.cs",
+              "ViewState": "AgIAAOkAAAAAAAAAAAAAAP8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:00:54.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MPPComponente.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPComponente.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPComponente.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPComponente.cs",
+              "RelativeToolTip": "Mapper\\MPPComponente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:01:09.509Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UC_Bitacora.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\UC_Bitacora.cs",
-              "RelativeDocumentMoniker": "UI\\UC_Bitacora.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\UC_Bitacora.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UI\\UC_Bitacora.cs [Dise\u00F1o]",
+              "Title": "BLLUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLUsuario.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLUsuario.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLLUsuario.cs",
+              "RelativeToolTip": "BLL\\BLLUsuario.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAuwJAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T14:05:43.062Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
+              "WhenOpened": "2025-07-17T16:00:57.958Z",
+              "EditorCaption": ""
+            },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UC_AsignarRoles.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
+              "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\UI\\UC_AsignarRoles.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\UC_AsignarRoles.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:23:34.704Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PermisoDto.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\PermisoDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\PermisoDto.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\PermisoDto.cs",
+              "RelativeToolTip": "DTOs\\PermisoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:02:38.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RolDto.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\RolDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\RolDto.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\RolDto.cs",
+              "RelativeToolTip": "DTOs\\RolDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:03:00.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MPPUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPUsuario.cs",
+              "RelativeDocumentMoniker": "Mapper\\MPPUsuario.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\MPPUsuario.cs",
+              "RelativeToolTip": "Mapper\\MPPUsuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T16:01:16.581Z",
+              "EditorCaption": ""
             }
           ]
         }

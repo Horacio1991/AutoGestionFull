@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLL.csproj": {}
+    "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj": {
+    "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj",
+        "projectUniqueName": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj",
         "projectName": "BE",
-        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj",
-        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\obj\\",
+        "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj",
+        "packagesPath": "C:\\Users\\hory_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hory_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -71,24 +71,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLL.csproj": {
+    "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\obj\\",
+        "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\hory_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hory_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -103,17 +103,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj"
+              "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj"
               },
-              "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\DTOs.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\DTOs.csproj"
+              "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\DTOs.csproj": {
+                "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\DTOs.csproj"
               },
-              "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\Mapper.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\Mapper.csproj"
+              "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\Mapper.csproj": {
+                "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\Mapper.csproj"
               },
-              "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Servicios\\Servicios.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Servicios\\Servicios.csproj"
+              "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Servicios\\Servicios.csproj": {
+                "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Servicios\\Servicios.csproj"
               }
             }
           }
@@ -155,24 +155,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\DTOs.csproj": {
+    "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\DTOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\DTOs.csproj",
+        "projectUniqueName": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\DTOs.csproj",
         "projectName": "DTOs",
-        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\DTOs.csproj",
-        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\obj\\",
+        "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\DTOs.csproj",
+        "packagesPath": "C:\\Users\\hory_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hory_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -220,24 +220,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\Mapper.csproj": {
+    "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\Mapper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\Mapper.csproj",
+        "projectUniqueName": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\Mapper.csproj",
         "projectName": "Mapper",
-        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\Mapper.csproj",
-        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\obj\\",
+        "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\Mapper.csproj",
+        "packagesPath": "C:\\Users\\hory_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Mapper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hory_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -252,11 +252,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj"
+              "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj"
               },
-              "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Servicios\\Servicios.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Servicios\\Servicios.csproj"
+              "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Servicios\\Servicios.csproj": {
+                "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Servicios\\Servicios.csproj"
               }
             }
           }
@@ -298,24 +298,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Servicios\\Servicios.csproj": {
+    "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Servicios\\Servicios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Servicios\\Servicios.csproj",
+        "projectUniqueName": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Servicios\\Servicios.csproj",
         "projectName": "Servicios",
-        "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Servicios\\Servicios.csproj",
-        "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Servicios\\obj\\",
+        "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Servicios\\Servicios.csproj",
+        "packagesPath": "C:\\Users\\hory_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\Servicios\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hory_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -330,11 +330,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BE\\BE.csproj"
+              "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj": {
+                "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\BE\\BE.csproj"
               },
-              "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\DTOs.csproj": {
-                "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\DTOs\\DTOs.csproj"
+              "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\DTOs.csproj": {
+                "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TP\\AutoGestionFull\\DTOs\\DTOs.csproj"
               }
             }
           }
@@ -376,7 +376,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

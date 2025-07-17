@@ -12,10 +12,8 @@ namespace AutoGestion
         private readonly UsuarioDto _usuario;
         private readonly BLLComponente _bllComponente = new BLLComponente();
 
-        // Constructor sin parámetros (para el diseñador, si lo necesitas)
         public Form1() : this(SessionManager.CurrentUser) { }
 
-        // Nuevo constructor que recibe el DTO
         public Form1(UsuarioDto usuario)
         {
             InitializeComponent();
@@ -24,28 +22,24 @@ namespace AutoGestion
             Load += Form1_Load;
         }
 
-        public ToolStripItemCollection MenuItems
-        {
-            get { return menuPrincipal.Items; }
-        }
-
+        public ToolStripItemCollection MenuItems => menuPrincipal.Items;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
-                // Usamos _usuario (UsuarioDto) en vez de BE.UsuarioSesion
-                var permisosDto = _bllComponente
-                    .ObtenerPermisosUsuario(_usuario.ID)
-                    .Select(c => MapComponenteADto(c))
-                    .ToList();
+                // Ya recibimos PermisoDto directamente de la BLL
+                var permisosDto = _bllComponente.ObtenerPermisosUsuario(_usuario.ID);
 
+                // Si es admin, dejamos todo visible
                 if (_usuario.Username.Equals("admin", StringComparison.OrdinalIgnoreCase))
                     return;
 
+                // Oculto todo por defecto
                 foreach (ToolStripMenuItem menu in menuPrincipal.Items)
                     menu.Visible = false;
 
+                // Aplico visibilidad según permisos
                 AplicarPermisos(permisosDto);
             }
             catch (Exception ex)
@@ -59,11 +53,11 @@ namespace AutoGestion
             }
         }
 
-        private void AplicarPermisos(System.Collections.Generic.List<PermisoDto> comps)
+        private void AplicarPermisos(List<PermisoDto> comps)
         {
-            bool TienePermiso(System.Collections.Generic.IEnumerable<PermisoDto> list, string text)
+            bool TienePermiso(IEnumerable<PermisoDto> lista, string text)
             {
-                foreach (var p in list)
+                foreach (var p in lista)
                 {
                     if (p.Nombre.Equals(text, StringComparison.OrdinalIgnoreCase))
                         return true;
@@ -77,26 +71,15 @@ namespace AutoGestion
             {
                 menu.Visible = TienePermiso(comps, menu.Text);
                 foreach (ToolStripMenuItem sub in menu.DropDownItems.OfType<ToolStripMenuItem>())
-                {
                     sub.Visible = TienePermiso(comps, sub.Text);
-                }
             }
 
-            // Aseguro que "Cerrar sesión" esté siempre visible
+            // "Cerrar sesión" siempre visible
             var cerrar = menuPrincipal.Items
                 .OfType<ToolStripMenuItem>()
                 .SelectMany(m => m.DropDownItems.OfType<ToolStripMenuItem>())
                 .FirstOrDefault(mi => mi.Name == "mnuCerrarSesion");
             if (cerrar != null) cerrar.Visible = true;
-        }
-
-        // Mapea recursivamente BEComponente → PermisoDto (método igual al de BLLUsuario)
-        private PermisoDto MapComponenteADto(BE.BEComposite.BEComponente comp)
-        {
-            var dto = new PermisoDto { Id = comp.Id, Nombre = comp.Nombre };
-            foreach (var hijo in comp.Hijos)
-                dto.Hijos.Add(MapComponenteADto(hijo));
-            return dto;
         }
 
         private void CargarControl(UserControl uc)
@@ -141,7 +124,5 @@ namespace AutoGestion
             new FormLogin().Show();
             Close();
         }
-
-
     }
 }
