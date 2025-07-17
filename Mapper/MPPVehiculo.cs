@@ -1,4 +1,9 @@
-﻿using System.Xml.Linq;
+﻿// Mapper/MPPVehiculo.cs
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 using BE;
 using Servicios.Utilidades;
 
@@ -10,16 +15,21 @@ namespace Mapper
 
         private XDocument LoadOrEmpty()
         {
-            return File.Exists(rutaXML)
-                ? XDocument.Load(rutaXML)
-                : new XDocument(new XElement("BaseDeDatosLocal"));
+            if (!File.Exists(rutaXML))
+                return new XDocument(new XElement("BaseDeDatosLocal", new XElement("Vehiculos")));
+
+            var doc = XDocument.Load(rutaXML);
+            if (doc.Root.Element("Vehiculos") == null)
+                doc.Root.Add(new XElement("Vehiculos"));
+            return doc;
         }
 
         private IEnumerable<XElement> RootVehiculos(XDocument doc)
         {
             var root = doc.Root.Element("Vehiculos");
             if (root == null) yield break;
-            foreach (var x in root.Elements("Vehiculo")) yield return x;
+            foreach (var x in root.Elements("Vehiculo"))
+                yield return x;
         }
 
         public List<Vehiculo> ListarTodo()
@@ -32,40 +42,63 @@ namespace Mapper
         }
 
         public List<Vehiculo> ListarDisponibles()
-        {
-            return ListarTodo()
-                .Where(v => string.Equals(v.Estado, "Disponible", StringComparison.OrdinalIgnoreCase))
-                .ToList();
-        }
+            => ListarTodo()
+               .Where(v => string.Equals(v.Estado, "Disponible", StringComparison.OrdinalIgnoreCase))
+               .ToList();
 
         public Vehiculo BuscarPorId(int id)
-        {
-            return ListarTodo().FirstOrDefault(v => v.ID == id);
-        }
+            => ListarTodo().FirstOrDefault(v => v.ID == id);
 
         public List<Vehiculo> BuscarPorModelo(string modelo)
-        {
-            return ListarDisponibles()
-                .Where(v => v.Modelo.Equals(modelo, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-        }
+            => ListarDisponibles()
+               .Where(v => v.Modelo.Equals(modelo, StringComparison.OrdinalIgnoreCase))
+               .ToList();
 
         public List<Vehiculo> BuscarPorMarca(string marca)
+            => ListarDisponibles()
+               .Where(v => v.Marca.Equals(marca, StringComparison.OrdinalIgnoreCase))
+               .ToList();
+
+        public Vehiculo BuscarPorDominio(string dominio)
+            => ListarTodo()
+               .FirstOrDefault(v =>
+                   v.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase));
+
+        public void Alta(Vehiculo v)
         {
-            return ListarDisponibles()
-                .Where(v => v.Marca.Equals(marca, StringComparison.OrdinalIgnoreCase))
-                .ToList();
+            var doc = LoadOrEmpty();
+            var root = doc.Root.Element("Vehiculos");
+
+            // Calcular nuevo ID
+            int nextId = root.Elements("Vehiculo")
+                             .Select(x => (int)x.Attribute("Id"))
+                             .DefaultIfEmpty(0)
+                             .Max() + 1;
+            v.ID = nextId;
+
+            // Crear elemento
+            var elem = new XElement("Vehiculo",
+                new XAttribute("Id", v.ID),
+                new XAttribute("Active", "true"),
+                new XElement("Marca", v.Marca),
+                new XElement("Modelo", v.Modelo),
+                new XElement("Año", v.Año),
+                new XElement("Color", v.Color),
+                new XElement("Km", v.Km),
+                new XElement("Dominio", v.Dominio),
+                new XElement("Estado", v.Estado)
+            );
+            root.Add(elem);
+
+            doc.Save(rutaXML);
         }
 
         public void Actualizar(Vehiculo vehiculo)
         {
-            // 1) Cargo el XML
             var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("Vehiculos");
-            if (root == null)
-                throw new ApplicationException("Sección 'Vehiculos' no encontrada en el XML.");
+            var root = doc.Root.Element("Vehiculos")
+                       ?? throw new ApplicationException("Sección 'Vehiculos' no encontrada en el XML.");
 
-            // 2) Busco el elemento por ID
             var elem = root
                 .Elements("Vehiculo")
                 .FirstOrDefault(x => (int)x.Attribute("Id") == vehiculo.ID);
@@ -73,7 +106,6 @@ namespace Mapper
             if (elem == null)
                 throw new ApplicationException($"Vehículo con Id={vehiculo.ID} no encontrado.");
 
-            // 3) Actualizo cada campo
             elem.SetElementValue("Marca", vehiculo.Marca);
             elem.SetElementValue("Modelo", vehiculo.Modelo);
             elem.SetElementValue("Año", vehiculo.Año);
@@ -82,7 +114,6 @@ namespace Mapper
             elem.SetElementValue("Dominio", vehiculo.Dominio);
             elem.SetElementValue("Estado", vehiculo.Estado);
 
-            // 4) Guardo los cambios
             doc.Save(rutaXML);
         }
 
@@ -97,43 +128,5 @@ namespace Mapper
             Dominio = x.Element("Dominio")?.Value,
             Estado = x.Element("Estado")?.Value
         };
-
-        public Vehiculo BuscarPorDominio(string dominio)
-        {
-            return ListarTodo()
-                .FirstOrDefault(v =>
-                    v.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase));
-        }
-
-        public void Alta(Vehiculo vehiculo)
-        {
-            var doc = LoadOrEmpty();
-            var root = doc.Root.Element("Vehiculos");
-            if (root == null)
-            {
-                root = new XElement("Vehiculos");
-                doc.Root.Add(root);
-            }
-            int nextId = root.Elements("Vehiculo")
-                             .Select(x => (int)x.Attribute("Id"))
-                             .DefaultIfEmpty(0)
-                             .Max() + 1;
-            vehiculo.ID = nextId;
-
-            var elem = new XElement("Vehiculo",
-                new XAttribute("Id", vehiculo.ID),
-                new XAttribute("Active", "true"),
-                new XElement("Marca", vehiculo.Marca),
-                new XElement("Modelo", vehiculo.Modelo),
-                new XElement("Año", vehiculo.Año),
-                new XElement("Color", vehiculo.Color),
-                new XElement("Km", vehiculo.Km),
-                new XElement("Dominio", vehiculo.Dominio),
-                new XElement("Estado", vehiculo.Estado)
-            );
-            root.Add(elem);
-            doc.Save(rutaXML);
-        }
-
     }
 }

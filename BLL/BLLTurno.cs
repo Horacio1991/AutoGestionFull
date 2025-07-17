@@ -48,6 +48,6 @@ namespace BLL
 
         // Lo usamos internamente para no volver a instanciar MPPVehiculo
         private Vehiculo ObtenerPorDominio(string dominio)
-            => new BLLVehiculo().ObtenerPorDominio(dominio);
+            => null;
     }
 }

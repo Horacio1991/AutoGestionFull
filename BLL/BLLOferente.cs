@@ -23,17 +23,17 @@ namespace BLL
             return _mapper.BuscarPorId(id);
         }
 
-        public Oferente ObtenerPorDni(string dni)
-        {
-            if (string.IsNullOrWhiteSpace(dni))
-                throw new ArgumentException("DNI inválido.", nameof(dni));
-
-            return _mapper.BuscarPorDni(dni);
-        }
+        public BE.Oferente ObtenerPorDni(string dni)=> _mapper.BuscarPorDni(dni);
 
         public bool ExisteOferente(string dni)
         {
             return _mapper.Existe(dni);
+        }
+
+        public BE.Oferente RegistrarOferente(BE.Oferente oferente)
+        {
+            _mapper.Alta(oferente);
+            return oferente;
         }
 
         // Devuelve un DTO si existe

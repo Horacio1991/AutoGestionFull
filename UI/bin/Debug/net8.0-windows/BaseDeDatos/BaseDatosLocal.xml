@@ -91,6 +91,24 @@
       <Dominio>BCD890</Dominio>
       <Estado>Disponible</Estado>
     </Vehiculo>
+    <Vehiculo Id="11" Active="true">
+      <Marca>Chevrolet</Marca>
+      <Modelo>Corsa II</Modelo>
+      <Año>2010</Año>
+      <Color>Verde</Color>
+      <Km>110000</Km>
+      <Dominio>IWY960</Dominio>
+      <Estado>En Proceso</Estado>
+    </Vehiculo>
+    <Vehiculo Id="12" Active="true">
+      <Marca>Ford</Marca>
+      <Modelo>Focus</Modelo>
+      <Año>2012</Año>
+      <Color>Blanco</Color>
+      <Km>90000</Km>
+      <Dominio>MXI123</Dominio>
+      <Estado>En Proceso</Estado>
+    </Vehiculo>
   </Vehiculos>
   <Componentes />
   <Usuario_Permisos />
@@ -219,4 +237,18 @@
       <Contacto>belen@gmail.com</Contacto>
     </Oferente>
   </Oferentes>
+  <OfertaCompras>
+    <OfertaCompra Id="1" Active="true">
+      <OferenteId>2</OferenteId>
+      <VehiculoId>11</VehiculoId>
+      <FechaInspeccion>2025-07-16T00:00:00</FechaInspeccion>
+      <Estado>En evaluación</Estado>
+    </OfertaCompra>
+    <OfertaCompra Id="2" Active="true">
+      <OferenteId>1</OferenteId>
+      <VehiculoId>12</VehiculoId>
+      <FechaInspeccion>2025-07-16T00:00:00</FechaInspeccion>
+      <Estado>En evaluación</Estado>
+    </OfertaCompra>
+  </OfertaCompras>
 </BaseDeDatosLocal>

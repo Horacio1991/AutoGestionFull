@@ -1,4 +1,8 @@
-﻿using BE;
+﻿// BLL/BLLVehiculo.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using BE;
 using DTOs;
 using Mapper;
 
@@ -8,72 +12,31 @@ namespace BLL
     {
         private readonly MPPVehiculo _mapper = new MPPVehiculo();
 
-        /// <summary>
-        /// Devuelve todos los vehículos con estado "Disponible" como DTOs.
-        /// </summary>
+        /// <summary>Vehículos disponibles como DTOs.</summary>
         public List<VehiculoDto> ObtenerVehiculosDisponiblesDto()
-        {
-            return _mapper.ListarDisponibles()
-                .Select(v => new VehiculoDto
-                {
-                    ID = v.ID,
-                    Marca = v.Marca,
-                    Modelo = v.Modelo,
-                    Año = v.Año,
-                    Color = v.Color,
-                    Km = v.Km,
-                    Dominio = v.Dominio,
-                    Estado = v.Estado
-                })
-                .ToList();
-        }
+            => _mapper.ListarDisponibles()
+                      .Select(MapToDto)
+                      .ToList();
 
-        /// <summary>
-        /// Busca vehículos disponibles por modelo exacto y los devuelve como DTOs.
-        /// </summary>
+        /// <summary>Buscar disponibles por modelo exacto.</summary>
         public List<VehiculoDto> BuscarPorModeloDto(string modelo)
-        {
-            return _mapper.ListarDisponibles()
-                .Where(v => v.Modelo.Equals(modelo, StringComparison.OrdinalIgnoreCase))
-                .Select(v => new VehiculoDto
-                {
-                    ID = v.ID,
-                    Marca = v.Marca,
-                    Modelo = v.Modelo,
-                    Año = v.Año,
-                    Color = v.Color,
-                    Km = v.Km,
-                    Dominio = v.Dominio,
-                    Estado = v.Estado
-                })
-                .ToList();
-        }
+            => _mapper.ListarDisponibles()
+                      .Where(v => v.Modelo.Equals(modelo, StringComparison.OrdinalIgnoreCase))
+                      .Select(MapToDto)
+                      .ToList();
 
-        /// <summary>
-        /// Busca vehículos disponibles por marca exacta y los devuelve como DTOs.
-        /// </summary>
+        /// <summary>Buscar disponibles por marca exacta.</summary>
         public List<VehiculoDto> BuscarPorMarcaDto(string marca)
-        {
-            return _mapper.ListarDisponibles()
-                .Where(v => v.Marca.Equals(marca, StringComparison.OrdinalIgnoreCase))
-                .Select(v => new VehiculoDto
-                {
-                    ID = v.ID,
-                    Marca = v.Marca,
-                    Modelo = v.Modelo,
-                    Año = v.Año,
-                    Color = v.Color,
-                    Km = v.Km,
-                    Dominio = v.Dominio,
-                    Estado = v.Estado
-                })
-                .ToList();
-        }
+            => _mapper.ListarDisponibles()
+                      .Where(v => v.Marca.Equals(marca, StringComparison.OrdinalIgnoreCase))
+                      .Select(MapToDto)
+                      .ToList();
 
-        /// <summary>Traer vehículo completo por ID.</summary>
+        /// <summary>Traer vehículo completo BE por ID.</summary>
         public Vehiculo BuscarPorId(int id)
             => _mapper.BuscarPorId(id);
 
+        /// <summary>Actualizar solo el estado de stock.</summary>
         public void ActualizarEstadoStock(int vehiculoId, string nuevoEstado)
         {
             var veh = _mapper.BuscarPorId(vehiculoId)
@@ -82,15 +45,19 @@ namespace BLL
             _mapper.Actualizar(veh);
         }
 
-        // Devuelve un DTO buscándolo por dominio
-        public Vehiculo ObtenerPorDominio(string dominio)
-            => _mapper.BuscarPorDominio(dominio);
-        // Registra un vehículo a partir de un DTO
-        // 2) Registrar (dar de alta) un nuevo vehículo a partir de un DTO y devolver el DTO resultante
+        /// <summary>Buscar un DTO por dominio.</summary>
+        public VehiculoDto ObtenerPorDominioDto(string dominio)
+        {
+            var beVeh = _mapper.ListarTodo()
+                               .FirstOrDefault(v =>
+                                   v.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase));
+            return beVeh is null ? null : MapToDto(beVeh);
+        }
+
+        /// <summary>Registrar un vehículo desde DTO y devolver el DTO con ID.</summary>
         public VehiculoDto RegistrarVehiculoDto(VehiculoDto dto)
         {
-            // Mapeo DTO → entidad BE.Vehiculo
-            var beVeh = new Vehiculo
+            var be = new Vehiculo
             {
                 Marca = dto.Marca,
                 Modelo = dto.Modelo,
@@ -101,43 +68,28 @@ namespace BLL
                 Estado = dto.Estado ?? "Disponible"
             };
 
-            // Darlo de alta en el XML
-            _mapper.Actualizar(beVeh); // o si tienes un Alta() crea otro método en MPPVehiculo
+            _mapper.Alta(be);
 
-            // Asumimos que la ID se generó, recargamos para obtenerla
+            // Leer nuevamente para capturar el ID generado
             var creado = _mapper.ListarTodo()
-                                .First(v => v.Dominio == beVeh.Dominio);
-            // Y devolvemos el DTO con la ID
-            return new VehiculoDto
-            {
-                ID = creado.ID,
-                Marca = creado.Marca,
-                Modelo = creado.Modelo,
-                Año = creado.Año,
-                Color = creado.Color,
-                Km = creado.Km,
-                Dominio = creado.Dominio,
-                Estado = creado.Estado
-            };
+                                .First(v => v.Dominio == be.Dominio);
+
+            return MapToDto(creado);
         }
-        // 1) Buscar un VehiculoDto por dominio
-        public VehiculoDto ObtenerPorDominioDto(string dominio)
+
+        
+
+       
+        private VehiculoDto MapToDto(Vehiculo v) => new VehiculoDto
         {
-            var beVeh = _mapper.ListarTodo()
-                               .FirstOrDefault(v =>
-                                   v.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase));
-            if (beVeh == null) return null;
-            return new VehiculoDto
-            {
-                ID = beVeh.ID,
-                Marca = beVeh.Marca,
-                Modelo = beVeh.Modelo,
-                Año = beVeh.Año,
-                Color = beVeh.Color,
-                Km = beVeh.Km,
-                Dominio = beVeh.Dominio,
-                Estado = beVeh.Estado
-            };
-        }
+            ID = v.ID,
+            Marca = v.Marca,
+            Modelo = v.Modelo,
+            Año = v.Año,
+            Color = v.Color,
+            Km = v.Km,
+            Dominio = v.Dominio,
+            Estado = v.Estado
+        };
     }
 }

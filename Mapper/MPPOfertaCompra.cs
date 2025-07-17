@@ -68,24 +68,33 @@ namespace Mapper
         public void Alta(OfertaCompra oferta)
         {
             var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("OfertaCompras");
 
+            // Asegurarnos de que exista el contenedor <OfertaCompras>
+            var root = doc.Root.Element("OfertaCompras");
+            if (root == null)
+            {
+                root = new XElement("OfertaCompras");
+                doc.Root.Add(root);
+            }
+
+            // Calcular el próximo Id
             int nextId = root.Elements("OfertaCompra")
                              .Select(x => (int)x.Attribute("Id"))
                              .DefaultIfEmpty(0)
                              .Max() + 1;
-
             oferta.ID = nextId;
 
+            // Construir el elemento XML
             var elem = new XElement("OfertaCompra",
-                new XAttribute("Id", nextId),
+                new XAttribute("Id", oferta.ID),
                 new XAttribute("Active", "true"),
+                new XElement("OferenteId", oferta.Oferente.ID),
+                new XElement("VehiculoId", oferta.Vehiculo.ID),
                 new XElement("FechaInspeccion", oferta.FechaInspeccion.ToString("s")),
-                new XElement("Estado", oferta.Estado),
-                new XElement("Oferente", new XAttribute("Id", oferta.Oferente.ID)),
-                new XElement("Vehiculo", new XAttribute("Id", oferta.Vehiculo.ID))
+                new XElement("Estado", oferta.Estado)
             );
 
+            // Agregar y guardar
             root.Add(elem);
             doc.Save(rutaXML);
         }
