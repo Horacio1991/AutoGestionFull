@@ -61,7 +61,7 @@
             chartRanking.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             chartRanking.Legends.Add(legend1);
-            chartRanking.Location = new Point(421, 424);
+            chartRanking.Location = new Point(421, 370);
             chartRanking.Name = "chartRanking";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
@@ -75,7 +75,7 @@
             // dgvRanking
             // 
             dgvRanking.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRanking.Location = new Point(23, 424);
+            dgvRanking.Location = new Point(23, 370);
             dgvRanking.Name = "dgvRanking";
             dgvRanking.Size = new Size(378, 247);
             dgvRanking.TabIndex = 4;

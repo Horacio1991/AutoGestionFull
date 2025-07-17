@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\registrarasistencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\registrarasistencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\registrarasistencia.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\registrarasistencia.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\bll\\blldashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\blldashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\bll\\bllcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\mapper\\mppturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppturno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\registrarasistencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\registrarasistencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tpfin\\autogestionfull\\ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,72 +25,50 @@
           "SelectedChildIndex": 4,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RegistrarAsistencia.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.Designer.cs",
-              "RelativeDocumentMoniker": "UI\\RegistrarAsistencia.Designer.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.Designer.cs",
-              "RelativeToolTip": "UI\\RegistrarAsistencia.Designer.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAASwG4AAAAAAAAAAAAAAA==",
+              "Title": "BLLDashboard.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLDashboard.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLDashboard.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLDashboard.cs",
+              "RelativeToolTip": "BLL\\BLLDashboard.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAADcAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:57:59.454Z",
+              "WhenOpened": "2025-07-17T12:07:43.69Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "BLLCliente.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLCliente.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLCliente.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\BLL\\BLLCliente.cs",
-              "RelativeToolTip": "BLL\\BLLCliente.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
+              "Title": "Dashboard.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\Dashboard.cs",
+              "RelativeDocumentMoniker": "UI\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\Dashboard.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\Dashboard.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:57:41.25Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MPPTurno.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\MPPTurno.cs",
-              "RelativeDocumentMoniker": "Mapper\\MPPTurno.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\Mapper\\MPPTurno.cs",
-              "RelativeToolTip": "Mapper\\MPPTurno.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAkwGgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:53:42.992Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+              "WhenOpened": "2025-07-17T12:38:35.486Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RegistrarAsistencia.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.cs",
-              "RelativeDocumentMoniker": "UI\\RegistrarAsistencia.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.cs",
-              "RelativeToolTip": "UI\\RegistrarAsistencia.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAAACEAAAA2AAAAAAAAAA==",
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\Dashboard.cs",
+              "RelativeDocumentMoniker": "UI\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\Dashboard.cs",
+              "RelativeToolTip": "UI\\Dashboard.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAEkAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:51:12.68Z",
+              "WhenOpened": "2025-07-17T12:07:29.2Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RegistrarAsistencia.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.cs",
-              "RelativeDocumentMoniker": "UI\\RegistrarAsistencia.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TPFIN\\AutoGestionFull\\UI\\RegistrarAsistencia.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UI\\RegistrarAsistencia.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T11:50:29.292Z",
-              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         },

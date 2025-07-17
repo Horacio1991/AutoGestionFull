@@ -1,8 +1,10 @@
 ﻿using BLL;
 using DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-
-
 
 namespace Vista.UserControls.Dashboard
 {
@@ -16,6 +18,7 @@ namespace Vista.UserControls.Dashboard
         {
             InitializeComponent();
 
+            // Configuro el combo de período
             cmbFiltroPeriodo.Items.AddRange(new object[]
             {
                 "Hoy", "Últimos 7 días", "Últimos 30 días"
@@ -30,8 +33,7 @@ namespace Vista.UserControls.Dashboard
         {
             try
             {
-                DateTime hoy = DateTime.Today;
-                DateTime desde, hasta;
+                DateTime hoy = DateTime.Today, desde, hasta;
 
                 switch ((string)cmbFiltroPeriodo.SelectedItem)
                 {
@@ -49,19 +51,25 @@ namespace Vista.UserControls.Dashboard
                 decimal total = _bll.ObtenerTotalFacturado(desde, hasta);
                 lblTotalFacturado.Text = $"{ObtenerTextoPeriodo()}: {total:C2}";
 
-                // Ventas
+                // 1) Ventas
                 _ventas = _bll.ObtenerVentasFiltradas(desde, hasta);
                 dgvVentas.DataSource = _ventas;
                 dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                CargarGraficoVentas(_ventas);
+                DibujarGraficoVentas(_ventas);
 
+                // 2) Ranking
                 // Ranking
                 _ranking = _bll.ObtenerRanking(desde, hasta);
+
+                // Asegurarnos de que el grid va a crear una columna para cada propiedad
+                dgvRanking.AutoGenerateColumns = true;
                 dgvRanking.DataSource = _ranking;
                 dgvRanking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                CargarGraficoRanking(_ranking);
+                // Y luego dibujamos el chart
+                DibujarGraficoRanking(_ranking);
+
             }
             catch (Exception ex)
             {
@@ -72,57 +80,59 @@ namespace Vista.UserControls.Dashboard
             }
         }
 
-        private void CargarGraficoVentas(List<DashboardVentaDto> ventas)
+        private void DibujarGraficoVentas(List<DashboardVentaDto> ventas)
         {
-            chartVentas.Series.Clear();
-            var serie = new Series("Ventas")
-            {
-                ChartType = SeriesChartType.Column,
-                IsValueShownAsLabel = true
-            };
+            var chart = chartVentas;
+            var serie = chart.Series["Series1"];
+            serie.Points.Clear();
+            serie.ChartType = SeriesChartType.Column;
+            serie.IsValueShownAsLabel = true;
+            chart.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+
+            // Agrupo por día
             var porDia = ventas
                 .GroupBy(v => v.Fecha)
                 .Select(g => new { Fecha = g.Key, Total = g.Sum(x => x.Total) })
-                .OrderBy(x => x.Fecha)
-                .ToList();
+                .OrderBy(x => x.Fecha);
 
-            for (int i = 0; i < porDia.Count; i++)
+            foreach (var item in porDia)
             {
-                var item = porDia[i];
-                serie.Points.AddXY(i + 1, item.Total);
-                serie.Points[i].ToolTip = $"{item.Fecha:dd/MM/yyyy}: {item.Total:C2}";
-                chartVentas.ChartAreas[0].AxisX.CustomLabels.Add(
-                    new CustomLabel(i + 0.5, i + 1.5, item.Fecha.ToString("dd/MM"), 0, LabelMarkStyle.None)
-                );
+                int idx = serie.Points.AddXY(item.Fecha, item.Total);
+                serie.Points[idx].ToolTip = $"{item.Fecha:dd/MM/yyyy}: {item.Total:C2}";
             }
 
-            chartVentas.Series.Add(serie);
-            chartVentas.ChartAreas[0].AxisX.Interval = 1;
-            chartVentas.Legends[0].Enabled = false;
+            // Formato eje X como fechas
+            var ax = chart.ChartAreas["ChartArea1"].AxisX;
+            ax.LabelStyle.Format = "dd/MM";
+            ax.Interval = 1;
+            chart.Legends["Legend1"].Enabled = false;
         }
 
-        private void CargarGraficoRanking(List<DashboardRankingDto> ranking)
+        private void DibujarGraficoRanking(List<DashboardRankingDto> ranking)
         {
-            chartRanking.Series.Clear();
-            var serie = new Series("Ranking")
-            {
-                ChartType = SeriesChartType.Bar,
-                IsValueShownAsLabel = true
-            };
+            var chart = chartRanking;
+            var serie = chart.Series["Series1"];
+            serie.Points.Clear();
+            serie.ChartType = SeriesChartType.Bar;
+            serie.IsValueShownAsLabel = true;
 
-            for (int i = 0; i < ranking.Count; i++)
+            // Desactivar gridlines si las tenías puestas
+            chart.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+
+            // Si no hay datos, abortamos
+            if (ranking == null || ranking.Count == 0)
+                return;
+
+            foreach (var item in ranking)
             {
-                var item = ranking[i];
-                serie.Points.AddXY(i + 1, item.Total);
-                serie.Points[i].ToolTip = $"{item.Vendedor}: {item.Total:C2}";
-                chartRanking.ChartAreas[0].AxisY.CustomLabels.Add(
-                    new CustomLabel(i + 0.5, i + 1.5, item.Vendedor, 0, LabelMarkStyle.None)
-                );
+                // Ya sabemos que item.Vendedor no es null
+                int idx = serie.Points.AddXY(item.Vendedor, item.Total);
+                serie.Points[idx].ToolTip = $"{item.Vendedor}: {item.Total:C2}";
             }
 
-            chartRanking.Series.Add(serie);
-            chartRanking.ChartAreas[0].AxisY.Interval = 1;
-            chartRanking.Legends[0].Enabled = false;
+            chart.Legends["Legend1"].Enabled = false;
         }
 
         private string ObtenerTextoPeriodo() => cmbFiltroPeriodo.SelectedItem as string switch
