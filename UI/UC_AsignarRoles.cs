@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using BLL;
+﻿using BLL;
 using DTOs;
 using Servicios;
 
@@ -21,12 +18,13 @@ namespace AutoGestion.UI
                 CargarUsuarios();
                 CargarRoles();
                 CargarPermisosGlobales();
+                CargarMenusEnComboBox();
             };
 
             treeViewUsuarios.AfterSelect += TreeViewUsuarios_AfterSelect;
             trvPermisosRoles.AfterSelect += TreeViewRoles_AfterSelect;
             trvPermisos.AfterSelect += TreeViewPermisos_AfterSelect;
-
+            comboBoxMenu.SelectedIndexChanged += (s, e) => CargarItemsDelMenu();
             btnAltaPermiso.Click += BtnAltaPermiso_Click;
             btnEliminarPermiso.Click += BtnEliminarPermiso_Click;
             btnAltaRol.Click += BtnAltaRol_Click;
@@ -70,6 +68,31 @@ namespace AutoGestion.UI
                 root.Nodes.Add(new TreeNode(p.Nombre) { Tag = p });
             root.Expand();
         }
+
+        private void CargarMenusEnComboBox()
+        {
+            comboBoxMenu.Items.Clear();
+            var main = Application.OpenForms
+                                  .OfType<Form1>()
+                                  .FirstOrDefault();
+            if (main == null) return;
+
+            foreach (ToolStripMenuItem menu in main.MenuItems)
+                comboBoxMenu.Items.Add(menu);
+            comboBoxMenu.DisplayMember = "Text";
+        }
+
+        private void CargarItemsDelMenu()
+        {
+            comboBoxItem.Items.Clear();
+            if (comboBoxMenu.SelectedItem is ToolStripMenuItem menu)
+            {
+                foreach (ToolStripItem item in menu.DropDownItems.OfType<ToolStripItem>())
+                    comboBoxItem.Items.Add(item);
+                comboBoxItem.DisplayMember = "Text";
+            }
+        }
+
 
         private void TreeViewUsuarios_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -325,7 +348,9 @@ namespace AutoGestion.UI
             }
 
             // Refresco la vista del rol actual
-            TreeViewRoles_AfterSelect(this, new TreeViewEventArgs(trvPermisosRoles.SelectedNode));
+            //TreeViewRoles_AfterSelect(this, new TreeViewEventArgs(trvPermisosRoles.SelectedNode));
+            // 1. Refresco la vista del rol actual
+            RefrescarPermisosPorRol(rolId);
 
             if (errores.Count == 0)
                 MessageBox.Show("✅ Todos los permisos fueron asignados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -350,5 +375,65 @@ namespace AutoGestion.UI
             }
         }
 
+        private void btnQuitarPermisosSeleccionados_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBoxRolId.Text, out var rolId))
+            {
+                MessageBox.Show("Seleccioná primero un rol válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Recojo todos los permisos chequeados en trvPermisosPorRol
+            var permisosARemover = trvPermisosPorRol.Nodes[0].Nodes
+                .Cast<TreeNode>()
+                .Where(n => n.Checked && n.Tag is PermisoDto)
+                .Select(n => ((PermisoDto)n.Tag).Id)
+                .ToList();
+
+            if (permisosARemover.Count == 0)
+            {
+                MessageBox.Show("Marcá al menos un permiso para quitar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var errores = new List<int>();
+            foreach (var pid in permisosARemover)
+            {
+                if (!_bllComponente.EliminarPermisoDeRol(rolId, pid))
+                    errores.Add(pid);
+            }
+
+            // Refresco la vista
+            RefrescarPermisosPorRol(rolId);
+
+            if (errores.Count == 0)
+                MessageBox.Show("✅ Todos los permisos fueron removidos correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show($"❌ No se pudieron remover los permisos: {string.Join(", ", errores)}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void RefrescarPermisosPorRol(int rolId)
+        {
+            // 1) recargo la lista de roles para tener el DTO actualizado
+            CargarRoles();
+
+            // 2) vuelvo a seleccionar el nodo del rol en trvPermisosRoles
+            var nodoRol = trvPermisosRoles.Nodes[0].Nodes
+                .Cast<TreeNode>()
+                .FirstOrDefault(n => ((RolDto)n.Tag).Id == rolId);
+
+            if (nodoRol != null)
+            {
+                trvPermisosRoles.SelectedNode = nodoRol;
+                // disparamos a mano el AfterSelect para que rellene trvPermisosPorRol
+                TreeViewRoles_AfterSelect(this, new TreeViewEventArgs(nodoRol));
+            }
+        }
+
+        private void trvPermisosPorRol_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            if (e.Action != TreeViewAction.Unknown)
+                CheckAllChildNodes(e.Node, e.Node.Checked);
+        }
     }
 }

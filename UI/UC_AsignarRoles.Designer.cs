@@ -76,6 +76,7 @@
             groupBox6 = new GroupBox();
             groupBox7 = new GroupBox();
             groupBox8 = new GroupBox();
+            btnQuitarPermisosSeleccionados = new Button();
             groupBoxUsuario.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -138,11 +139,13 @@
             // 
             // trvPermisosPorRol
             // 
+            trvPermisosPorRol.CheckBoxes = true;
             trvPermisosPorRol.Location = new Point(717, 330);
             trvPermisosPorRol.Margin = new Padding(2);
             trvPermisosPorRol.Name = "trvPermisosPorRol";
             trvPermisosPorRol.Size = new Size(254, 369);
             trvPermisosPorRol.TabIndex = 7;
+            trvPermisosPorRol.AfterCheck += trvPermisosPorRol_AfterCheck;
             // 
             // lblPermisoPorRol
             // 
@@ -512,10 +515,10 @@
             // 
             // btnAsignarPermisosSeleccionados
             // 
-            btnAsignarPermisosSeleccionados.Location = new Point(83, 71);
+            btnAsignarPermisosSeleccionados.Location = new Point(8, 67);
             btnAsignarPermisosSeleccionados.Margin = new Padding(4, 3, 4, 3);
             btnAsignarPermisosSeleccionados.Name = "btnAsignarPermisosSeleccionados";
-            btnAsignarPermisosSeleccionados.Size = new Size(161, 42);
+            btnAsignarPermisosSeleccionados.Size = new Size(145, 42);
             btnAsignarPermisosSeleccionados.TabIndex = 60;
             btnAsignarPermisosSeleccionados.Text = "Asignar permisos seleccionados";
             btnAsignarPermisosSeleccionados.UseVisualStyleBackColor = true;
@@ -576,6 +579,7 @@
             // 
             // groupBox8
             // 
+            groupBox8.Controls.Add(btnQuitarPermisosSeleccionados);
             groupBox8.Controls.Add(btnAsignarPermisosSeleccionados);
             groupBox8.Controls.Add(btnAsociarPermisoARol);
             groupBox8.Controls.Add(btnQuitarPermisoARol);
@@ -587,6 +591,17 @@
             groupBox8.TabIndex = 64;
             groupBox8.TabStop = false;
             groupBox8.Text = "Opciones Roles / Permisos";
+            // 
+            // btnQuitarPermisosSeleccionados
+            // 
+            btnQuitarPermisosSeleccionados.Location = new Point(161, 67);
+            btnQuitarPermisosSeleccionados.Margin = new Padding(4, 3, 4, 3);
+            btnQuitarPermisosSeleccionados.Name = "btnQuitarPermisosSeleccionados";
+            btnQuitarPermisosSeleccionados.Size = new Size(128, 42);
+            btnQuitarPermisosSeleccionados.TabIndex = 61;
+            btnQuitarPermisosSeleccionados.Text = "Quitar permisos seleccionados";
+            btnQuitarPermisosSeleccionados.UseVisualStyleBackColor = true;
+            btnQuitarPermisosSeleccionados.Click += btnQuitarPermisosSeleccionados_Click;
             // 
             // UC_AsignarRoles
             // 
@@ -675,5 +690,6 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox8;
         private Button btnAsignarPermisosSeleccionados;
+        private Button btnQuitarPermisosSeleccionados;
     }
 }

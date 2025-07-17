@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\uc_asignarroles.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\uc_asignarroles.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\uc_asignarroles.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\bll\\bllusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "UC_AsignarRoles.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
               "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.cs",
@@ -50,26 +50,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UC_AsignarRoles.Designer.cs",
               "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.Designer.cs",
               "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.Designer.cs",
               "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.Designer.cs",
               "RelativeToolTip": "UI\\UC_AsignarRoles.Designer.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAASwJEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAASwJQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-17T18:08:54.9Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UC_AsignarRoles.cs",
               "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
               "RelativeDocumentMoniker": "UI\\UC_AsignarRoles.cs",
               "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\UC_AsignarRoles.cs",
               "RelativeToolTip": "UI\\UC_AsignarRoles.cs",
-              "ViewState": "AgIAAEUBAAAAAAAAAAAAAFABAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKcBAAAAAAAAAAAiwLcBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-17T17:51:14.617Z",
               "EditorCaption": ""

@@ -120,342 +120,279 @@
     </Vehiculo>
   </Vehiculos>
   <Componentes>
-    <Permiso Id="1000" Active="true">
+    <Permiso Id="1000" Active="false">
       <Nombre>Usuarios - ABM Usuarios</Nombre>
     </Permiso>
-    <Permiso Id="1001" Active="true">
+    <Permiso Id="1001" Active="false">
       <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
     </Permiso>
-    <Permiso Id="1002" Active="true">
+    <Permiso Id="1002" Active="false">
       <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
     </Permiso>
-    <Permiso Id="1003" Active="true">
+    <Permiso Id="1003" Active="false">
       <Nombre>Gestión Ventas - Realizar Pago</Nombre>
     </Permiso>
-    <Permiso Id="1004" Active="true">
+    <Permiso Id="1004" Active="false">
       <Nombre>Gestión Ventas - Autorizar Venta</Nombre>
     </Permiso>
-    <Permiso Id="1005" Active="true">
+    <Permiso Id="1005" Active="false">
       <Nombre>Gestión Ventas - Emitir Factura</Nombre>
     </Permiso>
-    <Permiso Id="1006" Active="true">
+    <Permiso Id="1006" Active="false">
       <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
     </Permiso>
-    <Permiso Id="1007" Active="true">
+    <Permiso Id="1007" Active="false">
       <Nombre>Gestión Compras - Registrar Oferta</Nombre>
     </Permiso>
-    <Permiso Id="1008" Active="true">
+    <Permiso Id="1008" Active="false">
       <Nombre>Gestión Compras - Evaluar Vehículo</Nombre>
     </Permiso>
-    <Permiso Id="1009" Active="true">
+    <Permiso Id="1009" Active="false">
       <Nombre>Gestión Compras - Tasar Vehículo</Nombre>
     </Permiso>
-    <Permiso Id="1010" Active="true">
+    <Permiso Id="1010" Active="false">
       <Nombre>Gestión Compras - Registrar Compra</Nombre>
     </Permiso>
-    <Permiso Id="1011" Active="true">
+    <Permiso Id="1011" Active="false">
       <Nombre>Gestión Comisiones - Registrar Comisión</Nombre>
     </Permiso>
-    <Permiso Id="1012" Active="true">
+    <Permiso Id="1012" Active="false">
       <Nombre>Gestión Comisiones - Consultar Comisiones</Nombre>
     </Permiso>
-    <Permiso Id="1013" Active="true">
+    <Permiso Id="1013" Active="false">
       <Nombre>Gestión Turnos - Registrar Turno</Nombre>
     </Permiso>
-    <Permiso Id="1014" Active="true">
+    <Permiso Id="1014" Active="false">
       <Nombre>Gestión Turnos - Registrar Asistencia</Nombre>
     </Permiso>
-    <Permiso Id="1015" Active="true">
+    <Permiso Id="1015" Active="false">
       <Nombre>Seguridad - Asignar Roles</Nombre>
     </Permiso>
-    <Permiso Id="1016" Active="true">
+    <Permiso Id="1016" Active="false">
       <Nombre>Seguridad - Dashboard</Nombre>
     </Permiso>
-    <Permiso Id="1017" Active="true">
+    <Permiso Id="1017" Active="false">
       <Nombre>Seguridad - Backup</Nombre>
     </Permiso>
-    <Permiso Id="1018" Active="true">
+    <Permiso Id="1018" Active="false">
       <Nombre>Seguridad - Restore</Nombre>
     </Permiso>
-    <Permiso Id="1019" Active="true">
+    <Permiso Id="1019" Active="false">
       <Nombre>Seguridad - Bitacora</Nombre>
     </Permiso>
-    <Permiso Id="1020" Active="true">
+    <Permiso Id="1020" Active="false">
       <Nombre>Seguridad - Cerrar Sesión</Nombre>
     </Permiso>
     <Rol Id="14" Active="true">
       <Nombre>Vendedor</Nombre>
-      <Permiso Id="1001" Active="true">
+      <Permiso Id="1022" Active="true">
         <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
       </Permiso>
-      <Permiso Id="1002" Active="true">
+      <Permiso Id="1023" Active="true">
         <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
       </Permiso>
-      <Permiso Id="1003" Active="true">
+      <Permiso Id="1024" Active="true">
         <Nombre>Gestión Ventas - Realizar Pago</Nombre>
       </Permiso>
-      <Permiso Id="1006" Active="true">
+      <Permiso Id="1027" Active="true">
         <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
       </Permiso>
-      <Permiso Id="1012" Active="true">
+      <Permiso Id="1033" Active="true">
         <Nombre>Gestión Comisiones - Consultar Comisiones</Nombre>
       </Permiso>
-      <Permiso Id="1013" Active="true">
+      <Permiso Id="1034" Active="true">
         <Nombre>Gestión Turnos - Registrar Turno</Nombre>
       </Permiso>
-      <Permiso Id="1014" Active="true">
+      <Permiso Id="1035" Active="true">
         <Nombre>Gestión Turnos - Registrar Asistencia</Nombre>
+      </Permiso>
+      <Permiso Id="1041" Active="true">
+        <Nombre>Seguridad - Cerrar Sesión</Nombre>
       </Permiso>
     </Rol>
     <Rol Id="15" Active="true">
       <Nombre>Compras</Nombre>
-      <Permiso Id="1007" Active="true">
+      <Permiso Id="1028" Active="true">
         <Nombre>Gestión Compras - Registrar Oferta</Nombre>
       </Permiso>
-      <Permiso Id="1008" Active="true">
+      <Permiso Id="1029" Active="true">
         <Nombre>Gestión Compras - Evaluar Vehículo</Nombre>
       </Permiso>
-      <Permiso Id="1009" Active="true">
+      <Permiso Id="1030" Active="true">
         <Nombre>Gestión Compras - Tasar Vehículo</Nombre>
       </Permiso>
-      <Permiso Id="1020" Active="true">
+      <Permiso Id="1041" Active="true">
         <Nombre>Seguridad - Cerrar Sesión</Nombre>
       </Permiso>
     </Rol>
     <Rol Id="16" Active="true">
       <Nombre>Administrativo</Nombre>
-      <Permiso Id="1004" Active="true">
+      <Permiso Id="1025" Active="true">
         <Nombre>Gestión Ventas - Autorizar Venta</Nombre>
       </Permiso>
-      <Permiso Id="1005" Active="true">
+      <Permiso Id="1026" Active="true">
         <Nombre>Gestión Ventas - Emitir Factura</Nombre>
       </Permiso>
-      <Permiso Id="1010" Active="true">
+      <Permiso Id="1031" Active="true">
         <Nombre>Gestión Compras - Registrar Compra</Nombre>
       </Permiso>
-      <Permiso Id="1011" Active="true">
+      <Permiso Id="1032" Active="true">
         <Nombre>Gestión Comisiones - Registrar Comisión</Nombre>
       </Permiso>
-      <Permiso Id="1015" Active="true">
+      <Permiso Id="1036" Active="true">
         <Nombre>Seguridad - Asignar Roles</Nombre>
       </Permiso>
-      <Permiso Id="1016" Active="true">
+      <Permiso Id="1037" Active="true">
         <Nombre>Seguridad - Dashboard</Nombre>
       </Permiso>
-      <Permiso Id="1017" Active="true">
+      <Permiso Id="1038" Active="true">
         <Nombre>Seguridad - Backup</Nombre>
       </Permiso>
-      <Permiso Id="1018" Active="true">
+      <Permiso Id="1039" Active="true">
         <Nombre>Seguridad - Restore</Nombre>
       </Permiso>
-      <Permiso Id="1019" Active="true">
+      <Permiso Id="1040" Active="true">
         <Nombre>Seguridad - Bitacora</Nombre>
       </Permiso>
-      <Permiso Id="1020" Active="true">
+      <Permiso Id="1041" Active="true">
         <Nombre>Seguridad - Cerrar Sesión</Nombre>
-      </Permiso>
-      <Permiso Id="1000" Active="true">
-        <Nombre>Usuarios - ABM Usuarios</Nombre>
       </Permiso>
     </Rol>
     <Rol Id="17" Active="false">
       <Nombre>SuperAdmin</Nombre>
-      <Permiso Id="1000" Active="true">
-        <Nombre>Usuarios - ABM Usuarios</Nombre>
-      </Permiso>
-      <Permiso Id="1001" Active="true">
-        <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
-      </Permiso>
-      <Permiso Id="1002" Active="true">
-        <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
-      </Permiso>
-      <Permiso Id="1003" Active="true">
-        <Nombre>Gestión Ventas - Realizar Pago</Nombre>
-      </Permiso>
-      <Permiso Id="1004" Active="true">
-        <Nombre>Gestión Ventas - Autorizar Venta</Nombre>
-      </Permiso>
-      <Permiso Id="1005" Active="true">
-        <Nombre>Gestión Ventas - Emitir Factura</Nombre>
-      </Permiso>
-      <Permiso Id="1006" Active="true">
-        <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
-      </Permiso>
-      <Permiso Id="1007" Active="true">
-        <Nombre>Gestión Compras - Registrar Oferta</Nombre>
-      </Permiso>
-      <Permiso Id="1008" Active="true">
-        <Nombre>Gestión Compras - Evaluar Vehículo</Nombre>
-      </Permiso>
-      <Permiso Id="1009" Active="true">
-        <Nombre>Gestión Compras - Tasar Vehículo</Nombre>
-      </Permiso>
-      <Permiso Id="1010" Active="true">
-        <Nombre>Gestión Compras - Registrar Compra</Nombre>
-      </Permiso>
-      <Permiso Id="1011" Active="true">
-        <Nombre>Gestión Comisiones - Registrar Comisión</Nombre>
-      </Permiso>
-      <Permiso Id="1012" Active="true">
-        <Nombre>Gestión Comisiones - Consultar Comisiones</Nombre>
-      </Permiso>
-      <Permiso Id="1013" Active="true">
-        <Nombre>Gestión Turnos - Registrar Turno</Nombre>
-      </Permiso>
-      <Permiso Id="1014" Active="true">
-        <Nombre>Gestión Turnos - Registrar Asistencia</Nombre>
-      </Permiso>
-      <Permiso Id="1015" Active="true">
-        <Nombre>Seguridad - Asignar Roles</Nombre>
-      </Permiso>
-      <Permiso Id="1016" Active="true">
-        <Nombre>Seguridad - Dashboard</Nombre>
-      </Permiso>
-      <Permiso Id="1017" Active="true">
-        <Nombre>Seguridad - Backup</Nombre>
-      </Permiso>
-      <Permiso Id="1018" Active="true">
-        <Nombre>Seguridad - Restore</Nombre>
-      </Permiso>
-      <Permiso Id="1019" Active="true">
-        <Nombre>Seguridad - Bitacora</Nombre>
-      </Permiso>
-      <Permiso Id="1020" Active="true">
-        <Nombre>Seguridad - Cerrar Sesión</Nombre>
-      </Permiso>
     </Rol>
     <Rol Id="18" Active="false">
       <Nombre>SuperAdmin</Nombre>
-      <Permiso Id="1000" Active="true">
-        <Nombre>Usuarios - ABM Usuarios</Nombre>
-      </Permiso>
-      <Permiso Id="1001" Active="true">
-        <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
-      </Permiso>
-      <Permiso Id="1002" Active="true">
-        <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
-      </Permiso>
-      <Permiso Id="1003" Active="true">
-        <Nombre>Gestión Ventas - Realizar Pago</Nombre>
-      </Permiso>
-      <Permiso Id="1004" Active="true">
-        <Nombre>Gestión Ventas - Autorizar Venta</Nombre>
-      </Permiso>
-      <Permiso Id="1005" Active="true">
-        <Nombre>Gestión Ventas - Emitir Factura</Nombre>
-      </Permiso>
-      <Permiso Id="1006" Active="true">
-        <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
-      </Permiso>
-      <Permiso Id="1007" Active="true">
-        <Nombre>Gestión Compras - Registrar Oferta</Nombre>
-      </Permiso>
-      <Permiso Id="1008" Active="true">
-        <Nombre>Gestión Compras - Evaluar Vehículo</Nombre>
-      </Permiso>
-      <Permiso Id="1009" Active="true">
-        <Nombre>Gestión Compras - Tasar Vehículo</Nombre>
-      </Permiso>
-      <Permiso Id="1010" Active="true">
-        <Nombre>Gestión Compras - Registrar Compra</Nombre>
-      </Permiso>
-      <Permiso Id="1011" Active="true">
-        <Nombre>Gestión Comisiones - Registrar Comisión</Nombre>
-      </Permiso>
-      <Permiso Id="1012" Active="true">
-        <Nombre>Gestión Comisiones - Consultar Comisiones</Nombre>
-      </Permiso>
-      <Permiso Id="1013" Active="true">
-        <Nombre>Gestión Turnos - Registrar Turno</Nombre>
-      </Permiso>
-      <Permiso Id="1014" Active="true">
-        <Nombre>Gestión Turnos - Registrar Asistencia</Nombre>
-      </Permiso>
-      <Permiso Id="1015" Active="true">
-        <Nombre>Seguridad - Asignar Roles</Nombre>
-      </Permiso>
-      <Permiso Id="1016" Active="true">
-        <Nombre>Seguridad - Dashboard</Nombre>
-      </Permiso>
-      <Permiso Id="1017" Active="true">
-        <Nombre>Seguridad - Backup</Nombre>
-      </Permiso>
-      <Permiso Id="1018" Active="true">
-        <Nombre>Seguridad - Restore</Nombre>
-      </Permiso>
-      <Permiso Id="1019" Active="true">
-        <Nombre>Seguridad - Bitacora</Nombre>
-      </Permiso>
-      <Permiso Id="1020" Active="true">
-        <Nombre>Seguridad - Cerrar Sesión</Nombre>
-      </Permiso>
     </Rol>
     <Rol Id="19" Active="true">
       <Nombre>Master</Nombre>
-      <Permiso Id="1000" Active="true">
+      <Permiso Id="1021" Active="true">
         <Nombre>Usuarios - ABM Usuarios</Nombre>
       </Permiso>
-      <Permiso Id="1001" Active="true">
+      <Permiso Id="1022" Active="true">
         <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
       </Permiso>
-      <Permiso Id="1002" Active="true">
+      <Permiso Id="1023" Active="true">
         <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
       </Permiso>
-      <Permiso Id="1003" Active="true">
+      <Permiso Id="1024" Active="true">
         <Nombre>Gestión Ventas - Realizar Pago</Nombre>
       </Permiso>
-      <Permiso Id="1004" Active="true">
+      <Permiso Id="1025" Active="true">
         <Nombre>Gestión Ventas - Autorizar Venta</Nombre>
       </Permiso>
-      <Permiso Id="1005" Active="true">
+      <Permiso Id="1026" Active="true">
         <Nombre>Gestión Ventas - Emitir Factura</Nombre>
       </Permiso>
-      <Permiso Id="1006" Active="true">
+      <Permiso Id="1027" Active="true">
         <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
       </Permiso>
-      <Permiso Id="1007" Active="true">
+      <Permiso Id="1028" Active="true">
         <Nombre>Gestión Compras - Registrar Oferta</Nombre>
       </Permiso>
-      <Permiso Id="1008" Active="true">
+      <Permiso Id="1029" Active="true">
         <Nombre>Gestión Compras - Evaluar Vehículo</Nombre>
       </Permiso>
-      <Permiso Id="1009" Active="true">
+      <Permiso Id="1030" Active="true">
         <Nombre>Gestión Compras - Tasar Vehículo</Nombre>
       </Permiso>
-      <Permiso Id="1010" Active="true">
+      <Permiso Id="1031" Active="true">
         <Nombre>Gestión Compras - Registrar Compra</Nombre>
       </Permiso>
-      <Permiso Id="1011" Active="true">
+      <Permiso Id="1032" Active="true">
         <Nombre>Gestión Comisiones - Registrar Comisión</Nombre>
       </Permiso>
-      <Permiso Id="1012" Active="true">
+      <Permiso Id="1033" Active="true">
         <Nombre>Gestión Comisiones - Consultar Comisiones</Nombre>
       </Permiso>
-      <Permiso Id="1013" Active="true">
+      <Permiso Id="1034" Active="true">
         <Nombre>Gestión Turnos - Registrar Turno</Nombre>
       </Permiso>
-      <Permiso Id="1014" Active="true">
+      <Permiso Id="1035" Active="true">
         <Nombre>Gestión Turnos - Registrar Asistencia</Nombre>
       </Permiso>
-      <Permiso Id="1015" Active="true">
-        <Nombre>Seguridad - Asignar Roles</Nombre>
-      </Permiso>
-      <Permiso Id="1016" Active="true">
-        <Nombre>Seguridad - Dashboard</Nombre>
-      </Permiso>
-      <Permiso Id="1017" Active="true">
-        <Nombre>Seguridad - Backup</Nombre>
-      </Permiso>
-      <Permiso Id="1018" Active="true">
-        <Nombre>Seguridad - Restore</Nombre>
-      </Permiso>
-      <Permiso Id="1019" Active="true">
-        <Nombre>Seguridad - Bitacora</Nombre>
-      </Permiso>
-      <Permiso Id="1020" Active="true">
+      <Permiso Id="1041" Active="true">
         <Nombre>Seguridad - Cerrar Sesión</Nombre>
       </Permiso>
+      <Permiso Id="1036" Active="true">
+        <Nombre>Seguridad - Asignar Roles</Nombre>
+      </Permiso>
+      <Permiso Id="1037" Active="true">
+        <Nombre>Seguridad - Dashboard</Nombre>
+      </Permiso>
+      <Permiso Id="1038" Active="true">
+        <Nombre>Seguridad - Backup</Nombre>
+      </Permiso>
+      <Permiso Id="1039" Active="true">
+        <Nombre>Seguridad - Restore</Nombre>
+      </Permiso>
+      <Permiso Id="1040" Active="true">
+        <Nombre>Seguridad - Bitacora</Nombre>
+      </Permiso>
     </Rol>
+    <Permiso Id="1021" Active="true">
+      <Nombre>Usuarios - ABM Usuarios</Nombre>
+    </Permiso>
+    <Permiso Id="1022" Active="true">
+      <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
+    </Permiso>
+    <Permiso Id="1023" Active="true">
+      <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
+    </Permiso>
+    <Permiso Id="1024" Active="true">
+      <Nombre>Gestión Ventas - Realizar Pago</Nombre>
+    </Permiso>
+    <Permiso Id="1025" Active="true">
+      <Nombre>Gestión Ventas - Autorizar Venta</Nombre>
+    </Permiso>
+    <Permiso Id="1026" Active="true">
+      <Nombre>Gestión Ventas - Emitir Factura</Nombre>
+    </Permiso>
+    <Permiso Id="1027" Active="true">
+      <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
+    </Permiso>
+    <Permiso Id="1028" Active="true">
+      <Nombre>Gestión Compras - Registrar Oferta</Nombre>
+    </Permiso>
+    <Permiso Id="1029" Active="true">
+      <Nombre>Gestión Compras - Evaluar Vehículo</Nombre>
+    </Permiso>
+    <Permiso Id="1030" Active="true">
+      <Nombre>Gestión Compras - Tasar Vehículo</Nombre>
+    </Permiso>
+    <Permiso Id="1031" Active="true">
+      <Nombre>Gestión Compras - Registrar Compra</Nombre>
+    </Permiso>
+    <Permiso Id="1032" Active="true">
+      <Nombre>Gestión Comisiones - Registrar Comisión</Nombre>
+    </Permiso>
+    <Permiso Id="1033" Active="true">
+      <Nombre>Gestión Comisiones - Consultar Comisiones</Nombre>
+    </Permiso>
+    <Permiso Id="1034" Active="true">
+      <Nombre>Gestión Turnos - Registrar Turno</Nombre>
+    </Permiso>
+    <Permiso Id="1035" Active="true">
+      <Nombre>Gestión Turnos - Registrar Asistencia</Nombre>
+    </Permiso>
+    <Permiso Id="1036" Active="true">
+      <Nombre>Seguridad - Asignar Roles</Nombre>
+    </Permiso>
+    <Permiso Id="1037" Active="true">
+      <Nombre>Seguridad - Dashboard</Nombre>
+    </Permiso>
+    <Permiso Id="1038" Active="true">
+      <Nombre>Seguridad - Backup</Nombre>
+    </Permiso>
+    <Permiso Id="1039" Active="true">
+      <Nombre>Seguridad - Restore</Nombre>
+    </Permiso>
+    <Permiso Id="1040" Active="true">
+      <Nombre>Seguridad - Bitacora</Nombre>
+    </Permiso>
+    <Permiso Id="1041" Active="true">
+      <Nombre>Seguridad - Cerrar Sesión</Nombre>
+    </Permiso>
   </Componentes>
   <Usuario_Permisos>
     <Usuario_Permiso>
