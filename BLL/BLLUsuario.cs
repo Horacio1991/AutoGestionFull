@@ -143,5 +143,14 @@ namespace BLL
                 Permisos = permisosDto
             };
         }
+
+        // BLLUsuario.cs
+        public string ObtenerPasswordEncrypted(int userId)
+        {
+            var be = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId)
+                     ?? throw new ApplicationException("Usuario no encontrado.");
+            return be.Password;
+        }
+
     }
 }

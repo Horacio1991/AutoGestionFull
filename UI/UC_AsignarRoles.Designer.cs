@@ -28,554 +28,600 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.trvPermisosRoles = new System.Windows.Forms.TreeView();
-            this.lblUsuariosSistema = new System.Windows.Forms.Label();
-            this.lblRoles = new System.Windows.Forms.Label();
-            this.trvPermisos = new System.Windows.Forms.TreeView();
-            this.lblPermisos = new System.Windows.Forms.Label();
-            this.trvPermisosPorRol = new System.Windows.Forms.TreeView();
-            this.lblPermisoPorRol = new System.Windows.Forms.Label();
-            this.trvPermisosDelUsuario = new System.Windows.Forms.TreeView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.treeViewUsuarios = new System.Windows.Forms.TreeView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxUserId = new System.Windows.Forms.TextBox();
-            this.textBoxUsename = new System.Windows.Forms.TextBox();
-            this.textBoxUserPassword = new System.Windows.Forms.TextBox();
-            this.checkBoxPassword = new System.Windows.Forms.CheckBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxRolNombre = new System.Windows.Forms.TextBox();
-            this.btnAltaRol = new System.Windows.Forms.Button();
-            this.btnModificarRol = new System.Windows.Forms.Button();
-            this.btnEliminarRol = new System.Windows.Forms.Button();
-            this.btnAsociarRolUsuario = new System.Windows.Forms.Button();
-            this.btnDesasociarRolUsuario = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBoxRolId = new System.Windows.Forms.TextBox();
-            this.textBoxPermisoId = new System.Windows.Forms.TextBox();
-            this.textBoxPermisoNombre = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.comboBoxMenu = new System.Windows.Forms.ComboBox();
-            this.comboBoxItem = new System.Windows.Forms.ComboBox();
-            this.btnAltaPermiso = new System.Windows.Forms.Button();
-            this.btnEliminarPermiso = new System.Windows.Forms.Button();
-            this.btnAsociarPermisoARol = new System.Windows.Forms.Button();
-            this.btnQuitarPermisoARol = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnAsociarPermisoAUsuario = new System.Windows.Forms.Button();
-            this.btnQuitarPermisoUsuario = new System.Windows.Forms.Button();
-            this.groupBoxUsuario = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.groupBoxUsuario.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.SuspendLayout();
+            trvPermisosRoles = new TreeView();
+            lblUsuariosSistema = new Label();
+            lblRoles = new Label();
+            trvPermisos = new TreeView();
+            lblPermisos = new Label();
+            trvPermisosPorRol = new TreeView();
+            lblPermisoPorRol = new Label();
+            trvPermisosDelUsuario = new TreeView();
+            label1 = new Label();
+            treeViewUsuarios = new TreeView();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            textBoxUserId = new TextBox();
+            textBoxUsename = new TextBox();
+            textBoxUserPassword = new TextBox();
+            checkBoxPassword = new CheckBox();
+            label7 = new Label();
+            label8 = new Label();
+            textBoxRolNombre = new TextBox();
+            btnAltaRol = new Button();
+            btnModificarRol = new Button();
+            btnEliminarRol = new Button();
+            btnAsociarRolUsuario = new Button();
+            btnDesasociarRolUsuario = new Button();
+            label14 = new Label();
+            label15 = new Label();
+            textBoxRolId = new TextBox();
+            textBoxPermisoId = new TextBox();
+            textBoxPermisoNombre = new TextBox();
+            label16 = new Label();
+            label17 = new Label();
+            comboBoxMenu = new ComboBox();
+            comboBoxItem = new ComboBox();
+            btnAltaPermiso = new Button();
+            btnEliminarPermiso = new Button();
+            btnAsociarPermisoARol = new Button();
+            btnQuitarPermisoARol = new Button();
+            btnAsociarPermisoAUsuario = new Button();
+            btnQuitarPermisoUsuario = new Button();
+            groupBoxUsuario = new GroupBox();
+            groupBox2 = new GroupBox();
+            groupBox4 = new GroupBox();
+            btnAsignarPermisosSeleccionados = new Button();
+            groupBox5 = new GroupBox();
+            groupBox6 = new GroupBox();
+            groupBox7 = new GroupBox();
+            groupBox8 = new GroupBox();
+            groupBoxUsuario.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox6.SuspendLayout();
+            groupBox7.SuspendLayout();
+            groupBox8.SuspendLayout();
+            SuspendLayout();
             // 
             // trvPermisosRoles
             // 
-            this.trvPermisosRoles.Location = new System.Drawing.Point(241, 331);
-            this.trvPermisosRoles.Margin = new System.Windows.Forms.Padding(2);
-            this.trvPermisosRoles.Name = "trvPermisosRoles";
-            this.trvPermisosRoles.Size = new System.Drawing.Size(218, 362);
-            this.trvPermisosRoles.TabIndex = 0;
+            trvPermisosRoles.Location = new Point(207, 330);
+            trvPermisosRoles.Margin = new Padding(2);
+            trvPermisosRoles.Name = "trvPermisosRoles";
+            trvPermisosRoles.Size = new Size(193, 369);
+            trvPermisosRoles.TabIndex = 0;
             // 
             // lblUsuariosSistema
             // 
-            this.lblUsuariosSistema.AutoSize = true;
-            this.lblUsuariosSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuariosSistema.Location = new System.Drawing.Point(10, 309);
-            this.lblUsuariosSistema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblUsuariosSistema.Name = "lblUsuariosSistema";
-            this.lblUsuariosSistema.Size = new System.Drawing.Size(143, 20);
-            this.lblUsuariosSistema.TabIndex = 3;
-            this.lblUsuariosSistema.Text = "Usuarios Activos";
+            lblUsuariosSistema.AutoSize = true;
+            lblUsuariosSistema.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUsuariosSistema.Location = new Point(14, 308);
+            lblUsuariosSistema.Margin = new Padding(2, 0, 2, 0);
+            lblUsuariosSistema.Name = "lblUsuariosSistema";
+            lblUsuariosSistema.Size = new Size(143, 20);
+            lblUsuariosSistema.TabIndex = 3;
+            lblUsuariosSistema.Text = "Usuarios Activos";
             // 
             // lblRoles
             // 
-            this.lblRoles.AutoSize = true;
-            this.lblRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoles.Location = new System.Drawing.Point(250, 309);
-            this.lblRoles.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRoles.Name = "lblRoles";
-            this.lblRoles.Size = new System.Drawing.Size(55, 20);
-            this.lblRoles.TabIndex = 4;
-            this.lblRoles.Text = "Roles";
+            lblRoles.AutoSize = true;
+            lblRoles.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRoles.Location = new Point(207, 308);
+            lblRoles.Margin = new Padding(2, 0, 2, 0);
+            lblRoles.Name = "lblRoles";
+            lblRoles.Size = new Size(55, 20);
+            lblRoles.TabIndex = 4;
+            lblRoles.Text = "Roles";
             // 
             // trvPermisos
             // 
-            this.trvPermisos.Location = new System.Drawing.Point(480, 331);
-            this.trvPermisos.Margin = new System.Windows.Forms.Padding(2);
-            this.trvPermisos.Name = "trvPermisos";
-            this.trvPermisos.Size = new System.Drawing.Size(218, 362);
-            this.trvPermisos.TabIndex = 5;
+            trvPermisos.CheckBoxes = true;
+            trvPermisos.Location = new Point(430, 330);
+            trvPermisos.Margin = new Padding(2);
+            trvPermisos.Name = "trvPermisos";
+            trvPermisos.Size = new Size(263, 369);
+            trvPermisos.TabIndex = 5;
+            trvPermisos.AfterCheck += trvPermisos_AfterCheck;
             // 
             // lblPermisos
             // 
-            this.lblPermisos.AutoSize = true;
-            this.lblPermisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPermisos.Location = new System.Drawing.Point(485, 309);
-            this.lblPermisos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPermisos.Name = "lblPermisos";
-            this.lblPermisos.Size = new System.Drawing.Size(82, 20);
-            this.lblPermisos.TabIndex = 6;
-            this.lblPermisos.Text = "Permisos";
+            lblPermisos.AutoSize = true;
+            lblPermisos.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPermisos.Location = new Point(430, 308);
+            lblPermisos.Margin = new Padding(2, 0, 2, 0);
+            lblPermisos.Name = "lblPermisos";
+            lblPermisos.Size = new Size(82, 20);
+            lblPermisos.TabIndex = 6;
+            lblPermisos.Text = "Permisos";
             // 
             // trvPermisosPorRol
             // 
-            this.trvPermisosPorRol.Location = new System.Drawing.Point(722, 331);
-            this.trvPermisosPorRol.Margin = new System.Windows.Forms.Padding(2);
-            this.trvPermisosPorRol.Name = "trvPermisosPorRol";
-            this.trvPermisosPorRol.Size = new System.Drawing.Size(218, 359);
-            this.trvPermisosPorRol.TabIndex = 7;
+            trvPermisosPorRol.Location = new Point(717, 330);
+            trvPermisosPorRol.Margin = new Padding(2);
+            trvPermisosPorRol.Name = "trvPermisosPorRol";
+            trvPermisosPorRol.Size = new Size(254, 369);
+            trvPermisosPorRol.TabIndex = 7;
             // 
             // lblPermisoPorRol
             // 
-            this.lblPermisoPorRol.AutoSize = true;
-            this.lblPermisoPorRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPermisoPorRol.Location = new System.Drawing.Point(729, 309);
-            this.lblPermisoPorRol.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPermisoPorRol.Name = "lblPermisoPorRol";
-            this.lblPermisoPorRol.Size = new System.Drawing.Size(146, 20);
-            this.lblPermisoPorRol.TabIndex = 8;
-            this.lblPermisoPorRol.Text = "Permisos Por Rol";
+            lblPermisoPorRol.AutoSize = true;
+            lblPermisoPorRol.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPermisoPorRol.Location = new Point(717, 308);
+            lblPermisoPorRol.Margin = new Padding(2, 0, 2, 0);
+            lblPermisoPorRol.Name = "lblPermisoPorRol";
+            lblPermisoPorRol.Size = new Size(146, 20);
+            lblPermisoPorRol.TabIndex = 8;
+            lblPermisoPorRol.Text = "Permisos Por Rol";
             // 
             // trvPermisosDelUsuario
             // 
-            this.trvPermisosDelUsuario.Location = new System.Drawing.Point(961, 331);
-            this.trvPermisosDelUsuario.Margin = new System.Windows.Forms.Padding(2);
-            this.trvPermisosDelUsuario.Name = "trvPermisosDelUsuario";
-            this.trvPermisosDelUsuario.Size = new System.Drawing.Size(238, 359);
-            this.trvPermisosDelUsuario.TabIndex = 9;
+            trvPermisosDelUsuario.Location = new Point(1001, 330);
+            trvPermisosDelUsuario.Margin = new Padding(2);
+            trvPermisosDelUsuario.Name = "trvPermisosDelUsuario";
+            trvPermisosDelUsuario.Size = new Size(277, 369);
+            trvPermisosDelUsuario.TabIndex = 9;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(957, 309);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Roles Y Permisos Del Usuario";
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(1002, 308);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(249, 20);
+            label1.TabIndex = 10;
+            label1.Text = "Roles Y Permisos Del Usuario";
             // 
             // treeViewUsuarios
             // 
-            this.treeViewUsuarios.Location = new System.Drawing.Point(14, 331);
-            this.treeViewUsuarios.Margin = new System.Windows.Forms.Padding(2);
-            this.treeViewUsuarios.Name = "treeViewUsuarios";
-            this.treeViewUsuarios.Size = new System.Drawing.Size(201, 362);
-            this.treeViewUsuarios.TabIndex = 11;
+            treeViewUsuarios.Location = new Point(14, 330);
+            treeViewUsuarios.Margin = new Padding(2);
+            treeViewUsuarios.Name = "treeViewUsuarios";
+            treeViewUsuarios.Size = new Size(166, 369);
+            treeViewUsuarios.TabIndex = 11;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(18, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "ID";
+            label3.AutoSize = true;
+            label3.Location = new Point(13, 35);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(18, 15);
+            label3.TabIndex = 13;
+            label3.Text = "ID";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 67);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Nombre";
+            label4.AutoSize = true;
+            label4.Location = new Point(7, 77);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(51, 15);
+            label4.TabIndex = 14;
+            label4.Text = "Nombre";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 102);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Password";
+            label5.AutoSize = true;
+            label5.Location = new Point(7, 118);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(57, 15);
+            label5.TabIndex = 15;
+            label5.Text = "Password";
             // 
             // textBoxUserId
             // 
-            this.textBoxUserId.Location = new System.Drawing.Point(55, 27);
-            this.textBoxUserId.Name = "textBoxUserId";
-            this.textBoxUserId.Size = new System.Drawing.Size(61, 20);
-            this.textBoxUserId.TabIndex = 16;
+            textBoxUserId.Location = new Point(64, 31);
+            textBoxUserId.Margin = new Padding(4, 3, 4, 3);
+            textBoxUserId.Name = "textBoxUserId";
+            textBoxUserId.Size = new Size(70, 23);
+            textBoxUserId.TabIndex = 16;
             // 
             // textBoxUsename
             // 
-            this.textBoxUsename.Location = new System.Drawing.Point(55, 60);
-            this.textBoxUsename.Name = "textBoxUsename";
-            this.textBoxUsename.Size = new System.Drawing.Size(127, 20);
-            this.textBoxUsename.TabIndex = 17;
+            textBoxUsename.Location = new Point(64, 69);
+            textBoxUsename.Margin = new Padding(4, 3, 4, 3);
+            textBoxUsename.Name = "textBoxUsename";
+            textBoxUsename.Size = new Size(148, 23);
+            textBoxUsename.TabIndex = 17;
             // 
             // textBoxUserPassword
             // 
-            this.textBoxUserPassword.Location = new System.Drawing.Point(65, 99);
-            this.textBoxUserPassword.Name = "textBoxUserPassword";
-            this.textBoxUserPassword.Size = new System.Drawing.Size(127, 20);
-            this.textBoxUserPassword.TabIndex = 18;
+            textBoxUserPassword.Location = new Point(76, 114);
+            textBoxUserPassword.Margin = new Padding(4, 3, 4, 3);
+            textBoxUserPassword.Name = "textBoxUserPassword";
+            textBoxUserPassword.Size = new Size(148, 23);
+            textBoxUserPassword.TabIndex = 18;
             // 
             // checkBoxPassword
             // 
-            this.checkBoxPassword.AutoSize = true;
-            this.checkBoxPassword.Location = new System.Drawing.Point(206, 104);
-            this.checkBoxPassword.Name = "checkBoxPassword";
-            this.checkBoxPassword.Size = new System.Drawing.Size(127, 17);
-            this.checkBoxPassword.TabIndex = 19;
-            this.checkBoxPassword.Text = "Descifrar/Cifrar Clave";
-            this.checkBoxPassword.UseVisualStyleBackColor = true;
+            checkBoxPassword.AutoSize = true;
+            checkBoxPassword.Location = new Point(240, 120);
+            checkBoxPassword.Margin = new Padding(4, 3, 4, 3);
+            checkBoxPassword.Name = "checkBoxPassword";
+            checkBoxPassword.Size = new Size(138, 19);
+            checkBoxPassword.TabIndex = 19;
+            checkBoxPassword.Text = "Descifrar/Cifrar Clave";
+            checkBoxPassword.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 34);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(18, 13);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "ID";
+            label7.AutoSize = true;
+            label7.Location = new Point(7, 39);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(18, 15);
+            label7.TabIndex = 21;
+            label7.Text = "ID";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(100, 34);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 13);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Nombre";
+            label8.AutoSize = true;
+            label8.Location = new Point(117, 39);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(51, 15);
+            label8.TabIndex = 22;
+            label8.Text = "Nombre";
             // 
             // textBoxRolNombre
             // 
-            this.textBoxRolNombre.Location = new System.Drawing.Point(150, 31);
-            this.textBoxRolNombre.Name = "textBoxRolNombre";
-            this.textBoxRolNombre.Size = new System.Drawing.Size(127, 20);
-            this.textBoxRolNombre.TabIndex = 24;
+            textBoxRolNombre.Location = new Point(175, 36);
+            textBoxRolNombre.Margin = new Padding(4, 3, 4, 3);
+            textBoxRolNombre.Name = "textBoxRolNombre";
+            textBoxRolNombre.Size = new Size(148, 23);
+            textBoxRolNombre.TabIndex = 24;
             // 
             // btnAltaRol
             // 
-            this.btnAltaRol.Location = new System.Drawing.Point(6, 69);
-            this.btnAltaRol.Name = "btnAltaRol";
-            this.btnAltaRol.Size = new System.Drawing.Size(75, 30);
-            this.btnAltaRol.TabIndex = 25;
-            this.btnAltaRol.Text = "Alta";
-            this.btnAltaRol.UseVisualStyleBackColor = true;
+            btnAltaRol.Location = new Point(7, 80);
+            btnAltaRol.Margin = new Padding(4, 3, 4, 3);
+            btnAltaRol.Name = "btnAltaRol";
+            btnAltaRol.Size = new Size(88, 35);
+            btnAltaRol.TabIndex = 25;
+            btnAltaRol.Text = "Alta";
+            btnAltaRol.UseVisualStyleBackColor = true;
             // 
             // btnModificarRol
             // 
-            this.btnModificarRol.Location = new System.Drawing.Point(103, 69);
-            this.btnModificarRol.Name = "btnModificarRol";
-            this.btnModificarRol.Size = new System.Drawing.Size(75, 30);
-            this.btnModificarRol.TabIndex = 26;
-            this.btnModificarRol.Text = "Modificar";
-            this.btnModificarRol.UseVisualStyleBackColor = true;
+            btnModificarRol.Location = new Point(120, 80);
+            btnModificarRol.Margin = new Padding(4, 3, 4, 3);
+            btnModificarRol.Name = "btnModificarRol";
+            btnModificarRol.Size = new Size(88, 35);
+            btnModificarRol.TabIndex = 26;
+            btnModificarRol.Text = "Modificar";
+            btnModificarRol.UseVisualStyleBackColor = true;
             // 
             // btnEliminarRol
             // 
-            this.btnEliminarRol.Location = new System.Drawing.Point(202, 69);
-            this.btnEliminarRol.Name = "btnEliminarRol";
-            this.btnEliminarRol.Size = new System.Drawing.Size(75, 30);
-            this.btnEliminarRol.TabIndex = 27;
-            this.btnEliminarRol.Text = "Eliminar";
-            this.btnEliminarRol.UseVisualStyleBackColor = true;
+            btnEliminarRol.Location = new Point(236, 80);
+            btnEliminarRol.Margin = new Padding(4, 3, 4, 3);
+            btnEliminarRol.Name = "btnEliminarRol";
+            btnEliminarRol.Size = new Size(88, 35);
+            btnEliminarRol.TabIndex = 27;
+            btnEliminarRol.Text = "Eliminar";
+            btnEliminarRol.UseVisualStyleBackColor = true;
             // 
             // btnAsociarRolUsuario
             // 
-            this.btnAsociarRolUsuario.Location = new System.Drawing.Point(63, 35);
-            this.btnAsociarRolUsuario.Name = "btnAsociarRolUsuario";
-            this.btnAsociarRolUsuario.Size = new System.Drawing.Size(140, 42);
-            this.btnAsociarRolUsuario.TabIndex = 34;
-            this.btnAsociarRolUsuario.Text = "Asociar Rol a Usuario";
-            this.btnAsociarRolUsuario.UseVisualStyleBackColor = true;
+            btnAsociarRolUsuario.Location = new Point(74, 40);
+            btnAsociarRolUsuario.Margin = new Padding(4, 3, 4, 3);
+            btnAsociarRolUsuario.Name = "btnAsociarRolUsuario";
+            btnAsociarRolUsuario.Size = new Size(163, 30);
+            btnAsociarRolUsuario.TabIndex = 34;
+            btnAsociarRolUsuario.Text = "Asociar Rol a Usuario";
+            btnAsociarRolUsuario.UseVisualStyleBackColor = true;
             // 
             // btnDesasociarRolUsuario
             // 
-            this.btnDesasociarRolUsuario.Location = new System.Drawing.Point(63, 95);
-            this.btnDesasociarRolUsuario.Name = "btnDesasociarRolUsuario";
-            this.btnDesasociarRolUsuario.Size = new System.Drawing.Size(140, 43);
-            this.btnDesasociarRolUsuario.TabIndex = 35;
-            this.btnDesasociarRolUsuario.Text = "Desasociar Rol a Usuario";
-            this.btnDesasociarRolUsuario.UseVisualStyleBackColor = true;
+            btnDesasociarRolUsuario.Location = new Point(74, 88);
+            btnDesasociarRolUsuario.Margin = new Padding(4, 3, 4, 3);
+            btnDesasociarRolUsuario.Name = "btnDesasociarRolUsuario";
+            btnDesasociarRolUsuario.Size = new Size(163, 31);
+            btnDesasociarRolUsuario.TabIndex = 35;
+            btnDesasociarRolUsuario.Text = "Desasociar Rol a Usuario";
+            btnDesasociarRolUsuario.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 27);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(18, 13);
-            this.label14.TabIndex = 37;
-            this.label14.Text = "ID";
+            label14.AutoSize = true;
+            label14.Location = new Point(7, 31);
+            label14.Margin = new Padding(4, 0, 4, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(18, 15);
+            label14.TabIndex = 37;
+            label14.Text = "ID";
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(98, 27);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(44, 13);
-            this.label15.TabIndex = 38;
-            this.label15.Text = "Nombre";
+            label15.AutoSize = true;
+            label15.Location = new Point(114, 31);
+            label15.Margin = new Padding(4, 0, 4, 0);
+            label15.Name = "label15";
+            label15.Size = new Size(51, 15);
+            label15.TabIndex = 38;
+            label15.Text = "Nombre";
             // 
             // textBoxRolId
             // 
-            this.textBoxRolId.Location = new System.Drawing.Point(30, 31);
-            this.textBoxRolId.Name = "textBoxRolId";
-            this.textBoxRolId.Size = new System.Drawing.Size(49, 20);
-            this.textBoxRolId.TabIndex = 39;
+            textBoxRolId.Location = new Point(35, 36);
+            textBoxRolId.Margin = new Padding(4, 3, 4, 3);
+            textBoxRolId.Name = "textBoxRolId";
+            textBoxRolId.Size = new Size(56, 23);
+            textBoxRolId.TabIndex = 39;
             // 
             // textBoxPermisoId
             // 
-            this.textBoxPermisoId.Location = new System.Drawing.Point(30, 24);
-            this.textBoxPermisoId.Name = "textBoxPermisoId";
-            this.textBoxPermisoId.Size = new System.Drawing.Size(49, 20);
-            this.textBoxPermisoId.TabIndex = 40;
+            textBoxPermisoId.Location = new Point(35, 28);
+            textBoxPermisoId.Margin = new Padding(4, 3, 4, 3);
+            textBoxPermisoId.Name = "textBoxPermisoId";
+            textBoxPermisoId.Size = new Size(56, 23);
+            textBoxPermisoId.TabIndex = 40;
             // 
             // textBoxPermisoNombre
             // 
-            this.textBoxPermisoNombre.Location = new System.Drawing.Point(148, 24);
-            this.textBoxPermisoNombre.Name = "textBoxPermisoNombre";
-            this.textBoxPermisoNombre.Size = new System.Drawing.Size(127, 20);
-            this.textBoxPermisoNombre.TabIndex = 41;
+            textBoxPermisoNombre.Location = new Point(173, 28);
+            textBoxPermisoNombre.Margin = new Padding(4, 3, 4, 3);
+            textBoxPermisoNombre.Name = "textBoxPermisoNombre";
+            textBoxPermisoNombre.Size = new Size(148, 23);
+            textBoxPermisoNombre.TabIndex = 41;
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 60);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(34, 13);
-            this.label16.TabIndex = 42;
-            this.label16.Text = "Menu";
+            label16.AutoSize = true;
+            label16.Location = new Point(7, 69);
+            label16.Margin = new Padding(4, 0, 4, 0);
+            label16.Name = "label16";
+            label16.Size = new Size(38, 15);
+            label16.TabIndex = 42;
+            label16.Text = "Menu";
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(145, 60);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(27, 13);
-            this.label17.TabIndex = 43;
-            this.label17.Text = "Item";
+            label17.AutoSize = true;
+            label17.Location = new Point(169, 69);
+            label17.Margin = new Padding(4, 0, 4, 0);
+            label17.Name = "label17";
+            label17.Size = new Size(31, 15);
+            label17.TabIndex = 43;
+            label17.Text = "Item";
             // 
             // comboBoxMenu
             // 
-            this.comboBoxMenu.FormattingEnabled = true;
-            this.comboBoxMenu.Location = new System.Drawing.Point(46, 57);
-            this.comboBoxMenu.Name = "comboBoxMenu";
-            this.comboBoxMenu.Size = new System.Drawing.Size(90, 21);
-            this.comboBoxMenu.TabIndex = 44;
+            comboBoxMenu.FormattingEnabled = true;
+            comboBoxMenu.Location = new Point(54, 66);
+            comboBoxMenu.Margin = new Padding(4, 3, 4, 3);
+            comboBoxMenu.Name = "comboBoxMenu";
+            comboBoxMenu.Size = new Size(104, 23);
+            comboBoxMenu.TabIndex = 44;
             // 
             // comboBoxItem
             // 
-            this.comboBoxItem.FormattingEnabled = true;
-            this.comboBoxItem.Location = new System.Drawing.Point(178, 57);
-            this.comboBoxItem.Name = "comboBoxItem";
-            this.comboBoxItem.Size = new System.Drawing.Size(109, 21);
-            this.comboBoxItem.TabIndex = 45;
+            comboBoxItem.FormattingEnabled = true;
+            comboBoxItem.Location = new Point(208, 66);
+            comboBoxItem.Margin = new Padding(4, 3, 4, 3);
+            comboBoxItem.Name = "comboBoxItem";
+            comboBoxItem.Size = new Size(126, 23);
+            comboBoxItem.TabIndex = 45;
             // 
             // btnAltaPermiso
             // 
-            this.btnAltaPermiso.Location = new System.Drawing.Point(30, 99);
-            this.btnAltaPermiso.Name = "btnAltaPermiso";
-            this.btnAltaPermiso.Size = new System.Drawing.Size(101, 42);
-            this.btnAltaPermiso.TabIndex = 46;
-            this.btnAltaPermiso.Text = "Alta Permiso";
-            this.btnAltaPermiso.UseVisualStyleBackColor = true;
+            btnAltaPermiso.Location = new Point(35, 114);
+            btnAltaPermiso.Margin = new Padding(4, 3, 4, 3);
+            btnAltaPermiso.Name = "btnAltaPermiso";
+            btnAltaPermiso.Size = new Size(118, 37);
+            btnAltaPermiso.TabIndex = 46;
+            btnAltaPermiso.Text = "Alta Permiso";
+            btnAltaPermiso.UseVisualStyleBackColor = true;
             // 
             // btnEliminarPermiso
             // 
-            this.btnEliminarPermiso.Location = new System.Drawing.Point(174, 99);
-            this.btnEliminarPermiso.Name = "btnEliminarPermiso";
-            this.btnEliminarPermiso.Size = new System.Drawing.Size(101, 42);
-            this.btnEliminarPermiso.TabIndex = 47;
-            this.btnEliminarPermiso.Text = "Eliminar Permiso";
-            this.btnEliminarPermiso.UseVisualStyleBackColor = true;
+            btnEliminarPermiso.Location = new Point(203, 114);
+            btnEliminarPermiso.Margin = new Padding(4, 3, 4, 3);
+            btnEliminarPermiso.Name = "btnEliminarPermiso";
+            btnEliminarPermiso.Size = new Size(118, 37);
+            btnEliminarPermiso.TabIndex = 47;
+            btnEliminarPermiso.Text = "Eliminar Permiso";
+            btnEliminarPermiso.UseVisualStyleBackColor = true;
             // 
             // btnAsociarPermisoARol
             // 
-            this.btnAsociarPermisoARol.Location = new System.Drawing.Point(6, 39);
-            this.btnAsociarPermisoARol.Name = "btnAsociarPermisoARol";
-            this.btnAsociarPermisoARol.Size = new System.Drawing.Size(125, 50);
-            this.btnAsociarPermisoARol.TabIndex = 49;
-            this.btnAsociarPermisoARol.Text = "Asociar Permiso a Rol";
-            this.btnAsociarPermisoARol.UseVisualStyleBackColor = true;
+            btnAsociarPermisoARol.Location = new Point(7, 27);
+            btnAsociarPermisoARol.Margin = new Padding(4, 3, 4, 3);
+            btnAsociarPermisoARol.Name = "btnAsociarPermisoARol";
+            btnAsociarPermisoARol.Size = new Size(146, 38);
+            btnAsociarPermisoARol.TabIndex = 49;
+            btnAsociarPermisoARol.Text = "Asociar Permiso a Rol";
+            btnAsociarPermisoARol.UseVisualStyleBackColor = true;
             // 
             // btnQuitarPermisoARol
             // 
-            this.btnQuitarPermisoARol.Location = new System.Drawing.Point(137, 39);
-            this.btnQuitarPermisoARol.Name = "btnQuitarPermisoARol";
-            this.btnQuitarPermisoARol.Size = new System.Drawing.Size(110, 50);
-            this.btnQuitarPermisoARol.TabIndex = 50;
-            this.btnQuitarPermisoARol.Text = "Quitar Permiso a Rol";
-            this.btnQuitarPermisoARol.UseVisualStyleBackColor = true;
-            // 
-            // btnExit
-            // 
-            this.btnExit.Location = new System.Drawing.Point(961, 242);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(64, 53);
-            this.btnExit.TabIndex = 52;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
+            btnQuitarPermisoARol.Location = new Point(161, 27);
+            btnQuitarPermisoARol.Margin = new Padding(4, 3, 4, 3);
+            btnQuitarPermisoARol.Name = "btnQuitarPermisoARol";
+            btnQuitarPermisoARol.Size = new Size(128, 38);
+            btnQuitarPermisoARol.TabIndex = 50;
+            btnQuitarPermisoARol.Text = "Quitar Permiso a Rol";
+            btnQuitarPermisoARol.UseVisualStyleBackColor = true;
             // 
             // btnAsociarPermisoAUsuario
             // 
-            this.btnAsociarPermisoAUsuario.Location = new System.Drawing.Point(6, 26);
-            this.btnAsociarPermisoAUsuario.Name = "btnAsociarPermisoAUsuario";
-            this.btnAsociarPermisoAUsuario.Size = new System.Drawing.Size(138, 62);
-            this.btnAsociarPermisoAUsuario.TabIndex = 58;
-            this.btnAsociarPermisoAUsuario.Text = "Asociar Permiso a Usuario";
-            this.btnAsociarPermisoAUsuario.UseVisualStyleBackColor = true;
+            btnAsociarPermisoAUsuario.Location = new Point(1, 35);
+            btnAsociarPermisoAUsuario.Margin = new Padding(4, 3, 4, 3);
+            btnAsociarPermisoAUsuario.Name = "btnAsociarPermisoAUsuario";
+            btnAsociarPermisoAUsuario.Size = new Size(161, 36);
+            btnAsociarPermisoAUsuario.TabIndex = 58;
+            btnAsociarPermisoAUsuario.Text = "Asociar Permiso a Usuario";
+            btnAsociarPermisoAUsuario.UseVisualStyleBackColor = true;
             // 
             // btnQuitarPermisoUsuario
             // 
-            this.btnQuitarPermisoUsuario.Location = new System.Drawing.Point(169, 26);
-            this.btnQuitarPermisoUsuario.Name = "btnQuitarPermisoUsuario";
-            this.btnQuitarPermisoUsuario.Size = new System.Drawing.Size(141, 62);
-            this.btnQuitarPermisoUsuario.TabIndex = 59;
-            this.btnQuitarPermisoUsuario.Text = "Quitar Permiso a Usuario";
-            this.btnQuitarPermisoUsuario.UseVisualStyleBackColor = true;
+            btnQuitarPermisoUsuario.Location = new Point(186, 35);
+            btnQuitarPermisoUsuario.Margin = new Padding(4, 3, 4, 3);
+            btnQuitarPermisoUsuario.Name = "btnQuitarPermisoUsuario";
+            btnQuitarPermisoUsuario.Size = new Size(164, 36);
+            btnQuitarPermisoUsuario.TabIndex = 59;
+            btnQuitarPermisoUsuario.Text = "Quitar Permiso a Usuario";
+            btnQuitarPermisoUsuario.UseVisualStyleBackColor = true;
             // 
             // groupBoxUsuario
             // 
-            this.groupBoxUsuario.Controls.Add(this.textBoxUserId);
-            this.groupBoxUsuario.Controls.Add(this.label3);
-            this.groupBoxUsuario.Controls.Add(this.label4);
-            this.groupBoxUsuario.Controls.Add(this.textBoxUsename);
-            this.groupBoxUsuario.Controls.Add(this.label5);
-            this.groupBoxUsuario.Controls.Add(this.textBoxUserPassword);
-            this.groupBoxUsuario.Controls.Add(this.checkBoxPassword);
-            this.groupBoxUsuario.Location = new System.Drawing.Point(12, 12);
-            this.groupBoxUsuario.Name = "groupBoxUsuario";
-            this.groupBoxUsuario.Size = new System.Drawing.Size(339, 131);
-            this.groupBoxUsuario.TabIndex = 60;
-            this.groupBoxUsuario.TabStop = false;
-            this.groupBoxUsuario.Text = "Usuario";
+            groupBoxUsuario.Controls.Add(textBoxUserId);
+            groupBoxUsuario.Controls.Add(label3);
+            groupBoxUsuario.Controls.Add(label4);
+            groupBoxUsuario.Controls.Add(textBoxUsename);
+            groupBoxUsuario.Controls.Add(label5);
+            groupBoxUsuario.Controls.Add(textBoxUserPassword);
+            groupBoxUsuario.Controls.Add(checkBoxPassword);
+            groupBoxUsuario.Location = new Point(14, 14);
+            groupBoxUsuario.Margin = new Padding(4, 3, 4, 3);
+            groupBoxUsuario.Name = "groupBoxUsuario";
+            groupBoxUsuario.Padding = new Padding(4, 3, 4, 3);
+            groupBoxUsuario.Size = new Size(396, 151);
+            groupBoxUsuario.TabIndex = 60;
+            groupBoxUsuario.TabStop = false;
+            groupBoxUsuario.Text = "Usuario";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.groupBox4);
-            this.groupBox2.Location = new System.Drawing.Point(12, 149);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(339, 157);
-            this.groupBox2.TabIndex = 61;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Roles / Permisos Usuario";
+            groupBox2.Controls.Add(groupBox4);
+            groupBox2.Location = new Point(14, 171);
+            groupBox2.Margin = new Padding(4, 3, 4, 3);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(4, 3, 4, 3);
+            groupBox2.Size = new Size(396, 134);
+            groupBox2.TabIndex = 61;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Roles / Permisos Usuario";
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.btnAsociarPermisoAUsuario);
-            this.groupBox4.Controls.Add(this.btnQuitarPermisoUsuario);
-            this.groupBox4.Location = new System.Drawing.Point(6, 48);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(325, 100);
-            this.groupBox4.TabIndex = 57;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Permisos a Usuario";
+            groupBox4.Controls.Add(btnAsociarPermisoAUsuario);
+            groupBox4.Controls.Add(btnQuitarPermisoUsuario);
+            groupBox4.Location = new Point(7, 33);
+            groupBox4.Margin = new Padding(4, 3, 4, 3);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Padding = new Padding(4, 3, 4, 3);
+            groupBox4.Size = new Size(379, 95);
+            groupBox4.TabIndex = 57;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Permisos a Usuario";
+            // 
+            // btnAsignarPermisosSeleccionados
+            // 
+            btnAsignarPermisosSeleccionados.Location = new Point(83, 71);
+            btnAsignarPermisosSeleccionados.Margin = new Padding(4, 3, 4, 3);
+            btnAsignarPermisosSeleccionados.Name = "btnAsignarPermisosSeleccionados";
+            btnAsignarPermisosSeleccionados.Size = new Size(161, 42);
+            btnAsignarPermisosSeleccionados.TabIndex = 60;
+            btnAsignarPermisosSeleccionados.Text = "Asignar permisos seleccionados";
+            btnAsignarPermisosSeleccionados.UseVisualStyleBackColor = true;
+            btnAsignarPermisosSeleccionados.Click += btnAsignarPermisosSeleccionados_Click_1;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.groupBox6);
-            this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Controls.Add(this.textBoxRolId);
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.textBoxRolNombre);
-            this.groupBox5.Controls.Add(this.btnAltaRol);
-            this.groupBox5.Controls.Add(this.btnModificarRol);
-            this.groupBox5.Controls.Add(this.btnEliminarRol);
-            this.groupBox5.Location = new System.Drawing.Point(369, 12);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(311, 294);
-            this.groupBox5.TabIndex = 62;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Rol";
+            groupBox5.Controls.Add(groupBox6);
+            groupBox5.Controls.Add(label7);
+            groupBox5.Controls.Add(textBoxRolId);
+            groupBox5.Controls.Add(label8);
+            groupBox5.Controls.Add(textBoxRolNombre);
+            groupBox5.Controls.Add(btnAltaRol);
+            groupBox5.Controls.Add(btnModificarRol);
+            groupBox5.Controls.Add(btnEliminarRol);
+            groupBox5.Location = new Point(430, 14);
+            groupBox5.Margin = new Padding(4, 3, 4, 3);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Padding = new Padding(4, 3, 4, 3);
+            groupBox5.Size = new Size(363, 291);
+            groupBox5.TabIndex = 62;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Rol";
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.btnAsociarRolUsuario);
-            this.groupBox6.Controls.Add(this.btnDesasociarRolUsuario);
-            this.groupBox6.Location = new System.Drawing.Point(9, 123);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(296, 161);
-            this.groupBox6.TabIndex = 40;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = " Asociar / Desasociar Rol a Usuario";
+            groupBox6.Controls.Add(btnAsociarRolUsuario);
+            groupBox6.Controls.Add(btnDesasociarRolUsuario);
+            groupBox6.Location = new Point(10, 142);
+            groupBox6.Margin = new Padding(4, 3, 4, 3);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Padding = new Padding(4, 3, 4, 3);
+            groupBox6.Size = new Size(345, 136);
+            groupBox6.TabIndex = 40;
+            groupBox6.TabStop = false;
+            groupBox6.Text = " Asociar / Desasociar Rol a Usuario";
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.label14);
-            this.groupBox7.Controls.Add(this.textBoxPermisoId);
-            this.groupBox7.Controls.Add(this.label15);
-            this.groupBox7.Controls.Add(this.textBoxPermisoNombre);
-            this.groupBox7.Controls.Add(this.label16);
-            this.groupBox7.Controls.Add(this.comboBoxMenu);
-            this.groupBox7.Controls.Add(this.label17);
-            this.groupBox7.Controls.Add(this.comboBoxItem);
-            this.groupBox7.Controls.Add(this.btnAltaPermiso);
-            this.groupBox7.Controls.Add(this.btnEliminarPermiso);
-            this.groupBox7.Location = new System.Drawing.Point(697, 12);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(323, 152);
-            this.groupBox7.TabIndex = 63;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Permiso";
+            groupBox7.Controls.Add(label14);
+            groupBox7.Controls.Add(textBoxPermisoId);
+            groupBox7.Controls.Add(label15);
+            groupBox7.Controls.Add(textBoxPermisoNombre);
+            groupBox7.Controls.Add(label16);
+            groupBox7.Controls.Add(comboBoxMenu);
+            groupBox7.Controls.Add(label17);
+            groupBox7.Controls.Add(comboBoxItem);
+            groupBox7.Controls.Add(btnAltaPermiso);
+            groupBox7.Controls.Add(btnEliminarPermiso);
+            groupBox7.Location = new Point(813, 14);
+            groupBox7.Margin = new Padding(4, 3, 4, 3);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Padding = new Padding(4, 3, 4, 3);
+            groupBox7.Size = new Size(377, 157);
+            groupBox7.TabIndex = 63;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "Permiso";
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.btnAsociarPermisoARol);
-            this.groupBox8.Controls.Add(this.btnQuitarPermisoARol);
-            this.groupBox8.Location = new System.Drawing.Point(697, 184);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(258, 111);
-            this.groupBox8.TabIndex = 64;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Opciones Roles / Permisos";
+            groupBox8.Controls.Add(btnAsignarPermisosSeleccionados);
+            groupBox8.Controls.Add(btnAsociarPermisoARol);
+            groupBox8.Controls.Add(btnQuitarPermisoARol);
+            groupBox8.Location = new Point(813, 177);
+            groupBox8.Margin = new Padding(4, 3, 4, 3);
+            groupBox8.Name = "groupBox8";
+            groupBox8.Padding = new Padding(4, 3, 4, 3);
+            groupBox8.Size = new Size(301, 128);
+            groupBox8.TabIndex = 64;
+            groupBox8.TabStop = false;
+            groupBox8.Text = "Opciones Roles / Permisos";
             // 
-            // FrmPermisos
+            // UC_AsignarRoles
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1467, 723);
-            this.Controls.Add(this.groupBox8);
-            this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBoxUsuario);
-            this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.treeViewUsuarios);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.trvPermisosDelUsuario);
-            this.Controls.Add(this.lblPermisoPorRol);
-            this.Controls.Add(this.trvPermisosPorRol);
-            this.Controls.Add(this.lblPermisos);
-            this.Controls.Add(this.trvPermisos);
-            this.Controls.Add(this.lblRoles);
-            this.Controls.Add(this.lblUsuariosSistema);
-            this.Controls.Add(this.trvPermisosRoles);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "UC_AsignarRoles";
-            this.Text = "PermisosSistemaForm";
-            this.groupBoxUsuario.ResumeLayout(false);
-            this.groupBoxUsuario.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(groupBox8);
+            Controls.Add(groupBox7);
+            Controls.Add(groupBox5);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBoxUsuario);
+            Controls.Add(treeViewUsuarios);
+            Controls.Add(label1);
+            Controls.Add(trvPermisosDelUsuario);
+            Controls.Add(lblPermisoPorRol);
+            Controls.Add(trvPermisosPorRol);
+            Controls.Add(lblPermisos);
+            Controls.Add(trvPermisos);
+            Controls.Add(lblRoles);
+            Controls.Add(lblUsuariosSistema);
+            Controls.Add(trvPermisosRoles);
+            Margin = new Padding(2);
+            Name = "UC_AsignarRoles";
+            Size = new Size(1280, 720);
+            groupBoxUsuario.ResumeLayout(false);
+            groupBoxUsuario.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
+            groupBox8.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -619,7 +665,6 @@
         private System.Windows.Forms.Button btnEliminarPermiso;
         private System.Windows.Forms.Button btnAsociarPermisoARol;
         private System.Windows.Forms.Button btnQuitarPermisoARol;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnAsociarPermisoAUsuario;
         private System.Windows.Forms.Button btnQuitarPermisoUsuario;
         private System.Windows.Forms.GroupBox groupBoxUsuario;
@@ -629,5 +674,6 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox8;
+        private Button btnAsignarPermisosSeleccionados;
     }
 }

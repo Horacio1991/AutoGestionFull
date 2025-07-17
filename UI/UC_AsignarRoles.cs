@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using BLL;
 using DTOs;
+using Servicios;
 
 namespace AutoGestion.UI
 {
@@ -81,10 +82,12 @@ namespace AutoGestion.UI
             {
                 textBoxUserId.Text = u.ID.ToString();
                 textBoxUsename.Text = u.Username;
-                textBoxUserPassword.UseSystemPasswordChar = !checkBoxPassword.Checked;
-                textBoxUserPassword.Text = checkBoxPassword.Checked
-                    ? _bllUsuario.ObtenerPasswordPlain(u.ID)
-                    : u.PasswordEncrypted;
+                checkBoxPassword.Checked = false;
+
+                // Recupero siempre el Base64 cifrado desde la BLLUsuario:
+                textBoxUserPassword.UseSystemPasswordChar = false;
+                textBoxUserPassword.Text =
+                    _bllUsuario.ObtenerPasswordEncrypted(u.ID);
 
                 var perms = _bllComponente.ObtenerPermisosUsuario(u.ID);
                 var root = new TreeNode($"Permisos de {u.Username}");
@@ -187,6 +190,17 @@ namespace AutoGestion.UI
             {
                 TreeViewRoles_AfterSelect(this, new TreeViewEventArgs(trvPermisosRoles.SelectedNode));
             }
+
+            MessageBox.Show("✅ Permiso asociado correctamente.", "Éxito",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // recargo la lista de roles y re-selecciono el mismo nodo
+            CargarRoles();
+            var node = trvPermisosRoles.Nodes[0].Nodes
+                             .Cast<TreeNode>()
+                             .FirstOrDefault(n => ((RolDto)n.Tag).Id == rolId);
+            if (node != null)
+                trvPermisosRoles.SelectedNode = node;
         }
 
         private void BtnQuitarPermisoARol_Click(object sender, EventArgs e)
@@ -196,7 +210,26 @@ namespace AutoGestion.UI
                 _bllComponente.EliminarPermisoDeRol(rolId, permId))
             {
                 TreeViewRoles_AfterSelect(this, new TreeViewEventArgs(trvPermisosRoles.SelectedNode));
+                bool ok = _bllComponente.EliminarPermisoDeRol(rolId, permId);
+                if (!ok)
+                {
+                    MessageBox.Show("No se pudo quitar el permiso.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                MessageBox.Show("✅ Permiso removido correctamente.", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarRoles();
+                var node = trvPermisosRoles.Nodes[0].Nodes
+                              .Cast<TreeNode>()
+                              .FirstOrDefault(n => ((RolDto)n.Tag).Id == rolId);
+                if (node != null)
+                    trvPermisosRoles.SelectedNode = node;
+
             }
+
         }
 
         private void BtnAsignarRolUsuario_Click(object sender, EventArgs e)
@@ -241,15 +274,81 @@ namespace AutoGestion.UI
 
         private void ChkMostrarPassword_CheckedChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBoxUserId.Text, out var userId))
+            if (!int.TryParse(textBoxUserId.Text, out var userId))
+                return;
+
+            if (checkBoxPassword.Checked)
             {
-                textBoxUserPassword.UseSystemPasswordChar = !checkBoxPassword.Checked;
-                textBoxUserPassword.Text = checkBoxPassword.Checked
-                    ? _bllUsuario.ObtenerPasswordPlain(userId)
-                    : _bllUsuario.ListarUsuariosDto()
-                                  .First(u => u.ID == userId)
-                                  .PasswordEncrypted;
+                // Si tildado, mostramos desencriptado
+                textBoxUserPassword.UseSystemPasswordChar = false;
+                textBoxUserPassword.Text =
+                    Encriptacion.DesencriptarPassword(textBoxUserPassword.Text);
+            }
+            else
+            {
+                // Si destildado, volvemos al cifrado original (Base64)
+                textBoxUserPassword.UseSystemPasswordChar = false;
+                // Lo recuperamos del BE a través de BLLUsuario
+                textBoxUserPassword.Text =
+                    _bllUsuario.ObtenerPasswordEncrypted(userId);
             }
         }
+
+        private void btnAsignarPermisosSeleccionados_Click_1(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBoxRolId.Text, out var rolId))
+            {
+                MessageBox.Show("Seleccioná primero un rol válido.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Recojo todos los permisos chequeados
+            var permisosSeleccionados = new List<int>();
+            foreach (TreeNode permisoNode in trvPermisos.Nodes[0].Nodes)
+            {
+                if (permisoNode.Checked && permisoNode.Tag is PermisoDto pd)
+                    permisosSeleccionados.Add(pd.Id);
+            }
+
+            if (permisosSeleccionados.Count == 0)
+            {
+                MessageBox.Show("Marcá al menos un permiso para asignar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Asigno uno a uno
+            var errores = new List<int>();
+            foreach (var pid in permisosSeleccionados)
+            {
+                bool ok = _bllComponente.AsignarPermisoARol(rolId, pid);
+                if (!ok) errores.Add(pid);
+            }
+
+            // Refresco la vista del rol actual
+            TreeViewRoles_AfterSelect(this, new TreeViewEventArgs(trvPermisosRoles.SelectedNode));
+
+            if (errores.Count == 0)
+                MessageBox.Show("✅ Todos los permisos fueron asignados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show($"❌ No se pudieron asignar los permisos: {string.Join(", ", errores)}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void trvPermisos_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            // Evitamos reentradas infinitas por cambiar Checked en código:
+            if (e.Action != TreeViewAction.Unknown)
+                CheckAllChildNodes(e.Node, e.Node.Checked);
+        }
+
+        private void CheckAllChildNodes(TreeNode treeNode, bool isChecked)
+        {
+            foreach (TreeNode child in treeNode.Nodes)
+            {
+                child.Checked = isChecked;
+                // y recursivamente
+                CheckAllChildNodes(child, isChecked);
+            }
+        }
+
     }
 }
