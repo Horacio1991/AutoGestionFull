@@ -4,10 +4,10 @@
     {
         public int ID { get; set; }
         public Cliente Cliente { get; set; }
-        public Vehiculo Vehiculo { get; set; } // Vehiculo que se atiende en el turno
+        public Vehiculo Vehiculo { get; set; } 
         public DateTime Fecha { get; set; }
         public TimeSpan Hora { get; set; }
-        public string Asistencia { get; set; } // Pendiente / Asistió / No asistió
+        public string Asistencia { get; set; } 
         public string Observaciones { get; set; }
     }
 }

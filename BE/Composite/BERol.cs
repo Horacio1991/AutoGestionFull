@@ -1,6 +1,5 @@
 ﻿namespace BE.BEComposite
 {
-    // Rol compuesto, puede contener otros roles o permisos.
     public class BERol : BEComponente
     {
         private List<BEComponente> _hijos = new List<BEComponente>();

@@ -13,7 +13,6 @@ namespace Mapper
             AsegurarEstructura();
         }
 
-        // Asegura que la estructura del XML esté creada
         private void AsegurarEstructura()
         {
             try
@@ -44,7 +43,6 @@ namespace Mapper
             }
         }
 
-        // Trae todas las tasaciones activas
         public List<Tasacion> ListarTodo()
         {
             try
@@ -86,7 +84,6 @@ namespace Mapper
             }
         }
 
-        // Registra una nueva tasación
         public void AltaTasacion(Tasacion t)
         {
             try

@@ -14,7 +14,6 @@ namespace BLL
             _mapper = new MPPCliente();
         }
 
-        // Busca un cliente por ID.
         public Cliente ObtenerPorId(int id)
         {
             try
@@ -27,7 +26,6 @@ namespace BLL
             }
         }
 
-        // Busca un cliente por DNI.
         public Cliente ObtenerPorDni(string dni)
         {
             try
@@ -40,7 +38,6 @@ namespace BLL
             }
         }
 
-        // Registra un cliente a partir de un DTO de entrada y devuelve DTO de salida.
         public ClienteDto RegistrarCliente(ClienteInputDto input)
         {
             try

@@ -13,7 +13,6 @@ namespace Mapper
             AsegurarArchivo();
         }
 
-        // chequeo que exista el archivo XML de bitácora y lo creo si no existe
         private void AsegurarArchivo()
         {
             try
@@ -32,7 +31,7 @@ namespace Mapper
             }
         }
 
-        // Devuelve todos los registros de la bitácora
+        // Lista todos los registros de la bitácora
         public List<Bitacora> ListarTodo()
         {
             var lista = new List<Bitacora>();
@@ -58,7 +57,6 @@ namespace Mapper
             return lista;
         }
 
-        // Da de alta un nuevo registro en la bitácora
         public void Alta(Bitacora registro)
         {
             try

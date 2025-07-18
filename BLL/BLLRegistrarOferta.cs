@@ -9,14 +9,12 @@ namespace BLL
         private readonly BLLVehiculo _bllVehiculo = new BLLVehiculo();
         private readonly BLLOfertaCompra _bllOferta = new BLLOfertaCompra();
 
-        // Registra una oferta de compra a partir de los datos de entrada.
-        // Devuelve true si todo fue OK, false si hubo error (mensaje se maneja arriba).
+        // Devuelve true si todo fue OK, false si hubo error 
         public bool RegistrarOferta(OfertaInputDto input, out string error)
         {
             error = null;
             try
             {
-                // 1) Manejo del oferente (buscar por DNI o registrar si no existe)
                 var oferente = _bllOferente.ObtenerOferenteDtoPorDni(input.Oferente.Dni)
                               ?? _bllOferente.RegistrarOferenteDto(input.Oferente);
 
@@ -33,7 +31,6 @@ namespace BLL
                     vehDto = vehiculoExistente;
                 }
 
-                // 3) Construcción de la entidad OfertaCompra
                 var oferta = new OfertaCompra
                 {
                     Oferente = new BE.Oferente { ID = oferente.ID },
@@ -42,7 +39,6 @@ namespace BLL
                     Estado = "En evaluación"
                 };
 
-                // 4) Persistencia de la oferta
                 _bllOferta.RegistrarOferta(oferta);
 
                 return true;

@@ -13,7 +13,6 @@ namespace Mapper
             AsegurarArchivo();
         }
 
-        // Asegura que el archivo XML exista y tenga la estructura básica.
         private void AsegurarArchivo()
         {
             try
@@ -36,7 +35,6 @@ namespace Mapper
             }
         }
 
-        // Lista todos los pagos activos.
         public List<Pago> ListarTodo()
         {
             try
@@ -76,7 +74,6 @@ namespace Mapper
             }
         }
 
-        // Da de alta un nuevo pago, asignando un ID único y la fecha actual.
         public void Alta(Pago pago)
         {
             try
@@ -84,7 +81,6 @@ namespace Mapper
                 var doc = XDocument.Load(rutaXML);
                 var root = doc.Root.Element("Pagos");
 
-                // Si no existe la sección <Pagos>, la creamos
                 if (root == null)
                 {
                     root = new XElement("Pagos");

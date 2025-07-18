@@ -13,7 +13,6 @@ namespace Mapper
             EnsureStructure();
         }
 
-        // Asegura que la estructura del XML esté creada
         private void EnsureStructure()
         {
             try
@@ -44,7 +43,6 @@ namespace Mapper
             }
         }
 
-        // trae todas las evaluaciones activas
         public List<EvaluacionTecnica> ListarTodo()
         {
             try

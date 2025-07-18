@@ -4,7 +4,7 @@
     {
         public int OfertaID { get; set; }
         public string VehiculoResumen { get; set; }
-        public DateTime FechaInspeccion { get; set; }// p.ej. “Ford Fiesta (ABC123)”
+        public DateTime FechaInspeccion { get; set; }
         public string EstadoMotor { get; set; }
         public string EstadoCarroceria { get; set; }
         public string EstadoInterior { get; set; }

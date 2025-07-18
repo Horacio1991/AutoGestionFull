@@ -13,7 +13,6 @@ namespace BLL
             _mpp = new MPPBackup();
         }
 
-        // Devuelve la lista de backups disponibles.
         public List<BackupDto> ObtenerBackupsDto()
         {
             return _mpp.ListarTodo()

@@ -25,7 +25,6 @@ namespace BLL
             }
         }
 
-        // Devuelve un DTO si existe
         public OferenteDto ObtenerOferenteDtoPorDni(string dni)
         {
             try
@@ -47,7 +46,6 @@ namespace BLL
             }
         }
 
-        // Registra y retorna un DTO
         public OferenteDto RegistrarOferenteDto(OferenteDto dto)
         {
             try

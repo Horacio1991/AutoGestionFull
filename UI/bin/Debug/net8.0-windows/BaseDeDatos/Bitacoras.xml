@@ -36,4 +36,10 @@
   <Bitacora Id="12" Fecha="2025-07-18T09:14:27" UsuarioId="7" Usuario="Prueba">
     <Mensaje>restore</Mensaje>
   </Bitacora>
+  <Bitacora Id="13" Fecha="2025-07-18T14:16:24" UsuarioId="8" Usuario="Lucas">
+    <Mensaje>backup</Mensaje>
+  </Bitacora>
+  <Bitacora Id="14" Fecha="2025-07-18T14:16:47" UsuarioId="1" Usuario="admin">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
 </Bitacoras>

@@ -34,7 +34,6 @@ namespace BLL
             }
         }
 
-        //Lista todos los usuarios como DTOs 
         public List<UsuarioDto> ListarUsuariosDto()
         {
             try
@@ -62,7 +61,6 @@ namespace BLL
             }
         }
 
-        // Registra un nuevo usuario (username + contraseña en texto plano).
         public bool RegistrarUsuario(string username, string passwordPlain, out string error)
         {
             error = null;
@@ -85,7 +83,6 @@ namespace BLL
             }
         }
 
-        // Modifica usuario existente (por ID).
         public bool ModificarUsuario(int userId, string newUsername, string newPasswordPlain, out string error)
         {
             error = null;
@@ -95,7 +92,7 @@ namespace BLL
                 if (existing == null)
                     throw new InvalidOperationException("Usuario no encontrado.");
 
-                // Si cambia el username, verificar duplicado
+                // Si cambia el username verifica duplicado
                 if (!existing.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)
                     && _mapper.BuscarPorUsername(newUsername) != null)
                 {
@@ -114,7 +111,6 @@ namespace BLL
             }
         }
 
-        // Baja lógica de usuario. Porque no se elimina físicamente, sino que se marca como inactivo.
         public bool EliminarUsuario(int userId, out string error)
         {
             error = null;
@@ -130,7 +126,6 @@ namespace BLL
             }
         }
 
-        // Devuelve la contraseña en texto plano para un usuario existente.
         public string ObtenerPasswordPlain(int userId)
         {
             var be = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId);
@@ -138,7 +133,7 @@ namespace BLL
             return Encriptacion.DesencriptarPassword(be.Password);
         }
 
-        // Devuelve un UsuarioDto con todos los datos del usuario (ID, Username, Permisos).
+        // Devuelve usuario (ID, Username, Permisos).
         public UsuarioDto ObtenerUsuarioDto(string username)
         {
             var be = _mapper.BuscarPorUsername(username)
@@ -154,7 +149,6 @@ namespace BLL
             };
         }
 
-        // Devuelve la contraseña encriptada
         public string ObtenerPasswordEncrypted(int userId)
         {
             var be = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId)
@@ -163,19 +157,16 @@ namespace BLL
         }
 
         //Mapea recursivamente un BEComponente (Permiso o Rol) a PermisoDto.
-        // esto es para construir la estructura de permisos del usuario.
         private PermisoDto MapComponenteADto(BEComponente comp)
         {
-            // 1) DTO base para el componente
             var pd = new PermisoDto
             {
                 Id = comp.Id,
                 Nombre = comp.Nombre
-                //Lista de hijos vacia por defecto
             };
-            // 2) Recorro cada hijo (Si es PS va a estar vacia)
+  
             foreach (var hijo in comp.Hijos)
-                pd.Hijos.Add(MapComponenteADto(hijo)); //Agrego el hijo (mapeado) a la lista
+                pd.Hijos.Add(MapComponenteADto(hijo)); 
             return pd;
         }
     }

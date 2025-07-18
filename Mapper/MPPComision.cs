@@ -19,12 +19,10 @@ namespace Mapper
             }
             catch (Exception)
             {
-                // Error al cargar o crear el XML
                 return new XDocument(new XElement("BaseDeDatosLocal"));
             }
         }
 
-        // Asegura que el archivo y la sección Comisiones existan.
         private IEnumerable<XElement> RootComisiones(XDocument doc)
         {
             var node = doc.Root.Element("Comisiones");
@@ -32,7 +30,6 @@ namespace Mapper
             foreach (var x in node.Elements("Comision")) yield return x;
         }
 
-        // Devuelve todas las comisiones activas.
         public List<Comision> ListarTodo()
         {
             try
@@ -67,7 +64,6 @@ namespace Mapper
             return c;
         }
 
-        // Da de alta una comisión.
         public void AltaComision(Comision comision)
         {
             try

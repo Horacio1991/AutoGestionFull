@@ -11,7 +11,6 @@ namespace BLL
         private readonly MPPCliente _cliMapper = new MPPCliente();
         private readonly MPPVehiculo _vehMapper = new MPPVehiculo();
 
-        // Obtiene todas las comisiones filtradas y las mapea a DTOs.
         public List<ComisionListDto> ObtenerComisiones(int vendedorId, string estado, DateTime desde, DateTime hasta)
         {
             try
@@ -53,7 +52,6 @@ namespace BLL
             }
         }
 
-        // Obtiene todas las ventas entregadas sin comisión y las mapea a DTO.
         public List<VentaComisionDto> ObtenerVentasSinComision()
         {
             try
@@ -96,7 +94,6 @@ namespace BLL
             }
         }
 
-        // Registra una comisión para una venta.
         public bool RegistrarComision(ComisionInputDto dto)
         {
             try

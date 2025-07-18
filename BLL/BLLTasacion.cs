@@ -11,7 +11,7 @@ namespace BLL
         private readonly MPPTasacion _mppTasacion = new MPPTasacion();
         private readonly MPPVehiculo _vehiculoMapper = new MPPVehiculo();
 
-        // traer ofertas pendientes de tasación (En estado "En evaluación")
+        // trae ofertas pendientes de tasacion (En estado "En evaluación")
         public List<OfertaParaTasacionDto> ObtenerOfertasParaTasacion()
         {
             var resultado = new List<OfertaParaTasacionDto>();
@@ -23,7 +23,6 @@ namespace BLL
 
                 foreach (var oferta in ofertas)
                 {
-                    // Vehículo completo
                     var veh = _vehiculoMapper.BuscarPorId(oferta.Vehiculo.ID);
                     if (veh == null) continue;
 
@@ -71,11 +70,9 @@ namespace BLL
             if (dto == null) throw new ArgumentNullException(nameof(dto));
             try
             {
-                // Recuperar oferta para tener su VehiculoId
                 var oferta = _mppOferta.BuscarPorId(dto.OfertaID)
                             ?? throw new ApplicationException($"Oferta #{dto.OfertaID} no encontrada.");
 
-                // Grabar la nueva tasación
                 var t = new Tasacion
                 {
                     Oferta = new OfertaCompra { ID = dto.OfertaID },
@@ -84,7 +81,6 @@ namespace BLL
                 };
                 _mppTasacion.AltaTasacion(t);
 
-                // Actualizar el stock del vehículo
                 var veh = _vehiculoMapper.BuscarPorId(oferta.Vehiculo.ID)
                           ?? throw new ApplicationException($"Vehículo #{oferta.Vehiculo.ID} no encontrado al actualizar stock.");
                 veh.Estado = dto.EstadoStock;

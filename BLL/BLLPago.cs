@@ -11,7 +11,6 @@ namespace BLL
         private readonly MPPPago _mppPago = new MPPPago();
         private readonly MPPVenta _mppVenta = new MPPVenta();
 
-        // 1) Lista vehículos con estado "Disponible"
         public List<VehiculoDto> ObtenerVehiculosDisponibles()
         {
             try
@@ -37,7 +36,6 @@ namespace BLL
             }
         }
 
-        // 2) Buscar cliente por DNI
         public ClienteDto BuscarCliente(string dni)
         {
             try
@@ -59,7 +57,6 @@ namespace BLL
             }
         }
 
-        // 3) Registra Pago y Venta en XML, y devuelve false + mensaje en error si algo falla
         public bool RegistrarPagoYVenta(
             string clienteDni,
             string vehiculoDominio,
@@ -74,16 +71,16 @@ namespace BLL
             error = null;
             try
             {
-                // a) Cliente
+                // Cliente
                 var cliente = _mppCliente.BuscarPorDni(clienteDni)
                               ?? throw new ApplicationException("Cliente no existe.");
 
-                // b) Vehículo
+                // Vehículo
                 var veh = _mppVehiculo.ListarTodo()
                           .FirstOrDefault(v => v.Dominio.Equals(vehiculoDominio, StringComparison.OrdinalIgnoreCase));
                 if (veh == null) throw new ApplicationException("Vehículo no disponible.");
 
-                // c) Crear Pago
+                // Crear Pago
                 var pago = new Pago
                 {
                     TipoPago = tipoPago,
@@ -94,7 +91,7 @@ namespace BLL
                 };
                 _mppPago.Alta(pago);
 
-                // d) Crear Venta (en estado "Pendiente")
+                // Crear Venta (en estado "Pendiente")
                 var venta = new Venta
                 {
                     Vendedor = new Vendedor { ID = vendedorId, Nombre = vendedorNombre },
@@ -106,7 +103,7 @@ namespace BLL
                 };
                 _mppVenta.Alta(venta);
 
-                // e) Marcar vehículo como no disponible
+                // Marcar vehículo como no disponible
                 veh.Estado = "Vendido";
                 _mppVehiculo.Actualizar(veh);
 

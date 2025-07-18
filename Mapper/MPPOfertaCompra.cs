@@ -13,7 +13,6 @@ namespace Mapper
             AsegurarArchivo();
         }
 
-        // Asegura que el archivo XML existe y tiene la estructura básica
         private void AsegurarArchivo()
         {
             try
@@ -33,11 +32,9 @@ namespace Mapper
             }
             catch (Exception)
             {
-                // Si falla la creación, no hago nada
             }
         }
 
-        // Obtiene el elemento raíz "OfertaCompras" del documento XML, o lo crea si no existe
         private XElement Root(XDocument doc)
         {
             var root = doc.Root.Element("OfertaCompras");
@@ -49,7 +46,6 @@ namespace Mapper
             return root;
         }
 
-        // Lista todas las ofertas de compra activas
         public List<OfertaCompra> ListarTodo()
         {
             try
@@ -88,7 +84,6 @@ namespace Mapper
             }
         }
 
-        // busca oferta por la patente del vehículo
         public List<OfertaCompra> BuscarPorDominio(string dominio)
         {
             try
@@ -105,7 +100,6 @@ namespace Mapper
             }
         }
 
-        // crea una nueva oferta de compra
         public void Alta(OfertaCompra oferta)
         {
             try

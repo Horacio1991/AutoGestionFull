@@ -9,7 +9,6 @@ namespace BLL
         private readonly BLLEvaluacionTecnica _bllEval = new BLLEvaluacionTecnica();
         private readonly BLLVehiculo _bllVehiculo = new BLLVehiculo();
 
-        // Busca la oferta y su evaluación y arma el texto resumen
         public OfertaRegistroDto ObtenerOfertaPorDominio(string dominio)
         {
             try
@@ -41,7 +40,6 @@ namespace BLL
             }
         }
 
-        // Registra el estado de stock del vehículo asociado a la oferta.
         public void RegistrarDatos(RegistrarDatosInputDto input)
         {
             if (input.OfertaID <= 0)

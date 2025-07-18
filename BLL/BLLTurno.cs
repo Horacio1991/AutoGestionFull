@@ -8,7 +8,6 @@ namespace BLL
     {
         private readonly MPPTurno _mpp = new MPPTurno();
 
-        // Devuelve la lista de turnos pendientes de asistencia.
         public List<Turno> ObtenerTurnosParaAsistencia()
         {
             try
@@ -21,7 +20,6 @@ namespace BLL
             }
         }
 
-        // Registra la asistencia o inasistencia de un turno.
         public bool RegistrarAsistencia(int turnoId, string estado, string observaciones, out string error)
         {
             error = null;
@@ -37,7 +35,6 @@ namespace BLL
             }
         }
 
-        // Registra un nuevo turno a partir de un DTO de entrada.
         public bool RegistrarTurno(TurnoInputDto input, out string error)
         {
             error = null;
@@ -48,19 +45,16 @@ namespace BLL
                 if (string.IsNullOrWhiteSpace(input.DominioVehiculo))
                     throw new ApplicationException("Dominio de vehículo inválido.");
 
-                // 1) Cliente
                 var cliente = new BLLCliente()
                     .ObtenerPorDni(input.DniCliente)
                     ?? throw new ApplicationException("Cliente no encontrado.");
 
-                // 2) Vehículo (BE) mapeado desde DTO
                 var vehDto = new BLLVehiculo()
                     .ObtenerPorDominioDto(input.DominioVehiculo)
                     ?? throw new ApplicationException("Vehículo no encontrado.");
 
                 var veh = new Vehiculo { ID = vehDto.ID };
 
-                // 3) Persistir turno
                 var turno = new Turno
                 {
                     Cliente = cliente,

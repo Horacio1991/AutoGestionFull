@@ -13,7 +13,6 @@ namespace Mapper
             EnsureRoot();
         }
 
-        // Asegura que el XML tenga la sección ComprobantesEntrega
         private void EnsureRoot()
         {
             try
@@ -44,27 +43,6 @@ namespace Mapper
             }
         }
 
-        // Listar todos los comprobantes activos
-        public List<ComprobanteEntrega> ListarTodo()
-        {
-            try
-            {
-                var doc = XDocument.Load(rutaXML);
-                var root = doc.Root.Element("ComprobantesEntrega");
-                if (root == null) return new();
-
-                return root.Elements("ComprobanteEntrega")
-                           .Where(x => (string)x.Attribute("Active") == "true")
-                           .Select(Parse)
-                           .ToList();
-            }
-            catch (Exception)
-            {
-                return new List<ComprobanteEntrega>();
-            }
-        }
-
-        // devuelve el siguiente ID disponible
         public int NextId()
         {
             try
@@ -82,7 +60,6 @@ namespace Mapper
             }
         }
 
-        // Da de alta un nuevo comprobante de entrega
         public void Alta(ComprobanteEntrega comprobante)
         {
             try
@@ -109,12 +86,5 @@ namespace Mapper
             }
         }
 
-        
-        private ComprobanteEntrega Parse(XElement x) => new ComprobanteEntrega
-        {
-            ID = (int)x.Attribute("Id"),
-            Venta = new Venta { ID = (int)x.Element("VentaId") },
-            FechaEntrega = DateTime.Parse(x.Element("FechaEntrega")?.Value ?? DateTime.Now.ToString("s"))
-        };
     }
 }

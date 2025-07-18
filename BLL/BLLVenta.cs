@@ -8,7 +8,6 @@ namespace BLL
     {
         private readonly MPPVenta _mpp = new MPPVenta();
 
-        // Devuelve la lista de ventas con estado "Pendiente" (entidad completa).
         public List<Venta> ObtenerVentasPendientes()
         {
             try
@@ -71,7 +70,6 @@ namespace BLL
             }
         }
 
-        // Devuelve DTOs de ventas aprobadas, para emitir factura. (Estado Aprobada)
         public List<VentaDto> ObtenerVentasParaFacturar()
         {
             try
@@ -87,7 +85,6 @@ namespace BLL
             }
         }
 
-        // Devuelve DTOs de ventas facturadas, para entrega.(Estado Facturada)
         public List<VentaDto> ObtenerVentasParaEntrega()
         {
             try
@@ -103,37 +100,6 @@ namespace BLL
             }
         }
 
-        // Marca una venta como entregada.
-        public bool ConfirmarEntrega(int ventaId, out string error)
-        {
-            error = null;
-            try
-            {
-                _mpp.ActualizarEstado(ventaId, "Entregada");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                error = ex.Message;
-                return false;
-            }
-        }
-
-        // Devuelve la entidad venta completa (para PDF).
-        public Venta ObtenerEntidad(int ventaId)
-        {
-            try
-            {
-                return _mpp.BuscarPorId(ventaId)
-                       ?? throw new ApplicationException("Venta no encontrada.");
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        // Devuelve la lista de ventas pendientes como DTOs.
         public List<VentaDto> ObtenerVentasPendientesDto()
         {
             try
@@ -148,10 +114,9 @@ namespace BLL
             }
         }
 
-        //Helper: mapea una venta BE a VentaDto, resolviendo nombres completos.
         private VentaDto MapToDto(Venta v)
         {
-            // Cargamos nombre de cliente, vehículo y datos de pago desde los IDs.
+            // Carga nombre de cliente, vehículo y datos de pago desde los IDs.
             var cli = new MPPCliente().BuscarPorId(v.Cliente.ID);
             var veh = new MPPVehiculo().BuscarPorId(v.Vehiculo.ID);
             var pago = new MPPPago().BuscarPorId(v.Pago.ID);

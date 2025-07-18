@@ -6,7 +6,6 @@ namespace AutoGestion.Servicios.Pdf
 {
     public static class GeneradorComprobantePDF
     {
-        // Genera un comprobante de entrega en formato PDF .
 
         public static void Generar(Venta venta, string rutaDestino)
         {

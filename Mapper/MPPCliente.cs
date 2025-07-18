@@ -13,7 +13,6 @@ namespace Mapper
             AsegurarArchivo();
         }
 
-        // Asegura que el archivo y la sección Clientes existan.
         private void AsegurarArchivo()
         {
             try
@@ -30,11 +29,9 @@ namespace Mapper
             }
             catch (Exception)
             {
-                // Si falla la creación del archivo, no hago nada (puede fallar por permisos o ruta)
             }
         }
 
-        // Devuelve todos los clientes activos.
         public List<Cliente> ListarTodo()
         {
             var clientes = new List<Cliente>();
@@ -63,7 +60,6 @@ namespace Mapper
             return clientes;
         }
 
-        // Busca un cliente por ID.
         public Cliente BuscarPorId(int id)
         {
             try
@@ -76,7 +72,6 @@ namespace Mapper
             }
         }
 
-        // Busca un cliente por DNI.
         public Cliente BuscarPorDni(string dni)
         {
             try
@@ -90,7 +85,6 @@ namespace Mapper
             }
         }
 
-        // Da de alta un nuevo cliente.
         public void Alta(Cliente cliente)
         {
             try

@@ -8,8 +8,6 @@
         public string Apellido { get; set; }
         public string Contacto { get; set; }
         public DateTime FechaAlta { get; set; } = DateTime.Now;
-
-        // devuelve una cadena que representa al vendedor
         public override string ToString()
         {
             return $"{Nombre} {Apellido} ({DNI})";

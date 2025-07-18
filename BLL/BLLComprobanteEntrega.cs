@@ -1,6 +1,6 @@
 ﻿using BE;
 using Mapper;
-using AutoGestion.Servicios.Pdf; // GeneradorComprobantePDF
+using AutoGestion.Servicios.Pdf; 
 
 namespace BLL
 {
@@ -13,7 +13,6 @@ namespace BLL
         private readonly MPPPago _mppPago = new MPPPago();
 
         // Registra el comprobante, marca la venta como entregada
-        // recupera la entidad completa y genera el PDF
         public void EmitirComprobantePdf(int ventaId, string rutaPdf)
         {
             try

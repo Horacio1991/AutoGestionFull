@@ -10,7 +10,6 @@ namespace BLL
         private readonly MPPEvaluacionTecnica _mppEval = new MPPEvaluacionTecnica();
         private readonly MPPVehiculo _mppVehiculo = new MPPVehiculo();
 
-        // Listar todas las evaluaciones técnicas
         public List<EvaluacionTecnica> ObtenerTodas()
         {
             try
@@ -71,7 +70,6 @@ namespace BLL
             }
         }
 
-        // Registra una evaluación técnica usando un DTO de entrada
         public void RegistrarEvaluacion(EvaluacionInputDto dto)
         {
             if (dto == null)

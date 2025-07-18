@@ -14,12 +14,11 @@ namespace BLL
         private readonly MPPPago _mppPago = new MPPPago();
 
         // Emite la factura para la venta indicada, marca la venta como facturada,
-        // genera el PDF en la ruta destino y devuelve un DTO con los datos listos.
         public FacturaDto EmitirFactura(int ventaId, string rutaPdfDestino)
         {
             try
             {
-                // 1) Recuperar datos completos de la venta
+                // 1 Recuperar datos completos de la venta
                 var venta = _mppVenta.BuscarPorId(ventaId)
                             ?? throw new InvalidOperationException("Venta no encontrada.");
 
@@ -30,7 +29,7 @@ namespace BLL
                 var pago = _mppPago.BuscarPorId(venta.Pago.ID)
                            ?? throw new InvalidOperationException("Pago no encontrado.");
 
-                // 2) Crear y persistir Factura en XML
+                // 2 Crear y persistir Factura en XML
                 var facturaBE = new Factura
                 {
                     Cliente = cliente,
@@ -40,13 +39,13 @@ namespace BLL
                 };
                 _mppFactura.AltaFactura(facturaBE);
 
-                // 3) Marcar venta como facturada
+                // 3 Marcar venta como facturada
                 _mppFactura.MarcarFacturada(ventaId);
 
-                // 4) Generar el PDF
+                // 4 Generar el PDF
                 GeneradorFacturaPDF.Generar(facturaBE, rutaPdfDestino);
 
-                // 5) Mapear a DTO y devolver
+                // 5 Mapear a DTO y devolver
                 return new FacturaDto
                 {
                     ID = facturaBE.ID,
@@ -59,7 +58,6 @@ namespace BLL
             }
             catch (Exception ex)
             {
-                // Lanzás la excepción para manejar desde la UI, o podés mostrar un mensaje acá si lo preferís
                 throw new ApplicationException("No se pudo emitir la factura. " + ex.Message, ex);
             }
         }

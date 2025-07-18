@@ -8,7 +8,6 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
-        // Constructor que asegura que el archivo XML existe o lo crea si no.
         private XDocument LoadOrCreate()
         {
             try
@@ -27,7 +26,6 @@ namespace Mapper
             }
         }
 
-        // asegura que exista la raíz <Facturas> dentro del XML.
         private XElement EnsureFacturasRoot(XDocument doc)
         {
             var root = doc.Root.Element("Facturas");
@@ -71,7 +69,6 @@ namespace Mapper
             }
         }
 
-        // lista todas las facturas activas del XML.
         public List<Factura> ListarTodo()
         {
             try
@@ -98,7 +95,6 @@ namespace Mapper
             }
         }
 
-        // Marca la venta asociada como facturada (cambia su estado dentro del mismo XML).
         public void MarcarFacturada(int ventaId)
         {
             try

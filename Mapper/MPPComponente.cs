@@ -13,7 +13,6 @@ namespace Mapper
             AsegurarSeccionComponentes();
         }
 
-        // Asegura que el XML tenga la estructura necesaria
         private void AsegurarSeccionComponentes()
         {
             try
@@ -42,11 +41,9 @@ namespace Mapper
             }
             catch (Exception)
             {
-                // Si falla la creación, no hago nada
             }
         }
 
-        // Listar roles y permisos
         public List<RolDto> ListarRolesDto()
         {
             try
@@ -144,8 +141,6 @@ namespace Mapper
             }
         }
 
-
-        // ABM de Permisos
         public bool AltaPermiso(string nombrePermiso)
         {
             try
@@ -190,7 +185,6 @@ namespace Mapper
             catch { return false; }
         }
 
-        // ABM de Roles
         public bool AltaRol(string nombreRol, List<int> permisoIds)
         {
             try
@@ -269,8 +263,6 @@ namespace Mapper
             }
             catch { return false; }
         }
-
-        // Asignación de permisos a roles
 
         public bool AsignarPermisoARol(int rolId, int permisoId)
         {
@@ -355,7 +347,6 @@ namespace Mapper
             catch { return false; }
         }
 
-        // Helpers
         private RolDto ParseRolDto(XElement nodo)
         {
             var rol = new RolDto

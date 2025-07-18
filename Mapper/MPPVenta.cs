@@ -13,7 +13,6 @@ namespace Mapper
             EnsureStructure();
         }
 
-        // Se asegura que la estructura básica exista en el XML.
         private void EnsureStructure()
         {
             try
@@ -41,11 +40,9 @@ namespace Mapper
             }
             catch (Exception)
             {
-                // Si falla la creacin, no hago nada
             }
         }
 
-        // Devuelve todas las ventas activas.
         public List<Venta> ListarTodo()
         {
             try
@@ -65,7 +62,6 @@ namespace Mapper
             }
         }
 
-        // Busca una venta por ID.
         public Venta BuscarPorId(int id)
         {
             try
@@ -78,7 +74,6 @@ namespace Mapper
             }
         }
 
-        // Da de alta una nueva venta.
         public void Alta(Venta venta)
         {
             try
@@ -114,7 +109,6 @@ namespace Mapper
             }
         }
 
-        // Cambia el estado de una venta.
         public void ActualizarEstado(int id, string nuevoEstado, string motivo = null)
         {
             try

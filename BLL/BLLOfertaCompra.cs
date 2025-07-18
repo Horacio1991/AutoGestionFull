@@ -13,7 +13,6 @@ namespace BLL
             _mapper = new MPPOfertaCompra();
         }
 
-        // Busca una oferta por ID
         public OfertaCompra ObtenerPorId(int id)
         {
             if (id <= 0) throw new ArgumentException("ID inválido.", nameof(id));
@@ -27,7 +26,6 @@ namespace BLL
             }
         }
 
-        // Busca ofertas por dominio del vehículo
         public List<OfertaCompra> ObtenerPorDominio(string dominio)
         {
             if (string.IsNullOrWhiteSpace(dominio))
@@ -42,7 +40,6 @@ namespace BLL
             }
         }
 
-        // Registra una nueva oferta de compra
         public void RegistrarOferta(OfertaCompra oferta)
         {
             if (oferta == null)

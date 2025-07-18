@@ -1,6 +1,5 @@
 ﻿namespace BE.BEComposite
 {
-    // Permiso simple, no puede tener hijos.
     public class BEPermiso : BEComponente
     {
         public override List<BEComponente> Hijos => new List<BEComponente>();

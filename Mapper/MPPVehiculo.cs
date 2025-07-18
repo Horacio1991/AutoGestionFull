@@ -8,7 +8,6 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
-        // Asegura que el archivo y la sección Vehiculos existan.
         private XDocument LoadOrEmpty()
         {
             try
@@ -28,6 +27,7 @@ namespace Mapper
             }
         }
 
+        // Usado para obtener la raíz de los vehículos
         private IEnumerable<XElement> RootVehiculos(XDocument doc)
         {
             var root = doc.Root.Element("Vehiculos");
@@ -36,7 +36,6 @@ namespace Mapper
                 yield return x;
         }
 
-        // Devuelve todos los vehículos activos.
         public List<Vehiculo> ListarTodo()
         {
             try
@@ -53,7 +52,6 @@ namespace Mapper
             }
         }
 
-        // Devuelve solo vehículos con estado "Disponible"
         public List<Vehiculo> ListarDisponibles()
         {
             try
@@ -80,7 +78,6 @@ namespace Mapper
             }
         }
 
-        // Da de alta un nuevo vehículo
         public void Alta(Vehiculo v)
         {
             try
@@ -88,14 +85,12 @@ namespace Mapper
                 var doc = LoadOrEmpty();
                 var root = doc.Root.Element("Vehiculos");
 
-                // Calcular nuevo ID
                 int nextId = root.Elements("Vehiculo")
                                  .Select(x => (int)x.Attribute("Id"))
                                  .DefaultIfEmpty(0)
                                  .Max() + 1;
                 v.ID = nextId;
 
-                // Crear elemento
                 var elem = new XElement("Vehiculo",
                     new XAttribute("Id", v.ID),
                     new XAttribute("Active", "true"),
@@ -117,7 +112,6 @@ namespace Mapper
             }
         }
 
-        // Actualiza todos los datos de un vehículo
         public void Actualizar(Vehiculo vehiculo)
         {
             try

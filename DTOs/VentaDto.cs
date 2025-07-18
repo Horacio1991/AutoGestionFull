@@ -3,12 +3,12 @@
     public class VentaDto
     {
         public int ID { get; set; }
-        public string Cliente { get; set; }      // p.ej. "Juan Pérez"
-        public string Vehiculo { get; set; }     // p.ej. "Ford Fiesta (ABC123)"
-        public string TipoPago { get; set; }     // p.ej. "Tarjeta"
-        public decimal Monto { get; set; }       // importe total
+        public string Cliente { get; set; }      
+        public string Vehiculo { get; set; }     
+        public string TipoPago { get; set; }     
+        public decimal Monto { get; set; }       
         public DateTime Fecha { get; set; }
-        public string Estado { get; set; }       // "Pendiente", "Autorizada", "Rechazada", etc.
+        public string Estado { get; set; }       
         public string MotivoRechazo { get; set; }
     }
 

@@ -15,13 +15,11 @@ namespace Mapper
             AsegurarHistorialBackup();
         }
 
-        // trae todos los backups disponibles en la carpeta de backups
         public List<Backup> ListarTodo()
         {
             var lista = new List<Backup>();
             if (!Directory.Exists(xmlFolderBackups))
                 Directory.CreateDirectory(xmlFolderBackups);
-
             foreach (var archivo in Directory.GetFiles(xmlFolderBackups, "*.xml"))
             {
                 lista.Add(new Backup
@@ -33,7 +31,6 @@ namespace Mapper
             return lista;
         }
 
-        // Crea un nuevo backup, copiando el XML principal con tiemstamp como nombre
         public bool CrearBackup(Backup backup)
         {
             try
@@ -56,7 +53,6 @@ namespace Mapper
             }
         }
 
-        // Registra metadatos del backup en HistorialBackup.xml
         public void GuardarBackupEnHistorial(Backup backup)
         {
             var doc = XDocument.Load(xmlHistorialBackups);
@@ -107,7 +103,6 @@ namespace Mapper
             return lista;
         }
 
-        // Restaura el archivo backup seleccionado, sobreescribiendo el XML principal.
         public bool RestaurarBackup(Backup backup)
         {
             try

@@ -14,21 +14,6 @@ namespace BLL
             _mapper = new MPPBitacora();
         }
 
-        // Devuelve todos los registros de la bitácora.
-        public List<Bitacora> ObtenerRegistros()
-        {
-            try
-            {
-                return _mapper.ListarTodo();
-            }
-            catch (Exception ex)
-            {
-                  
-                return new List<Bitacora>();
-            }
-        }
-
-        // Agrega un nuevo registro a la bitácora.
         public void RegistrarEvento(Bitacora registro)
         {
             try
@@ -41,7 +26,6 @@ namespace BLL
             }
         }
 
-        // Devuelve los registros de la bitácora mapeados 
         public List<BitacoraDto> ObtenerRegistrosDto()
         {
             try

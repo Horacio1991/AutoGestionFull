@@ -9,7 +9,6 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
-        // trae la lista de usuarios activos desde el XML.
         public List<Usuario> ListarTodo()
         {
             try

@@ -8,7 +8,6 @@ namespace BLL
     {
         private readonly MPPVehiculo _mapper = new MPPVehiculo();
 
-        //Devuelve la lista de vehículos disponibles como DTOs.
         public List<VehiculoDto> ObtenerVehiculosDisponiblesDto()
         {
             try
@@ -23,7 +22,6 @@ namespace BLL
             }
         }
 
-        // Busca disponibles por modelo exacto
         public List<VehiculoDto> BuscarPorModeloDto(string modelo)
         {
             try
@@ -39,7 +37,6 @@ namespace BLL
             }
         }
 
-        // Busca disponibles por marca exacta
         public List<VehiculoDto> BuscarPorMarcaDto(string marca)
         {
             try
@@ -55,7 +52,6 @@ namespace BLL
             }
         }
 
-        // Trae el vehículo completo BE por ID.
         public Vehiculo BuscarPorId(int id)
         {
             try
@@ -68,7 +64,6 @@ namespace BLL
             }
         }
 
-        // Actualiza solo el estado de stock del vehículo.
         public bool ActualizarEstadoStock(int vehiculoId, string nuevoEstado, out string error)
         {
             error = null;
@@ -87,7 +82,6 @@ namespace BLL
             }
         }
 
-        /// Busca por la patente
         public VehiculoDto ObtenerPorDominioDto(string dominio)
         {
             try
@@ -103,7 +97,6 @@ namespace BLL
             }
         }
 
-        // Registra un vehículo desde DTO y devuelve el DTO con ID generado.
         public bool RegistrarVehiculoDto(VehiculoDto dto, out VehiculoDto vehiculoCreado, out string error)
         {
             vehiculoCreado = null;
@@ -144,7 +137,6 @@ namespace BLL
             }
         }
 
-        // Mapea un BE a DTO.
         private VehiculoDto MapToDto(Vehiculo v) => new VehiculoDto
         {
             ID = v.ID,

@@ -13,7 +13,6 @@ namespace Mapper
             AsegurarArchivo();
         }
 
-        // Asegura que el archivo XML exista y tenga la estructura básica
         private void AsegurarArchivo()
         {
             try
@@ -33,7 +32,6 @@ namespace Mapper
             }
         }
 
-        // trae todos los oferentes activos
         public List<Oferente> ListarTodo()
         {
             try
@@ -73,7 +71,6 @@ namespace Mapper
             }
         }
 
-        // Verifica si existe un oferente con el DNI dado
         public bool Existe(string dni)
         {
             try
@@ -86,7 +83,6 @@ namespace Mapper
             }
         }
 
-        // alta de un oferente
         public void Alta(Oferente oferente)
         {
             try

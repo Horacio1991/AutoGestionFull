@@ -8,7 +8,6 @@ namespace Mapper
     {
         private readonly string rutaXML = XmlPaths.BaseDatosLocal;
 
-        // Devuelve todos los turnos con Asistencia = "Pendiente" y Active = true.
         public List<Turno> ListarPendientesAsistencia()
         {
             try
@@ -43,7 +42,6 @@ namespace Mapper
             }
         }
 
-        // Registra la asistencia o no de un turno
         public void RegistrarAsistencia(int turnoId, string estado, string observaciones)
         {
             try
@@ -68,7 +66,6 @@ namespace Mapper
             }
         }
 
-        // Agrega un nuevo turno al XML.
         public void AgregarTurno(Turno turno)
         {
             try
