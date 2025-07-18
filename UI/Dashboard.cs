@@ -107,29 +107,34 @@ namespace Vista.UserControls.Dashboard
 
         private void DibujarGraficoRanking(List<DashboardRankingDto> ranking)
         {
-            var chart = chartRanking;
-            var serie = chart.Series["Series1"];
-            serie.Points.Clear();
-            serie.ChartType = SeriesChartType.Bar;
-            serie.IsValueShownAsLabel = true;
+            chartRanking.Series.Clear();
+            chartRanking.ChartAreas[0].AxisY.CustomLabels.Clear(); // Limpio primero
+            chartRanking.Legends.Clear();
 
-            // Desactivar gridlines si las tenías puestas
-            chart.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
-            chart.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
-
-            // Si no hay datos, abortamos
-            if (ranking == null || ranking.Count == 0)
-                return;
-
-            foreach (var item in ranking)
+            var serie = new Series("Ranking")
             {
-                // Ya sabemos que item.Vendedor no es null
-                int idx = serie.Points.AddXY(item.Vendedor, item.Total);
-                serie.Points[idx].ToolTip = $"{item.Vendedor}: {item.Total:C2}";
+                ChartType = SeriesChartType.Bar,
+                IsValueShownAsLabel = true
+            };
+
+            // IMPORTANTE: Usar i como posición en el eje Y (1,2,3...)
+            for (int i = 0; i < ranking.Count; i++)
+            {
+                var item = ranking[i];
+                serie.Points.AddXY(i + 1, item.Total);
+                serie.Points[i].ToolTip = $"{item.Vendedor}: {item.Total:C2}";
+
+                // Etiqueta personalizada para el eje Y con el nombre del vendedor
+                chartRanking.ChartAreas[0].AxisY.CustomLabels.Add(
+                    new CustomLabel(i + 0.5, i + 1.5, item.Vendedor, 0, LabelMarkStyle.None)
+                );
             }
 
-            chart.Legends["Legend1"].Enabled = false;
+            chartRanking.Series.Add(serie);
+            chartRanking.ChartAreas[0].AxisY.Interval = 1;
+            chartRanking.Legends.Clear();
         }
+
 
         private string ObtenerTextoPeriodo() => cmbFiltroPeriodo.SelectedItem as string switch
         {

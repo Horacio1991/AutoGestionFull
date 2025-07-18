@@ -49,6 +49,40 @@ namespace BLL
             }
         }
 
+        public List<DashboardRankingDto> ObtenerVentasPorVendedor(DateTime desde, DateTime hasta)
+        {
+            var ventas = _mppVenta.ListarTodo()
+                .Where(v =>
+                    (v.Estado.Equals("Facturada", StringComparison.OrdinalIgnoreCase)
+                    || v.Estado.Equals("Entregada", StringComparison.OrdinalIgnoreCase))
+                    && v.Fecha.Date >= desde.Date
+                    && v.Fecha.Date <= hasta.Date
+                ).ToList();
+
+            var datos = ventas.Select(v =>
+            {
+                var pago = _mppPago.BuscarPorId(v.Pago.ID) ?? new Pago { Monto = 0 };
+                var usr = _mppUsuario.BuscarPorId(v.Vendedor.ID);
+                string username = usr?.Username ?? $"Usuario #{v.Vendedor.ID}";
+                return new
+                {
+                    Vendedor = username,
+                    Importe = pago.Monto
+                };
+            });
+
+            return datos
+                .GroupBy(x => x.Vendedor)
+                .Select(g => new DashboardRankingDto
+                {
+                    Vendedor = g.Key,
+                    Total = g.Sum(x => x.Importe)
+                })
+                .OrderByDescending(r => r.Total)
+                .ToList();
+        }
+
+
         // Ranking de vendedores por total facturado en el período.
         public List<DashboardRankingDto> ObtenerRanking(DateTime desde, DateTime hasta)
         {
