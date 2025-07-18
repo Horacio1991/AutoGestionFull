@@ -20,10 +20,60 @@ namespace AutoGestion.UI
             try
             {
                 _ventas = _bll.ObtenerVentasParaEntrega();
+                dgvVentas.DataSource = null;
+                dgvVentas.AutoGenerateColumns = false;
+                dgvVentas.Columns.Clear();
+
+                // Configura columnas si está vacía
+                if (dgvVentas.Columns.Count == 0)
+                {
+                    dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                    {
+                        DataPropertyName = nameof(VentaDto.ID),
+                        HeaderText = "ID",
+                        Width = 50
+                    });
+                    dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                    {
+                        DataPropertyName = nameof(VentaDto.Cliente),
+                        HeaderText = "Cliente",
+                        AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                    });
+                    dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                    {
+                        DataPropertyName = nameof(VentaDto.Vehiculo),
+                        HeaderText = "Vehículo",
+                        AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                    });
+                    dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                    {
+                        DataPropertyName = nameof(VentaDto.Fecha),
+                        HeaderText = "Fecha",
+                        DefaultCellStyle = { Format = "g" }
+                    });
+                    dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                    {
+                        DataPropertyName = nameof(VentaDto.Estado),
+                        HeaderText = "Estado"
+                    });
+                    dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                    {
+                        DataPropertyName = nameof(VentaDto.TipoPago),
+                        HeaderText = "Forma de Pago"
+                    });
+                    dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
+                    {
+                        DataPropertyName = nameof(VentaDto.Monto),
+                        HeaderText = "Monto",
+                        DefaultCellStyle = { Format = "C2" }
+                    });
+                }
+
                 dgvVentas.DataSource = _ventas;
                 dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvVentas.ReadOnly = true;
                 dgvVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvVentas.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -50,10 +100,14 @@ namespace AutoGestion.UI
 
             try
             {
+                // Deshabilito el botón mientras dura el proceso
+                btnConfirmarEntrega.Enabled = false;
+
                 _bllComp.EmitirComprobantePdf(dto.ID, dlg.FileName);
                 MessageBox.Show("✅ Entrega registrada y comprobante generado correctamente.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // recargar la grilla para quitar las entregadas
+
+                // Recargar la grilla para quitar las entregadas
                 CargarVentas();
             }
             catch (Exception ex)
@@ -63,10 +117,9 @@ namespace AutoGestion.UI
             }
             finally
             {
+                btnConfirmarEntrega.Enabled = true;
                 CargarVentas();
             }
         }
-
-
     }
 }

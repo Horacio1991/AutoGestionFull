@@ -1,5 +1,7 @@
 ﻿using BLL;
 using DTOs;
+using System;
+using System.Windows.Forms;
 
 namespace AutoGestion.Vista
 {
@@ -10,6 +12,8 @@ namespace AutoGestion.Vista
         public RegistrarCliente()
         {
             InitializeComponent();
+            btnRegistrar.Enabled = false;
+            txtDni.TextChanged += (_, __) => btnRegistrar.Enabled = false;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -20,15 +24,33 @@ namespace AutoGestion.Vista
                 Nombre = txtNombre.Text.Trim(),
                 Apellido = txtApellido.Text.Trim(),
                 Contacto = txtContacto.Text.Trim()
-            };         
+            };
+
+            // Validación: campos obligatorios
+            if (string.IsNullOrEmpty(input.Dni) || string.IsNullOrEmpty(input.Nombre)
+                || string.IsNullOrEmpty(input.Apellido) || string.IsNullOrEmpty(input.Contacto))
+            {
+                MessageBox.Show("Complete todos los campos antes de registrar.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validación: que no exista un cliente con ese DNI
+            var yaExiste = _bllCliente.ObtenerPorDni(input.Dni);
+            if (yaExiste != null)
+            {
+                MessageBox.Show("Ya existe un cliente registrado con ese DNI.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             try
             {
-                // Ahora UI NO ve BE, solo DTOs y BLL
                 var dto = _bllCliente.RegistrarCliente(input);
                 MessageBox.Show($"Cliente '{dto.Nombre} {dto.Apellido}' registrado con éxito.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarFormulario();
+                btnRegistrar.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -91,7 +113,7 @@ namespace AutoGestion.Vista
             txtNombre.Clear();
             txtApellido.Clear();
             txtContacto.Clear();
-            btnRegistrar.Enabled = true;
+            // El botón registrar solo se habilita si no existe el cliente
         }
     }
 }

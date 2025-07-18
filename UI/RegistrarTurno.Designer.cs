@@ -136,7 +136,6 @@
             dgvVehiculos.Name = "dgvVehiculos";
             dgvVehiculos.Size = new Size(581, 278);
             dgvVehiculos.TabIndex = 10;
-            dgvVehiculos.CellClick += dgvVehiculos_CellClick_1;
             // 
             // RegistrarTurno
             // 
@@ -155,7 +154,6 @@
             Controls.Add(label1);
             Name = "RegistrarTurno";
             Size = new Size(1280, 720);
-            Load += RegistrarTurno_Load_1;
             ((System.ComponentModel.ISupportInitialize)dgvVehiculos).EndInit();
             ResumeLayout(false);
             PerformLayout();

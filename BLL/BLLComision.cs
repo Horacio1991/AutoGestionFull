@@ -11,87 +11,110 @@ namespace BLL
         private readonly MPPCliente _cliMapper = new MPPCliente();
         private readonly MPPVehiculo _vehMapper = new MPPVehiculo();
 
-        /// <summary>
-        /// Obtiene todas las comisiones (filtradas) y las mapea a DTOs ligeros.
-        /// </summary>
-        public List<ComisionListDto> ObtenerComisiones(int vendedorId,
-                                                       string estado,
-                                                       DateTime desde,
-                                                       DateTime hasta)
+        // Obtiene todas las comisiones filtradas y las mapea a DTOs.
+        public List<ComisionListDto> ObtenerComisiones(int vendedorId, string estado, DateTime desde, DateTime hasta)
         {
-            // 1) filtramos en BE
-            var lista = _comMapper.ListarTodo()
-                     .Where(c =>
-                     {
-                         var v = _vtaMapper.BuscarPorId(c.Venta.ID);
-                         return v != null
-                             && v.Vendedor.ID == vendedorId
-                             && c.Fecha.Date >= desde.Date
-                             && c.Fecha.Date <= hasta.Date
-                             && string.Equals(c.Estado, estado, StringComparison.OrdinalIgnoreCase);
-                     });
-
-            // 2) mapeamos a DTO
-            return lista.Select(c =>
+            try
             {
-                var venta = _vtaMapper.BuscarPorId(c.Venta.ID)!;
-                var cli = _cliMapper.BuscarPorId(venta.Cliente.ID)!;
-                var veh = _vehMapper.BuscarPorId(venta.Vehiculo.ID)!;
+                // 1) Filtrado de comisiones
+                var lista = _comMapper.ListarTodo()
+                         .Where(c =>
+                         {
+                             var v = _vtaMapper.BuscarPorId(c.Venta.ID);
+                             return v != null
+                                 && v.Vendedor.ID == vendedorId
+                                 && c.Fecha.Date >= desde.Date
+                                 && c.Fecha.Date <= hasta.Date
+                                 && string.Equals(c.Estado, estado, StringComparison.OrdinalIgnoreCase);
+                         });
 
-                return new ComisionListDto
+                // 2) Mapeo a DTO
+                return lista.Select(c =>
                 {
-                    ID = c.ID,
-                    Fecha = c.Fecha,
-                    Cliente = $"{cli.Nombre} {cli.Apellido}",
-                    Vehiculo = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})",
-                    Monto = c.Monto,
-                    Estado = c.Estado
-                };
-            })
-            .ToList();
+                    var venta = _vtaMapper.BuscarPorId(c.Venta.ID)!;
+                    var cli = _cliMapper.BuscarPorId(venta.Cliente.ID)!;
+                    var veh = _vehMapper.BuscarPorId(venta.Vehiculo.ID)!;
+
+                    return new ComisionListDto
+                    {
+                        ID = c.ID,
+                        Fecha = c.Fecha,
+                        Cliente = $"{cli.Nombre} {cli.Apellido}",
+                        Vehiculo = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})",
+                        Monto = c.Monto,
+                        Estado = c.Estado,
+                        MotivoRechazo = c.MotivoRechazo
+                    };
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                return new List<ComisionListDto>(); //devuelve lista vacia en caso de error
+            }
         }
 
-        /// <summary>
-        /// Obtiene todas las ventas entregadas que no tienen comisión aún,
-        /// y las mapea a DTO para registrar comisión.
-        /// </summary>
+        // Obtiene todas las ventas entregadas sin comisión y las mapea a DTO.
         public List<VentaComisionDto> ObtenerVentasSinComision()
         {
-            var entregadas = _vtaMapper.ListarTodo()
-                 .Where(v => v.Estado.Equals("Entregada", StringComparison.OrdinalIgnoreCase))
-                 .ToList();
+            try
+            {
+                var entregadas = _vtaMapper.ListarTodo()
+                     .Where(v => v.Estado.Equals("Entregada", StringComparison.OrdinalIgnoreCase))
+                     .ToList();
 
-            var conCom = _comMapper.ListarTodo()
-                         .Select(c => c.Venta.ID)
-                         .ToHashSet();
+                var conCom = _comMapper.ListarTodo()
+                             .Select(c => c.Venta.ID)
+                             .ToHashSet();
 
-            return entregadas
-               .Where(v => !conCom.Contains(v.ID))
-               .Select(v =>
-               {
-                   var cli = _cliMapper.BuscarPorId(v.Cliente.ID)!;
-                   var veh = _vehMapper.BuscarPorId(v.Vehiculo.ID)!;
-                   return new VentaComisionDto
+                // Necesitás el MPPUsuario
+                var usuMapper = new MPPUsuario();
+                var pagoMapper = new MPPPago();
+
+                return entregadas
+                   .Where(v => !conCom.Contains(v.ID))
+                   .Select(v =>
                    {
-                       VentaID = v.ID,
-                       Cliente = $"{cli.Nombre} {cli.Apellido}",
-                       Vehiculo = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})"
-                   };
-               })
-               .ToList();
+                       var cli = _cliMapper.BuscarPorId(v.Cliente.ID)!;
+                       var veh = _vehMapper.BuscarPorId(v.Vehiculo.ID)!;
+                       var pago = pagoMapper.BuscarPorId(v.Pago.ID); // Cargar pago completo
+                       var vendedorObj = usuMapper.BuscarPorId(v.Vendedor.ID); // Cargar vendedor completo
+
+                       return new VentaComisionDto
+                       {
+                           VentaID = v.ID,
+                           Cliente = $"{cli.Nombre} {cli.Apellido}",
+                           Vehiculo = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})",
+                           Vendedor = vendedorObj != null ? vendedorObj.Username : "N/A",
+                           MontoVenta = pago != null ? pago.Monto : 0
+                       };
+                   })
+                   .ToList();
+            }
+            catch (Exception ex)
+            {
+                return new List<VentaComisionDto>();
+            }
         }
 
+        // Registra una comisión para una venta.
         public bool RegistrarComision(ComisionInputDto dto)
         {
-            var c = new Comision
+            try
             {
-                Venta = new Venta { ID = dto.VentaID },
-                Monto = dto.Monto,
-                Estado = dto.Estado,
-                MotivoRechazo = dto.MotivoRechazo
-            };
-            _comMapper.AltaComision(c);
-            return true;
+                var c = new Comision
+                {
+                    Venta = new Venta { ID = dto.VentaID },
+                    Monto = dto.Monto,
+                    Estado = dto.Estado,
+                    MotivoRechazo = dto.MotivoRechazo
+                };
+                _comMapper.AltaComision(c);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

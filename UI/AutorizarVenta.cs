@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DTOs;
 
+
 namespace AutoGestion.UI
 {
     public partial class AutorizarVenta : UserControl
@@ -18,14 +19,12 @@ namespace AutoGestion.UI
         {
             try
             {
-                // Llamamos al nuevo método que devuelve DTOs
                 _ventas = _bll.ObtenerVentasPendientesDto();
 
                 dgvVentas.DataSource = null;
                 dgvVentas.AutoGenerateColumns = false;
                 dgvVentas.Columns.Clear();
 
-                // Definimos solo las columnas que necesitamos
                 dgvVentas.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     DataPropertyName = nameof(VentaDto.ID),
@@ -88,13 +87,17 @@ namespace AutoGestion.UI
 
             try
             {
-                bool ok = _bll.AutorizarVenta(dto.ID);
-                MessageBox.Show(
-                    ok ? "✅ Venta autorizada." : "❌ No se pudo autorizar la venta.",
-                    "Autorizar venta",
-                    MessageBoxButtons.OK,
-                    ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
-                );
+                string error;
+                bool ok = _bll.AutorizarVenta(dto.ID, out error);
+
+                if (ok)
+                {
+                    MessageBox.Show("✅ Venta autorizada.", "Autorizar venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"❌ No se pudo autorizar la venta:\n{error}", "Autorizar venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
@@ -126,13 +129,17 @@ namespace AutoGestion.UI
 
             try
             {
-                bool ok = _bll.RechazarVenta(dto.ID, motivo);
-                MessageBox.Show(
-                    ok ? "✅ Venta rechazada." : "❌ No se pudo rechazar la venta.",
-                    "Rechazar venta",
-                    MessageBoxButtons.OK,
-                    ok ? MessageBoxIcon.Information : MessageBoxIcon.Error
-                );
+                string error;
+                bool ok = _bll.RechazarVenta(dto.ID, motivo, out error);
+
+                if (ok)
+                {
+                    MessageBox.Show("✅ Venta rechazada.", "Rechazar venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"❌ No se pudo rechazar la venta:\n{error}", "Rechazar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {

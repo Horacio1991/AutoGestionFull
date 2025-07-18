@@ -13,114 +13,122 @@ namespace Mapper
             AsegurarArchivo();
         }
 
+        // Asegura que el archivo y la sección Clientes existan.
         private void AsegurarArchivo()
         {
-            var dir = Path.GetDirectoryName(rutaXML);
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-
-            if (!File.Exists(rutaXML))
+            try
             {
-                new XDocument(new XElement("BaseDeDatosLocal",
-                    new XElement("Clientes"))).Save(rutaXML);
+                var dir = Path.GetDirectoryName(rutaXML);
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+
+                if (!File.Exists(rutaXML))
+                {
+                    new XDocument(new XElement("BaseDeDatosLocal",
+                        new XElement("Clientes"))).Save(rutaXML);
+                }
+            }
+            catch (Exception)
+            {
+                // Si falla la creación del archivo, no hago nada (puede fallar por permisos o ruta)
             }
         }
 
+        // Devuelve todos los clientes activos.
         public List<Cliente> ListarTodo()
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("Clientes");
-            if (root == null) return new List<Cliente>();
+            var clientes = new List<Cliente>();
+            try
+            {
+                var doc = XDocument.Load(rutaXML);
+                var root = doc.Root.Element("Clientes");
+                if (root == null) return clientes;
 
-            return root.Elements("Cliente")
-                       .Where(x => (string)x.Attribute("Active") == "true")
-                       .Select(x => new Cliente
-                       {
-                           ID = (int)x.Attribute("Id"),
-                           Dni = (string)x.Element("Dni"),
-                           Nombre = (string)x.Element("Nombre"),
-                           Apellido = (string)x.Element("Apellido"),
-                           Contacto = (string)x.Element("Contacto"),
-                           FechaRegistro = DateTime.Parse((string)x.Element("FechaRegistro"))
-                       })
-                       .ToList();
+                clientes = root.Elements("Cliente")
+                               .Where(x => (string)x.Attribute("Active") == "true")
+                               .Select(x => new Cliente
+                               {
+                                   ID = (int)x.Attribute("Id"),
+                                   Dni = (string)x.Element("Dni"),
+                                   Nombre = (string)x.Element("Nombre"),
+                                   Apellido = (string)x.Element("Apellido"),
+                                   Contacto = (string)x.Element("Contacto"),
+                                   FechaRegistro = DateTime.Parse((string)x.Element("FechaRegistro"))
+                               })
+                               .ToList();
+            }
+            catch (Exception)
+            {
+            }
+            return clientes;
         }
 
+        // Busca un cliente por ID.
         public Cliente BuscarPorId(int id)
         {
-            return ListarTodo().FirstOrDefault(c => c.ID == id);
+            try
+            {
+                return ListarTodo().FirstOrDefault(c => c.ID == id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
+        // Busca un cliente por DNI.
         public Cliente BuscarPorDni(string dni)
         {
-            return ListarTodo()
-                   .FirstOrDefault(c => c.Dni.Equals(dni, StringComparison.OrdinalIgnoreCase));
+            try
+            {
+                return ListarTodo()
+                       .FirstOrDefault(c => c.Dni.Equals(dni, StringComparison.OrdinalIgnoreCase));
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
+        // Da de alta un nuevo cliente.
         public void Alta(Cliente cliente)
         {
-            var doc = XDocument.Load(rutaXML);
-
-            // === NUEVO ===
-            // Asegurarnos de que exista siempre la sección Clientes
-            var root = doc.Root.Element("Clientes");
-            if (root == null)
+            try
             {
-                root = new XElement("Clientes");
-                doc.Root.Add(root);
+                var doc = XDocument.Load(rutaXML);
+
+                var root = doc.Root.Element("Clientes");
+                if (root == null)
+                {
+                    root = new XElement("Clientes");
+                    doc.Root.Add(root);
+                }
+
+                int nextId = root.Elements("Cliente")
+                                 .Select(x => (int)x.Attribute("Id"))
+                                 .DefaultIfEmpty(0)
+                                 .Max() + 1;
+
+                cliente.ID = nextId;
+                cliente.FechaRegistro = DateTime.Now;
+
+                var elem = new XElement("Cliente",
+                    new XAttribute("Id", nextId),
+                    new XAttribute("Active", "true"),
+                    new XElement("Dni", cliente.Dni),
+                    new XElement("Nombre", cliente.Nombre),
+                    new XElement("Apellido", cliente.Apellido),
+                    new XElement("Contacto", cliente.Contacto),
+                    new XElement("FechaRegistro", cliente.FechaRegistro.ToString("s"))
+                );
+
+                root.Add(elem);
+                doc.Save(rutaXML);
             }
-            // ============
-
-            int nextId = root.Elements("Cliente")
-                             .Select(x => (int)x.Attribute("Id"))
-                             .DefaultIfEmpty(0)
-                             .Max() + 1;
-
-            cliente.ID = nextId;
-            cliente.FechaRegistro = DateTime.Now;
-
-            var elem = new XElement("Cliente",
-                new XAttribute("Id", nextId),
-                new XAttribute("Active", "true"),
-                new XElement("Dni", cliente.Dni),
-                new XElement("Nombre", cliente.Nombre),
-                new XElement("Apellido", cliente.Apellido),
-                new XElement("Contacto", cliente.Contacto),
-                new XElement("FechaRegistro", cliente.FechaRegistro.ToString("s"))
-            );
-
-            root.Add(elem);
-            doc.Save(rutaXML);
-        }
-
-
-        public void Modificar(Cliente cliente)
-        {
-            var doc = XDocument.Load(rutaXML);
-            var elem = doc.Root.Element("Clientes")
-                           .Elements("Cliente")
-                           .FirstOrDefault(x => (int)x.Attribute("Id") == cliente.ID);
-            if (elem == null) throw new ApplicationException("Cliente no encontrado.");
-
-            elem.Element("Dni").SetValue(cliente.Dni);
-            elem.Element("Nombre").SetValue(cliente.Nombre);
-            elem.Element("Apellido").SetValue(cliente.Apellido);
-            elem.Element("Contacto").SetValue(cliente.Contacto);
-            // FechaRegistro se conserva
-
-            doc.Save(rutaXML);
-        }
-
-        public void Baja(int id)
-        {
-            var doc = XDocument.Load(rutaXML);
-            var elem = doc.Root.Element("Clientes")
-                           .Elements("Cliente")
-                           .FirstOrDefault(x => (int)x.Attribute("Id") == id);
-            if (elem == null) throw new ApplicationException("Cliente no encontrado.");
-
-            elem.SetAttributeValue("Active", "false");
-            doc.Save(rutaXML);
+            catch (Exception ex)
+            {
+                throw new ApplicationException("No se pudo dar de alta el cliente. " + ex.Message, ex);
+            }
         }
     }
 }

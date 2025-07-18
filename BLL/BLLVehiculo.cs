@@ -1,8 +1,4 @@
-﻿// BLL/BLLVehiculo.cs
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using BE;
+﻿using BE;
 using DTOs;
 using Mapper;
 
@@ -12,74 +8,143 @@ namespace BLL
     {
         private readonly MPPVehiculo _mapper = new MPPVehiculo();
 
-        /// <summary>Vehículos disponibles como DTOs.</summary>
+        //Devuelve la lista de vehículos disponibles como DTOs.
         public List<VehiculoDto> ObtenerVehiculosDisponiblesDto()
-            => _mapper.ListarDisponibles()
-                      .Select(MapToDto)
-                      .ToList();
-
-        /// <summary>Buscar disponibles por modelo exacto.</summary>
-        public List<VehiculoDto> BuscarPorModeloDto(string modelo)
-            => _mapper.ListarDisponibles()
-                      .Where(v => v.Modelo.Equals(modelo, StringComparison.OrdinalIgnoreCase))
-                      .Select(MapToDto)
-                      .ToList();
-
-        /// <summary>Buscar disponibles por marca exacta.</summary>
-        public List<VehiculoDto> BuscarPorMarcaDto(string marca)
-            => _mapper.ListarDisponibles()
-                      .Where(v => v.Marca.Equals(marca, StringComparison.OrdinalIgnoreCase))
-                      .Select(MapToDto)
-                      .ToList();
-
-        /// <summary>Traer vehículo completo BE por ID.</summary>
-        public Vehiculo BuscarPorId(int id)
-            => _mapper.BuscarPorId(id);
-
-        /// <summary>Actualizar solo el estado de stock.</summary>
-        public void ActualizarEstadoStock(int vehiculoId, string nuevoEstado)
         {
-            var veh = _mapper.BuscarPorId(vehiculoId)
-                      ?? throw new ApplicationException("Vehículo no encontrado.");
-            veh.Estado = nuevoEstado;
-            _mapper.Actualizar(veh);
+            try
+            {
+                return _mapper.ListarDisponibles()
+                              .Select(MapToDto)
+                              .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<VehiculoDto>();
+            }
         }
 
-        /// <summary>Buscar un DTO por dominio.</summary>
+        // Busca disponibles por modelo exacto
+        public List<VehiculoDto> BuscarPorModeloDto(string modelo)
+        {
+            try
+            {
+                return _mapper.ListarDisponibles()
+                              .Where(v => v.Modelo.Equals(modelo, StringComparison.OrdinalIgnoreCase))
+                              .Select(MapToDto)
+                              .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<VehiculoDto>();
+            }
+        }
+
+        // Busca disponibles por marca exacta
+        public List<VehiculoDto> BuscarPorMarcaDto(string marca)
+        {
+            try
+            {
+                return _mapper.ListarDisponibles()
+                              .Where(v => v.Marca.Equals(marca, StringComparison.OrdinalIgnoreCase))
+                              .Select(MapToDto)
+                              .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<VehiculoDto>();
+            }
+        }
+
+        // Trae el vehículo completo BE por ID.
+        public Vehiculo BuscarPorId(int id)
+        {
+            try
+            {
+                return _mapper.BuscarPorId(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        // Actualiza solo el estado de stock del vehículo.
+        public bool ActualizarEstadoStock(int vehiculoId, string nuevoEstado, out string error)
+        {
+            error = null;
+            try
+            {
+                var veh = _mapper.BuscarPorId(vehiculoId)
+                          ?? throw new ApplicationException("Vehículo no encontrado.");
+                veh.Estado = nuevoEstado;
+                _mapper.Actualizar(veh);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
+        }
+
+        /// Busca por la patente
         public VehiculoDto ObtenerPorDominioDto(string dominio)
         {
-            var beVeh = _mapper.ListarTodo()
-                               .FirstOrDefault(v =>
-                                   v.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase));
-            return beVeh is null ? null : MapToDto(beVeh);
-        }
-
-        /// <summary>Registrar un vehículo desde DTO y devolver el DTO con ID.</summary>
-        public VehiculoDto RegistrarVehiculoDto(VehiculoDto dto)
-        {
-            var be = new Vehiculo
+            try
             {
-                Marca = dto.Marca,
-                Modelo = dto.Modelo,
-                Año = dto.Año,
-                Color = dto.Color,
-                Km = dto.Km,
-                Dominio = dto.Dominio,
-                Estado = dto.Estado ?? "Disponible"
-            };
-
-            _mapper.Alta(be);
-
-            // Leer nuevamente para capturar el ID generado
-            var creado = _mapper.ListarTodo()
-                                .First(v => v.Dominio == be.Dominio);
-
-            return MapToDto(creado);
+                var beVeh = _mapper.ListarTodo()
+                                   .FirstOrDefault(v =>
+                                       v.Dominio.Equals(dominio, StringComparison.OrdinalIgnoreCase));
+                return beVeh is null ? null : MapToDto(beVeh);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        
+        // Registra un vehículo desde DTO y devuelve el DTO con ID generado.
+        public bool RegistrarVehiculoDto(VehiculoDto dto, out VehiculoDto vehiculoCreado, out string error)
+        {
+            vehiculoCreado = null;
+            error = null;
+            try
+            {
+                if (dto == null)
+                    throw new ArgumentNullException(nameof(dto));
+                if (string.IsNullOrWhiteSpace(dto.Dominio))
+                    throw new ApplicationException("El dominio del vehículo es obligatorio.");
 
-       
+                var be = new Vehiculo
+                {
+                    Marca = dto.Marca,
+                    Modelo = dto.Modelo,
+                    Año = dto.Año,
+                    Color = dto.Color,
+                    Km = dto.Km,
+                    Dominio = dto.Dominio,
+                    Estado = dto.Estado ?? "Disponible"
+                };
+
+                _mapper.Alta(be);
+
+                // Leer nuevamente para capturar el ID generado
+                var creado = _mapper.ListarTodo()
+                                    .FirstOrDefault(v => v.Dominio == be.Dominio);
+                if (creado == null)
+                    throw new ApplicationException("No se pudo crear el vehículo correctamente.");
+
+                vehiculoCreado = MapToDto(creado);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
+        }
+
+        // Mapea un BE a DTO.
         private VehiculoDto MapToDto(Vehiculo v) => new VehiculoDto
         {
             ID = v.ID,

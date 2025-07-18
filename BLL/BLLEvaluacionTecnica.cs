@@ -1,8 +1,4 @@
-﻿// BLL/BLLEvaluacionTecnica.cs
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using BE;
+﻿using BE;
 using DTOs;
 using Mapper;
 
@@ -14,12 +10,20 @@ namespace BLL
         private readonly MPPEvaluacionTecnica _mppEval = new MPPEvaluacionTecnica();
         private readonly MPPVehiculo _mppVehiculo = new MPPVehiculo();
 
+        // Listar todas las evaluaciones técnicas
         public List<EvaluacionTecnica> ObtenerTodas()
-            => _mppEval.ListarTodo();
+        {
+            try
+            {
+                return _mppEval.ListarTodo();
+            }
+            catch (Exception)
+            {
+                return new List<EvaluacionTecnica>();
+            }
+        }
 
-        public EvaluacionTecnica ObtenerPorId(int id)
-            => _mppEval.BuscarPorId(id);
-
+        // Registrar evaluación técnica para una oferta
         public void Registrar(EvaluacionTecnica eval, int ofertaId)
         {
             if (string.IsNullOrWhiteSpace(eval.EstadoMotor) ||
@@ -29,55 +33,65 @@ namespace BLL
             {
                 throw new ApplicationException("Todos los estados son obligatorios.");
             }
-
-            _mppEval.AltaEvaluacion(eval, ofertaId);
+            try
+            {
+                _mppEval.AltaEvaluacion(eval, ofertaId);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("No se pudo registrar la evaluación técnica. " + ex.Message, ex);
+            }
         }
 
-        public void Modificar(EvaluacionTecnica eval)
-        {
-            if (eval.ID <= 0)
-                throw new ApplicationException("Evaluación inválida.");
-            _mppEval.Modificar(eval);
-        }
-
-        public void Eliminar(int id)
-            => _mppEval.Baja(id);
-
+        // Ofertas con estado "En evaluación" para mostrar en combo
         public List<OfertaListDto> ObtenerOfertasParaEvaluar()
         {
-            var todas = _mppOferta.ListarTodo();
+            try
+            {
+                var todas = _mppOferta.ListarTodo();
 
-            return todas
-                .Where(o => o.Estado.Equals("En evaluación", StringComparison.OrdinalIgnoreCase))
-                .Select(o =>
-                {
-                    var veh = _mppVehiculo.BuscarPorId(o.Vehiculo.ID)
-                              ?? throw new ApplicationException($"Vehículo #{o.Vehiculo.ID} no encontrado");
-                    return new OfertaListDto
+                return todas
+                    .Where(o => o.Estado.Equals("En evaluación", StringComparison.OrdinalIgnoreCase))
+                    .Select(o =>
                     {
-                        ID = o.ID,
-                        FechaInspeccion = o.FechaInspeccion,
-                        VehiculoResumen = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})"
-                    };
-                })
-                .ToList();
+                        var veh = _mppVehiculo.BuscarPorId(o.Vehiculo.ID)
+                                  ?? throw new ApplicationException($"Vehículo #{o.Vehiculo.ID} no encontrado");
+                        return new OfertaListDto
+                        {
+                            ID = o.ID,
+                            FechaInspeccion = o.FechaInspeccion,
+                            VehiculoResumen = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})"
+                        };
+                    })
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<OfertaListDto>();
+            }
         }
 
+        // Registra una evaluación técnica usando un DTO de entrada
         public void RegistrarEvaluacion(EvaluacionInputDto dto)
         {
             if (dto == null)
                 throw new ArgumentNullException(nameof(dto));
-
-            var eval = new EvaluacionTecnica
+            try
             {
-                EstadoMotor = dto.EstadoMotor,
-                EstadoCarroceria = dto.EstadoCarroceria,
-                EstadoInterior = dto.EstadoInterior,
-                EstadoDocumentacion = dto.EstadoDocumentacion,
-                Observaciones = dto.Observaciones
-            };
-
-            Registrar(eval, dto.OfertaID);
+                var eval = new EvaluacionTecnica
+                {
+                    EstadoMotor = dto.EstadoMotor,
+                    EstadoCarroceria = dto.EstadoCarroceria,
+                    EstadoInterior = dto.EstadoInterior,
+                    EstadoDocumentacion = dto.EstadoDocumentacion,
+                    Observaciones = dto.Observaciones
+                };
+                Registrar(eval, dto.OfertaID);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("No se pudo registrar la evaluación técnica. " + ex.Message, ex);
+            }
         }
     }
 }

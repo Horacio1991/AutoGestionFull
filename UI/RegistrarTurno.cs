@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using BLL;
+﻿using BLL;
 using DTOs;
 
 namespace AutoGestion.UI
@@ -18,11 +15,14 @@ namespace AutoGestion.UI
             dtpFecha.Format = DateTimePickerFormat.Short;
             dtpHora.Format = DateTimePickerFormat.Time;
             dtpHora.ShowUpDown = true;
-
+            this.Load += RegistrarTurno_Load;
+            dgvVehiculos.CellClick += dgvVehiculos_CellClick;
         }
 
-        private void RegistrarTurno_Load_1(object sender, EventArgs e)
-            => CargarVehiculos();
+        private void RegistrarTurno_Load(object sender, EventArgs e)
+        {
+            CargarVehiculos();
+        }
 
         private void CargarVehiculos()
         {
@@ -45,14 +45,10 @@ namespace AutoGestion.UI
             }
         }
 
-        private void dgvVehiculos_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dgvVehiculos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            txtDominio.Text = dgvVehiculos
-                .Rows[e.RowIndex]
-                .Cells["Dominio"]
-                .Value
-                ?.ToString();
+            txtDominio.Text = dgvVehiculos.Rows[e.RowIndex].Cells["Dominio"].Value?.ToString();
         }
 
         private void dtpHora_ValueChanged_1(object sender, EventArgs e)
@@ -69,10 +65,20 @@ namespace AutoGestion.UI
         {
             string dni = txtDniCliente.Text.Trim();
             string dominio = txtDominio.Text.Trim();
-            if (string.IsNullOrEmpty(dni) || string.IsNullOrEmpty(dominio))
+
+            // --- VALIDACIONES ---
+            if (string.IsNullOrEmpty(dni))
             {
-                MessageBox.Show("Ingresa DNI del cliente y dominio del vehículo.",
-                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingrese el DNI del cliente.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDniCliente.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(dominio))
+            {
+                MessageBox.Show("Seleccione un vehículo disponible.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDominio.Focus();
                 return;
             }
 
@@ -86,7 +92,14 @@ namespace AutoGestion.UI
 
             try
             {
-                _bllTurno.RegistrarTurno(input);
+                string error;
+                if (!_bllTurno.RegistrarTurno(input, out error))
+                {
+                    MessageBox.Show(error, "No se pudo registrar turno",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 MessageBox.Show("Turno registrado correctamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -105,7 +118,5 @@ namespace AutoGestion.UI
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }

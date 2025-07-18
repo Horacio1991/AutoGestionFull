@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BLL;
+using DTOs;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using BLL;
-using DTOs;
 
 namespace AutoGestion.UI
 {
@@ -30,10 +30,8 @@ namespace AutoGestion.UI
                 // 2) Mapear a DTO, recuperando Cliente y Vehículo completos
                 var listaDto = listaBE.Select(t =>
                 {
-                    // Cliente completo
                     var cli = _bllCliente.ObtenerPorId(t.Cliente.ID)
                               ?? throw new ApplicationException($"Cliente {t.Cliente.ID} no encontrado.");
-                    // Vehículo completo
                     var veh = _bllVehiculo.BuscarPorId(t.Vehiculo.ID)
                               ?? throw new ApplicationException($"Vehículo {t.Vehiculo.ID} no encontrado.");
 
@@ -49,11 +47,10 @@ namespace AutoGestion.UI
                     };
                 }).ToList();
 
-                // 3) Enlazar al grid
                 dgvTurnos.AutoGenerateColumns = true;
                 dgvTurnos.DataSource = listaDto;
 
-                // 4) Ocultar columnas que no queremos mostrar
+                // 4) Ocultar columnas no deseadas
                 foreach (DataGridViewColumn col in dgvTurnos.Columns)
                 {
                     if (col.Name is not nameof(TurnoDto.ID)
@@ -66,7 +63,6 @@ namespace AutoGestion.UI
                         col.Visible = false;
                 }
 
-                // 5) Formatear Fecha y Hora y ajustar estilos
                 dgvTurnos.Columns[nameof(TurnoDto.Fecha)].DefaultCellStyle.Format = "d";
                 dgvTurnos.Columns[nameof(TurnoDto.Hora)].DefaultCellStyle.Format = @"hh\:mm";
                 dgvTurnos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -85,6 +81,7 @@ namespace AutoGestion.UI
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
+            // 1. Validaciones de selección
             if (dgvTurnos.CurrentRow?.DataBoundItem is not TurnoDto turnoDto)
             {
                 MessageBox.Show("Seleccione un turno.", "Validación",
@@ -98,20 +95,26 @@ namespace AutoGestion.UI
                 return;
             }
 
+            int turnoId = turnoDto.ID;
+            string estado = cmbEstado.SelectedItem.ToString();
+            string observaciones = txtObservaciones.Text.Trim();
+
             try
             {
-                _bllTurno.RegistrarAsistencia(
-                    turnoId: turnoDto.ID,
-                    estado: cmbEstado.SelectedItem.ToString(),
-                    observaciones: txtObservaciones.Text.Trim()
-                );
+                string error;
+                if (!_bllTurno.RegistrarAsistencia(turnoId, estado, observaciones, out error))
+                {
+                    MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 MessageBox.Show("Asistencia registrada correctamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // refrescar
+                // Limpiar campos y refrescar
                 cmbEstado.SelectedIndex = -1;
                 txtObservaciones.Clear();
+                dgvTurnos.ClearSelection();
                 CargarTurnos();
             }
             catch (Exception ex)

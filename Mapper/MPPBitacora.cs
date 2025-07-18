@@ -13,63 +13,83 @@ namespace Mapper
             AsegurarArchivo();
         }
 
+        // chequeo que exista el archivo XML de bitácora y lo creo si no existe
         private void AsegurarArchivo()
         {
-            var dir = Path.GetDirectoryName(rutaXML);
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-
-            if (!File.Exists(rutaXML))
+            try
             {
-                new XDocument(new XElement("Bitacoras")).Save(rutaXML);
+                var dir = Path.GetDirectoryName(rutaXML);
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+
+                if (!File.Exists(rutaXML))
+                {
+                    new XDocument(new XElement("Bitacoras")).Save(rutaXML);
+                }
+            }
+            catch (Exception ex)
+            {
             }
         }
 
+        // Devuelve todos los registros de la bitácora
         public List<Bitacora> ListarTodo()
         {
             var lista = new List<Bitacora>();
-            var doc = XDocument.Load(rutaXML);
-
-            foreach (var nodo in doc.Root.Elements("Bitacora"))
+            try
             {
-                lista.Add(new Bitacora
-                {
-                    ID = (int)nodo.Attribute("Id"),
-                    FechaRegistro = DateTime.Parse(nodo.Attribute("Fecha")?.Value ?? DateTime.Now.ToString("s")),
-                    UsuarioID = int.Parse(nodo.Attribute("UsuarioId")?.Value ?? "0"),
-                    UsuarioNombre = nodo.Attribute("Usuario")?.Value,
-                    Detalle = nodo.Element("Mensaje")?.Value
-                });
-            }
+                var doc = XDocument.Load(rutaXML);
 
+                foreach (var nodo in doc.Root.Elements("Bitacora"))
+                {
+                    lista.Add(new Bitacora
+                    {
+                        ID = (int)nodo.Attribute("Id"),
+                        FechaRegistro = DateTime.Parse(nodo.Attribute("Fecha")?.Value ?? DateTime.Now.ToString("s")),
+                        UsuarioID = int.Parse(nodo.Attribute("UsuarioId")?.Value ?? "0"),
+                        UsuarioNombre = nodo.Attribute("Usuario")?.Value,
+                        Detalle = nodo.Element("Mensaje")?.Value
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+            }
             return lista;
         }
 
+        // Da de alta un nuevo registro en la bitácora
         public void Alta(Bitacora registro)
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root;
+            try
+            {
+                var doc = XDocument.Load(rutaXML);
+                var root = doc.Root;
 
-            int siguienteId = root.Elements("Bitacora")
-                                  .Select(x => (int)x.Attribute("Id"))
-                                  .DefaultIfEmpty(0)
-                                  .Max() + 1;
+                int siguienteId = root.Elements("Bitacora")
+                                      .Select(x => (int)x.Attribute("Id"))
+                                      .DefaultIfEmpty(0)
+                                      .Max() + 1;
 
-            registro.ID = siguienteId;
-            registro.FechaRegistro = registro.FechaRegistro == default
-                                     ? DateTime.Now
-                                     : registro.FechaRegistro;
+                registro.ID = siguienteId;
+                registro.FechaRegistro = registro.FechaRegistro == default
+                                         ? DateTime.Now
+                                         : registro.FechaRegistro;
 
-            var elem = new XElement("Bitacora",
-                new XAttribute("Id", registro.ID),
-                new XAttribute("Fecha", registro.FechaRegistro.ToString("s")),
-                new XAttribute("UsuarioId", registro.UsuarioID),
-                new XAttribute("Usuario", registro.UsuarioNombre ?? ""),
-                new XElement("Mensaje", registro.Detalle ?? "")
-            );
+                var elem = new XElement("Bitacora",
+                    new XAttribute("Id", registro.ID),
+                    new XAttribute("Fecha", registro.FechaRegistro.ToString("s")),
+                    new XAttribute("UsuarioId", registro.UsuarioID),
+                    new XAttribute("Usuario", registro.UsuarioNombre ?? ""),
+                    new XElement("Mensaje", registro.Detalle ?? "")
+                );
 
-            root.Add(elem);
-            doc.Save(rutaXML);
+                root.Add(elem);
+                doc.Save(rutaXML);
+            }
+            catch (Exception ex)
+            {
+            }
         }
     }
 }

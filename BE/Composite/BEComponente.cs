@@ -1,5 +1,6 @@
 ﻿namespace BE.BEComposite
 {
+    // Clase base para los componentes del sistema.
     public abstract class BEComponente
     {
         public int Id { get; set; }

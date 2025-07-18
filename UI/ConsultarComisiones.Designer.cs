@@ -136,6 +136,7 @@
             btnDetalle.TabIndex = 10;
             btnDetalle.Text = "Ver detalle";
             btnDetalle.UseVisualStyleBackColor = true;
+            btnDetalle.Click += btnDetalle_Click;
             // 
             // btnFiltrar
             // 

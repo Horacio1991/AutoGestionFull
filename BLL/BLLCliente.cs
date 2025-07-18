@@ -2,6 +2,7 @@
 using DTOs;
 using Mapper;
 
+
 namespace BLL
 {
     public class BLLCliente
@@ -13,80 +14,68 @@ namespace BLL
             _mapper = new MPPCliente();
         }
 
-        public List<Cliente> ObtenerTodos()
-        {
-            return _mapper.ListarTodo();
-        }
-
+        // Busca un cliente por ID.
         public Cliente ObtenerPorId(int id)
         {
-            return _mapper.BuscarPorId(id);
+            try
+            {
+                return _mapper.BuscarPorId(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
+        // Busca un cliente por DNI.
         public Cliente ObtenerPorDni(string dni)
         {
-            return _mapper.BuscarPorDni(dni);
+            try
+            {
+                return _mapper.BuscarPorDni(dni);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public void Registrar(Cliente cliente)
-        {
-            if (string.IsNullOrWhiteSpace(cliente.Dni))
-                throw new ApplicationException("DNI es obligatorio.");
-            if (_mapper.BuscarPorDni(cliente.Dni) != null)
-                throw new ApplicationException("Ya existe un cliente con ese DNI.");
-
-            _mapper.Alta(cliente);
-        }
-
+        // Registra un cliente a partir de un DTO de entrada y devuelve DTO de salida.
         public ClienteDto RegistrarCliente(ClienteInputDto input)
         {
-            // 1) Validaciones
-            if (string.IsNullOrWhiteSpace(input.Dni))
-                throw new ApplicationException("DNI es obligatorio.");
-            if (_mapper.BuscarPorDni(input.Dni) != null)
-                throw new ApplicationException("Ya existe un cliente con ese DNI.");
-
-            // 2) Mapeo DTO → BE
-            var entidad = new Cliente
+            try
             {
-                Dni = input.Dni,
-                Nombre = input.Nombre,
-                Apellido = input.Apellido,
-                Contacto = input.Contacto
-            };
+                if (string.IsNullOrWhiteSpace(input.Dni))
+                    throw new ApplicationException("DNI es obligatorio.");
+                if (_mapper.BuscarPorDni(input.Dni) != null)
+                    throw new ApplicationException("Ya existe un cliente con ese DNI.");
 
-            // 3) Registrar en XML
-            _mapper.Alta(entidad);
+                var entidad = new Cliente
+                {
+                    Dni = input.Dni,
+                    Nombre = input.Nombre,
+                    Apellido = input.Apellido,
+                    Contacto = input.Contacto
+                };
 
-            // 4) Recuperar la entidad con ID asignado
-            var guardado = _mapper.BuscarPorDni(entidad.Dni);
+                _mapper.Alta(entidad);
 
-            // 5) Mapear BE → DTO de salida
-            return new ClienteDto
+                var guardado = _mapper.BuscarPorDni(entidad.Dni);
+
+                return new ClienteDto
+                {
+                    ID = guardado.ID,
+                    Dni = guardado.Dni,
+                    Nombre = guardado.Nombre,
+                    Apellido = guardado.Apellido,
+                    Contacto = guardado.Contacto
+                };
+            }
+            catch (Exception ex)
             {
-                ID = guardado.ID,
-                Dni = guardado.Dni,
-                Nombre = guardado.Nombre,
-                Apellido = guardado.Apellido,
-                Contacto = guardado.Contacto
-            };
+                throw new ApplicationException("No se pudo registrar el cliente. " + ex.Message, ex);
+            }
         }
 
-        public void Modificar(Cliente cliente)
-        {
-            if (cliente.ID <= 0)
-                throw new ApplicationException("Cliente inválido.");
-            _mapper.Modificar(cliente);
-        }
-
-        public void Eliminar(int id)
-        {
-            _mapper.Baja(id);
-        }
-
-        public bool Existe(string dni)
-        {
-            return _mapper.BuscarPorDni(dni) != null;
-        }
     }
 }

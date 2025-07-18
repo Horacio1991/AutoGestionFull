@@ -98,7 +98,7 @@
       <Color>Verde</Color>
       <Km>110000</Km>
       <Dominio>IWY960</Dominio>
-      <Estado>Vendido</Estado>
+      <Estado>Disponible</Estado>
     </Vehiculo>
     <Vehiculo Id="12" Active="true">
       <Marca>Ford</Marca>
@@ -125,15 +125,6 @@
       <Color>Negra</Color>
       <Km>120000</Km>
       <Dominio>PEW123</Dominio>
-      <Estado>Vendido</Estado>
-    </Vehiculo>
-    <Vehiculo Id="15" Active="true">
-      <Marca>prueba</Marca>
-      <Modelo>prueba</Modelo>
-      <Año>0</Año>
-      <Color>prueba</Color>
-      <Km>0</Km>
-      <Dominio>prueba</Dominio>
       <Estado>Disponible</Estado>
     </Vehiculo>
   </Vehiculos>
@@ -573,13 +564,6 @@
       <Contacto>horacio0291@gmail.com</Contacto>
       <FechaRegistro>2025-07-17T22:33:38</FechaRegistro>
     </Cliente>
-    <Cliente Id="7" Active="true">
-      <Dni>53815805</Dni>
-      <Nombre>Charo</Nombre>
-      <Apellido>Ortiz</Apellido>
-      <Contacto>charo@gmail.com</Contacto>
-      <FechaRegistro>2025-07-17T22:44:14</FechaRegistro>
-    </Cliente>
   </Clientes>
   <Ventas>
     <Venta Id="1" Active="true">
@@ -627,24 +611,6 @@
       <Fecha>2025-07-17T22:34:11</Fecha>
       <MotivoRechazo></MotivoRechazo>
     </Venta>
-    <Venta Id="6" Active="true">
-      <VendedorId>2</VendedorId>
-      <ClienteId>7</ClienteId>
-      <VehiculoId>14</VehiculoId>
-      <PagoId>6</PagoId>
-      <Estado>Entregada</Estado>
-      <Fecha>2025-07-17T22:44:48</Fecha>
-      <MotivoRechazo></MotivoRechazo>
-    </Venta>
-    <Venta Id="7" Active="true">
-      <VendedorId>2</VendedorId>
-      <ClienteId>6</ClienteId>
-      <VehiculoId>11</VehiculoId>
-      <PagoId>7</PagoId>
-      <Estado>Entregada</Estado>
-      <Fecha>2025-07-17T22:52:01</Fecha>
-      <MotivoRechazo></MotivoRechazo>
-    </Venta>
   </Ventas>
   <Pagos>
     <Pago Id="1" Active="true">
@@ -682,20 +648,6 @@
       <Detalles>Pago Al Contado</Detalles>
       <FechaPago>2025-07-17T22:34:11</FechaPago>
     </Pago>
-    <Pago Id="6" Active="true">
-      <TipoPago>Efectivo</TipoPago>
-      <Monto>25000000</Monto>
-      <Cuotas>1</Cuotas>
-      <Detalles>Compra al contado</Detalles>
-      <FechaPago>2025-07-17T22:44:48</FechaPago>
-    </Pago>
-    <Pago Id="7" Active="true">
-      <TipoPago>Efectivo</TipoPago>
-      <Monto>15000000</Monto>
-      <Cuotas>1</Cuotas>
-      <Detalles>pago contado</Detalles>
-      <FechaPago>2025-07-17T22:52:01</FechaPago>
-    </Pago>
   </Pagos>
   <Facturas>
     <Factura Id="1" Active="true">
@@ -726,20 +678,6 @@
       <Precio>21000000</Precio>
       <Fecha>2025-07-17T22:34:22</Fecha>
     </Factura>
-    <Factura Id="5" Active="true">
-      <ClienteId>7</ClienteId>
-      <VehiculoId>14</VehiculoId>
-      <FormaPago>Efectivo</FormaPago>
-      <Precio>25000000</Precio>
-      <Fecha>2025-07-17T22:45:19</Fecha>
-    </Factura>
-    <Factura Id="6" Active="true">
-      <ClienteId>6</ClienteId>
-      <VehiculoId>11</VehiculoId>
-      <FormaPago>Efectivo</FormaPago>
-      <Precio>15000000</Precio>
-      <Fecha>2025-07-17T22:52:16</Fecha>
-    </Factura>
   </Facturas>
   <ComprobantesEntrega>
     <ComprobanteEntrega Id="1" Active="true">
@@ -757,14 +695,6 @@
     <ComprobanteEntrega Id="4" Active="true">
       <VentaId>5</VentaId>
       <FechaEntrega>2025-07-17T22:34:41</FechaEntrega>
-    </ComprobanteEntrega>
-    <ComprobanteEntrega Id="5" Active="true">
-      <VentaId>6</VentaId>
-      <FechaEntrega>2025-07-17T22:45:43</FechaEntrega>
-    </ComprobanteEntrega>
-    <ComprobanteEntrega Id="6" Active="true">
-      <VentaId>7</VentaId>
-      <FechaEntrega>2025-07-17T22:52:26</FechaEntrega>
     </ComprobanteEntrega>
   </ComprobantesEntrega>
   <Oferentes>
@@ -785,12 +715,6 @@
       <Nombre>Charo</Nombre>
       <Apellido>Ortiz</Apellido>
       <Contacto>charo@gmail.com</Contacto>
-    </Oferente>
-    <Oferente Id="4" Active="true">
-      <Dni>90000000</Dni>
-      <Nombre>Roberto</Nombre>
-      <Apellido>Uronich</Apellido>
-      <Contacto>roberto@gmail.com</Contacto>
     </Oferente>
   </Oferentes>
   <OfertaCompras>
@@ -815,18 +739,6 @@
     <OfertaCompra Id="4" Active="true">
       <OferenteId>1</OferenteId>
       <VehiculoId>14</VehiculoId>
-      <FechaInspeccion>2025-07-17T00:00:00</FechaInspeccion>
-      <Estado>En evaluación</Estado>
-    </OfertaCompra>
-    <OfertaCompra Id="5" Active="true">
-      <OferenteId>4</OferenteId>
-      <VehiculoId>13</VehiculoId>
-      <FechaInspeccion>2025-07-17T00:00:00</FechaInspeccion>
-      <Estado>En evaluación</Estado>
-    </OfertaCompra>
-    <OfertaCompra Id="6" Active="true">
-      <OferenteId>4</OferenteId>
-      <VehiculoId>15</VehiculoId>
       <FechaInspeccion>2025-07-17T00:00:00</FechaInspeccion>
       <Estado>En evaluación</Estado>
     </OfertaCompra>
@@ -864,22 +776,6 @@
       <EstadoDocumentacion>Excelente</EstadoDocumentacion>
       <Observaciones>Todo Perfecto</Observaciones>
     </Evaluacion>
-    <Evaluacion Id="5" Active="true">
-      <OfertaId>6</OfertaId>
-      <EstadoMotor>Excelente</EstadoMotor>
-      <EstadoCarroceria>Excelente</EstadoCarroceria>
-      <EstadoInterior>Excelente</EstadoInterior>
-      <EstadoDocumentacion>Excelente</EstadoDocumentacion>
-      <Observaciones>Excelente</Observaciones>
-    </Evaluacion>
-    <Evaluacion Id="6" Active="true">
-      <OfertaId>6</OfertaId>
-      <EstadoMotor>ok</EstadoMotor>
-      <EstadoCarroceria>ok</EstadoCarroceria>
-      <EstadoInterior>ok</EstadoInterior>
-      <EstadoDocumentacion>ok</EstadoDocumentacion>
-      <Observaciones>ok</Observaciones>
-    </Evaluacion>
   </Evaluaciones>
   <Tasaciones>
     <Tasacion Id="1" Active="true">
@@ -911,18 +807,6 @@
       <EstadoStock>Disponible</EstadoStock>
       <Fecha>2025-07-17T22:36:24</Fecha>
     </Tasacion>
-    <Tasacion Id="6" Active="true">
-      <OfertaId>6</OfertaId>
-      <ValorFinal>15000000</ValorFinal>
-      <EstadoStock>Disponible</EstadoStock>
-      <Fecha>2025-07-17T23:03:06</Fecha>
-    </Tasacion>
-    <Tasacion Id="7" Active="true">
-      <OfertaId>6</OfertaId>
-      <ValorFinal>15000000</ValorFinal>
-      <EstadoStock>Disponible</EstadoStock>
-      <Fecha>2025-07-17T23:05:00</Fecha>
-    </Tasacion>
   </Tasaciones>
   <Comisiones>
     <Comision Id="1" Active="true">
@@ -945,27 +829,6 @@
       <Estado>Rechazada</Estado>
       <MotivoRechazo>Porque si</MotivoRechazo>
       <Venta Id="4" />
-    </Comision>
-    <Comision Id="4" Active="true">
-      <Fecha>2025-07-17T22:51:18</Fecha>
-      <Monto>250000</Monto>
-      <Estado>Aprobada</Estado>
-      <MotivoRechazo></MotivoRechazo>
-      <Venta Id="5" />
-    </Comision>
-    <Comision Id="5" Active="true">
-      <Fecha>2025-07-17T22:51:26</Fecha>
-      <Monto>0</Monto>
-      <Estado>Rechazada</Estado>
-      <MotivoRechazo>se rechaza por que es la hija</MotivoRechazo>
-      <Venta Id="6" />
-    </Comision>
-    <Comision Id="6" Active="true">
-      <Fecha>2025-07-17T22:55:54</Fecha>
-      <Monto>150000</Monto>
-      <Estado>Aprobada</Estado>
-      <MotivoRechazo></MotivoRechazo>
-      <Venta Id="7" />
     </Comision>
   </Comisiones>
   <Turnos>
@@ -1000,14 +863,6 @@
       <Hora>10:30:00</Hora>
       <Asistencia>Asistió</Asistencia>
       <Observaciones>Vino antes de lo esperado</Observaciones>
-    </Turno>
-    <Turno Id="5" Active="true">
-      <ClienteId>2</ClienteId>
-      <VehiculoId>9</VehiculoId>
-      <Fecha>2025-07-17T00:00:00</Fecha>
-      <Hora>23:00:04.5376789</Hora>
-      <Asistencia>No asistió</Asistencia>
-      <Observaciones>No puede venir</Observaciones>
     </Turno>
   </Turnos>
 </BaseDeDatosLocal>

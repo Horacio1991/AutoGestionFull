@@ -8,67 +8,150 @@ namespace BLL
     {
         private readonly MPPVenta _mpp = new MPPVenta();
 
-        // 1) Pantalla Autorizar/Rechazar: BE.Venta
-        public List<Venta> ObtenerVentasPendientes() =>
-            _mpp.ListarTodo()
-                .Where(v => v.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-        public bool AutorizarVenta(int ventaId)
+        // Devuelve la lista de ventas con estado "Pendiente" (entidad completa).
+        public List<Venta> ObtenerVentasPendientes()
         {
-            var v = _mpp.BuscarPorId(ventaId)
-                    ?? throw new ApplicationException("Venta no encontrada.");
-            if (!v.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
-                return false;
-
-            // Ajuste: usamos "Aprobada" porque la UI filtra por ese estado
-            _mpp.ActualizarEstado(ventaId, "Aprobada");
-            return true;
+            try
+            {
+                return _mpp.ListarTodo()
+                    .Where(v => v.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Venta>();
+            }
         }
 
-        public bool RechazarVenta(int ventaId, string motivo)
+        // Autoriza una venta pendiente (cambia a "Aprobada").
+        public bool AutorizarVenta(int ventaId, out string error)
         {
-            var v = _mpp.BuscarPorId(ventaId)
-                    ?? throw new ApplicationException("Venta no encontrada.");
-            if (!v.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
-                return false;
+            error = null;
+            try
+            {
+                var v = _mpp.BuscarPorId(ventaId)
+                        ?? throw new ApplicationException("Venta no encontrada.");
+                if (!v.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
+                {
+                    error = "La venta no está en estado Pendiente.";
+                    return false;
+                }
 
-            _mpp.ActualizarEstado(ventaId, "Rechazada", motivo);
-            return true;
+                _mpp.ActualizarEstado(ventaId, "Aprobada");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
 
-        // 2) Pantalla EmitirFactura: DTOs de ventas "Aprobadas"
+        // Rechaza una venta pendiente (cambia a "Rechazada" con motivo).
+        public bool RechazarVenta(int ventaId, string motivo, out string error)
+        {
+            error = null;
+            try
+            {
+                var v = _mpp.BuscarPorId(ventaId)
+                        ?? throw new ApplicationException("Venta no encontrada.");
+                if (!v.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
+                {
+                    error = "La venta no está en estado Pendiente.";
+                    return false;
+                }
+
+                _mpp.ActualizarEstado(ventaId, "Rechazada", motivo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
+        }
+
+        // Devuelve DTOs de ventas aprobadas, para emitir factura. (Estado Aprobada)
         public List<VentaDto> ObtenerVentasParaFacturar()
         {
-            return _mpp.ListarTodo()
-                .Where(v => v.Estado.Equals("Aprobada", StringComparison.OrdinalIgnoreCase))
-                .Select(v => MapToDto(v))
-                .ToList();
+            try
+            {
+                return _mpp.ListarTodo()
+                    .Where(v => v.Estado.Equals("Aprobada", StringComparison.OrdinalIgnoreCase))
+                    .Select(v => MapToDto(v))
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<VentaDto>();
+            }
         }
 
-        // 3) Pantalla RealizarEntrega: DTOs de ventas "Facturada"
+        // Devuelve DTOs de ventas facturadas, para entrega.(Estado Facturada)
         public List<VentaDto> ObtenerVentasParaEntrega()
         {
-            return _mpp.ListarTodo()
-                .Where(v => v.Estado.Equals("Facturada", StringComparison.OrdinalIgnoreCase))
-                .Select(v => MapToDto(v))
-                .ToList();
+            try
+            {
+                return _mpp.ListarTodo()
+                    .Where(v => v.Estado.Equals("Facturada", StringComparison.OrdinalIgnoreCase))
+                    .Select(v => MapToDto(v))
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<VentaDto>();
+            }
         }
 
-        public void ConfirmarEntrega(int ventaId)
+        // Marca una venta como entregada.
+        public bool ConfirmarEntrega(int ventaId, out string error)
         {
-            _mpp.ActualizarEstado(ventaId, "Entregada");
+            error = null;
+            try
+            {
+                _mpp.ActualizarEstado(ventaId, "Entregada");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
 
-        // 4) Cuando la UI necesita la entidad completa para el PDF
+        // Devuelve la entidad venta completa (para PDF).
         public Venta ObtenerEntidad(int ventaId)
-            => _mpp.BuscarPorId(ventaId)
-               ?? throw new ApplicationException("Venta no encontrada.");
+        {
+            try
+            {
+                return _mpp.BuscarPorId(ventaId)
+                       ?? throw new ApplicationException("Venta no encontrada.");
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
-        // --- Helper para mapear BE.Venta → VentaDto ---
+        // Devuelve la lista de ventas pendientes como DTOs.
+        public List<VentaDto> ObtenerVentasPendientesDto()
+        {
+            try
+            {
+                return ObtenerVentasPendientes()
+                    .Select(v => MapToDto(v))
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<VentaDto>();
+            }
+        }
+
+        //Helper: mapea una venta BE a VentaDto, resolviendo nombres completos.
         private VentaDto MapToDto(Venta v)
         {
-            // Cargamos nombre de cliente y vehículo desde los IDs
+            // Cargamos nombre de cliente, vehículo y datos de pago desde los IDs.
             var cli = new MPPCliente().BuscarPorId(v.Cliente.ID);
             var veh = new MPPVehiculo().BuscarPorId(v.Vehiculo.ID);
             var pago = new MPPPago().BuscarPorId(v.Pago.ID);
@@ -76,24 +159,14 @@ namespace BLL
             return new VentaDto
             {
                 ID = v.ID,
-                Cliente = $"{cli.Nombre} {cli.Apellido}",
-                Vehiculo = $"{veh.Marca} {veh.Modelo} ({veh.Dominio})",
-                TipoPago = pago.TipoPago,
-                Monto = pago.Monto,
+                Cliente = cli != null ? $"{cli.Nombre} {cli.Apellido}" : "(Sin cliente)",
+                Vehiculo = veh != null ? $"{veh.Marca} {veh.Modelo} ({veh.Dominio})" : "(Sin vehículo)",
+                TipoPago = pago?.TipoPago ?? "",
+                Monto = pago?.Monto ?? 0,
                 Fecha = v.Fecha,
                 Estado = v.Estado,
                 MotivoRechazo = v.MotivoRechazo
             };
         }
-
-        public List<VentaDto> ObtenerVentasPendientesDto()
-        {
-            // Reutiliza el método ya existente y el helper MapToDto
-            return ObtenerVentasPendientes()
-                .Select(v => MapToDto(v))
-                .ToList();
-        }
-
-
     }
 }

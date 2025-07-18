@@ -15,9 +15,7 @@ namespace Mapper
             AsegurarHistorialBackup();
         }
 
-        /// <summary>
-        /// Lista los archivos .xml en la carpeta de backups (solo metadatos).
-        /// </summary>
+        // trae todos los backups disponibles en la carpeta de backups
         public List<Backup> ListarTodo()
         {
             var lista = new List<Backup>();
@@ -35,10 +33,7 @@ namespace Mapper
             return lista;
         }
 
-        /// <summary>
-        /// Crea un backup físico del XML principal en la carpeta de backups.
-        /// También fija Nombre y Fecha en el objeto Backup.
-        /// </summary>
+        // Crea un nuevo backup, copiando el XML principal con tiemstamp como nombre
         public bool CrearBackup(Backup backup)
         {
             try
@@ -61,12 +56,12 @@ namespace Mapper
             }
         }
 
-        /// <summary>
-        /// Registra en el HistorialBackup.xml la metadata del backup realizado.
-        /// </summary>
+        // Registra metadatos del backup en HistorialBackup.xml
         public void GuardarBackupEnHistorial(Backup backup)
         {
             var doc = XDocument.Load(xmlHistorialBackups);
+
+            // Calcula el nuevo ID incremental.
             int nuevoId = doc.Root.Elements("Bitacora")
                           .Select(e => (int)e.Attribute("Id"))
                           .DefaultIfEmpty(0)
@@ -82,9 +77,7 @@ namespace Mapper
             doc.Save(xmlHistorialBackups);
         }
 
-        /// <summary>
-        /// Asegura que exista el archivo HistorialBackup.xml con raíz <Bitacoras>.
-        /// </summary>
+        // Si no existe el historial, lo crea vacío con raíz <Bitacoras>.
         public void AsegurarHistorialBackup()
         {
             if (!File.Exists(xmlHistorialBackups))
@@ -95,13 +88,12 @@ namespace Mapper
             }
         }
 
-        /// <summary>
-        /// Lee todos los nodos <Bitacora> del historial.
-        /// </summary>
+        // Devuelve la lista de backups registrados en el historial.
         public List<Backup> ListarHistorial()
         {
             var lista = new List<Backup>();
             var doc = XDocument.Load(xmlHistorialBackups);
+
             foreach (var e in doc.Root.Elements("Bitacora"))
             {
                 lista.Add(new Backup
@@ -115,9 +107,7 @@ namespace Mapper
             return lista;
         }
 
-        /// <summary>
-        /// Restaura el backup indicado copiándolo sobre el XML principal.
-        /// </summary>
+        // Restaura el archivo backup seleccionado, sobreescribiendo el XML principal.
         public bool RestaurarBackup(Backup backup)
         {
             try

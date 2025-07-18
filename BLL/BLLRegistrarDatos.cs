@@ -1,6 +1,5 @@
-﻿using BLL;
-using DTOs;
-using System.Linq;
+﻿using DTOs;
+
 
 namespace BLL
 {
@@ -10,38 +9,39 @@ namespace BLL
         private readonly BLLEvaluacionTecnica _bllEval = new BLLEvaluacionTecnica();
         private readonly BLLVehiculo _bllVehiculo = new BLLVehiculo();
 
-        /// <summary>
-        /// Busca la oferta + su evaluación y arma el texto.
-        /// </summary>
+        // Busca la oferta y su evaluación y arma el texto resumen
         public OfertaRegistroDto ObtenerOfertaPorDominio(string dominio)
         {
-            // 1) Oferta
-            var ofertas = _bllOferta.ObtenerPorDominio(dominio);
-            var oferta = ofertas.FirstOrDefault();
-            if (oferta == null) return null;
-
-            // 2) Evaluación técnica de esa oferta
-            var eval = _bllEval.ObtenerTodas()
-                               .FirstOrDefault(e => e.ID == oferta.ID);
-            if (eval == null) return null;
-
-            // 3) Construir el texto
-            var texto = $"Motor: {eval.EstadoMotor}\r\n" +
-                        $"Carrocería: {eval.EstadoCarroceria}\r\n" +
-                        $"Interior: {eval.EstadoInterior}\r\n" +
-                        $"Documentación: {eval.EstadoDocumentacion}\r\n" +
-                        $"Observaciones: {eval.Observaciones}";
-
-            return new OfertaRegistroDto
+            try
             {
-                OfertaID = oferta.ID,
-                EvaluacionTexto = texto
-            };
+                var ofertas = _bllOferta.ObtenerPorDominio(dominio);
+                var oferta = ofertas.FirstOrDefault();
+                if (oferta == null) return null;
+
+                // Busco evaluación por ID de la oferta
+                var eval = _bllEval.ObtenerTodas()
+                                   .FirstOrDefault(e => e.ID == oferta.ID);
+                if (eval == null) return null;
+
+                var texto = $"Motor: {eval.EstadoMotor}\r\n" +
+                            $"Carrocería: {eval.EstadoCarroceria}\r\n" +
+                            $"Interior: {eval.EstadoInterior}\r\n" +
+                            $"Documentación: {eval.EstadoDocumentacion}\r\n" +
+                            $"Observaciones: {eval.Observaciones}";
+
+                return new OfertaRegistroDto
+                {
+                    OfertaID = oferta.ID,
+                    EvaluacionTexto = texto
+                };
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        /// <summary>
-        /// Registra el estado de stock del vehículo asociado a la oferta.
-        /// </summary>
+        // Registra el estado de stock del vehículo asociado a la oferta.
         public void RegistrarDatos(RegistrarDatosInputDto input)
         {
             if (input.OfertaID <= 0)
@@ -49,12 +49,20 @@ namespace BLL
             if (string.IsNullOrWhiteSpace(input.EstadoStock))
                 throw new ApplicationException("Estado de stock obligatorio.");
 
-            // 1) Obtener oferta
-            var oferta = _bllOferta.ObtenerPorId(input.OfertaID)
-                        ?? throw new ApplicationException("Oferta no encontrada.");
+            try
+            {
+                var oferta = _bllOferta.ObtenerPorId(input.OfertaID)
+                            ?? throw new ApplicationException("Oferta no encontrada.");
 
-            // 2) Actualizar estado en Vehiculo
-            _bllVehiculo.ActualizarEstadoStock(oferta.Vehiculo.ID, input.EstadoStock);
+                string error;
+                if (!_bllVehiculo.ActualizarEstadoStock(oferta.Vehiculo.ID, input.EstadoStock, out error))
+                    throw new ApplicationException(error);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("No se pudo registrar los datos del vehículo. " + ex.Message, ex);
+            }
         }
     }
 }

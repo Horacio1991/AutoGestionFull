@@ -12,6 +12,7 @@ namespace AutoGestion.UI
         public RealizarPago()
         {
             InitializeComponent();
+            dgvVehiculos.SelectionChanged += dgvVehiculos_SelectionChanged;
             CargarVehiculosDisponibles();
             CargarTiposDePago();
         }
@@ -21,10 +22,14 @@ namespace AutoGestion.UI
             try
             {
                 var lista = _bllPago.ObtenerVehiculosDisponibles();
+                dgvVehiculos.DataSource = null;
+                dgvVehiculos.AutoGenerateColumns = true;
                 dgvVehiculos.DataSource = lista;
                 dgvVehiculos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvVehiculos.ReadOnly = true;
                 dgvVehiculos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvVehiculos.ClearSelection();
+                _vehiculoSeleccionado = null;
             }
             catch (Exception ex)
             {
@@ -49,6 +54,12 @@ namespace AutoGestion.UI
         private void btnBuscarCliente_Click_1(object sender, EventArgs e)
         {
             var dni = txtDni.Text.Trim();
+            if (string.IsNullOrEmpty(dni))
+            {
+                MessageBox.Show("Ingrese el DNI del cliente.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 _clienteSeleccionado = _bllPago.BuscarCliente(dni);
@@ -56,6 +67,7 @@ namespace AutoGestion.UI
                 {
                     MessageBox.Show("Cliente no encontrado.", "Info",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNombre.Clear(); txtApellido.Clear(); txtContacto.Clear();
                     return;
                 }
 
@@ -72,7 +84,10 @@ namespace AutoGestion.UI
 
         private void dgvVehiculos_SelectionChanged(object sender, EventArgs e)
         {
-            _vehiculoSeleccionado = dgvVehiculos.CurrentRow?.DataBoundItem as VehiculoDto;
+            if (dgvVehiculos.CurrentRow?.DataBoundItem is VehiculoDto vehiculo)
+                _vehiculoSeleccionado = vehiculo;
+            else
+                _vehiculoSeleccionado = null;
         }
 
         private void btnRegistrarPago_Click_1(object sender, EventArgs e)
@@ -89,7 +104,7 @@ namespace AutoGestion.UI
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (!decimal.TryParse(txtMonto.Text.Trim(), out var monto))
+            if (!decimal.TryParse(txtMonto.Text.Trim(), out var monto) || monto <= 0)
             {
                 MessageBox.Show("Monto inválido.", "Validación",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -97,21 +112,25 @@ namespace AutoGestion.UI
             }
             int.TryParse(txtCuotas.Text.Trim(), out var cuotas);
 
-            // Obtenemos datos del vendedor desde la sesión
+            // Verificar sesión
             var vendedorActual = SessionManager.CurrentUser;
-            int vendedorId = vendedorActual.ID;
-            string vendedorNombre = vendedorActual.Username;
+            if (vendedorActual == null)
+            {
+                MessageBox.Show("Sesión de usuario no válida.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Llamada a la BLL
             bool ok = _bllPago.RegistrarPagoYVenta(
                 clienteDni: _clienteSeleccionado.Dni,
                 vehiculoDominio: _vehiculoSeleccionado.Dominio,
-                tipoPago: cmbTipoPago.SelectedItem.ToString(),
+                tipoPago: cmbTipoPago.SelectedItem?.ToString() ?? "",
                 monto: monto,
                 cuotas: cuotas,
                 detalles: txtOtrosDatos.Text.Trim(),
-                vendedorId: vendedorId,
-                vendedorNombre: vendedorNombre,
+                vendedorId: vendedorActual.ID,
+                vendedorNombre: vendedorActual.Username,
                 out string error
             );
 
@@ -140,7 +159,8 @@ namespace AutoGestion.UI
             txtOtrosDatos.Clear();
             _clienteSeleccionado = null;
             _vehiculoSeleccionado = null;
+            cmbTipoPago.SelectedIndex = 0;
+            dgvVehiculos.ClearSelection();
         }
-
     }
 }

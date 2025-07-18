@@ -1,14 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\",
+  "WorkspaceRootPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal\\autogestionfull\\ui\\consultarcomisiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\consultarcomisiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|c:\\users\\educaccion\\desktop\\tp hoy\\autogestionfull\\mapper\\mppcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76FFEC8F-FC1C-4F61-B7F3-A5DFBF609D50}|Mapper\\Mapper.csproj|solutionrelative:mapper\\mppcomponente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal\\autogestionfull\\dtos\\comisionlistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\comisionlistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal\\autogestionfull\\bll\\bllcomision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllcomision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal\\autogestionfull\\ui\\consultarcomisiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\consultarcomisiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,51 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\Form1.cs",
-              "RelativeDocumentMoniker": "UI\\Form1.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\UI\\Form1.cs",
-              "RelativeToolTip": "UI\\Form1.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAA2wIoAAAAgAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "BLLComision.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\BLL\\BLLComision.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLComision.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\BLL\\BLLComision.cs",
+              "RelativeToolTip": "BLL\\BLLComision.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwC8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T19:13:53.336Z",
+              "WhenOpened": "2025-07-18T01:59:09.381Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MPPComponente.cs",
-              "DocumentMoniker": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\Mapper\\MPPComponente.cs",
-              "RelativeDocumentMoniker": "Mapper\\MPPComponente.cs",
-              "ToolTip": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\Mapper\\MPPComponente.cs",
-              "RelativeToolTip": "Mapper\\MPPComponente.cs",
-              "ViewState": "AgIAAGUBAAAAAAAAAAAywHsBAAAAAAAAAAAAAA==",
+              "Title": "ComisionListDto.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\DTOs\\ComisionListDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\ComisionListDto.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\DTOs\\ComisionListDto.cs",
+              "RelativeToolTip": "DTOs\\ComisionListDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T19:12:33.238Z",
+              "WhenOpened": "2025-07-18T01:58:47.549Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
+            },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConsultarComisiones.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\UI\\ConsultarComisiones.cs",
+              "RelativeDocumentMoniker": "UI\\ConsultarComisiones.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\UI\\ConsultarComisiones.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\ConsultarComisiones.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T01:57:02.273Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConsultarComisiones.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\UI\\ConsultarComisiones.cs",
+              "RelativeDocumentMoniker": "UI\\ConsultarComisiones.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\UI\\ConsultarComisiones.cs",
+              "RelativeToolTip": "UI\\ConsultarComisiones.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAxwGsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T01:56:25.675Z",
+              "EditorCaption": ""
             }
           ]
         }

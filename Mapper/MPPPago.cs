@@ -13,81 +13,109 @@ namespace Mapper
             AsegurarArchivo();
         }
 
+        // Asegura que el archivo XML exista y tenga la estructura básica.
         private void AsegurarArchivo()
         {
-            var dir = Path.GetDirectoryName(rutaXML);
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-
-            if (!File.Exists(rutaXML))
+            try
             {
-                new XDocument(
-                    new XElement("BaseDeDatosLocal",
-                        new XElement("Pagos")
-                    )
-                ).Save(rutaXML);
+                var dir = Path.GetDirectoryName(rutaXML);
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+
+                if (!File.Exists(rutaXML))
+                {
+                    new XDocument(
+                        new XElement("BaseDeDatosLocal",
+                            new XElement("Pagos")
+                        )
+                    ).Save(rutaXML);
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
+        // Lista todos los pagos activos.
         public List<Pago> ListarTodo()
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("Pagos");
-            if (root == null) return new List<Pago>();
+            try
+            {
+                var doc = XDocument.Load(rutaXML);
+                var root = doc.Root.Element("Pagos");
+                if (root == null) return new List<Pago>();
 
-            return root.Elements("Pago")
-                       .Where(x => (string)x.Attribute("Active") == "true")
-                       .Select(x => new Pago
-                       {
-                           ID = (int)x.Attribute("Id"),
-                           TipoPago = (string)x.Element("TipoPago"),
-                           Monto = decimal.Parse(x.Element("Monto")?.Value ?? "0"),
-                           Cuotas = int.Parse(x.Element("Cuotas")?.Value ?? "0"),
-                           Detalles = (string)x.Element("Detalles") ?? "",
-                           FechaPago = DateTime.Parse(x.Element("FechaPago")?.Value ?? DateTime.Now.ToString("s"))
-                       })
-                       .ToList();
+                return root.Elements("Pago")
+                           .Where(x => (string)x.Attribute("Active") == "true")
+                           .Select(x => new Pago
+                           {
+                               ID = (int)x.Attribute("Id"),
+                               TipoPago = (string)x.Element("TipoPago"),
+                               Monto = decimal.Parse(x.Element("Monto")?.Value ?? "0"),
+                               Cuotas = int.Parse(x.Element("Cuotas")?.Value ?? "0"),
+                               Detalles = (string)x.Element("Detalles") ?? "",
+                               FechaPago = DateTime.Parse(x.Element("FechaPago")?.Value ?? DateTime.Now.ToString("s"))
+                           })
+                           .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Pago>();
+            }
         }
 
         public Pago BuscarPorId(int id)
         {
-            return ListarTodo().FirstOrDefault(p => p.ID == id);
+            try
+            {
+                return ListarTodo().FirstOrDefault(p => p.ID == id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
+        // Da de alta un nuevo pago, asignando un ID único y la fecha actual.
         public void Alta(Pago pago)
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("Pagos");
-
-            // Si no existe la sección <Pagos>, la creamos
-            if (root == null)
+            try
             {
-                root = new XElement("Pagos");
-                doc.Root.Add(root);
+                var doc = XDocument.Load(rutaXML);
+                var root = doc.Root.Element("Pagos");
+
+                // Si no existe la sección <Pagos>, la creamos
+                if (root == null)
+                {
+                    root = new XElement("Pagos");
+                    doc.Root.Add(root);
+                }
+
+                int nextId = root.Elements("Pago")
+                                 .Select(x => (int)x.Attribute("Id"))
+                                 .DefaultIfEmpty(0)
+                                 .Max() + 1;
+
+                pago.ID = nextId;
+                pago.FechaPago = DateTime.Now;
+
+                var elem = new XElement("Pago",
+                    new XAttribute("Id", nextId),
+                    new XAttribute("Active", "true"),
+                    new XElement("TipoPago", pago.TipoPago),
+                    new XElement("Monto", pago.Monto),
+                    new XElement("Cuotas", pago.Cuotas),
+                    new XElement("Detalles", pago.Detalles ?? ""),
+                    new XElement("FechaPago", pago.FechaPago.ToString("s"))
+                );
+
+                root.Add(elem);
+                doc.Save(rutaXML);
             }
-
-            int nextId = root.Elements("Pago")
-                             .Select(x => (int)x.Attribute("Id"))
-                             .DefaultIfEmpty(0)
-                             .Max() + 1;
-
-            pago.ID = nextId;
-            pago.FechaPago = DateTime.Now;
-
-            var elem = new XElement("Pago",
-                new XAttribute("Id", nextId),
-                new XAttribute("Active", "true"),
-                new XElement("TipoPago", pago.TipoPago),
-                new XElement("Monto", pago.Monto),
-                new XElement("Cuotas", pago.Cuotas),
-                new XElement("Detalles", pago.Detalles ?? ""),
-                new XElement("FechaPago", pago.FechaPago.ToString("s"))
-            );
-
-            root.Add(elem);
-            doc.Save(rutaXML);
+            catch (Exception ex)
+            {
+                throw new ApplicationException("No se pudo dar de alta el pago. " + ex.Message, ex);
+            }
         }
-
-
     }
 }

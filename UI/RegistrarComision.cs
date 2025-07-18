@@ -11,6 +11,8 @@ namespace AutoGestion.UI
         public RegistrarComision()
         {
             InitializeComponent();
+            dgvVentas.SelectionChanged += DgvVentas_SelectionChanged;
+            txtComisionFinal.KeyDown += TxtComisionFinal_KeyDown;
             CargarVentasSinComision();
         }
 
@@ -23,11 +25,28 @@ namespace AutoGestion.UI
                 dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvVentas.ReadOnly = true;
                 dgvVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                btnConfirmar.Enabled = btnRechazar.Enabled = dgvVentas.Rows.Count > 0;
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al cargar ventas sin comisión:\n{ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DgvVentas_SelectionChanged(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void TxtComisionFinal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && btnConfirmar.Enabled)
+            {
+                btnConfirmar.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -40,7 +59,9 @@ namespace AutoGestion.UI
                 return;
             }
 
-            if (!decimal.TryParse(txtComisionFinal.Text.Trim(), out var monto) || monto <= 0)
+            var textoComision = txtComisionFinal.Text.Trim().Replace(',', '.');
+            if (!decimal.TryParse(textoComision, System.Globalization.NumberStyles.Any,
+                System.Globalization.CultureInfo.InvariantCulture, out var monto) || monto <= 0)
             {
                 MessageBox.Show("Ingrese un monto de comisión válido.", "Validación",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -60,7 +81,7 @@ namespace AutoGestion.UI
                 _bllComision.RegistrarComision(input);
                 MessageBox.Show("✅ Comisión aprobada correctamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtComisionFinal.Clear();
+                LimpiarCampos();
                 CargarVentasSinComision();
             }
             catch (Exception ex)
@@ -100,7 +121,7 @@ namespace AutoGestion.UI
                 _bllComision.RegistrarComision(input);
                 MessageBox.Show("❌ Comisión rechazada correctamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtMotivoRechazo.Clear();
+                LimpiarCampos();
                 CargarVentasSinComision();
             }
             catch (Exception ex)
@@ -110,6 +131,11 @@ namespace AutoGestion.UI
             }
         }
 
-
+        private void LimpiarCampos()
+        {
+            txtComisionFinal.Clear();
+            txtMotivoRechazo.Clear();
+            dgvVentas.ClearSelection();
+        }
     }
 }

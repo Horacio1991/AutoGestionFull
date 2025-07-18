@@ -2,6 +2,7 @@
 using DTOs;
 using Mapper;
 
+
 namespace BLL
 {
     public class BLLBitacora
@@ -13,37 +14,52 @@ namespace BLL
             _mapper = new MPPBitacora();
         }
 
-        /// <summary>
-        /// Devuelve todos los registros de la bitácora.
-        /// </summary>
+        // Devuelve todos los registros de la bitácora.
         public List<Bitacora> ObtenerRegistros()
         {
-            return _mapper.ListarTodo();
+            try
+            {
+                return _mapper.ListarTodo();
+            }
+            catch (Exception ex)
+            {
+                  
+                return new List<Bitacora>();
+            }
         }
 
-        /// <summary>
-        /// Agrega un nuevo registro a la bitácora.
-        /// </summary>
+        // Agrega un nuevo registro a la bitácora.
         public void RegistrarEvento(Bitacora registro)
         {
-            _mapper.Alta(registro);
+            try
+            {
+                _mapper.Alta(registro);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
-        /// <summary>
-        /// Devuelve los registros de la bitácora mapeados a DTOs.
-        /// </summary>
+        // Devuelve los registros de la bitácora mapeados 
         public List<BitacoraDto> ObtenerRegistrosDto()
         {
-            return _mapper.ListarTodo()
-                          .Select(b => new BitacoraDto
-                          {
-                              ID = b.ID,
-                              FechaRegistro = b.FechaRegistro,
-                              Detalle = b.Detalle,
-                              UsuarioNombre = b.UsuarioNombre
-                          })
-                          .ToList();
+            try
+            {
+                return _mapper.ListarTodo()
+                              .Select(b => new BitacoraDto
+                              {
+                                  ID = b.ID,
+                                  FechaRegistro = b.FechaRegistro,
+                                  Detalle = b.Detalle,
+                                  UsuarioNombre = b.UsuarioNombre
+                              })
+                              .ToList();
+            }
+            catch (Exception ex)
+            {
+                return new List<BitacoraDto>();
+            }
         }
-
     }
 }

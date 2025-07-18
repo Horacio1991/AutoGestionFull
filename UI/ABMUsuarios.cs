@@ -1,4 +1,5 @@
 ﻿using BLL;
+using DTOs;
 
 namespace AutoGestion.UI
 {
@@ -18,10 +19,7 @@ namespace AutoGestion.UI
         {
             try
             {
-                // 1) Obtener lista de DTOs
                 var usuarios = _bllUsuario.ListarUsuariosDto();
-
-                // 2) Mapear a anónimos incluyendo contraseña
                 var gridData = usuarios
                     .Select(u => new
                     {
@@ -68,19 +66,18 @@ namespace AutoGestion.UI
                 return;
             }
 
-            try
+            string error;
+            if (!_bllUsuario.RegistrarUsuario(username, clave, out error))
             {
-                _bllUsuario.RegistrarUsuario(username, clave);
-                MessageBox.Show("Usuario agregado correctamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
-                CargarUsuarios();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al agregar usuario:\n{ex.Message}", "Error",
+                MessageBox.Show($"No se pudo agregar el usuario:\n{error}", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            MessageBox.Show("Usuario agregado correctamente.", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LimpiarCampos();
+            CargarUsuarios();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -101,19 +98,18 @@ namespace AutoGestion.UI
                 return;
             }
 
-            try
+            string error;
+            if (!_bllUsuario.ModificarUsuario(id, username, clave, out error))
             {
-                _bllUsuario.ModificarUsuario(id, username, clave);
-                MessageBox.Show("Usuario modificado correctamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
-                CargarUsuarios();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al modificar usuario:\n{ex.Message}", "Error",
+                MessageBox.Show($"No se pudo modificar el usuario:\n{error}", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            MessageBox.Show("Usuario modificado correctamente.", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LimpiarCampos();
+            CargarUsuarios();
         }
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
@@ -133,19 +129,18 @@ namespace AutoGestion.UI
                 != DialogResult.Yes)
                 return;
 
-            try
+            string error;
+            if (!_bllUsuario.EliminarUsuario(id, out error))
             {
-                _bllUsuario.EliminarUsuario(id);
-                MessageBox.Show("Usuario eliminado correctamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
-                CargarUsuarios();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al eliminar usuario:\n{ex.Message}", "Error",
+                MessageBox.Show($"No se pudo eliminar el usuario:\n{error}", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            MessageBox.Show("Usuario eliminado correctamente.", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LimpiarCampos();
+            CargarUsuarios();
         }
 
         private void chkVerClave_CheckedChanged_1(object sender, EventArgs e)
@@ -162,8 +157,6 @@ namespace AutoGestion.UI
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
-
         }
-
     }
 }

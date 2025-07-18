@@ -9,4 +9,22 @@
   <Bitacora Id="3" Fecha="2025-07-17T11:11:21" UsuarioId="1" Usuario="admin">
     <Mensaje>backup</Mensaje>
   </Bitacora>
+  <Bitacora Id="4" Fecha="2025-07-17T17:16:36" UsuarioId="5" Usuario="SuperAdmin">
+    <Mensaje>backup</Mensaje>
+  </Bitacora>
+  <Bitacora Id="5" Fecha="2025-07-17T17:22:13" UsuarioId="1" Usuario="admin">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
+  <Bitacora Id="6" Fecha="2025-07-17T17:22:19" UsuarioId="1" Usuario="admin">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
+  <Bitacora Id="7" Fecha="2025-07-17T22:41:49" UsuarioId="6" Usuario="Prueba">
+    <Mensaje>backup</Mensaje>
+  </Bitacora>
+  <Bitacora Id="8" Fecha="2025-07-17T22:42:00" UsuarioId="6" Usuario="Prueba">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
+  <Bitacora Id="9" Fecha="2025-07-17T22:42:08" UsuarioId="6" Usuario="Prueba">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
 </Bitacoras>

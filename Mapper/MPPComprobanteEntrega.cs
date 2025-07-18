@@ -13,77 +13,103 @@ namespace Mapper
             EnsureRoot();
         }
 
+        // Asegura que el XML tenga la sección ComprobantesEntrega
         private void EnsureRoot()
         {
-            var dir = Path.GetDirectoryName(rutaXML);
-            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+            try
+            {
+                var dir = Path.GetDirectoryName(rutaXML);
+                if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
-            if (!File.Exists(rutaXML))
-            {
-                new XDocument(
-                    new XElement("BaseDeDatosLocal",
-                        new XElement("ComprobantesEntrega")
-                    )
-                ).Save(rutaXML);
-            }
-            else
-            {
-                var doc = XDocument.Load(rutaXML);
-                if (doc.Root.Element("ComprobantesEntrega") == null)
+                if (!File.Exists(rutaXML))
                 {
-                    doc.Root.Add(new XElement("ComprobantesEntrega"));
-                    doc.Save(rutaXML);
+                    new XDocument(
+                        new XElement("BaseDeDatosLocal",
+                            new XElement("ComprobantesEntrega")
+                        )
+                    ).Save(rutaXML);
+                }
+                else
+                {
+                    var doc = XDocument.Load(rutaXML);
+                    if (doc.Root.Element("ComprobantesEntrega") == null)
+                    {
+                        doc.Root.Add(new XElement("ComprobantesEntrega"));
+                        doc.Save(rutaXML);
+                    }
                 }
             }
+            catch (Exception)
+            {
+            }
         }
 
+        // Listar todos los comprobantes activos
         public List<ComprobanteEntrega> ListarTodo()
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("ComprobantesEntrega");
-            if (root == null) return new();
+            try
+            {
+                var doc = XDocument.Load(rutaXML);
+                var root = doc.Root.Element("ComprobantesEntrega");
+                if (root == null) return new();
 
-            return root.Elements("ComprobanteEntrega")
-                       .Where(x => (string)x.Attribute("Active") == "true")
-                       .Select(Parse)
-                       .ToList();
+                return root.Elements("ComprobanteEntrega")
+                           .Where(x => (string)x.Attribute("Active") == "true")
+                           .Select(Parse)
+                           .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<ComprobanteEntrega>();
+            }
         }
 
-        public ComprobanteEntrega BuscarPorId(int id)
-            => ListarTodo().FirstOrDefault(c => c.ID == id);
-
-        public List<ComprobanteEntrega> ListarPorVenta(int ventaId)
-            => ListarTodo().Where(c => c.Venta.ID == ventaId).ToList();
-
+        // devuelve el siguiente ID disponible
         public int NextId()
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("ComprobantesEntrega");
-            return root.Elements("ComprobanteEntrega")
-                       .Select(x => (int)x.Attribute("Id"))
-                       .DefaultIfEmpty(0)
-                       .Max() + 1;
+            try
+            {
+                var doc = XDocument.Load(rutaXML);
+                var root = doc.Root.Element("ComprobantesEntrega");
+                return root.Elements("ComprobanteEntrega")
+                           .Select(x => (int)x.Attribute("Id"))
+                           .DefaultIfEmpty(0)
+                           .Max() + 1;
+            }
+            catch (Exception)
+            {
+                return 1;
+            }
         }
 
+        // Da de alta un nuevo comprobante de entrega
         public void Alta(ComprobanteEntrega comprobante)
         {
-            var doc = XDocument.Load(rutaXML);
-            var root = doc.Root.Element("ComprobantesEntrega");
+            try
+            {
+                var doc = XDocument.Load(rutaXML);
+                var root = doc.Root.Element("ComprobantesEntrega");
 
-            comprobante.ID = NextId();
-            comprobante.FechaEntrega = DateTime.Now;
+                comprobante.ID = NextId();
+                comprobante.FechaEntrega = DateTime.Now;
 
-            var elem = new XElement("ComprobanteEntrega",
-                new XAttribute("Id", comprobante.ID),
-                new XAttribute("Active", "true"),
-                new XElement("VentaId", comprobante.Venta.ID),
-                new XElement("FechaEntrega", comprobante.FechaEntrega.ToString("s"))
-            );
+                var elem = new XElement("ComprobanteEntrega",
+                    new XAttribute("Id", comprobante.ID),
+                    new XAttribute("Active", "true"),
+                    new XElement("VentaId", comprobante.Venta.ID),
+                    new XElement("FechaEntrega", comprobante.FechaEntrega.ToString("s"))
+                );
 
-            root.Add(elem);
-            doc.Save(rutaXML);
+                root.Add(elem);
+                doc.Save(rutaXML);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("No se pudo dar de alta el comprobante de entrega. " + ex.Message, ex);
+            }
         }
 
+        
         private ComprobanteEntrega Parse(XElement x) => new ComprobanteEntrega
         {
             ID = (int)x.Attribute("Id"),

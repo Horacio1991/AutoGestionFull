@@ -8,23 +8,23 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Educaccion\\.nuget\\packages\\": {},
+    "C:\\Users\\hory_\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\DTOs\\DTOs.csproj",
+      "projectUniqueName": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\DTOs\\DTOs.csproj",
       "projectName": "DTOs",
-      "projectPath": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\DTOs\\DTOs.csproj",
-      "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Educaccion\\Desktop\\TP HOY\\AutoGestionFull\\DTOs\\obj\\",
+      "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\DTOs\\DTOs.csproj",
+      "packagesPath": "C:\\Users\\hory_\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\DTOs\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hory_\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -72,7 +72,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -78,3 +78,23 @@ C:\Users\Educaccion\Desktop\TP HOY\AutoGestionFull\Mapper\obj\Debug\net8.0\Mappe
 C:\Users\Educaccion\Desktop\TP HOY\AutoGestionFull\Mapper\obj\Debug\net8.0\refint\Mapper.dll
 C:\Users\Educaccion\Desktop\TP HOY\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.pdb
 C:\Users\Educaccion\Desktop\TP HOY\AutoGestionFull\Mapper\obj\Debug\net8.0\ref\Mapper.dll
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\Mapper.deps.json
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\Mapper.dll
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\Mapper.pdb
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\BE.dll
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\DTOs.dll
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\Servicios.dll
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\BE.pdb
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\Servicios.pdb
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\bin\Debug\net8.0\DTOs.pdb
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.csproj.AssemblyReference.cache
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.AssemblyInfoInputs.cache
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.AssemblyInfo.cs
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.csproj.CoreCompileInputs.cache
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.sourcelink.json
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.csproj.Up2Date
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.dll
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\refint\Mapper.dll
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\Mapper.pdb
+C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\Mapper\obj\Debug\net8.0\ref\Mapper.dll

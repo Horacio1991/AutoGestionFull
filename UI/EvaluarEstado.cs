@@ -2,7 +2,6 @@
 using DTOs;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,7 +10,7 @@ namespace AutoGestion.UI
     public partial class EvaluarEstado : UserControl
     {
         private readonly BLLEvaluacionTecnica _bll = new BLLEvaluacionTecnica();
-        private List<OfertaListDto> _ofertas;
+        private List<OfertaListDto> _ofertas = new();
 
         public EvaluarEstado()
         {
@@ -23,7 +22,8 @@ namespace AutoGestion.UI
         {
             try
             {
-                _ofertas = _bll.ObtenerOfertasParaEvaluar();
+                _ofertas = _bll.ObtenerOfertasParaEvaluar() ?? new List<OfertaListDto>();
+                cmbOfertas.DataSource = null;
                 cmbOfertas.DataSource = _ofertas;
                 cmbOfertas.DisplayMember = nameof(OfertaListDto.DisplayTexto);
                 cmbOfertas.ValueMember = nameof(OfertaListDto.ID);
@@ -36,41 +36,52 @@ namespace AutoGestion.UI
             }
         }
 
-
-
         private void dtpFiltroFecha_ValueChanged(object sender, EventArgs e)
         {
-            // Cada vez que cambie la fecha, reaplico el filtro
+            // Validación por si _ofertas está vacía
+            if (_ofertas == null || _ofertas.Count == 0)
+            {
+                cmbOfertas.DataSource = null;
+                return;
+            }
+
             var fecha = dtpFiltroFecha.Value.Date;
             var filtradas = _ofertas
                 .Where(o => o.FechaInspeccion.Date == fecha)
                 .ToList();
 
+            cmbOfertas.DataSource = null;
+            cmbOfertas.DataSource = filtradas;
+            cmbOfertas.DisplayMember = nameof(OfertaListDto.DisplayTexto);
+            cmbOfertas.ValueMember = nameof(OfertaListDto.ID);
+            cmbOfertas.SelectedIndex = -1;
+
+            LimpiarCamposTecnicos();
+
             if (!filtradas.Any())
             {
                 MessageBox.Show("No hay ofertas en esa fecha.", "Información",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
             }
-
-            cmbOfertas.DataSource = filtradas;
-            cmbOfertas.SelectedIndex = -1;
         }
 
         private void btnFiltrarFecha_Click(object sender, EventArgs e)
         {
-            // Si prefieres un botón en lugar de filtrar al cambiar la fecha:
             dtpFiltroFecha_ValueChanged(sender, e);
         }
 
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
-            if (!(cmbOfertas.SelectedValue is int ofertaId))
+            // Manejo seguro del SelectedValue (puede ser null o no int)
+            int ofertaId = -1;
+            if (!(cmbOfertas.SelectedValue is int id) && !int.TryParse(cmbOfertas.SelectedValue?.ToString(), out id))
             {
                 MessageBox.Show("Seleccione una oferta.", "Validación",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            ofertaId = id;
+
             if (string.IsNullOrWhiteSpace(txtMotor.Text) ||
                 string.IsNullOrWhiteSpace(txtCarroceria.Text) ||
                 string.IsNullOrWhiteSpace(txtInterior.Text) ||
@@ -106,18 +117,20 @@ namespace AutoGestion.UI
             }
         }
 
-        private void LimpiarFormulario()
+        private void LimpiarCamposTecnicos()
         {
             txtMotor.Clear();
             txtCarroceria.Clear();
             txtInterior.Clear();
             txtDocumentacion.Clear();
             txtObservaciones.Clear();
+        }
+
+        private void LimpiarFormulario()
+        {
+            LimpiarCamposTecnicos();
             cmbOfertas.SelectedIndex = -1;
             dtpFiltroFecha.Value = DateTime.Today;
         }
-
-      
     }
-
 }

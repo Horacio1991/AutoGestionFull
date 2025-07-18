@@ -31,6 +31,8 @@ namespace AutoGestion.UI
                 txtRango.Clear();
                 txtValorFinal.Clear();
                 cmbEstadoStock.SelectedIndex = -1;
+
+                btnConfirmar.Enabled = _ofertas.Any();
             }
             catch (Exception ex)
             {
@@ -74,7 +76,7 @@ namespace AutoGestion.UI
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (cmbEstadoStock.SelectedItem is not string estadoStock)
+            if (cmbEstadoStock.SelectedIndex < 0)
             {
                 MessageBox.Show("Selecciona el estado de stock.", "Validación",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -85,7 +87,7 @@ namespace AutoGestion.UI
             {
                 OfertaID = dto.OfertaID,
                 ValorFinal = valorFinal,
-                EstadoStock = estadoStock
+                EstadoStock = cmbEstadoStock.SelectedItem.ToString()
             };
 
             try
@@ -94,6 +96,12 @@ namespace AutoGestion.UI
                 MessageBox.Show("✅ Tasación registrada correctamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarOfertas();
+                // Limpiar selección y campos
+                cmbOfertas.SelectedIndex = -1;
+                txtEvaluacion.Clear();
+                txtRango.Clear();
+                txtValorFinal.Clear();
+                cmbEstadoStock.SelectedIndex = -1;
             }
             catch (ApplicationException aex)
             {

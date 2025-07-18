@@ -18,7 +18,8 @@ static class Program
         if (!bllUsuario.ListarUsuariosDto().Any())
         {
             // crea el admin con pwd "123"
-            bllUsuario.RegistrarUsuario("admin", "123");
+            string error;
+            bllUsuario.RegistrarUsuario("admin", "123", out error);
         }
 
         Application.Run(new FormLogin());

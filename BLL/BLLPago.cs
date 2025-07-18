@@ -13,38 +13,53 @@ namespace BLL
 
         // 1) Lista vehículos con estado "Disponible"
         public List<VehiculoDto> ObtenerVehiculosDisponibles()
-            => _mppVehiculo.ListarTodo()
-                .Where(v => v.Estado.Equals("Disponible", StringComparison.OrdinalIgnoreCase))
-                .Select(v => new VehiculoDto
-                {
-                    ID = v.ID,
-                    Marca = v.Marca,
-                    Modelo = v.Modelo,
-                    Año = v.Año,
-                    Color = v.Color,
-                    Km = v.Km,
-                    Dominio = v.Dominio,
-                    Estado = v.Estado
-                })
-                .ToList();
+        {
+            try
+            {
+                return _mppVehiculo.ListarTodo()
+                    .Where(v => v.Estado.Equals("Disponible", StringComparison.OrdinalIgnoreCase))
+                    .Select(v => new VehiculoDto
+                    {
+                        ID = v.ID,
+                        Marca = v.Marca,
+                        Modelo = v.Modelo,
+                        Año = v.Año,
+                        Color = v.Color,
+                        Km = v.Km,
+                        Dominio = v.Dominio,
+                        Estado = v.Estado
+                    })
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<VehiculoDto>();
+            }
+        }
 
         // 2) Buscar cliente por DNI
         public ClienteDto BuscarCliente(string dni)
         {
-            var c = _mppCliente.BuscarPorDni(dni);
-            if (c == null) return null;
-            return new ClienteDto
+            try
             {
-                ID = c.ID,
-                Dni = c.Dni,
-                Nombre = c.Nombre,
-                Apellido = c.Apellido,
-                Contacto = c.Contacto
-            };
+                var c = _mppCliente.BuscarPorDni(dni);
+                if (c == null) return null;
+                return new ClienteDto
+                {
+                    ID = c.ID,
+                    Dni = c.Dni,
+                    Nombre = c.Nombre,
+                    Apellido = c.Apellido,
+                    Contacto = c.Contacto
+                };
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        // 3) Registra Pago y Venta en XML
-        //    devuelve false + mensaje en error si algo falla
+        // 3) Registra Pago y Venta en XML, y devuelve false + mensaje en error si algo falla
         public bool RegistrarPagoYVenta(
             string clienteDni,
             string vehiculoDominio,

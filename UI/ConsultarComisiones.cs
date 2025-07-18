@@ -17,8 +17,18 @@ namespace AutoGestion.UI
 
         private void InicializarFiltros()
         {
-            // Ahora usando el DTO de SessionManager
-            txtVendedor.Text = SessionManager.CurrentUser?.Username ?? "";
+            // Setea nombre de vendedor o mensaje de sesión inválida
+            if (SessionManager.CurrentUser == null)
+            {
+                txtVendedor.Text = "[Sesión inválida]";
+                txtVendedor.ReadOnly = true;
+                btnFiltrar.Enabled = false;
+                dgvComisiones.Enabled = false;
+                MessageBox.Show("Debe iniciar sesión para consultar comisiones.", "Acceso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            txtVendedor.Text = SessionManager.CurrentUser.Username;
             txtVendedor.ReadOnly = true;
 
             cmbEstado.Items.Clear();
@@ -35,19 +45,26 @@ namespace AutoGestion.UI
         {
             try
             {
-                // Tomamos el ID del DTO de sesión
-                int vendedorId = SessionManager.CurrentUser?.ID ?? 0;
-                string estado = cmbEstado.SelectedItem.ToString()!;
+                btnFiltrar.Enabled = false;
+
+                // Si el usuario no está logueado, no seguimos
+                if (SessionManager.CurrentUser == null)
+                {
+                    MessageBox.Show("Debe iniciar sesión para consultar comisiones.", "Acceso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dgvComisiones.DataSource = null;
+                    return;
+                }
+
+                int vendedorId = SessionManager.CurrentUser.ID;
+                string estado = (cmbEstado.SelectedItem ?? "Aprobada").ToString();
                 DateTime desde = dtpDesde.Value.Date;
                 DateTime hasta = dtpHasta.Value.Date;
 
-                // Obtenemos los DTOs directamente
                 _coms = _bll.ObtenerComisiones(vendedorId, estado, desde, hasta);
 
                 dgvComisiones.AutoGenerateColumns = true;
                 dgvComisiones.DataSource = _coms;
 
-                // Sólo dejamos visibles estas columnas
                 var visibles = new[]
                 {
                     nameof(ComisionListDto.ID),
@@ -73,8 +90,38 @@ namespace AutoGestion.UI
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
                 );
             }
+            finally
+            {
+                btnFiltrar.Enabled = true;
+            }
         }
 
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            if (dgvComisiones.CurrentRow?.DataBoundItem is not ComisionListDto dto)
+            {
+                MessageBox.Show("Seleccione una comisión de la lista.", "Validación",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Mostramos el detalle según el estado
+            if (dto.Estado.Equals("Rechazada", StringComparison.OrdinalIgnoreCase))
+            {
+                var motivo = string.IsNullOrWhiteSpace(dto.MotivoRechazo)
+                    ? "Motivo de rechazo no especificado."
+                    : dto.MotivoRechazo;
+                MessageBox.Show(
+                    $"Comisión rechazada.\n\nMotivo de rechazo:\n{motivo}",
+                    "Detalle de Comisión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Comisión aprobada.",
+                    "Detalle de Comisión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
     }
 }

@@ -4,7 +4,6 @@ using DTOs;
 using Mapper;
 using Servicios;
 
-
 namespace BLL
 {
     public class BLLUsuario
@@ -18,106 +17,120 @@ namespace BLL
             _bllComponente = new BLLComponente();
         }
 
-        /// <summary>
-        /// Valida credenciales contra el XML.
-        /// </summary>
+        // Valida credenciales contra el XML.
         public bool ValidarLogin(string username, string passwordPlain)
         {
-            var user = _mapper.BuscarPorUsername(username);
-            if (user == null) return false;
+            try
+            {
+                var user = _mapper.BuscarPorUsername(username);
+                if (user == null) return false;
 
-            var encrypted = Encriptacion.EncriptarPassword(passwordPlain);
-            return user.Password == encrypted;
+                var encrypted = Encriptacion.EncriptarPassword(passwordPlain);
+                return user.Password == encrypted;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        /// <summary>
-        /// Lista todos los usuarios como DTOs (sin exponer BE).
-        /// </summary>
+        //Lista todos los usuarios como DTOs 
         public List<UsuarioDto> ListarUsuariosDto()
         {
-            var beUsuarios = _mapper.ListarTodo();
-            var lista = new List<UsuarioDto>();
-
-            foreach (var u in beUsuarios)
+            try
             {
-                // obtengo directamente los permisos como DTOs
-                var permisosDto = _bllComponente.ObtenerPermisosUsuario(u.Id);
+                var beUsuarios = _mapper.ListarTodo();
+                var lista = new List<UsuarioDto>();
 
-                lista.Add(new UsuarioDto
+                foreach (var u in beUsuarios)
                 {
-                    ID = u.Id,
-                    Username = u.Username,
-                    Permisos = permisosDto
-                });
+                    var permisosDto = _bllComponente.ObtenerPermisosUsuario(u.Id);
+
+                    lista.Add(new UsuarioDto
+                    {
+                        ID = u.Id,
+                        Username = u.Username,
+                        Permisos = permisosDto
+                    });
+                }
+
+                return lista;
             }
-
-            return lista;
-        }
-
-        /// <summary>
-        /// Registra un nuevo usuario (username + contraseña en texto plano).
-        /// </summary>
-        public void RegistrarUsuario(string username, string passwordPlain)
-        {
-            if (string.IsNullOrWhiteSpace(username))
-                throw new ArgumentException("Username es obligatorio.");
-            if (_mapper.BuscarPorUsername(username) != null)
-                throw new InvalidOperationException("El usuario ya existe.");
-
-            var encrypted = Encriptacion.EncriptarPassword(passwordPlain);
-            var be = new Usuario { Username = username, Password = encrypted };
-            _mapper.Agregar(be);
-        }
-
-        /// <summary>
-        /// Modifica usuario existente (por ID).
-        /// </summary>
-        public void ModificarUsuario(int userId, string newUsername, string newPasswordPlain)
-        {
-            var existing = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId);
-            if (existing == null)
-                throw new InvalidOperationException("Usuario no encontrado.");
-
-            // si cambia el username, verificar duplicado
-            if (!existing.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)
-                && _mapper.BuscarPorUsername(newUsername) != null)
+            catch (Exception)
             {
-                throw new InvalidOperationException("Ya existe otro usuario con ese nombre.");
+                return new List<UsuarioDto>();
             }
-
-            existing.Username = newUsername;
-            existing.Password = Encriptacion.EncriptarPassword(newPasswordPlain);
-            _mapper.Actualizar(existing);
         }
 
-        /// <summary>
-        /// Baja lógica de usuario.
-        /// </summary>
-        public void EliminarUsuario(int userId)
+        // Registra un nuevo usuario (username + contraseña en texto plano).
+        public bool RegistrarUsuario(string username, string passwordPlain, out string error)
         {
-            _mapper.Eliminar(userId);
-        }
-
-        /// <summary>
-        /// Mapea recursivamente un BEComponente a PermisoDto.
-        /// </summary>
-        private PermisoDto MapComponenteADto(BEComponente comp)
-        {
-            var pd = new PermisoDto
+            error = null;
+            try
             {
-                Id = comp.Id,
-                Nombre = comp.Nombre
-            };
+                if (string.IsNullOrWhiteSpace(username))
+                    throw new ArgumentException("Username es obligatorio.");
+                if (_mapper.BuscarPorUsername(username) != null)
+                    throw new InvalidOperationException("El usuario ya existe.");
 
-            foreach (var hijo in comp.Hijos)
-                pd.Hijos.Add(MapComponenteADto(hijo));
-
-            return pd;
+                var encrypted = Encriptacion.EncriptarPassword(passwordPlain);
+                var be = new Usuario { Username = username, Password = encrypted };
+                _mapper.Agregar(be);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
 
-        /// <summary>
-        /// Devuelve la contraseña en texto plano para un usuario existente.
-        /// </summary>
+        // Modifica usuario existente (por ID).
+        public bool ModificarUsuario(int userId, string newUsername, string newPasswordPlain, out string error)
+        {
+            error = null;
+            try
+            {
+                var existing = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId);
+                if (existing == null)
+                    throw new InvalidOperationException("Usuario no encontrado.");
+
+                // Si cambia el username, verificar duplicado
+                if (!existing.Username.Equals(newUsername, StringComparison.OrdinalIgnoreCase)
+                    && _mapper.BuscarPorUsername(newUsername) != null)
+                {
+                    throw new InvalidOperationException("Ya existe otro usuario con ese nombre.");
+                }
+
+                existing.Username = newUsername;
+                existing.Password = Encriptacion.EncriptarPassword(newPasswordPlain);
+                _mapper.Actualizar(existing);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
+        }
+
+        // Baja lógica de usuario. Porque no se elimina físicamente, sino que se marca como inactivo.
+        public bool EliminarUsuario(int userId, out string error)
+        {
+            error = null;
+            try
+            {
+                _mapper.Eliminar(userId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
+        }
+
+        // Devuelve la contraseña en texto plano para un usuario existente.
         public string ObtenerPasswordPlain(int userId)
         {
             var be = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId);
@@ -125,10 +138,7 @@ namespace BLL
             return Encriptacion.DesencriptarPassword(be.Password);
         }
 
-        /// <summary>
-        /// Devuelve un UsuarioDto con todos los datos del usuario (ID, Username, Permisos).
-        /// </summary>
-
+        // Devuelve un UsuarioDto con todos los datos del usuario (ID, Username, Permisos).
         public UsuarioDto ObtenerUsuarioDto(string username)
         {
             var be = _mapper.BuscarPorUsername(username)
@@ -144,7 +154,7 @@ namespace BLL
             };
         }
 
-        // BLLUsuario.cs
+        // Devuelve la contraseña encriptada
         public string ObtenerPasswordEncrypted(int userId)
         {
             var be = _mapper.ListarTodo().FirstOrDefault(u => u.Id == userId)
@@ -152,5 +162,18 @@ namespace BLL
             return be.Password;
         }
 
+        //Mapea recursivamente un BEComponente a PermisoDto.
+        // esto es útil para construir la estructura de permisos del usuario.
+        private PermisoDto MapComponenteADto(BEComponente comp)
+        {
+            var pd = new PermisoDto
+            {
+                Id = comp.Id,
+                Nombre = comp.Nombre
+            };
+            foreach (var hijo in comp.Hijos)
+                pd.Hijos.Add(MapComponenteADto(hijo));
+            return pd;
+        }
     }
 }

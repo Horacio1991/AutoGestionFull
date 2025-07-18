@@ -7,7 +7,7 @@ namespace AutoGestion.UI
     {
         private readonly BLLVenta _bllVenta = new BLLVenta();
         private readonly BLLFactura _bllFactura = new BLLFactura();
-        private List<VentaDto> _ventas;
+        private List<VentaDto> _ventas = new();
 
         public EmitirFactura()
         {
@@ -17,10 +17,9 @@ namespace AutoGestion.UI
 
         private void CargarVentasParaFacturar()
         {
-            dgvVentas.DataSource = _ventas;
             try
             {
-                _ventas = _bllVenta.ObtenerVentasParaFacturar();
+                _ventas = _bllVenta.ObtenerVentasParaFacturar() ?? new List<VentaDto>();
 
                 dgvVentas.DataSource = null;
                 dgvVentas.AutoGenerateColumns = false;
@@ -75,19 +74,30 @@ namespace AutoGestion.UI
             }
         }
 
-        // En AutoGestion.Vista.EmitirFactura.cs, al confirmar:
-
         private void btnEmitir_Click_1(object sender, EventArgs e)
         {
-            if (!(dgvVentas.CurrentRow?.DataBoundItem is VentaDto dto)) return;
+            // 1. Verificación de selección
+            if (dgvVentas.CurrentRow?.DataBoundItem is not VentaDto dto)
+            {
+                MessageBox.Show("Seleccione una venta para emitir factura.",
+                                "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            using (var dlg = new SaveFileDialog { Filter = "PDF|*.pdf", FileName = $"Factura_{dto.ID}.pdf" })
+            // 2. Diálogo para guardar el PDF
+            using (var dlg = new SaveFileDialog
+            {
+                Filter = "PDF|*.pdf",
+                FileName = $"Factura_{dto.ID}.pdf"
+            })
             {
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 
                 try
                 {
+                    // 3. Emisión y guardado de la factura
                     var facturaDto = _bllFactura.EmitirFactura(dto.ID, dlg.FileName);
+
                     MessageBox.Show(
                         $"✅ Factura emitida\n" +
                         $"Cliente:  {facturaDto.Cliente}\n" +
@@ -102,8 +112,8 @@ namespace AutoGestion.UI
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            // 4. Refrescar lista
             CargarVentasParaFacturar();
         }
-
     }
 }

@@ -2,6 +2,7 @@
 using BE;
 using Servicios.Utilidades;
 
+
 namespace Mapper
 {
     public class MPPComision
@@ -10,11 +11,20 @@ namespace Mapper
 
         private XDocument LoadOrEmpty()
         {
-            return File.Exists(rutaXML)
-                ? XDocument.Load(rutaXML)
-                : new XDocument(new XElement("BaseDeDatosLocal"));
+            try
+            {
+                return File.Exists(rutaXML)
+                    ? XDocument.Load(rutaXML)
+                    : new XDocument(new XElement("BaseDeDatosLocal"));
+            }
+            catch (Exception)
+            {
+                // Error al cargar o crear el XML
+                return new XDocument(new XElement("BaseDeDatosLocal"));
+            }
         }
 
+        // Asegura que el archivo y la sección Comisiones existan.
         private IEnumerable<XElement> RootComisiones(XDocument doc)
         {
             var node = doc.Root.Element("Comisiones");
@@ -22,13 +32,21 @@ namespace Mapper
             foreach (var x in node.Elements("Comision")) yield return x;
         }
 
+        // Devuelve todas las comisiones activas.
         public List<Comision> ListarTodo()
         {
-            var doc = LoadOrEmpty();
-            return RootComisiones(doc)
-                .Where(x => (string)x.Attribute("Active") == "true")
-                .Select(ParseComision)
-                .ToList();
+            try
+            {
+                var doc = LoadOrEmpty();
+                return RootComisiones(doc)
+                    .Where(x => (string)x.Attribute("Active") == "true")
+                    .Select(ParseComision)
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Comision>();
+            }
         }
 
         private Comision ParseComision(XElement x)
@@ -49,57 +67,41 @@ namespace Mapper
             return c;
         }
 
+        // Da de alta una comisión.
         public void AltaComision(Comision comision)
         {
-            var doc = LoadOrEmpty();
-            var root = doc.Root.Element("Comisiones")
-                       ?? new XElement("Comisiones");
-            if (doc.Root.Element("Comisiones") == null)
-                doc.Root.Add(root);
-
-            int nuevoId = root.Elements("Comision")
-                              .Select(e => (int)e.Attribute("Id"))
-                              .DefaultIfEmpty(0)
-                              .Max() + 1;
-            comision.ID = nuevoId;
-            comision.Fecha = DateTime.Now;
-
-            var elem = new XElement("Comision",
-                new XAttribute("Id", comision.ID),
-                new XAttribute("Active", "true"),
-                new XElement("Fecha", comision.Fecha.ToString("s")),
-                new XElement("Monto", comision.Monto),
-                new XElement("Estado", comision.Estado),
-                new XElement("MotivoRechazo", comision.MotivoRechazo ?? string.Empty),
-                new XElement("Venta", new XAttribute("Id", comision.Venta.ID))
-            );
-            root.Add(elem);
-            doc.Save(rutaXML);
-        }
-
-        public void GuardarLista(List<Comision> lista)
-        {
-            var doc = LoadOrEmpty();
-            var root = doc.Root.Element("Comisiones")
-                       ?? new XElement("Comisiones");
-            if (doc.Root.Element("Comisiones") == null)
-                doc.Root.Add(root);
-
-            root.RemoveAll();
-            foreach (var com in lista)
+            try
             {
+                var doc = LoadOrEmpty();
+                var root = doc.Root.Element("Comisiones")
+                           ?? new XElement("Comisiones");
+                if (doc.Root.Element("Comisiones") == null)
+                    doc.Root.Add(root);
+
+                int nuevoId = root.Elements("Comision")
+                                  .Select(e => (int)e.Attribute("Id"))
+                                  .DefaultIfEmpty(0)
+                                  .Max() + 1;
+                comision.ID = nuevoId;
+                comision.Fecha = DateTime.Now;
+
                 var elem = new XElement("Comision",
-                    new XAttribute("Id", com.ID),
+                    new XAttribute("Id", comision.ID),
                     new XAttribute("Active", "true"),
-                    new XElement("Fecha", com.Fecha.ToString("s")),
-                    new XElement("Monto", com.Monto),
-                    new XElement("Estado", com.Estado),
-                    new XElement("MotivoRechazo", com.MotivoRechazo ?? string.Empty),
-                    new XElement("Venta", new XAttribute("Id", com.Venta.ID))
+                    new XElement("Fecha", comision.Fecha.ToString("s")),
+                    new XElement("Monto", comision.Monto),
+                    new XElement("Estado", comision.Estado),
+                    new XElement("MotivoRechazo", comision.MotivoRechazo ?? string.Empty),
+                    new XElement("Venta", new XAttribute("Id", comision.Venta.ID))
                 );
                 root.Add(elem);
+                doc.Save(rutaXML);
             }
-            doc.Save(rutaXML);
+            catch (Exception ex)
+            {
+                throw new ApplicationException("No se pudo dar de alta la comisión. " + ex.Message, ex);
+            }
         }
+
     }
 }

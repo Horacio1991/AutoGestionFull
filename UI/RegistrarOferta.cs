@@ -51,7 +51,6 @@ namespace AutoGestion.UI
 
         private void btnGuardarOferta_Click(object sender, EventArgs e)
         {
-            // Validaciones...
             var input = new OfertaInputDto
             {
                 Oferente = new OferenteDto
@@ -76,7 +75,10 @@ namespace AutoGestion.UI
 
             try
             {
-                _bllReg.RegistrarOferta(input);
+                string error;
+                if (!_bllReg.RegistrarOferta(input, out error))
+                    MessageBox.Show(error);
+
                 MessageBox.Show("Oferta registrada correctamente.", "Éxito",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarFormulario();

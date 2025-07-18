@@ -13,9 +13,7 @@ namespace BLL
             _mpp = new MPPBackup();
         }
 
-        /// <summary>
-        /// Devuelve la lista de backups disponibles (archivos).
-        /// </summary>
+        // Devuelve la lista de backups disponibles.
         public List<BackupDto> ObtenerBackupsDto()
         {
             return _mpp.ListarTodo()
@@ -30,13 +28,7 @@ namespace BLL
                        .ToList();
         }
 
-        /// <summary>
-        /// Ejecuta el backup y registra el historial, devolviendo un DTO con el nuevo backup.
-        /// </summary>
-        /// 
-        /// <summary>
-        /// Ejecuta el backup y registra el historial, devolviendo un DTO con el nuevo backup.
-        /// </summary>
+        // hace el backup y lo registra en bitácora
         public BackupDto RealizarBackup(int usuarioId, string username)
         {
             var backup = new Backup
@@ -45,15 +37,15 @@ namespace BLL
                 UsernameUsuario = username
             };
 
-            // 1) Creación física
+            // 1) crea el xml de backup.
             bool ok = _mpp.CrearBackup(backup);
             if (!ok)
                 throw new ApplicationException("Error al crear el backup.");
 
-            // 2) Registrar en el XML de historial de backups
+            // 2) guarda un registro en el historial de backups.
             _mpp.GuardarBackupEnHistorial(backup);
 
-            // 3) Registrar también en la bitácora general
+            // 3) Registra la accion en la bitacora general del sistema.
             new BLLBitacora().RegistrarEvento(new BE.Bitacora
             {
                 UsuarioID = usuarioId,
@@ -61,7 +53,7 @@ namespace BLL
                 Detalle = "backup"
             });
 
-            // 4) Devolver el DTO
+            // 4) Devuelve un DTO representando el backup realizado.
             return new BackupDto
             {
                 Id = backup.Id,
@@ -72,10 +64,6 @@ namespace BLL
             };
         }
 
-
-        /// <summary>
-        /// Devuelve el historial de backups como lista de DTOs.
-        /// </summary>
         public List<BackupDto> ObtenerHistorialDto()
         {
             return _mpp.ListarHistorial()
@@ -90,18 +78,20 @@ namespace BLL
                        .ToList();
         }
 
-        /// <summary>
-        /// Restaura el backup seleccionado.
-        /// </summary>
+        // Restaura el backup seleccionado, y lo registra en la bitácora.
         public void RestaurarBackup(string nombreBackup, int usuarioId, string username)
         {
-            // Creamos un BE.Backup mínimo con el nombre
             var backup = new Backup { Nombre = nombreBackup };
             bool ok = _mpp.RestaurarBackup(backup);
             if (!ok)
                 throw new ApplicationException($"No se pudo restaurar el backup \"{nombreBackup}\".");
 
-            new BLLBitacora().RegistrarEvento(new Bitacora { Detalle = "restore", UsuarioID = usuarioId, UsuarioNombre = username });
+            new BLLBitacora().RegistrarEvento(new Bitacora
+            {
+                Detalle = "restore",
+                UsuarioID = usuarioId,
+                UsuarioNombre = username
+            });
         }
     }
 }

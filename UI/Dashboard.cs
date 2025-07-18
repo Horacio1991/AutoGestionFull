@@ -1,9 +1,5 @@
 ﻿using BLL;
 using DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Vista.UserControls.Dashboard

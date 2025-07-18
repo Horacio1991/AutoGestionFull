@@ -49,7 +49,6 @@ namespace AutoGestion.UI
 
             try
             {
-                // 1) Intentar por modelo
                 var exactos = _bllVehiculo.BuscarPorModeloDto(texto);
                 if (exactos.Any())
                 {
@@ -57,12 +56,11 @@ namespace AutoGestion.UI
                 }
                 else
                 {
-                    // 2) Si no hay, intentar por marca
                     var porMarca = _bllVehiculo.BuscarPorMarcaDto(texto);
                     if (porMarca.Any())
                     {
                         MessageBox.Show(
-                            "Se muestran vehículos de la marca solicitada",
+                            "Se muestran vehículos de la marca solicitada.",
                             "Información",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information
@@ -105,6 +103,7 @@ namespace AutoGestion.UI
             dgvResultados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvResultados.ReadOnly = true;
             dgvResultados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvResultados.ClearSelection();
         }
     }
 }

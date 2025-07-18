@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using DTOs;
 using Servicios.Utilidades;
 
@@ -17,111 +13,139 @@ namespace Mapper
             AsegurarSeccionComponentes();
         }
 
+        // Asegura que el XML tenga la estructura necesaria
         private void AsegurarSeccionComponentes()
         {
-            var dir = Path.GetDirectoryName(_rutaXml);
-            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+            try
+            {
+                var dir = Path.GetDirectoryName(_rutaXml);
+                if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
-            if (!File.Exists(_rutaXml))
-            {
-                new XDocument(
-                    new XElement("BaseDeDatosLocal",
-                        new XElement("Componentes"),
-                        new XElement("Usuario_Permisos")
-                    )
-                ).Save(_rutaXml);
+                if (!File.Exists(_rutaXml))
+                {
+                    new XDocument(
+                        new XElement("BaseDeDatosLocal",
+                            new XElement("Componentes"),
+                            new XElement("Usuario_Permisos")
+                        )
+                    ).Save(_rutaXml);
+                }
+                else
+                {
+                    var doc = XDocument.Load(_rutaXml);
+                    if (doc.Root.Element("Componentes") == null)
+                        doc.Root.Add(new XElement("Componentes"));
+                    if (doc.Root.Element("Usuario_Permisos") == null)
+                        doc.Root.Add(new XElement("Usuario_Permisos"));
+                    doc.Save(_rutaXml);
+                }
             }
-            else
+            catch (Exception)
             {
-                var doc = XDocument.Load(_rutaXml);
-                if (doc.Root.Element("Componentes") == null)
-                    doc.Root.Add(new XElement("Componentes"));
-                if (doc.Root.Element("Usuario_Permisos") == null)
-                    doc.Root.Add(new XElement("Usuario_Permisos"));
-                doc.Save(_rutaXml);
+                // Si falla la creación, no hago nada
             }
         }
 
-        // -- Listar --
-
+        // Listar roles y permisos
         public List<RolDto> ListarRolesDto()
         {
-            var doc = XDocument.Load(_rutaXml);
-            var comps = doc.Root.Element("Componentes")?.Elements("Rol")
-                       .Where(r => (string)r.Attribute("Active") != "false")
-                       .Select(ParseRolDto)
-                       .ToList();
-            return comps ?? new List<RolDto>();
+            try
+            {
+                var doc = XDocument.Load(_rutaXml);
+                var comps = doc.Root.Element("Componentes")?.Elements("Rol")
+                           .Where(r => (string)r.Attribute("Active") != "false")
+                           .Select(ParseRolDto)
+                           .ToList();
+                return comps ?? new List<RolDto>();
+            }
+            catch (Exception)
+            {
+                return new List<RolDto>();
+            }
         }
 
         public List<PermisoDto> ListarPermisosDto()
         {
-            var doc = XDocument.Load(_rutaXml);
-            var comps = doc.Root.Element("Componentes")?.Elements("Permiso")
-                       .Where(p => (string)p.Attribute("Active") != "false")
-                       .Select(ParsePermisoDto)
-                       .ToList();
-            return comps ?? new List<PermisoDto>();
+            try
+            {
+                var doc = XDocument.Load(_rutaXml);
+                var comps = doc.Root.Element("Componentes")?.Elements("Permiso")
+                           .Where(p => (string)p.Attribute("Active") != "false")
+                           .Select(ParsePermisoDto)
+                           .ToList();
+                return comps ?? new List<PermisoDto>();
+            }
+            catch (Exception)
+            {
+                return new List<PermisoDto>();
+            }
         }
 
         public List<PermisoDto> ListarPermisosUsuarioDto(int usuarioId)
         {
-            var doc = XDocument.Load(_rutaXml);
-            var ups = doc.Root.Element("Usuario_Permisos");
-            var componentesRoot = doc.Root.Element("Componentes");
-            if (ups == null || componentesRoot == null)
-                return new List<PermisoDto>();
-
-            var resultado = new List<PermisoDto>();
-
-            // Para poder buscar tanto Permisos sueltos como Permisos dentro de Roles
-            foreach (var up in ups.Elements("Usuario_Permiso"))
+            try
             {
-                if ((int)up.Element("IdUsuario") != usuarioId) continue;
+                var doc = XDocument.Load(_rutaXml);
+                var ups = doc.Root.Element("Usuario_Permisos");
+                var componentesRoot = doc.Root.Element("Componentes");
+                if (ups == null || componentesRoot == null)
+                    return new List<PermisoDto>();
 
-                int compId = (int)up.Element("IdComponente");
+                var resultado = new List<PermisoDto>();
 
-                // 1) Buscamos primero en Permisos sueltos
-                var permisoXml = componentesRoot
-                    .Elements("Permiso")
-                    .FirstOrDefault(x => (int)x.Attribute("Id") == compId && (string)x.Attribute("Active") != "false");
-                if (permisoXml != null)
+                foreach (var up in ups.Elements("Usuario_Permiso"))
                 {
-                    resultado.Add(new PermisoDto
-                    {
-                        Id = compId,
-                        Nombre = (string)permisoXml.Element("Nombre")
-                    });
-                    continue;
-                }
+                    if ((int)up.Element("IdUsuario") != usuarioId) continue;
 
-                // 2) Si no es permiso, puede ser un Rol: extraigo sus hijos Permiso
-                var rolXml = componentesRoot
-                    .Elements("Rol")
-                    .FirstOrDefault(r => (int)r.Attribute("Id") == compId && (string)r.Attribute("Active") != "false");
-                if (rolXml != null)
-                {
-                    foreach (var px in rolXml.Elements("Permiso")
-                                             .Where(p => (string)p.Attribute("Active") != "false"))
+                    int compId = (int)up.Element("IdComponente");
+
+                    // 1) Permisos sueltos
+                    var permisoXml = componentesRoot
+                        .Elements("Permiso")
+                        .FirstOrDefault(x => (int)x.Attribute("Id") == compId && (string)x.Attribute("Active") != "false");
+                    if (permisoXml != null)
                     {
                         resultado.Add(new PermisoDto
                         {
-                            Id = (int)px.Attribute("Id"),
-                            Nombre = (string)px.Element("Nombre")
+                            Id = compId,
+                            Nombre = (string)permisoXml.Element("Nombre")
                         });
+                        continue;
                     }
-                    continue;
+
+                    // 2) Si es un Rol: extraigo sus hijos Permiso
+                    var rolXml = componentesRoot
+                        .Elements("Rol")
+                        .FirstOrDefault(r => (int)r.Attribute("Id") == compId && (string)r.Attribute("Active") != "false");
+                    if (rolXml != null)
+                    {
+                        foreach (var px in rolXml.Elements("Permiso")
+                                                 .Where(p => (string)p.Attribute("Active") != "false"))
+                        {
+                            resultado.Add(new PermisoDto
+                            {
+                                Id = (int)px.Attribute("Id"),
+                                Nombre = (string)px.Element("Nombre")
+                            });
+                        }
+                        continue;
+                    }
                 }
+
+                // Sin duplicados
+                return resultado
+                    .GroupBy(p => p.Id)
+                    .Select(g => g.First())
+                    .ToList();
             }
-
-            // Finalmente, eliminamos duplicados por si un permiso viene directo y por rol
-            return resultado
-                .GroupBy(p => p.Id)
-                .Select(g => g.First())
-                .ToList();
+            catch (Exception)
+            {
+                return new List<PermisoDto>();
+            }
         }
-        // -- ABM Permiso --
 
+
+        // ABM de Permisos
         public bool AltaPermiso(string nombrePermiso)
         {
             try
@@ -155,7 +179,7 @@ namespace Mapper
                                .FirstOrDefault(x => (int)x.Attribute("Id") == permisoId);
                 if (nodo == null) return false;
                 nodo.SetAttributeValue("Active", "false");
-                // también lo quito de cualquier rol
+                // quito de cualquier rol también
                 foreach (var rol in comp.Elements("Rol"))
                     rol.Elements("Permiso")
                         .Where(p => (int)p.Attribute("Id") == permisoId)
@@ -166,8 +190,7 @@ namespace Mapper
             catch { return false; }
         }
 
-        // -- ABM Rol --
-
+        // ABM de Roles
         public bool AltaRol(string nombreRol, List<int> permisoIds)
         {
             try
@@ -180,7 +203,7 @@ namespace Mapper
                     new XAttribute("Active", "true"),
                     new XElement("Nombre", nombreRol)
                 );
-                // para cada permiso, también guardo su nombre actual
+                // para cada permiso, guardo el nombre actual
                 var allPerms = ListarPermisosDto();
                 foreach (var pid in permisoIds)
                 {
@@ -247,7 +270,7 @@ namespace Mapper
             catch { return false; }
         }
 
-        // -- Asociaciones Rol–Permiso --
+        // Asignación de permisos a roles
 
         public bool AsignarPermisoARol(int rolId, int permisoId)
         {
@@ -292,8 +315,7 @@ namespace Mapper
             catch { return false; }
         }
 
-        // -- Asociaciones Usuario–Componente --
-
+        // Asignación de componentes a usuarios
         public bool AsignarAUsuario(int usuarioId, int componenteId)
         {
             try
@@ -333,8 +355,7 @@ namespace Mapper
             catch { return false; }
         }
 
-        // -- Helpers --
-
+        // Helpers
         private RolDto ParseRolDto(XElement nodo)
         {
             var rol = new RolDto
@@ -364,6 +385,7 @@ namespace Mapper
             };
         }
 
+        // Elije IDs distintos para permisos (>=1000) y roles (<1000)
         private int SiguienteId(bool isPermiso, XDocument doc)
         {
             int min = isPermiso ? 1000 : 1;

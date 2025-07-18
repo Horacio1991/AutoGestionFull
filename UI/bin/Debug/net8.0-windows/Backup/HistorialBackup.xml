@@ -9,4 +9,10 @@
   <Bitacora Id="3" Fecha="2025-07-17T11:11:21" Usuario="admin">
     <Mensaje>Backup generado: Backup-20250717_111121</Mensaje>
   </Bitacora>
+  <Bitacora Id="4" Fecha="2025-07-17T17:16:36" Usuario="SuperAdmin">
+    <Mensaje>Backup generado: Backup-20250717_171636</Mensaje>
+  </Bitacora>
+  <Bitacora Id="5" Fecha="2025-07-17T22:41:49" Usuario="Prueba">
+    <Mensaje>Backup generado: Backup-20250717_224149</Mensaje>
+  </Bitacora>
 </Bitacoras>
