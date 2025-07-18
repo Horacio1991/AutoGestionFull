@@ -228,23 +228,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hory_\\.nuget\\packages\\": {},
+    "C:\\Users\\Educaccion\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\UI\\UI.csproj",
+      "projectUniqueName": "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\UI\\UI.csproj",
-      "packagesPath": "C:\\Users\\hory_\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\UI\\obj\\",
+      "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\UI\\UI.csproj",
+      "packagesPath": "C:\\Users\\Educaccion\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\hory_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Educaccion\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -259,14 +259,14 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\BE\\BE.csproj": {
-              "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\BE\\BE.csproj"
+            "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\BE\\BE.csproj": {
+              "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\BE\\BE.csproj"
             },
-            "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\BLL\\BLL.csproj"
+            "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\BLL\\BLL.csproj"
             },
-            "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\Servicios\\Servicios.csproj": {
-              "projectPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL\\AutoGestionFull\\Servicios\\Servicios.csproj"
+            "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\Servicios\\Servicios.csproj": {
+              "projectPath": "C:\\Users\\Educaccion\\Desktop\\TPFINAL2025\\AutoGestionFull\\Servicios\\Servicios.csproj"
             }
           }
         }
@@ -315,7 +315,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

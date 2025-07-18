@@ -27,4 +27,13 @@
   <Bitacora Id="9" Fecha="2025-07-17T22:42:08" UsuarioId="6" Usuario="Prueba">
     <Mensaje>restore</Mensaje>
   </Bitacora>
+  <Bitacora Id="10" Fecha="2025-07-18T09:13:25" UsuarioId="5" Usuario="SuperAdmin">
+    <Mensaje>backup</Mensaje>
+  </Bitacora>
+  <Bitacora Id="11" Fecha="2025-07-18T09:14:05" UsuarioId="7" Usuario="Prueba">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
+  <Bitacora Id="12" Fecha="2025-07-18T09:14:27" UsuarioId="7" Usuario="Prueba">
+    <Mensaje>restore</Mensaje>
+  </Bitacora>
 </Bitacoras>

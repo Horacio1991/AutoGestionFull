@@ -162,17 +162,20 @@ namespace BLL
             return be.Password;
         }
 
-        //Mapea recursivamente un BEComponente a PermisoDto.
-        // esto es útil para construir la estructura de permisos del usuario.
+        //Mapea recursivamente un BEComponente (Permiso o Rol) a PermisoDto.
+        // esto es para construir la estructura de permisos del usuario.
         private PermisoDto MapComponenteADto(BEComponente comp)
         {
+            // 1) DTO base para el componente
             var pd = new PermisoDto
             {
                 Id = comp.Id,
                 Nombre = comp.Nombre
+                //Lista de hijos vacia por defecto
             };
+            // 2) Recorro cada hijo (Si es PS va a estar vacia)
             foreach (var hijo in comp.Hijos)
-                pd.Hijos.Add(MapComponenteADto(hijo));
+                pd.Hijos.Add(MapComponenteADto(hijo)); //Agrego el hijo (mapeado) a la lista
             return pd;
         }
     }

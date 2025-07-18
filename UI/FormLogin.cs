@@ -44,7 +44,7 @@ namespace AutoGestion.UI
                 // 2) Recuperar DTO del usuario
                 var dto = _bllUsuario.ObtenerUsuarioDto(username);
 
-                // 3) Guardar en sesión (UI)
+                // 3) Guardar en sesion
                 SessionManager.CurrentUser = dto;
 
                 // 4) Abrir la ventana principal, pasando DTO

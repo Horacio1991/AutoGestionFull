@@ -64,28 +64,28 @@
             // cmbTipoPago
             // 
             cmbTipoPago.FormattingEnabled = true;
-            cmbTipoPago.Location = new Point(507, 74);
+            cmbTipoPago.Location = new Point(769, 74);
             cmbTipoPago.Name = "cmbTipoPago";
             cmbTipoPago.Size = new Size(267, 23);
             cmbTipoPago.TabIndex = 1;
             // 
             // txtMonto
             // 
-            txtMonto.Location = new Point(507, 120);
+            txtMonto.Location = new Point(769, 120);
             txtMonto.Name = "txtMonto";
             txtMonto.Size = new Size(267, 23);
             txtMonto.TabIndex = 2;
             // 
             // txtCuotas
             // 
-            txtCuotas.Location = new Point(507, 163);
+            txtCuotas.Location = new Point(769, 163);
             txtCuotas.Name = "txtCuotas";
             txtCuotas.Size = new Size(267, 23);
             txtCuotas.TabIndex = 3;
             // 
             // txtOtrosDatos
             // 
-            txtOtrosDatos.Location = new Point(514, 210);
+            txtOtrosDatos.Location = new Point(776, 210);
             txtOtrosDatos.Multiline = true;
             txtOtrosDatos.Name = "txtOtrosDatos";
             txtOtrosDatos.Size = new Size(260, 68);
@@ -93,7 +93,7 @@
             // 
             // btnRegistrarPago
             // 
-            btnRegistrarPago.Location = new Point(514, 298);
+            btnRegistrarPago.Location = new Point(776, 298);
             btnRegistrarPago.Name = "btnRegistrarPago";
             btnRegistrarPago.Size = new Size(260, 42);
             btnRegistrarPago.TabIndex = 5;
@@ -104,7 +104,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(390, 74);
+            label1.Location = new Point(652, 74);
             label1.Name = "label1";
             label1.Size = new Size(81, 15);
             label1.TabIndex = 6;
@@ -113,7 +113,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(390, 120);
+            label2.Location = new Point(652, 120);
             label2.Name = "label2";
             label2.Size = new Size(46, 15);
             label2.TabIndex = 7;
@@ -122,7 +122,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(390, 163);
+            label3.Location = new Point(652, 163);
             label3.Name = "label3";
             label3.Size = new Size(114, 15);
             label3.TabIndex = 8;
@@ -131,7 +131,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(390, 210);
+            label4.Location = new Point(652, 210);
             label4.Name = "label4";
             label4.Size = new Size(51, 15);
             label4.TabIndex = 9;
@@ -220,7 +220,7 @@
             dgvVehiculos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvVehiculos.Location = new Point(38, 210);
             dgvVehiculos.Name = "dgvVehiculos";
-            dgvVehiculos.Size = new Size(306, 213);
+            dgvVehiculos.Size = new Size(571, 275);
             dgvVehiculos.TabIndex = 19;
             dgvVehiculos.SelectionChanged += dgvVehiculos_SelectionChanged;
             // 
@@ -249,7 +249,7 @@
             Controls.Add(cmbTipoPago);
             Controls.Add(lblRealizarPago);
             Name = "RealizarPago";
-            Size = new Size(800, 426);
+            Size = new Size(1280, 720);
             ((System.ComponentModel.ISupportInitialize)dgvVehiculos).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -107,7 +107,6 @@ namespace AutoGestion.UI
                 textBoxUsename.Text = u.Username;
                 checkBoxPassword.Checked = false;
 
-                // Recupero siempre el Base64 cifrado desde la BLLUsuario:
                 textBoxUserPassword.UseSystemPasswordChar = false;
                 textBoxUserPassword.Text =
                     _bllUsuario.ObtenerPasswordEncrypted(u.ID);
@@ -302,14 +301,14 @@ namespace AutoGestion.UI
 
             if (checkBoxPassword.Checked)
             {
-                // Si tildado, mostramos desencriptado
+                // cheked mostramos desencriptado
                 textBoxUserPassword.UseSystemPasswordChar = false;
                 textBoxUserPassword.Text =
                     Encriptacion.DesencriptarPassword(textBoxUserPassword.Text);
             }
             else
             {
-                // Si destildado, volvemos al cifrado original (Base64)
+                // uncheked volvemos al cifrado original
                 textBoxUserPassword.UseSystemPasswordChar = false;
                 // Lo recuperamos del BE a través de BLLUsuario
                 textBoxUserPassword.Text =

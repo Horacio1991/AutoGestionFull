@@ -14,7 +14,6 @@ namespace Vista.UserControls.Dashboard
         {
             InitializeComponent();
 
-            // Configuro el combo de período
             cmbFiltroPeriodo.Items.AddRange(new object[]
             {
                 "Hoy", "Últimos 7 días", "Últimos 30 días"
@@ -58,12 +57,10 @@ namespace Vista.UserControls.Dashboard
                 // Ranking
                 _ranking = _bll.ObtenerRanking(desde, hasta);
 
-                // Asegurarnos de que el grid va a crear una columna para cada propiedad
                 dgvRanking.AutoGenerateColumns = true;
                 dgvRanking.DataSource = _ranking;
                 dgvRanking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                // Y luego dibujamos el chart
                 DibujarGraficoRanking(_ranking);
 
             }

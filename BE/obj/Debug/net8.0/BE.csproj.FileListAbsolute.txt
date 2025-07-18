@@ -63,3 +63,16 @@ C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\BE\obj\Debug\net8.0\B
 C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\BE\obj\Debug\net8.0\refint\BE.dll
 C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\BE\obj\Debug\net8.0\BE.pdb
 C:\Users\hory_\OneDrive\Escritorio\TPFINAL\AutoGestionFull\BE\obj\Debug\net8.0\ref\BE.dll
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\bin\Debug\net8.0\BE.deps.json
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\bin\Debug\net8.0\BE.dll
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\bin\Debug\net8.0\BE.pdb
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\BE.csproj.AssemblyReference.cache
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\BE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\BE.AssemblyInfoInputs.cache
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\BE.AssemblyInfo.cs
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\BE.csproj.CoreCompileInputs.cache
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\BE.sourcelink.json
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\BE.dll
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\refint\BE.dll
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\BE.pdb
+C:\Users\Educaccion\Desktop\TPFINAL2025\AutoGestionFull\BE\obj\Debug\net8.0\ref\BE.dll

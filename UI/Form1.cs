@@ -24,9 +24,7 @@ namespace AutoGestion
             Load += Form1_Load;
         }
 
-        /// <summary>
-        /// Permite acceder directamente a los ítems del menú desde fuera.
-        /// </summary>
+        // Permite acceder directamente a los ítems del menú desde fuera.
         public ToolStripItemCollection MenuItems => menuPrincipal.Items;
 
         private void Form1_Load(object sender, EventArgs e)
@@ -67,7 +65,7 @@ namespace AutoGestion
             {
                 return permisos.Any(p => p.Nombre.StartsWith(menuText + " -", StringComparison.OrdinalIgnoreCase));
             }
-            // Helper: ¿existe un permiso cuya acción coincide con subText?
+            // existe un permiso cuya acción coincide con subText?
             bool TieneAccion(string subText)
             {
                 return permisos.Any(p =>
@@ -100,9 +98,7 @@ namespace AutoGestion
             if (cerrar != null) cerrar.Visible = true;
         }
 
-        /// <summary>
-        /// Carga un UserControl dentro del panel principal.
-        /// </summary>
+        // Carga un UserControl dentro del panel principal.
         private void CargarControl(UserControl uc)
         {
             panelContenido.Controls.Clear();
@@ -110,7 +106,7 @@ namespace AutoGestion
             panelContenido.Controls.Add(uc);
         }
 
-        // --- Manejadores de menú ---
+        // acceso a lo menus del sistema
         private void mnuRegistrarCliente_Click_1(object sender, EventArgs e) => CargarControl(new RegistrarCliente());
         private void mnuSolicitarModelo_Click_1(object sender, EventArgs e) => CargarControl(new SolicitarModelo());
         private void mnuRealizarPago_Click_1(object sender, EventArgs e) => CargarControl(new RealizarPago());
