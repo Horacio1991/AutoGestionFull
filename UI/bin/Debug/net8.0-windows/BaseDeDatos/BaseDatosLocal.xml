@@ -80,7 +80,7 @@
       <Color>Blanco</Color>
       <Km>22000</Km>
       <Dominio>YZA567</Dominio>
-      <Estado>Disponible</Estado>
+      <Estado>Vendido</Estado>
     </Vehiculo>
     <Vehiculo Id="10" Active="true">
       <Marca>Hyundai</Marca>
@@ -990,6 +990,15 @@
       <Fecha>2025-07-24T14:46:47</Fecha>
       <MotivoRechazo></MotivoRechazo>
     </Venta>
+    <Venta Id="13" Active="true">
+      <VendedorId>1</VendedorId>
+      <ClienteId>5</ClienteId>
+      <VehiculoId>9</VehiculoId>
+      <PagoId>13</PagoId>
+      <Estado>Entregada</Estado>
+      <Fecha>2025-07-24T16:04:30</Fecha>
+      <MotivoRechazo></MotivoRechazo>
+    </Venta>
   </Ventas>
   <Pagos>
     <Pago Id="1" Active="true">
@@ -1076,6 +1085,13 @@
       <Detalles>ok</Detalles>
       <FechaPago>2025-07-24T14:46:47</FechaPago>
     </Pago>
+    <Pago Id="13" Active="true">
+      <TipoPago>Transferencia</TipoPago>
+      <Monto>12000000</Monto>
+      <Cuotas>1</Cuotas>
+      <Detalles>Transferencia en el acto</Detalles>
+      <FechaPago>2025-07-24T16:04:30</FechaPago>
+    </Pago>
   </Pagos>
   <Facturas>
     <Factura Id="1" Active="true">
@@ -1155,6 +1171,13 @@
       <Precio>25000000</Precio>
       <Fecha>2025-07-24T14:46:55</Fecha>
     </Factura>
+    <Factura Id="12" Active="true">
+      <ClienteId>5</ClienteId>
+      <VehiculoId>9</VehiculoId>
+      <FormaPago>Transferencia</FormaPago>
+      <Precio>12000000</Precio>
+      <Fecha>2025-07-24T16:04:37</Fecha>
+    </Factura>
   </Facturas>
   <ComprobantesEntrega>
     <ComprobanteEntrega Id="1" Active="true">
@@ -1200,6 +1223,10 @@
     <ComprobanteEntrega Id="11" Active="true">
       <VentaId>12</VentaId>
       <FechaEntrega>2025-07-24T14:49:28</FechaEntrega>
+    </ComprobanteEntrega>
+    <ComprobanteEntrega Id="12" Active="true">
+      <VentaId>13</VentaId>
+      <FechaEntrega>2025-07-24T16:04:41</FechaEntrega>
     </ComprobanteEntrega>
   </ComprobantesEntrega>
   <Oferentes>

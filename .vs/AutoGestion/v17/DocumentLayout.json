@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\ui\\realizarentrega.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\realizarentrega.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\ui\\emitirfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\emitirfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\bll\\blldashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\blldashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\bll\\bllfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\dtos\\dashboardventadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\dashboardventadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27F11E8D-92D3-4422-B5A1-3DC68AD5DB03}|Servicios\\Servicios.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\servicios\\generadorfacturapdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27F11E8D-92D3-4422-B5A1-3DC68AD5DB03}|Servicios\\Servicios.csproj|solutionrelative:servicios\\generadorfacturapdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EF11D69-1AD7-422B-AE0A-3C3681239214}|BE\\BE.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\be\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3EF11D69-1AD7-422B-AE0A-3C3681239214}|BE\\BE.csproj|solutionrelative:be\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\dtos\\dashboardrankingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\dashboardrankingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\dtos\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +38,96 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RealizarEntrega.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\RealizarEntrega.cs",
-              "RelativeDocumentMoniker": "UI\\RealizarEntrega.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\RealizarEntrega.cs",
-              "RelativeToolTip": "UI\\RealizarEntrega.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T17:48:06.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EmitirFactura.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\EmitirFactura.cs",
-              "RelativeDocumentMoniker": "UI\\EmitirFactura.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\EmitirFactura.cs",
-              "RelativeToolTip": "UI\\EmitirFactura.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
+              "Title": "BLLDashboard.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BLL\\BLLDashboard.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLDashboard.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BLL\\BLLDashboard.cs",
+              "RelativeToolTip": "BLL\\BLLDashboard.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAF4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T17:41:57.914Z",
+              "WhenOpened": "2025-07-24T17:52:14.81Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BLLFactura.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BLL\\BLLFactura.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLFactura.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BLL\\BLLFactura.cs",
-              "RelativeToolTip": "BLL\\BLLFactura.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAEwC0AAABFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\Dashboard.cs",
+              "RelativeDocumentMoniker": "UI\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\Dashboard.cs",
+              "RelativeToolTip": "UI\\Dashboard.cs",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAIwKMAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T17:40:16.594Z",
+              "WhenOpened": "2025-07-24T17:50:53.19Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GeneradorFacturaPDF.cs",
-              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\Servicios\\GeneradorFacturaPDF.cs",
-              "RelativeDocumentMoniker": "Servicios\\GeneradorFacturaPDF.cs",
-              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\Servicios\\GeneradorFacturaPDF.cs",
-              "RelativeToolTip": "Servicios\\GeneradorFacturaPDF.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA7AAAAAAAAAA==",
+              "Title": "Dashboard.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\Dashboard.cs",
+              "RelativeDocumentMoniker": "UI\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\Dashboard.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\Dashboard.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T17:39:51.452Z",
+              "WhenOpened": "2025-07-24T17:50:48.705Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DashboardVentaDto.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\DTOs\\DashboardVentaDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\DashboardVentaDto.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\DTOs\\DashboardVentaDto.cs",
+              "RelativeToolTip": "DTOs\\DashboardVentaDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T18:11:38.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DashboardRankingDto.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\DTOs\\DashboardRankingDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\DashboardRankingDto.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\DTOs\\DashboardRankingDto.cs",
+              "RelativeToolTip": "DTOs\\DashboardRankingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T18:15:00.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Factura.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BE\\Factura.cs",
+              "RelativeDocumentMoniker": "BE\\Factura.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BE\\Factura.cs",
+              "RelativeToolTip": "BE\\Factura.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T18:15:51.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FacturaDto.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\DTOs\\FacturaDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\FacturaDto.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\DTOs\\FacturaDto.cs",
+              "RelativeToolTip": "DTOs\\FacturaDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T18:16:02.401Z",
               "EditorCaption": ""
             }
           ]

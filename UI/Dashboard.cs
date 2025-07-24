@@ -1,5 +1,9 @@
 ﻿using BLL;
 using DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Vista.UserControls.Dashboard
@@ -26,86 +30,157 @@ namespace Vista.UserControls.Dashboard
 
         private void AplicarFiltro()
         {
-            try
+            DateTime hoy = DateTime.Today, desde, hasta;
+
+            switch ((string)cmbFiltroPeriodo.SelectedItem)
             {
-                DateTime hoy = DateTime.Today, desde, hasta;
-
-                switch ((string)cmbFiltroPeriodo.SelectedItem)
-                {
-                    case "Hoy":
-                        desde = hasta = hoy; break;
-                    case "Últimos 7 días":
-                        desde = hoy.AddDays(-6); hasta = hoy; break;
-                    case "Últimos 30 días":
-                        desde = hoy.AddDays(-29); hasta = hoy; break;
-                    default:
-                        desde = hasta = hoy; break;
-                }
-
-                // Total facturado
-                decimal total = _bll.ObtenerTotalFacturado(desde, hasta);
-                lblTotalFacturado.Text = $"{ObtenerTextoPeriodo()}: {total:C2}";
-
-                // 1) Ventas
-                _ventas = _bll.ObtenerVentasFiltradas(desde, hasta);
-                dgvVentas.DataSource = _ventas;
-                dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                DibujarGraficoVentas(_ventas);
-
-                // 2) Ranking
-                // Ranking
-                _ranking = _bll.ObtenerRanking(desde, hasta);
-
-                dgvRanking.AutoGenerateColumns = true;
-                dgvRanking.DataSource = _ranking;
-                dgvRanking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                DibujarGraficoRanking(_ranking);
-
+                case "Hoy":
+                    desde = hasta = hoy; break;
+                case "Últimos 7 días":
+                    desde = hoy.AddDays(-6); hasta = hoy; break;
+                case "Últimos 30 días":
+                    desde = hoy.AddDays(-29); hasta = hoy; break;
+                default:
+                    desde = hasta = hoy; break;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    $"Error al cargar dashboard:\n{ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error
-                );
-            }
+
+            // Total facturado
+            decimal total = _bll.ObtenerTotalFacturado(desde, hasta);
+            lblTotalFacturado.Text = $"{ObtenerTextoPeriodo()}: {total:C2}";
+
+            // Trae los datos de ventas y ranking
+            _ventas = _bll.ObtenerVentasFiltradas(desde, hasta);
+            _ranking = _bll.ObtenerRanking(desde, hasta);
+
+            dgvVentas.DataSource = _ventas;
+            dgvVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvRanking.DataSource = _ranking;
+            dgvRanking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            InicializarGraficos();
+            DibujarGraficoVentas(_ventas);
+            DibujarGraficoTorta(_ventas);
+            DibujarGraficoRanking(_ranking);
         }
 
+        // ---- Inicialización de gráficos ----
+        private void InicializarGraficos()
+        {
+            // --- Gráfico de Ventas por Día (Columnas/Vertical) ---
+            chartVentas.Series.Clear();
+            var sVentas = new Series("Ventas por Día")
+            {
+                ChartType = SeriesChartType.Column,
+                IsValueShownAsLabel = true
+            };
+            chartVentas.Series.Add(sVentas);
+            chartVentas.ChartAreas[0].AxisX.Title = "Fecha";
+            chartVentas.ChartAreas[0].AxisY.Title = "Total Vendido";
+            chartVentas.Legends.Clear();
+
+            // --- Gráfico de Formas de Pago (Torta) ---
+            chartTorta.Series.Clear();
+            var sPago = new Series("Ventas por Forma de Pago")
+            {
+                ChartType = SeriesChartType.Pie,
+                IsValueShownAsLabel = true
+            };
+            chartTorta.Series.Add(sPago);
+            chartTorta.Legends.Clear();
+            chartTorta.Legends.Add(new Legend("Legend1") { Title = "Forma de Pago", Docking = Docking.Bottom });
+
+            // --- Gráfico de Ranking de Vendedores (Barras/Horizontal) ---
+            chartRanking.Series.Clear();
+            var sRanking = new Series("Ranking de Vendedores")
+            {
+                ChartType = SeriesChartType.Bar,
+                IsValueShownAsLabel = true
+            };
+            chartRanking.Series.Add(sRanking);
+            chartRanking.ChartAreas[0].AxisY.Title = "Vendedor";
+            chartRanking.ChartAreas[0].AxisX.Title = "Total Vendido";
+            chartRanking.Legends.Clear();
+        }
+
+        // ---- Gráfico de Ventas por Día (Vertical) ----
         private void DibujarGraficoVentas(List<DashboardVentaDto> ventas)
         {
-            var chart = chartVentas;
-            var serie = chart.Series["Series1"];
-            serie.Points.Clear();
-            serie.ChartType = SeriesChartType.Column;
-            serie.IsValueShownAsLabel = true;
-            chart.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
-            chart.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            chartVentas.Series.Clear();
+            chartVentas.ChartAreas[0].AxisX.CustomLabels.Clear();
+            chartVentas.Legends.Clear();
 
-            // Agrupo por día
-            var porDia = ventas
-                .GroupBy(v => v.Fecha)
-                .Select(g => new { Fecha = g.Key, Total = g.Sum(x => x.Total) })
-                .OrderBy(x => x.Fecha);
-
-            foreach (var item in porDia)
+            var serie = new Series("Ventas")
             {
-                int idx = serie.Points.AddXY(item.Fecha, item.Total);
-                serie.Points[idx].ToolTip = $"{item.Fecha:dd/MM/yyyy}: {item.Total:C2}";
+                ChartType = SeriesChartType.Column,
+                IsValueShownAsLabel = true
+            };
+
+            // Agrupamos ventas por fecha (ya que pueden haber varias ventas el mismo día)
+            var porDia = ventas
+                .GroupBy(v => v.Fecha.Date)
+                .Select(g => new { Fecha = g.Key, Total = g.Sum(x => x.Total) })
+                .OrderBy(x => x.Fecha)
+                .ToList();
+
+            for (int i = 0; i < porDia.Count; i++)
+            {
+                var item = porDia[i];
+                // El eje X es el índice (1,2,3...), no la fecha
+                serie.Points.AddXY(i + 1, item.Total);
+                serie.Points[i].ToolTip = $"{item.Fecha:dd/MM/yyyy}: {item.Total:C2}";
+
+                // Etiqueta personalizada para el eje X (fechas)
+                chartVentas.ChartAreas[0].AxisX.CustomLabels.Add(
+                    new CustomLabel(i + 0.5, i + 1.5, item.Fecha.ToString("dd/MM"), 0, LabelMarkStyle.None)
+                );
             }
 
-            // Formato eje X como fechas
-            var ax = chart.ChartAreas["ChartArea1"].AxisX;
-            ax.LabelStyle.Format = "dd/MM";
-            ax.Interval = 1;
-            chart.Legends["Legend1"].Enabled = false;
+            chartVentas.Series.Add(serie);
+            chartVentas.ChartAreas[0].AxisX.Interval = 1;
+            chartVentas.ChartAreas[0].AxisY.Title = "Monto ($)";
+            chartVentas.ChartAreas[0].AxisX.Title = "Fecha";
+            chartVentas.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chartVentas.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
         }
 
+        // ---- Gráfico de Formas de Pago (Torta) ----
+        private void DibujarGraficoTorta(List<DashboardVentaDto> ventas)
+        {
+            chartTorta.Series.Clear();
+            chartTorta.Legends.Clear();
+
+            var serie = new Series("Formas de Pago")
+            {
+                ChartType = SeriesChartType.Pie,
+                IsValueShownAsLabel = true
+            };
+
+            var porTipo = ventas
+                .GroupBy(v => v.TipoPago ?? "Sin Dato")
+                .Select(g => new { Tipo = g.Key, Total = g.Sum(x => x.Total) })
+                .ToList();
+
+            foreach (var item in porTipo)
+            {
+                int idx = serie.Points.AddXY(item.Tipo, item.Total);
+                serie.Points[idx].LegendText = $"{item.Tipo}";
+                serie.Points[idx].ToolTip = $"{item.Tipo}: {item.Total:C2}";
+                serie.Points[idx].Label = $"{item.Tipo}: {item.Total:C2}";
+            }
+
+            chartTorta.Series.Add(serie);
+
+            // Agregamos la leyenda si hace falta
+            var legend = new Legend("Formas de Pago");
+            chartTorta.Legends.Add(legend);
+        }
+
+        // ---- Gráfico de Ranking de Vendedores (Barras/Horizontal) ----
         private void DibujarGraficoRanking(List<DashboardRankingDto> ranking)
         {
             chartRanking.Series.Clear();
-            chartRanking.ChartAreas[0].AxisY.CustomLabels.Clear(); // Limpio primero
+            chartRanking.ChartAreas[0].AxisY.CustomLabels.Clear();
             chartRanking.Legends.Clear();
 
             var serie = new Series("Ranking")
@@ -114,14 +189,14 @@ namespace Vista.UserControls.Dashboard
                 IsValueShownAsLabel = true
             };
 
-            // IMPORTANTE: Usar i como posición en el eje Y (1,2,3...)
+            // El eje Y es el índice (1,2,3...), no el nombre
             for (int i = 0; i < ranking.Count; i++)
             {
                 var item = ranking[i];
                 serie.Points.AddXY(i + 1, item.Total);
                 serie.Points[i].ToolTip = $"{item.Vendedor}: {item.Total:C2}";
 
-                // Etiqueta personalizada para el eje Y con el nombre del vendedor
+                // Etiqueta personalizada para el eje Y (nombres de vendedor)
                 chartRanking.ChartAreas[0].AxisY.CustomLabels.Add(
                     new CustomLabel(i + 0.5, i + 1.5, item.Vendedor, 0, LabelMarkStyle.None)
                 );
@@ -129,9 +204,11 @@ namespace Vista.UserControls.Dashboard
 
             chartRanking.Series.Add(serie);
             chartRanking.ChartAreas[0].AxisY.Interval = 1;
-            chartRanking.Legends.Clear();
+            chartRanking.ChartAreas[0].AxisY.Title = "Vendedor";
+            chartRanking.ChartAreas[0].AxisX.Title = "Total Vendido ($)";
+            chartRanking.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chartRanking.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
         }
-
 
         private string ObtenerTextoPeriodo() => cmbFiltroPeriodo.SelectedItem as string switch
         {
