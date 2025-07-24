@@ -21,4 +21,7 @@
   <Bitacora Id="7" Fecha="2025-07-18T14:16:24" Usuario="Lucas">
     <Mensaje>Backup generado: Backup-20250718_141624</Mensaje>
   </Bitacora>
+  <Bitacora Id="8" Fecha="2025-07-18T16:08:38" Usuario="juan">
+    <Mensaje>Backup generado: Backup-20250718_160838</Mensaje>
+  </Bitacora>
 </Bitacoras>

@@ -55,6 +55,19 @@ namespace BLL
 
                 var veh = new Vehiculo { ID = vehDto.ID };
 
+                // --- NUEVO: Validar que NO haya un turno ya asignado para ese vehículo, día y hora ---
+                var turnosExistentes = _mpp.ListarPendientesAsistencia();
+                bool yaExiste = turnosExistentes.Any(t =>
+                    t.Vehiculo.ID == veh.ID &&
+                    t.Fecha.Date == input.Fecha.Date &&
+                    t.Hora == input.Hora
+                );
+                if (yaExiste)
+                {
+                    error = "El vehículo ya tiene un turno asignado en esa fecha y hora. Seleccione otro horario.";
+                    return false;
+                }
+
                 var turno = new Turno
                 {
                     Cliente = cliente,
@@ -74,5 +87,6 @@ namespace BLL
                 return false;
             }
         }
+
     }
 }

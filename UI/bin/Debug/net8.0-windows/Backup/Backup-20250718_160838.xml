@@ -35,7 +35,7 @@
       <Color>Negro</Color>
       <Km>30000</Km>
       <Dominio>JKL012</Dominio>
-      <Estado>Vendido</Estado>
+      <Estado>Disponible</Estado>
     </Vehiculo>
     <Vehiculo Id="5" Active="true">
       <Marca>Peugeot</Marca>
@@ -44,7 +44,7 @@
       <Color>Gris</Color>
       <Km>25000</Km>
       <Dominio>MNO345</Dominio>
-      <Estado>Vendido</Estado>
+      <Estado>Disponible</Estado>
     </Vehiculo>
     <Vehiculo Id="6" Active="true">
       <Marca>Honda</Marca>
@@ -53,7 +53,7 @@
       <Color>Plata</Color>
       <Km>61000</Km>
       <Dominio>PQR678</Dominio>
-      <Estado>Vendido</Estado>
+      <Estado>Disponible</Estado>
     </Vehiculo>
     <Vehiculo Id="7" Active="true">
       <Marca>Toyota</Marca>
@@ -89,7 +89,7 @@
       <Color>Negro</Color>
       <Km>34000</Km>
       <Dominio>BCD890</Dominio>
-      <Estado>Vendido</Estado>
+      <Estado>Disponible</Estado>
     </Vehiculo>
     <Vehiculo Id="11" Active="true">
       <Marca>Chevrolet</Marca>
@@ -143,15 +143,6 @@
       <Color>Gris</Color>
       <Km>30000</Km>
       <Dominio>FED123</Dominio>
-      <Estado>Disponible</Estado>
-    </Vehiculo>
-    <Vehiculo Id="17" Active="true">
-      <Marca>Peugeot</Marca>
-      <Modelo>206</Modelo>
-      <Año>2010</Año>
-      <Color>Gris</Color>
-      <Km>100000</Km>
-      <Dominio>AAA999</Dominio>
       <Estado>Disponible</Estado>
     </Vehiculo>
   </Vehiculos>
@@ -259,9 +250,6 @@
       </Permiso>
       <Permiso Id="1041" Active="true">
         <Nombre>Seguridad - Cerrar Sesión</Nombre>
-      </Permiso>
-      <Permiso Id="1031" Active="true">
-        <Nombre>Gestión Compras - Registrar Compra</Nombre>
       </Permiso>
     </Rol>
     <Rol Id="16" Active="true">
@@ -713,24 +701,6 @@
       <Permiso Id="1041" Active="true">
         <Nombre>Seguridad - Cerrar Sesión</Nombre>
       </Permiso>
-      <Permiso Id="1022" Active="true">
-        <Nombre>Gestión Ventas - Solicitar Modelo</Nombre>
-      </Permiso>
-      <Permiso Id="1023" Active="true">
-        <Nombre>Gestión Ventas - Registrar Cliente</Nombre>
-      </Permiso>
-      <Permiso Id="1024" Active="true">
-        <Nombre>Gestión Ventas - Realizar Pago</Nombre>
-      </Permiso>
-      <Permiso Id="1025" Active="true">
-        <Nombre>Gestión Ventas - Autorizar Venta</Nombre>
-      </Permiso>
-      <Permiso Id="1026" Active="true">
-        <Nombre>Gestión Ventas - Emitir Factura</Nombre>
-      </Permiso>
-      <Permiso Id="1027" Active="true">
-        <Nombre>Gestión Ventas - Realizar Entrega</Nombre>
-      </Permiso>
     </Rol>
   </Componentes>
   <Usuario_Permisos>
@@ -866,20 +836,6 @@
       <Contacto>guido@gmail.com</Contacto>
       <FechaRegistro>2025-07-18T09:06:20</FechaRegistro>
     </Cliente>
-    <Cliente Id="9" Active="true">
-      <Dni>55555555</Dni>
-      <Nombre>Amalia</Nombre>
-      <Apellido>Bartoleti</Apellido>
-      <Contacto>ama@gmail.com</Contacto>
-      <FechaRegistro>2025-07-21T23:03:35</FechaRegistro>
-    </Cliente>
-    <Cliente Id="10" Active="true">
-      <Dni>332323232</Dni>
-      <Nombre>prueb</Nombre>
-      <Apellido>borrar</Apellido>
-      <Contacto>pruebaborrar@gmail.com</Contacto>
-      <FechaRegistro>2025-07-24T12:27:20</FechaRegistro>
-    </Cliente>
   </Clientes>
   <Ventas>
     <Venta Id="1" Active="true">
@@ -954,42 +910,6 @@
       <Fecha>2025-07-18T09:07:04</Fecha>
       <MotivoRechazo></MotivoRechazo>
     </Venta>
-    <Venta Id="9" Active="true">
-      <VendedorId>9</VendedorId>
-      <ClienteId>1</ClienteId>
-      <VehiculoId>4</VehiculoId>
-      <PagoId>9</PagoId>
-      <Estado>Entregada</Estado>
-      <Fecha>2025-07-18T16:11:59</Fecha>
-      <MotivoRechazo></MotivoRechazo>
-    </Venta>
-    <Venta Id="10" Active="true">
-      <VendedorId>2</VendedorId>
-      <ClienteId>9</ClienteId>
-      <VehiculoId>5</VehiculoId>
-      <PagoId>10</PagoId>
-      <Estado>Entregada</Estado>
-      <Fecha>2025-07-21T23:04:02</Fecha>
-      <MotivoRechazo></MotivoRechazo>
-    </Venta>
-    <Venta Id="11" Active="true">
-      <VendedorId>1</VendedorId>
-      <ClienteId>1</ClienteId>
-      <VehiculoId>6</VehiculoId>
-      <PagoId>11</PagoId>
-      <Estado>Entregada</Estado>
-      <Fecha>2025-07-24T14:28:30</Fecha>
-      <MotivoRechazo></MotivoRechazo>
-    </Venta>
-    <Venta Id="12" Active="true">
-      <VendedorId>1</VendedorId>
-      <ClienteId>4</ClienteId>
-      <VehiculoId>10</VehiculoId>
-      <PagoId>12</PagoId>
-      <Estado>Entregada</Estado>
-      <Fecha>2025-07-24T14:46:47</Fecha>
-      <MotivoRechazo></MotivoRechazo>
-    </Venta>
   </Ventas>
   <Pagos>
     <Pago Id="1" Active="true">
@@ -1048,34 +968,6 @@
       <Detalles>Pago financiado a 24 cuotas sin interes!</Detalles>
       <FechaPago>2025-07-18T09:07:04</FechaPago>
     </Pago>
-    <Pago Id="9" Active="true">
-      <TipoPago>Efectivo</TipoPago>
-      <Monto>15000000</Monto>
-      <Cuotas>1</Cuotas>
-      <Detalles>pago contado</Detalles>
-      <FechaPago>2025-07-18T16:11:59</FechaPago>
-    </Pago>
-    <Pago Id="10" Active="true">
-      <TipoPago>Efectivo</TipoPago>
-      <Monto>30000000</Monto>
-      <Cuotas>1</Cuotas>
-      <Detalles>Realiza el pago a contado!!!!!!!!!</Detalles>
-      <FechaPago>2025-07-21T23:04:02</FechaPago>
-    </Pago>
-    <Pago Id="11" Active="true">
-      <TipoPago>Efectivo</TipoPago>
-      <Monto>15000000</Monto>
-      <Cuotas>1</Cuotas>
-      <Detalles>listo</Detalles>
-      <FechaPago>2025-07-24T14:28:30</FechaPago>
-    </Pago>
-    <Pago Id="12" Active="true">
-      <TipoPago>Efectivo</TipoPago>
-      <Monto>25000000</Monto>
-      <Cuotas>1</Cuotas>
-      <Detalles>ok</Detalles>
-      <FechaPago>2025-07-24T14:46:47</FechaPago>
-    </Pago>
   </Pagos>
   <Facturas>
     <Factura Id="1" Active="true">
@@ -1127,34 +1019,6 @@
       <Precio>25000000</Precio>
       <Fecha>2025-07-18T09:07:27</Fecha>
     </Factura>
-    <Factura Id="8" Active="true">
-      <ClienteId>1</ClienteId>
-      <VehiculoId>4</VehiculoId>
-      <FormaPago>Efectivo</FormaPago>
-      <Precio>15000000</Precio>
-      <Fecha>2025-07-18T16:12:11</Fecha>
-    </Factura>
-    <Factura Id="9" Active="true">
-      <ClienteId>9</ClienteId>
-      <VehiculoId>5</VehiculoId>
-      <FormaPago>Efectivo</FormaPago>
-      <Precio>30000000</Precio>
-      <Fecha>2025-07-21T23:10:32</Fecha>
-    </Factura>
-    <Factura Id="10" Active="true">
-      <ClienteId>1</ClienteId>
-      <VehiculoId>6</VehiculoId>
-      <FormaPago>Efectivo</FormaPago>
-      <Precio>15000000</Precio>
-      <Fecha>2025-07-24T14:28:39</Fecha>
-    </Factura>
-    <Factura Id="11" Active="true">
-      <ClienteId>4</ClienteId>
-      <VehiculoId>10</VehiculoId>
-      <FormaPago>Efectivo</FormaPago>
-      <Precio>25000000</Precio>
-      <Fecha>2025-07-24T14:46:55</Fecha>
-    </Factura>
   </Facturas>
   <ComprobantesEntrega>
     <ComprobanteEntrega Id="1" Active="true">
@@ -1184,22 +1048,6 @@
     <ComprobanteEntrega Id="7" Active="true">
       <VentaId>8</VentaId>
       <FechaEntrega>2025-07-18T09:07:39</FechaEntrega>
-    </ComprobanteEntrega>
-    <ComprobanteEntrega Id="8" Active="true">
-      <VentaId>10</VentaId>
-      <FechaEntrega>2025-07-21T23:15:52</FechaEntrega>
-    </ComprobanteEntrega>
-    <ComprobanteEntrega Id="9" Active="true">
-      <VentaId>9</VentaId>
-      <FechaEntrega>2025-07-24T14:28:44</FechaEntrega>
-    </ComprobanteEntrega>
-    <ComprobanteEntrega Id="10" Active="true">
-      <VentaId>11</VentaId>
-      <FechaEntrega>2025-07-24T14:49:24</FechaEntrega>
-    </ComprobanteEntrega>
-    <ComprobanteEntrega Id="11" Active="true">
-      <VentaId>12</VentaId>
-      <FechaEntrega>2025-07-24T14:49:28</FechaEntrega>
     </ComprobanteEntrega>
   </ComprobantesEntrega>
   <Oferentes>
@@ -1277,12 +1125,6 @@
       <FechaInspeccion>2025-07-18T00:00:00</FechaInspeccion>
       <Estado>En evaluación</Estado>
     </OfertaCompra>
-    <OfertaCompra Id="8" Active="true">
-      <OferenteId>1</OferenteId>
-      <VehiculoId>17</VehiculoId>
-      <FechaInspeccion>2025-07-21T00:00:00</FechaInspeccion>
-      <Estado>En evaluación</Estado>
-    </OfertaCompra>
   </OfertaCompras>
   <Evaluaciones>
     <Evaluacion Id="1" Active="true">
@@ -1341,14 +1183,6 @@
       <EstadoDocumentacion>Excelente</EstadoDocumentacion>
       <Observaciones>Excelente</Observaciones>
     </Evaluacion>
-    <Evaluacion Id="8" Active="true">
-      <OfertaId>8</OfertaId>
-      <EstadoMotor>bien</EstadoMotor>
-      <EstadoCarroceria>bien</EstadoCarroceria>
-      <EstadoInterior>bien</EstadoInterior>
-      <EstadoDocumentacion>bien</EstadoDocumentacion>
-      <Observaciones>TODO CORRECTO!!!!</Observaciones>
-    </Evaluacion>
   </Evaluaciones>
   <Tasaciones>
     <Tasacion Id="1" Active="true">
@@ -1397,12 +1231,6 @@
       <ValorFinal>35000000</ValorFinal>
       <EstadoStock>Disponible</EstadoStock>
       <Fecha>2025-07-18T09:10:31</Fecha>
-    </Tasacion>
-    <Tasacion Id="9" Active="true">
-      <OfertaId>8</OfertaId>
-      <ValorFinal>15000000</ValorFinal>
-      <EstadoStock>Disponible</EstadoStock>
-      <Fecha>2025-07-21T23:39:35</Fecha>
     </Tasacion>
   </Tasaciones>
   <Comisiones>
@@ -1455,13 +1283,6 @@
       <MotivoRechazo></MotivoRechazo>
       <Venta Id="8" />
     </Comision>
-    <Comision Id="8" Active="true">
-      <Fecha>2025-07-21T23:55:32</Fecha>
-      <Monto>0</Monto>
-      <Estado>Rechazada</Estado>
-      <MotivoRechazo>porque no va</MotivoRechazo>
-      <Venta Id="10" />
-    </Comision>
   </Comisiones>
   <Turnos>
     <Turno Id="1" Active="true">
@@ -1485,8 +1306,8 @@
       <VehiculoId>5</VehiculoId>
       <Fecha>2025-07-17T00:00:00</Fecha>
       <Hora>09:30:00</Hora>
-      <Asistencia>Asistió</Asistencia>
-      <Observaciones>ok</Observaciones>
+      <Asistencia>Pendiente</Asistencia>
+      <Observaciones></Observaciones>
     </Turno>
     <Turno Id="4" Active="true">
       <ClienteId>6</ClienteId>
@@ -1511,54 +1332,6 @@
       <Hora>09:30:00</Hora>
       <Asistencia>Asistió</Asistencia>
       <Observaciones>Se presentó antes de horario</Observaciones>
-    </Turno>
-    <Turno Id="7" Active="true">
-      <ClienteId>2</ClienteId>
-      <VehiculoId>9</VehiculoId>
-      <Fecha>2025-07-22T00:00:00</Fecha>
-      <Hora>00:02:01.9122116</Hora>
-      <Asistencia>Pendiente</Asistencia>
-      <Observaciones></Observaciones>
-    </Turno>
-    <Turno Id="8" Active="true">
-      <ClienteId>1</ClienteId>
-      <VehiculoId>9</VehiculoId>
-      <Fecha>2025-07-22T00:00:00</Fecha>
-      <Hora>00:02:01.9122116</Hora>
-      <Asistencia>Pendiente</Asistencia>
-      <Observaciones></Observaciones>
-    </Turno>
-    <Turno Id="9" Active="true">
-      <ClienteId>2</ClienteId>
-      <VehiculoId>9</VehiculoId>
-      <Fecha>2025-07-22T00:00:00</Fecha>
-      <Hora>00:02:01.9122116</Hora>
-      <Asistencia>No asistió</Asistencia>
-      <Observaciones>asd</Observaciones>
-    </Turno>
-    <Turno Id="10" Active="true">
-      <ClienteId>1</ClienteId>
-      <VehiculoId>17</VehiculoId>
-      <Fecha>2025-07-25T00:00:00</Fecha>
-      <Hora>14:30:00</Hora>
-      <Asistencia>Pendiente</Asistencia>
-      <Observaciones></Observaciones>
-    </Turno>
-    <Turno Id="11" Active="true">
-      <ClienteId>2</ClienteId>
-      <VehiculoId>17</VehiculoId>
-      <Fecha>2025-07-24T00:00:00</Fecha>
-      <Hora>15:00:00</Hora>
-      <Asistencia>Pendiente</Asistencia>
-      <Observaciones></Observaciones>
-    </Turno>
-    <Turno Id="12" Active="true">
-      <ClienteId>3</ClienteId>
-      <VehiculoId>17</VehiculoId>
-      <Fecha>2025-07-25T00:00:00</Fecha>
-      <Hora>15:00:00</Hora>
-      <Asistencia>Pendiente</Asistencia>
-      <Observaciones></Observaciones>
     </Turno>
   </Turnos>
 </BaseDeDatosLocal>

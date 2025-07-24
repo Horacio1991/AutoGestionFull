@@ -84,36 +84,35 @@ namespace AutoGestion.UI
                 return;
             }
 
-            // 2. Diálogo para guardar el PDF
-            using (var dlg = new SaveFileDialog
-            {
-                Filter = "PDF|*.pdf",
-                FileName = $"Factura_{dto.ID}.pdf"
-            })
-            {
-                if (dlg.ShowDialog() != DialogResult.OK) return;
+            // 2. Ruta automática
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Documentos", "Facturas");
+            if (!Directory.Exists(basePath))
+                Directory.CreateDirectory(basePath);
 
-                try
-                {
-                    // 3. Emisión y guardado de la factura
-                    var facturaDto = _bllFactura.EmitirFactura(dto.ID, dlg.FileName);
+            string archivoDestino = Path.Combine(basePath, $"Factura_{dto.ID}.pdf");
 
-                    MessageBox.Show(
-                        $"✅ Factura emitida\n" +
-                        $"Cliente:  {facturaDto.Cliente}\n" +
-                        $"Vehículo: {facturaDto.Vehiculo}\n" +
-                        $"Total:    {facturaDto.Precio:C2}\n" +
-                        $"Fecha:    {facturaDto.Fecha:dd/MM/yyyy}",
-                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error al emitir factura:\n{ex.Message}",
-                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            try
+            {
+                // 3. Emisión y guardado de la factura
+                var facturaDto = _bllFactura.EmitirFactura(dto.ID, archivoDestino);
+
+                MessageBox.Show(
+                    $"✅ Factura emitida y guardada automáticamente en:\n{archivoDestino}\n\n" +
+                    $"Cliente:  {facturaDto.Cliente}\n" +
+                    $"Vehículo: {facturaDto.Vehiculo}\n" +
+                    $"Total:    {facturaDto.Precio:C2}\n" +
+                    $"Fecha:    {facturaDto.Fecha:dd/MM/yyyy}",
+                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al emitir factura:\n{ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             // 4. Refrescar lista
             CargarVentasParaFacturar();
         }
+
+
     }
 }

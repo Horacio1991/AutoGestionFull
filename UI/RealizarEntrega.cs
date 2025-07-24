@@ -91,21 +91,22 @@ namespace AutoGestion.UI
                 return;
             }
 
-            using var dlg = new SaveFileDialog
-            {
-                Filter = "PDF|*.pdf",
-                FileName = $"Comprobante_{dto.ID}.pdf"
-            };
-            if (dlg.ShowDialog() != DialogResult.OK) return;
+            // 1. Ruta automática para comprobantes
+            string basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Documentos", "Comprobantes");
+            if (!Directory.Exists(basePath))
+                Directory.CreateDirectory(basePath);
+
+            string archivoDestino = Path.Combine(basePath, $"Comprobante_{dto.ID}.pdf");
 
             try
             {
-                // Deshabilito el botón mientras dura el proceso
                 btnConfirmarEntrega.Enabled = false;
 
-                _bllComp.EmitirComprobantePdf(dto.ID, dlg.FileName);
-                MessageBox.Show("✅ Entrega registrada y comprobante generado correctamente.",
-                                "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _bllComp.EmitirComprobantePdf(dto.ID, archivoDestino);
+
+                MessageBox.Show(
+                    $"✅ Entrega registrada y comprobante guardado automáticamente en:\n{archivoDestino}",
+                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Recargar la grilla para quitar las entregadas
                 CargarVentas();
@@ -121,5 +122,6 @@ namespace AutoGestion.UI
                 CargarVentas();
             }
         }
+
     }
 }

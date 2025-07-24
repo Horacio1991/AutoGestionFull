@@ -1,12 +1,88 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\ui\\realizarentrega.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\realizarentrega.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\ui\\emitirfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\emitirfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\bll\\bllfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\bllfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27F11E8D-92D3-4422-B5A1-3DC68AD5DB03}|Servicios\\Servicios.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\servicios\\generadorfacturapdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27F11E8D-92D3-4422-B5A1-3DC68AD5DB03}|Servicios\\Servicios.csproj|solutionrelative:servicios\\generadorfacturapdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RealizarEntrega.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\RealizarEntrega.cs",
+              "RelativeDocumentMoniker": "UI\\RealizarEntrega.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\RealizarEntrega.cs",
+              "RelativeToolTip": "UI\\RealizarEntrega.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T17:48:06.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmitirFactura.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\EmitirFactura.cs",
+              "RelativeDocumentMoniker": "UI\\EmitirFactura.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\EmitirFactura.cs",
+              "RelativeToolTip": "UI\\EmitirFactura.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T17:41:57.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BLLFactura.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BLL\\BLLFactura.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLFactura.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BLL\\BLLFactura.cs",
+              "RelativeToolTip": "BLL\\BLLFactura.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAEwC0AAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T17:40:16.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GeneradorFacturaPDF.cs",
+              "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\Servicios\\GeneradorFacturaPDF.cs",
+              "RelativeDocumentMoniker": "Servicios\\GeneradorFacturaPDF.cs",
+              "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\Servicios\\GeneradorFacturaPDF.cs",
+              "RelativeToolTip": "Servicios\\GeneradorFacturaPDF.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-24T17:39:51.452Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

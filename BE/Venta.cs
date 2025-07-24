@@ -9,7 +9,6 @@
         public Pago Pago { get; set; }
         public string Estado { get; set; }
         public DateTime Fecha { get; set; } = DateTime.Now;
-        public decimal Total => Pago?.Monto ?? 0;
         public string MotivoRechazo { get; set; }
 
     }
