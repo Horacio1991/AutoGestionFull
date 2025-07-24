@@ -99,7 +99,7 @@
             chartRanking.Legends.Add(legend1);
             chartRanking.Location = new Point(598, 364);
             chartRanking.Name = "chartRanking";
-            chartRanking.Size = new Size(499, 320);
+            chartRanking.Size = new Size(559, 320);
             chartRanking.TabIndex = 9;
             chartRanking.Text = "chart1";
             // 

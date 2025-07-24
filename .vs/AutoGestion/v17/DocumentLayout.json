@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\bll\\blldashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{829B8303-B397-42CB-955A-D9F9CD80E512}|BLL\\BLL.csproj|solutionrelative:bll\\blldashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\dtos\\dashboardventadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E171049A-B288-4000-8DC3-F53D4D63EE45}|DTOs\\DTOs.csproj|solutionrelative:dtos\\dashboardventadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B85DAB0E-04B2-4917-94D2-35A33B54A9FB}|UI\\UI.csproj|solutionrelative:ui\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3EF11D69-1AD7-422B-AE0A-3C3681239214}|BE\\BE.csproj|c:\\users\\hory_\\onedrive\\escritorio\\tpfinal2025\\autogestionfull\\be\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +42,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "BLLDashboard.cs",
               "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\BLL\\BLLDashboard.cs",
               "RelativeDocumentMoniker": "BLL\\BLLDashboard.cs",
@@ -61,14 +61,14 @@
               "RelativeDocumentMoniker": "UI\\Dashboard.cs",
               "ToolTip": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\Dashboard.cs",
               "RelativeToolTip": "UI\\Dashboard.cs",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAIwKMAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAqwKAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-24T17:50:53.19Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Dashboard.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\UI\\Dashboard.cs",
               "RelativeDocumentMoniker": "UI\\Dashboard.cs",
@@ -80,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "DashboardVentaDto.cs",
               "DocumentMoniker": "C:\\Users\\hory_\\OneDrive\\Escritorio\\TPFINAL2025\\AutoGestionFull\\DTOs\\DashboardVentaDto.cs",
               "RelativeDocumentMoniker": "DTOs\\DashboardVentaDto.cs",

@@ -109,6 +109,11 @@ namespace Vista.UserControls.Dashboard
             chartVentas.Series.Clear();
             chartVentas.ChartAreas[0].AxisX.CustomLabels.Clear();
             chartVentas.Legends.Clear();
+            chartVentas.Titles.Clear();
+            var tituloVentas = new Title("Ventas por Día", Docking.Top, new Font("Arial", 14, FontStyle.Bold), Color.Black);
+            tituloVentas.Alignment = ContentAlignment.TopCenter;
+            chartVentas.Titles.Add(tituloVentas);
+
 
             var serie = new Series("Ventas")
             {
@@ -149,6 +154,11 @@ namespace Vista.UserControls.Dashboard
         {
             chartTorta.Series.Clear();
             chartTorta.Legends.Clear();
+            chartTorta.Titles.Clear();
+            var tituloTorta = new Title("Distribución por Forma de Pago", Docking.Top, new Font("Arial", 14, FontStyle.Bold), Color.Black);
+            tituloTorta.Alignment = ContentAlignment.TopCenter;
+            chartTorta.Titles.Add(tituloTorta);
+
 
             var serie = new Series("Formas de Pago")
             {
@@ -179,35 +189,58 @@ namespace Vista.UserControls.Dashboard
         // ---- Gráfico de Ranking de Vendedores (Barras/Horizontal) ----
         private void DibujarGraficoRanking(List<DashboardRankingDto> ranking)
         {
-            chartRanking.Series.Clear();
-            chartRanking.ChartAreas[0].AxisY.CustomLabels.Clear();
-            chartRanking.Legends.Clear();
+
+            var chart = chartRanking;
+            chart.Series.Clear();
+            chart.ChartAreas[0].AxisY.CustomLabels.Clear();
+            chart.Legends.Clear();
+            // Título del gráfico de Ranking de Vendedores
+            chart.Titles.Clear(); // Limpio títulos viejos si los hay
+            var tituloRanking = new Title("Ranking de Vendedores", Docking.Top, new Font("Arial", 14, FontStyle.Bold), Color.Black);
+            tituloRanking.Alignment = ContentAlignment.TopCenter;
+            chart.Titles.Add(tituloRanking);
+
 
             var serie = new Series("Ranking")
             {
-                ChartType = SeriesChartType.Bar,
-                IsValueShownAsLabel = true
+                ChartType = SeriesChartType.Bar, // Barras horizontales
+                IsValueShownAsLabel = false // Vamos a usar Label personalizado, no el valor por defecto
             };
 
-            // El eje Y es el índice (1,2,3...), no el nombre
+            // Si no hay datos, no dibujo nada
+            if (ranking == null || ranking.Count == 0)
+                return;
+
             for (int i = 0; i < ranking.Count; i++)
             {
                 var item = ranking[i];
-                serie.Points.AddXY(i + 1, item.Total);
-                serie.Points[i].ToolTip = $"{item.Vendedor}: {item.Total:C2}";
+                int idx = serie.Points.AddXY(i + 1, item.Total);
 
-                // Etiqueta personalizada para el eje Y (nombres de vendedor)
-                chartRanking.ChartAreas[0].AxisY.CustomLabels.Add(
+                // Mostramos el nombre y el monto como etiqueta en la barra
+                // Si querés solo el nombre, poné: serie.Points[idx].Label = item.Vendedor;
+                serie.Points[idx].Label = $"{item.Vendedor}: {item.Total:N0}";
+
+                // Tooltip para mayor claridad (se ve al pasar el mouse)
+                serie.Points[idx].ToolTip = $"{item.Vendedor}: {item.Total:C2}";
+
+                // Etiqueta personalizada en el eje Y (deja el nombre del vendedor en el eje)
+                chart.ChartAreas[0].AxisY.CustomLabels.Add(
                     new CustomLabel(i + 0.5, i + 1.5, item.Vendedor, 0, LabelMarkStyle.None)
                 );
             }
 
-            chartRanking.Series.Add(serie);
-            chartRanking.ChartAreas[0].AxisY.Interval = 1;
-            chartRanking.ChartAreas[0].AxisY.Title = "Vendedor";
-            chartRanking.ChartAreas[0].AxisX.Title = "Total Vendido ($)";
-            chartRanking.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
-            chartRanking.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            // Opciones visuales
+            serie["BarLabelStyle"] = "Center"; // Podés probar "Outside" si querés fuera de la barra
+
+            chart.Series.Add(serie);
+            chart.ChartAreas[0].AxisY.Interval = 1;
+            chart.ChartAreas[0].AxisY.Title = "Vendedor";
+            chart.ChartAreas[0].AxisX.Title = "Total Vendido ($)";
+
+            // Leyenda clara (opcional, podés dejarla desactivada si no te gusta)
+            var legend = new Legend("Vendedores");
+            legend.Docking = Docking.Top;
+            chart.Legends.Add(legend);
         }
 
         private string ObtenerTextoPeriodo() => cmbFiltroPeriodo.SelectedItem as string switch
